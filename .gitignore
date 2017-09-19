@@ -49,3 +49,4 @@ crashlytics-build.properties
 fabric.properties
 .idea/workspace.xml
 build/
+build/libs/progettoweb-1.0.war

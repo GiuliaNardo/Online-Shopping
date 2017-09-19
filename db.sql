@@ -79,9 +79,11 @@ create table ordine (
   IdVenditore int,
   IdUtente int,
   PrezzoTot float,
+  DataOrdine date not null,
   DataSpedizione date,
-  PagamentoRicevuto boolean not null,
-  Ricevuto boolean not null,
+  TipoOrdine enum("spedizione","ritiro"),
+  PagamentoRicevuto enum("TRUE","FALSE") not null,
+  Ricevuto enum("TRUE","FALSE") not null,
   foreign key (IdVenditore) references venditore(IdVenditore),
   foreign key (IdVenditore) references utente(IdUtente)
 );

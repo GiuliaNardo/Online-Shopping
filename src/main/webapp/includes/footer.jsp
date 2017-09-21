@@ -46,34 +46,46 @@
 <footer class="flex-rw">
     <table>
         <tr>
-
-            <ul class="footer-list-top">
+            <td class="td-up">
                 <li><h3 class="footer-list-header">About Us</h3></li>
-                <h4>
-                    <li><a href='' class="generic-anchor">Know Us</a></li>
-                </h4>
-            </ul>
-
-
-            <ul class="footer-list-top">
+            </td>
+            <td class="td-up">
                 <li><h3 class="footer-list-header">Contact Us</h3></li>
-                <h4>
-                    <li>E-mail: sitobello@siti.com</li>
-                    <li>Telephone Number: 0000 1245</li>
-                    <li>Fax: 0000 12487</li>
-                </h4>
-            </ul>
+            </td>
+            <td class="td-up">
+                <h3 class="footer-list-header">Please Help Me</h3>
+            </td>
+        </tr>
+        <tr>
+            <td nowrap class="td-up">
+                <ul class="footer-list-top">
+                    <h4>
+                        <li><a href='' class="generic-anchor">Know Us</a></li>
+                    </h4>
+                </ul>
 
-            <ul>
-                <h4>
-                    <li id='help'>
-                        <h3 class="footer-list-header">Please Help Me</h3>
-                        <h4>
-                    <li><a href='orders.jsp' class="generic-anchor">My Order</a></li>
-                    <li><a href='' class="generic-anchor">FAQ</a></li>
-                    <li><a href='webapp\register.jsp' class="generic-anchor">New User</a></li>
-                </h4>
-            </ul>
+            </td>
+
+            <td nowrap class="td-up">
+                <ul class="footer-list-top">
+                    <h4>
+                        <li><p>E-mail: sitobello@siti.com</p></li>
+                        <li><p>Telephone Number: 0000 1245</p></li>
+                        <li><p>Fax: 0000 15546</p></li>
+                    </h4>
+                </ul>
+
+            </td>
+            <td nowrap class="td-up">
+                <ul class="footer-list-top">
+                    <h4>
+                        <li><a href='orders.jsp' class="generic-anchor">My Order</a></li>
+                        <li><a href='' class="generic-anchor">FAQ</a></li>
+                        <li><a href='webapp\register.jsp' class="generic-anchor">New User</a></li>
+                    </h4>
+                </ul>
+            </td>
+
         </tr>
         <!--<section class="footer-social-section flex-rw">
         <!-- <span class="footer-social-overlap footer-social-connect">
@@ -95,19 +107,22 @@
       </span>
     </section>-->
         <tr>
-            <section class="footer-bottom-section flex-rw">
-                <div class="footer-bottom-wrapper">
-                    <i class="fa fa-copyright" role="copyright">
+            <td colspan="3">
+                <section class="footer-bottom-section flex-rw">
+                    <div class="footer-bottom-wrapper">
+                        <i class="fa fa-copyright" role="copyright">
 
-                    </i> 2017
-                    <address class="footer-address" role="company address">Trento, TN</address>
-                    <span class="footer-bottom-rights"> - All Rights Reserved - </span>
-                </div>
-                <div class="footer-bottom-wrapper">
-                    <a href="" class="generic-anchor">Terms</a> | <a
-                        href="" class="generic-anchor">Privacy</a>
-                </div>
-            </section>
+                        </i> 2017
+                        <address class="footer-address" role="company address">Trento, TN</address>
+                        <span class="footer-bottom-rights"> - All Rights Reserved - </span>
+                    </div>
+                    <div class="footer-bottom-wrapper">
+                        <a href="" class="generic-anchor">Terms</a> | <a
+                            href="" class="generic-anchor">Privacy</a>
+                    </div>
+                </section>
+            </td>
+
         </tr>
     </table>
 </footer>

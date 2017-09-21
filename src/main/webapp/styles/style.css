@@ -29,6 +29,15 @@ a {
     text-decoration: none;
 }
 
+table{
+    text-align: center;
+    width: 100%;
+}
+
+.td-up {
+    width: 33.3%;
+}
+
 .generic-anchor {
     color: #8DB9ED;
 }
@@ -68,9 +77,9 @@ footer {
     width: 100%;
 }
 
+
 .footer-list-top {
-    width: 33.333%;
-    text-align: left;
+    width: 100%;
     color: #8DB9ED;
 }
 

@@ -26,13 +26,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/index.jsp">DEMA-SHOP</a>-->
+        <a class="navbar-brand" href="/">DEMA-SHOP</a>-->
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-            <li><a href="/index.jsp">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/shop.jsp">Shop</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorie <b class="caret"></b></a>

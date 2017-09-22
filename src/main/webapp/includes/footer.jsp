@@ -6,16 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" type="text/css" href="styles/style.css">
-
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<script src="/js/javascript.js"></script>
 <!-- <table align="center">
  <tr align="center">
      <td >

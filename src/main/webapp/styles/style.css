@@ -30,7 +30,9 @@ ul {
     width: 100%;
     text-align: center;
     list-style-type: none;
+
 }
+
 
 a {
     text-decoration: none;
@@ -38,6 +40,7 @@ a {
 
 .flex-rw table{
     width: 100%;
+    background-color: #373737;
 
 }
 
@@ -52,11 +55,11 @@ a {
 .td-up{
     width: 33.3%;
     font-size: 1em;
-    color: #8DB9ED;
+    color: #03b1ce;
 }
 
 .generic-anchor {
-    color: #8DB9ED;
+    color: #03b1ce;
 }
 .generic-anchor:visited {
     color: #FF69B4;
@@ -89,7 +92,7 @@ main {
 }*/
 
 footer {
-    background: #373737;
+    background-color: #373737;;
     margin-top: auto;
     width: 100%;
 }
@@ -97,7 +100,7 @@ footer {
 
 .footer-list-top {
     width: 100%;
-    color: #8DB9ED;
+    color: #03b1ce;
 }
 
 .footer-list-header {

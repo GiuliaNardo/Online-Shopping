@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-    font: 11px "Open Sans", sans-serif;
+    font: 11px Roboto!important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: auto;
@@ -66,7 +66,7 @@ main {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    font: 10em "Oswald", sans-serif;
+    font: 10em Roboto!important;
     color: #9b9b9b;
     line-height: 1;
 }*/
@@ -90,11 +90,11 @@ footer {
 .footer-list-header {
     padding: 10px 0 5px 0;
     color: #fff;
-    font: 2.3vw "Oswald", sans-serif;
+    font: 2.3vw Roboto;
 }
 
 .footer-list-anchor {
-    font: 1.3em "Open Sans", sans-serif;
+    font: 1.3em Roboto;
 }
 
 .footer-social-section {
@@ -132,7 +132,7 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    font: 3.5em "Oswald", sans-serif;
+    font: 3.5em Roboto;
     color: #fff;
 }
 

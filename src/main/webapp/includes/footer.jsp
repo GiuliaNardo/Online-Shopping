@@ -58,33 +58,25 @@
         </tr>
         <tr>
             <td nowrap class="td-up">
-
                 <li><a href='' class="generic-anchor">Know Us</a></li>
-
-
             </td>
 
             <td nowrap class="td-up">
-
                 <li>E-mail: sitobello@siti.com</li>
                 <li>Telephone Number: 0000 1245</li>
                 <li>Fax: 0000 15546</li>
-
-
             </td>
             <td nowrap class="td-up">
                 <li><a href='orders.jsp' class="generic-anchor">My Order</a></li>
                 <li><a href='' class="generic-anchor">FAQ</a></li>
                 <li><a href='webapp\register.jsp' class="generic-anchor">New User</a></li>
             </td>
-
         </tr>
         <tr>
             <td colspan="3">
                 <section class="footer-bottom-section flex-rw">
                     <div class="footer-bottom-wrapper">
                         <i class="fa fa-copyright" role="copyright">
-
                         </i> 2017
                         <address class="footer-address" role="company address">Trento, TN</address>
                         <span class="footer-bottom-rights"> - All Rights Reserved - </span>

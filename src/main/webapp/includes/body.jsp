@@ -9,10 +9,19 @@
 
 <%
     String bodyType = request.getParameter("bodytype");
+    System.out.println(""+bodyType);
     switch(bodyType) {
         case "index":
             RequestDispatcher rd = request.getRequestDispatcher("/includes/bodies/indexbody.jsp");
             rd.include(request, response);
+            break;
+        case "shop":
+            RequestDispatcher rd1 = request.getRequestDispatcher("/includes/bodies/shopbody.jsp");
+            rd1.include(request, response);
+            break;
+        case "profile":
+            RequestDispatcher rd2 = request.getRequestDispatcher("/includes/bodies/profilebody.jsp");
+            rd2.include(request, response);
             break;
     }
 %>

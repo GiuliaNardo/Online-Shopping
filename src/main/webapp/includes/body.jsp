@@ -9,7 +9,6 @@
 
 <%
     String bodyType = request.getParameter("bodytype");
-    System.out.println(""+bodyType);
     switch(bodyType) {
         case "index":
             RequestDispatcher rd = request.getRequestDispatcher("/includes/bodies/indexbody.jsp");

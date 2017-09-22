@@ -1,1 +1,1 @@
-$('a[href$="' + this.location.pathname + '"]').parent().addClass('active');
+$('a[href$="' + this.location.pathname + '"]').parents('li,ul').addClass('active');

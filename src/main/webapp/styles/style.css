@@ -25,6 +25,13 @@ ul {
     list-style: none;
 }
 
+.flex-rw li{
+    padding-top: 0.5em;
+    width: 100%;
+    text-align: center;
+    list-style-type: none;
+}
+
 a {
     text-decoration: none;
 }

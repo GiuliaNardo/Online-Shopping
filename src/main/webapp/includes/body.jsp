@@ -14,6 +14,14 @@
             RequestDispatcher rd = request.getRequestDispatcher("/includes/bodies/indexbody.jsp");
             rd.include(request, response);
             break;
+        case "shop":
+            RequestDispatcher rd = request.getRequestDispatcher("/includes/bodies/shopbody.jsp");
+            rd.include(request, response);
+            break;
+        case "profile":
+            RequestDispatcher rd = request.getRequestDispatcher("/includes/bodies/profilebody.jsp");
+            rd.include(request, response);
+            break;
     }
 %>
 

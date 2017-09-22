@@ -29,13 +29,23 @@ a {
     text-decoration: none;
 }
 
-table{
-    text-align: center;
+.flex-rw table{
     width: 100%;
+
 }
 
-.td-up {
+.td-up-head {
     width: 33.3%;
+    font-size: 1.3em;
+    color: white;
+    padding-top: 1em;
+    text-align: center;
+}
+
+.td-up{
+    width: 33.3%;
+    font-size: 1em;
+    color: #8DB9ED;
 }
 
 .generic-anchor {
@@ -83,18 +93,13 @@ footer {
     color: #8DB9ED;
 }
 
-.footer-list-top > li {
-    padding-bottom: 10px;
-}
-
 .footer-list-header {
-    padding: 10px 0 5px 0;
     color: #fff;
-    font: 2.3vw Roboto;
+    font: 1vw Roboto;
 }
 
 .footer-list-anchor {
-    font: 1.3em Roboto;
+    font: 1em Roboto;
 }
 
 .footer-social-section {
@@ -102,7 +107,6 @@ footer {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    -ms-flex-pack: distribute;
     justify-content: space-around;
     position: relative;
     margin-top: 5px;
@@ -125,30 +129,6 @@ footer {
     padding: 0 20px;
 }
 
-.footer-social-connect {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    font: 3.5em Roboto;
-    color: #fff;
-}
-
-.footer-social-small {
-    font-size: 0.6em;
-    padding: 0px 20px;
-}
-
-.footer-social-overlap > a {
-    font-size: 3em;
-}
-
-.footer-social-overlap > a:not(:first-child) {
-    margin-left: 0.38em;
-}
-
 .footer-bottom-section {
     width: 100%;
     padding: 10px;
@@ -161,7 +141,7 @@ footer {
 }
 
 .footer-bottom-wrapper {
-    font-size: 1.5em;
+    font-size: 1.3em;
     color: #fff;
 }
 
@@ -208,45 +188,12 @@ footer {
         font-size: 1.5em;
     }
 
-    .footer-social-section {
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
-
-    .footer-social-section::after {
-        top: 25%;
-    }
-
-    .footer-social-connect {
-        margin-bottom: 10px;
-        padding: 0 10px;
-    }
-
-    .footer-social-overlap {
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-pack: center;
-        -ms-flex-pack: center;
-        justify-content: center;
-    }
-
-    .footer-social-icons-wrapper {
-        width: 100%;
-        padding: 0;
-    }
-
-    .footer-social-overlap > a:not(:first-child) {
-        margin-left: 20px;
-    }
 
     .footer-bottom-section {
         padding: 0 5px 10px 5px;
     }
 
     .footer-bottom-wrapper {
-        text-align: center;
         width: 100%;
         margin-top: 10px;
     }

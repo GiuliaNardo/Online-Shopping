@@ -46,66 +46,39 @@
 <footer class="flex-rw">
     <table>
         <tr>
-            <td class="td-up">
-                <li><h3 class="footer-list-header">About Us</h3></li>
+            <td class="td-up-head">
+                About Us
             </td>
-            <td class="td-up">
-                <li><h3 class="footer-list-header">Contact Us</h3></li>
+            <td class="td-up-head">
+                Contact Us
             </td>
-            <td class="td-up">
-                <h3 class="footer-list-header">Please Help Me</h3>
+            <td class="td-up-head">
+                Please Help Me
             </td>
         </tr>
         <tr>
             <td nowrap class="td-up">
-                <ul class="footer-list-top">
-                    <h4>
-                        <li><a href='' class="generic-anchor">Know Us</a></li>
-                    </h4>
-                </ul>
+
+                <li><a href='' class="generic-anchor">Know Us</a></li>
+
 
             </td>
 
             <td nowrap class="td-up">
-                <ul class="footer-list-top">
-                    <h4>
-                        <li><p>E-mail: sitobello@siti.com</p></li>
-                        <li><p>Telephone Number: 0000 1245</p></li>
-                        <li><p>Fax: 0000 15546</p></li>
-                    </h4>
-                </ul>
+
+                <li>E-mail: sitobello@siti.com</li>
+                <li>Telephone Number: 0000 1245</li>
+                <li>Fax: 0000 15546</li>
+
 
             </td>
             <td nowrap class="td-up">
-                <ul class="footer-list-top">
-                    <h4>
-                        <li><a href='orders.jsp' class="generic-anchor">My Order</a></li>
-                        <li><a href='' class="generic-anchor">FAQ</a></li>
-                        <li><a href='webapp\register.jsp' class="generic-anchor">New User</a></li>
-                    </h4>
-                </ul>
+                <li><a href='orders.jsp' class="generic-anchor">My Order</a></li>
+                <li><a href='' class="generic-anchor">FAQ</a></li>
+                <li><a href='webapp\register.jsp' class="generic-anchor">New User</a></li>
             </td>
 
         </tr>
-        <!--<section class="footer-social-section flex-rw">
-        <!-- <span class="footer-social-overlap footer-social-connect">
-         CONNECT <span class="footer-social-small">with</span> US
-         </span>
-        <span class="footer-social-overlap footer-social-icons-wrapper">
-      <a href="https://www.pinterest.com/paviliongift/" class="generic-anchor" target="_blank" title="Pinterest"
-         itemprop="significantLink"><i class="fa fa-pinterest"></i></a>
-      <a href="https://www.facebook.com/paviliongift" class="generic-anchor" target="_blank" title="Facebook"
-         itemprop="significantLink"><i class="fa fa-facebook"></i></a>
-      <a href="https://twitter.com/PavilionGiftCo" class="generic-anchor" target="_blank" title="Twitter"
-         itemprop="significantLink"><i class="fa fa-twitter"></i></a>
-      <a href="http://instagram.com/paviliongiftcompany" class="generic-anchor" target="_blank" title="Instagram"
-         itemprop="significantLink"><i class="fa fa-instagram"></i></a>
-      <a href="https://www.youtube.com/channel/UCYgUODvd0qXbu_LkUWpTVEg" class="generic-anchor" target="_blank"
-         title="Youtube" itemprop="significantLink"><i class="fa fa-youtube"></i></a>
-      <a href="https://plus.google.com/+Paviliongift/posts" class="generic-anchor" target="_blank" title="Google Plus"
-         itemprop="significantLink"><i class="fa fa-google-plus"></i></a>
-      </span>
-    </section>-->
         <tr>
             <td colspan="3">
                 <section class="footer-bottom-section flex-rw">

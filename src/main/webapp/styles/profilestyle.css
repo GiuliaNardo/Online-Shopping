@@ -5,6 +5,17 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color:#DCDCDC;
+}
+
+.profile-generic-anchor {
+    color: #03b1ce;
+}
+.proofile-generic-anchor:visited {
+    color: #FF69B4;
+}
+
 .profile-menu{
     width: 40%;
     height: 100%;
@@ -33,8 +44,8 @@
 
 #profile-image1 {
     cursor: pointer;
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border:2px solid #03b1ce;
 }
 
@@ -83,6 +94,7 @@
     background-color: whitesmoke;
     height: 90%;
     width: 100%;
+    margin-left: 40px;
 }
 
 .field{
@@ -100,6 +112,61 @@
 
 .td-bottom{
     align-self: center;
+}
+
+.table-profile-center{
+    width: 100%;
+    height: 100%;
+}
+
+.td-profile-center{
+    width: 30%;
+    text-align: center;
+    font-size: 1.5em;
+    font: Roboto;
+    font-weight: 100;
+    padding: 15px;
+}
+
+.div-profile-center{
+    width: 60%;
+    height: 55%;
+    margin-left: 200px;
+    border: 2px solid #03b1ce;
+    -webkit-border-radius: 25px;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+    padding: 20px;
+
+}
+
+.div-profile-center a{
+    padding-left: 50px;
+}
+
+.img-pacco{
+    width: 80px;
+    height: 80px;
+    align-self: left;
+}
+
+.img-cart{
+    width: 80px;
+    height: 80px;
+    align-self: left;
+}
+
+.img-help{
+    width: 80px;
+    height: 80px;
+    align-self: left;
+}
+
+
+.didascalia{
+    padding-top: 8px;
+    font-size: 0.8em;
+    color: #373737;
 }
 
 @media screen and (min-width: 300px) {

@@ -22,6 +22,10 @@
             RequestDispatcher rd2 = request.getRequestDispatcher("/includes/bodies/profilebody.jsp");
             rd2.include(request, response);
             break;
+        case "orders":
+            RequestDispatcher rd3 = request.getRequestDispatcher("/includes/bodies/ordersbody.jsp");
+            rd3.include(request, response);
+            break;
     }
 %>
 

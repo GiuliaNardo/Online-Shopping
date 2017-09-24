@@ -61,7 +61,39 @@
             </div>
         </td>
         <td class="profile-center">
+            <table class="table-profile-center">
+                <tr>
+                    <td class="td-profile-center">
+                        <div class="div-profile-center">
+                            <img src="http://www.spedizioni-espresso.it/img/come-prenotare-ritiro-pacchi.png" class="img-pacco">
+                            <a class="profile-generic-anchor" href="orders.jsp">My Orders</a>
+                            <p class="didascalia">Clicca per visualizzare i tuoi ordini</p>
+                        </div>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-profile-center">
+                        <div class="div-profile-center">
+                            <img src="https://membershipworks.com/wp-content/uploads/2014/12/shopping-cart.png" class="img-cart">
+                            <a class="profile-generic-anchor" href="cart.jsp">Cart</a>
+                            <p class="didascalia">Clicca per visualizzare il tuo carrello</p>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-profile-center">
+                        <div class="div-profile-center">
+                            <img src="http://www.carbon.co.uk/wp-content/uploads/help-blue.png" class="img-help">
+                            <a class="profile-generic-anchor" href="support.jsp">Help me</a>
+                            <p class="didascalia">Clicca per visualizzare la pagina help</p>
+                        </div>
+
+                    </td>
+                </tr>
+
+            </table>
 
         </td>
 

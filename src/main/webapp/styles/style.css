@@ -162,11 +162,11 @@ footer {
 
 @media only screen and (max-width: 768px) {
     .footer-list-header {
-        font-size: 2em;
+        font-size: 1.2vw;
     }
 
     .footer-list-anchor {
-        font-size: 1.1em;
+        font-size: 1.1vw;
     }
 
     .footer-social-connect {
@@ -191,11 +191,11 @@ footer {
     }
 
     .footer-list-header {
-        font-size: 3em;
+        font-size: 3vw;
     }
 
     .footer-list-anchor {
-        font-size: 1.5em;
+        font-size: 1.5vw;
     }
 
 
@@ -207,8 +207,19 @@ footer {
         width: 100%;
         margin-top: 10px;
     }
+    .td-up{
+        font-size: 1em;
+    }
+    .td-up-head{
+        font-size:1.5em;
+    }
+    .flex-rw div{
+        font-size:1em;
+        width: 180px;
+    }
+
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 490px) {
     .footer-social-overlap > a {
         margin: auto;
     }
@@ -219,6 +230,16 @@ footer {
 
     .footer-bottom-rights {
         display: block;
+    }
+    .td-up{
+        font-size: 0.8em;
+    }
+    .td-up-head{
+        font-size:1em;
+    }
+    .flex-rw div{
+        font-size:0.6em;
+        width: 180px;
     }
 }
 @media only screen and (max-width: 320px) {
@@ -241,6 +262,16 @@ footer {
     .footer-bottom-wrapper {
         font-size: 1.3em;
     }
+    .td-up{
+        font-size: 0.8em;
+    }
+    .td-up-head{
+        font-size:1em;
+    }
+    .flex-rw div{
+        font-size:0.6em;
+        width: 180px;
+    }
 }
 
 .navbar-nav {
@@ -250,3 +281,4 @@ footer {
 .input-group-btn .btn {
     padding: 9px 12px;
 }
+

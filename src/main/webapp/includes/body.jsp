@@ -26,6 +26,11 @@
             RequestDispatcher rd3 = request.getRequestDispatcher("/includes/bodies/ordersbody.jsp");
             rd3.include(request, response);
             break;
+        case "cart":
+            RequestDispatcher rd4 = request.getRequestDispatcher("/includes/bodies/cartbody.jsp");
+            rd4.include(request, response);
+            break;
+
     }
 %>
 

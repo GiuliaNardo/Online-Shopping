@@ -6,7 +6,7 @@
 }
 
 body{
-    background-color:white;
+    background-color:#DCDCDC;
 }
 
 
@@ -85,12 +85,12 @@ body{
 }
 
 .td-profile-center{
-    width: 60%;
+    width: 30%;
     text-align: center;
     font-size: 1.5em;
     font: Roboto;
     font-weight: 100;
-    padding: 1.5%;
+    padding: 1.5%;;
 }
 
 .div-profile-center{
@@ -136,15 +136,6 @@ body{
     padding-top: 8px;
     font-size: 0.8em;
     color: #373737;
-}
-
-
-.menu{
-    width: 100%;
-}
-.table-profile-center{
-    width: 70%;
-    margin-left: 12%;
 }
 
 
@@ -202,13 +193,12 @@ body{
         width: 80px;
         height: 80px;
     }
-    .table-profile-center{
-        width: 90%;
-        margin-left: 5%;
-    }
 }
 
 @media screen and (min-width: 768px) {
+    body{
+        background-color: blue;
+    }
     .profile-menu{
         width: 95%;
         padding: 5px;
@@ -222,7 +212,7 @@ body{
     }
     .prova-padding{
         width: 90%;
-        margin-left: 3%;
+        margin-left: 3.5%;
         margin-right: 3%;
     }
 
@@ -239,40 +229,40 @@ body{
         font-size: 1.5em;
     }
     .img-pacco{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
     }
 
     .img-cart{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
     }
 
     .img-edit{
-        width: 60px;
-        height: 60px;
+        width: 80px;
+        height: 80px;
     }
     .div-profile-center{
         width: 90%;
+        margin-left: 3%;
+        margin-right: 3%;
     }
     #profile-image1{
         width: 180px;
         height: 180px;
     }
-    .table-profile-center{
-        width: 80%;
-        margin-left: 8%;
-    }
 
 }
 
 @media screen and (min-width: 1024px) {
+    body{
+        background-color: red;
+    }
     .profile-menu{
         width: 95%;
         padding: 5px;
         padding-right: 10px;
     }
-
     .profile-center{
         width: 95%;
         margin-left: auto;
@@ -282,6 +272,7 @@ body{
     .prova-padding{
         width: 90%;
         height: 35%;
+        overflow: scroll;
         margin-left: 3.5%;
         margin-right: 3%;
     }
@@ -313,7 +304,7 @@ body{
         height: 80px;
     }
     .div-profile-center{
-        width: 100%!important;
+        width: 90%;
         margin-left: 3%;
         margin-right: 3%;
     }
@@ -321,25 +312,22 @@ body{
         width: 200px;
         height: 200px;
     }
-    .table-profile-center{
-        width: 70%;
-        margin-left: 12%;
-    }
 }
 
 @media screen and (min-width: 1200px) {
+    body{
+        background-color: yellow;
+    }
     .profile-menu{
         width: 95%;
         padding: 5px;
         padding-right: 10px;
     }
-    .menu{
-        width: 100%
-    }
     .profile-center{
         width: 95%;
         margin-left: auto;
         margin-right: auto;
+        position: relative;
     }
     .prova-padding{
         width: 90%;
@@ -357,12 +345,9 @@ body{
         font-size: 1.3em;
         font-weight: 100;
     }
-
     .td-profile-center{
         font-size: 1.5em;
-
     }
-
     .img-pacco{
         width: 80px;
         height: 80px;
@@ -379,14 +364,12 @@ body{
     }
     .div-profile-center{
         width: 90%;
+        margin-left: 3%;
+        margin-right: 3%;
     }
     #profile-image1{
         width: 180px;
         height: 180px;
-    }
-    .table-profile-center{
-        width: 70%;
-        margin-left: 12%;
     }
 }
 

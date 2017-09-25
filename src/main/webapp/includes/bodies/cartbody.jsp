@@ -8,50 +8,77 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
 <div class="container">
-    <table id="cart" class="table table-hover table-condensed">
-        <thead>
-        <tr>
-            <th style="width:50%">Product</th>
-            <th style="width:10%">Price</th>
-            <th style="width:8%">Quantity</th>
-            <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td data-th="Product">
-                <div class="row">
-                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
-                    <div class="col-sm-10">
-                        <h4 class="nomargin">Product 1</h4>
-                        <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Carrello</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Categoria</th>
+                            <th>Quantità</th>
+                            <th class="text-center">Prezzo</th>
+                            <th class="text-center">SubTotale</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="col-md-5">
+                                <h4><a href="#">Prodotto1</a></h4>
+                                <h5>Descrizione</h5>
+                                <span>Categoria: </span><span><strong>Fottiti</strong></span>
+                            </td>
+                            <td class="col-md-3"><h5><strong>Ciaone</strong></h5></td>
+                            <td class="col-md-1" style="text-align: center">
+                                <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" min="0" step="1" ng-click="minus()">
+                                                <i class="glyphicon glyphicon-minus"></i>
+                                            </button>
+                                        </span>
+                                    <input type="text" class="form-control input-number" ng-change="change()" ng-model="qnt" required>
+                                    <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default btn-number" ng-click="plus()">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                            </button>
+                                        </span>
+                                </div>
+                            </td>
+                            <td class="col-md-1 text-center"><strong>$4.87</strong></td>
+                            <td class="col-md-1 text-center"><strong>$14.61</strong></td>
+                            <td class="col-sm-1 col-md-1">
+                                <button type="button" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right"><h5>Totale</h5></td>
+                            <td class="text-center"><h5><strong>$24.59</strong></h5></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-8">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Contina con lo shop
+                            </button>
+                            <a href="/checkout" class="btn btn-success">
+                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </td>
-            <td data-th="Price">$1.99</td>
-            <td data-th="Quantity">
-                <input type="number" class="form-control text-center" value="1">
-            </td>
-            <td data-th="Subtotal" class="text-center">1.99</td>
-            <td class="actions" data-th="">
-                <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-                <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
-            </td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr class="visible-xs">
-            <td class="text-center"><strong>Total 1.99</strong></td>
-        </tr>
-        <tr>
-            <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
-            <td colspan="2" class="hidden-xs"></td>
-            <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
-        </tr>
-        </tfoot>
-    </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

@@ -30,6 +30,10 @@
             RequestDispatcher rd4 = request.getRequestDispatcher("/includes/bodies/cartbody.jsp");
             rd4.include(request, response);
             break;
+        case "item":
+            RequestDispatcher rd5 = request.getRequestDispatcher("/includes/bodies/itembody.jsp");
+            rd5.include(request, response);
+            break;
 
     }
 %>

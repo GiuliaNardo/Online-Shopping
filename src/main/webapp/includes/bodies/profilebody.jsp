@@ -22,8 +22,32 @@
 
 <div class="prova-padding">
 
+    <table class="table-head">
+        <tr>
+            <td class="profile-td-head">
+                User profile
 
-    <div class="profile-td-head">User profile</div>
+            </td>
+        </tr>
+        <tr>
+            <td class="profile-image-div">
+                <img alt="User Pic"
+                     src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                     id="profile-image1" class="img-circle img-responsive">
+                <input id="profile-image-upload" class="hidden" type="file">
+
+            </td>
+        </tr>
+        <tr>
+            <td class="field">
+                <li>Giulia</li>
+                <li>Puzzola</li>
+                <li>Date of birth</li>
+
+            </td>
+        </tr>
+    </table>
+    <%--<div class="profile-td-head">User profile</div>
 
     <div class="profile-image-div">
         <img alt="User Pic"
@@ -36,7 +60,7 @@
         <li>Puzzola</li>
         <li>Date of birth</li>
 
-    </div>
+    </div>--%>
 
     <script>
         $(function () {

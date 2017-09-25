@@ -22,6 +22,10 @@ body{
     height: 100%;
 }
 
+.table-head{
+    margin: 0 auto;
+}
+
 /*.profile-tr-menu{
     width: 33.3%;
 }*/

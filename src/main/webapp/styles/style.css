@@ -55,14 +55,14 @@ a {
 .td-up{
     width: 33.3%;
     font-size: 1em;
-    color: #03b1ce;
+    color: white;
 }
 
 .generic-anchor {
-    color: #03b1ce;
+    color: white;
 }
 .generic-anchor:visited {
-    color: #FF69B4;
+    color: white;
 }
 
 .flex-rw {

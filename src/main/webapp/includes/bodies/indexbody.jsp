@@ -9,5 +9,6 @@
 
 <body>
     <h1>Index</h1>
+    <a href="../../item.jsp">item</a>
 </body>
 

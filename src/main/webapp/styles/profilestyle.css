@@ -11,7 +11,7 @@ body{
 
 
 .profile-generic-anchor {
-    color: #03b1ce;
+    color: #000080;
 }
 .proofile-generic-anchor:visited {
     color: #FF69B4;
@@ -34,7 +34,7 @@ body{
     cursor: pointer;
     width: 180px;
     height: 180px;
-    border:2px solid #03b1ce;
+    border:2px solid #373737;
 }
 
 .tital{
@@ -58,7 +58,7 @@ body{
 }
 
 .prova-padding{
-    border: 2px solid #03b1ce;
+    border: 2px solid #373737;
     -webkit-border-radius: 25px;
     box-sizing: border-box;
     background-color: whitesmoke;
@@ -73,7 +73,7 @@ body{
     font-weight: bold;
     text-align: center;
     padding: 2%;
-    color: #03b1ce;
+    color:  #000080;
 }
 .field{
     text-align: center;
@@ -102,7 +102,7 @@ body{
     height: 55%;
     margin-left: 20%;
     margin-right: 20%;
-    border: 2px solid #03b1ce;
+    border: 2px solid #373737;
     -webkit-border-radius: 25px;
     box-sizing: border-box;
     background-color: whitesmoke;

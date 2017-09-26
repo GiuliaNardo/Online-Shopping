@@ -26,7 +26,7 @@
 
                     </div>
 
-                    <div class="container service1-items col-sm-2 col-md-2 pull-left">
+                    <div class="container service1-items col-sm-2 col-md-2 pull-left" id="foto">
 
                             <a id="item-1" class="service1-item">
                                 <img src="https://wpclipart.com/office/sale_promo/new_item/new_item_light_blue.png"

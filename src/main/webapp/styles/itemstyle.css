@@ -145,4 +145,11 @@
     .tab-content{
         font-size: 15px;
     }
+    .col-md-7{
+        clear: both;
+    }
+    #foto{
+        float: left;
+    }
+
 }

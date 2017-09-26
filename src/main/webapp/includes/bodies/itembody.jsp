@@ -10,37 +10,48 @@
 <link rel="stylesheet" type="text/css" href="styles/itemstyle.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<html>
-<body>
+<body class="item-body">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!--<script src="../../js/jquery-3.2.1.js"></script>-->
+<script type="text/javascript">
+    $('.courosel').courosel({
+        interval: true
+    });
+</script>
+
+
 
 <div class="container-fluid">
     <div class="content-wrapper">
         <div class="item-container">
             <div class="container">
-                <div class="col-md-12">
-                    <div class="product col-md-3 service-image-left">
+                <div class="carousel slide article-slide" id="article-photo-carousel">
 
-                            <img id="item-display"
-                                 src="https://wpclipart.com/office/sale_promo/new_item/new_item_light_blue.png"
-                                 alt=""/>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner cont-slider" id="imm">
 
+                        <div class="item active">
+                            <img alt="" title="" src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
+                        </div>
+                        <div class="item">
+                            <img alt="" title="" src="http://placehold.it/600x400">
+                        </div>
+                        <div class="item">
+                            <img alt="" title="" src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
+                        </div>
                     </div>
-
-                    <div class="container service1-items col-sm-2 col-md-2 pull-left" id="foto">
-
-                            <a id="item-1" class="service1-item">
-                                <img src="https://wpclipart.com/office/sale_promo/new_item/new_item_light_blue.png"
-                                     alt=""></img>
-                            </a>
-                            <a id="item-2" class="service1-item">
-                                <img src="https://wpclipart.com/office/sale_promo/new_item/new_item_light_blue.png"
-                                     alt=""></img>
-                            </a>
-                            <a id="item-3" class="service1-item">
-                                <img src="https://wpclipart.com/office/sale_promo/new_item/new_item_light_blue.png"
-                                     alt=""></img>
-                            </a>
-                    </div>
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li class="active" data-slide-to="0" data-target="#article-photo-carousel">
+                            <img class="img-down" alt="" src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
+                        </li>
+                        <li class="" data-slide-to="1" data-target="#article-photo-carousel">
+                            <img class="img-down" alt="" src="http://placehold.it/250x180">
+                        </li>
+                        <li class="" data-slide-to="2" data-target="#article-photo-carousel">
+                            <img class="img-down" alt="" src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
+                        </li>
+                    </ol>
                 </div>
 
                 <div class="col-md-7">
@@ -132,4 +143,4 @@
     </div>
 </div>
 </body>
-</html>
+

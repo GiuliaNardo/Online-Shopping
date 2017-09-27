@@ -243,21 +243,18 @@
 }
 
 @media screen and (min-width: 780px) {
-    .container-fluid{
-        padding: 10px;
-
+    .up div{
+        padding-left: 2%;
+    }
+    .up ol{
+        padding-left: 2.8%;
     }
     .tab-content{
         font-size: 20px;
 
     }
-    .col-md-7{
-        float: left;
-
-    }
-
-    #foto{
-        float: left;
+    #pricipale{
+        padding-left: 1.4%;
     }
     .item{
         width: 100%;
@@ -280,5 +277,8 @@
     }
     .carousel-indicators img{
         width: 90px!important;
+    }
+    .content-wrapper{
+        margin-left: 8%;
     }
 }

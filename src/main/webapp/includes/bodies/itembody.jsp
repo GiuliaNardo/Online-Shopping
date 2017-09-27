@@ -20,61 +20,68 @@
 </script>
 
 
-
 <div class="container-fluid">
     <div class="content-wrapper">
         <div class="item-container">
             <div class="container">
                 <div class="carousel slide article-slide" id="article-photo-carousel">
+                    <div class="up">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner cont-slider" id="imm">
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner cont-slider" id="imm">
-
-                        <div class="item active">
-                            <img alt="" title="" src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
+                            <div class="item active" id="pricipale">
+                                <img alt="" title=""
+                                     src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
+                            </div>
+                            <div class="item">
+                                <img alt="" title="" src="http://placehold.it/600x400">
+                            </div>
+                            <div class="item">
+                                <img alt="" title=""
+                                     src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
+                            </div>
                         </div>
-                        <div class="item">
-                            <img alt="" title="" src="http://placehold.it/600x400">
-                        </div>
-                        <div class="item">
-                            <img alt="" title="" src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
-                        </div>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li class="active" data-slide-to="0" data-target="#article-photo-carousel">
+                                <img class="img-down" alt=""
+                                     src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
+                            </li>
+                            <li class="" data-slide-to="1" data-target="#article-photo-carousel">
+                                <img class="img-down" alt="" src="http://placehold.it/250x180">
+                            </li>
+                            <li class="" data-slide-to="2" data-target="#article-photo-carousel">
+                                <img class="img-down" alt=""
+                                     src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
+                            </li>
+                        </ol>
                     </div>
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-                            <img class="img-down" alt="" src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
-                        </li>
-                        <li class="" data-slide-to="1" data-target="#article-photo-carousel">
-                            <img class="img-down" alt="" src="http://placehold.it/250x180">
-                        </li>
-                        <li class="" data-slide-to="2" data-target="#article-photo-carousel">
-                            <img class="img-down" alt="" src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
-                        </li>
-                    </ol>
                 </div>
-
-                <div class="col-md-7">
-                    <div class="product-title">Corsair GS600 600 Watt PSU</div>
-                    <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice for
-                        mid-spec gaming PC
-                    </div>
-                    <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i
-                            class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i>
-                    </div>
-                    <hr>
-                    <div class="product-price">$ 1234.00</div>
-                    <div class="product-stock">In Stock</div>
-                    <hr>
-                    <div class="btn-group cart">
-                        <button type="button" class="btn btn-success">
-                            Add to cart
-                        </button>
-                    </div>
-                    <div class="btn-group wishlist">
-                        <button type="button" class="btn btn-danger">
-                            Add to wishlist
-                        </button>
+                <div class="up">
+                    <div class="col-md-7">
+                        <div class="product-title">Corsair GS600 600 Watt PSU</div>
+                        <div class="product-desc">The Corsair Gaming Series GS600 is the ideal price/performance choice
+                            for
+                            mid-spec gaming PC
+                        </div>
+                        <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i
+                                class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i
+                                class="fa fa-star-o"></i>
+                        </div>
+                        <hr>
+                        <div class="product-price">$ 1234.00</div>
+                        <div class="product-stock">In Stock</div>
+                        <hr>
+                        <div class="btn-group cart">
+                            <button type="button" class="btn btn-success">
+                                Add to cart
+                            </button>
+                        </div>
+                        <div class="btn-group wishlist">
+                            <button type="button" class="btn btn-danger">
+                                Add to wishlist
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

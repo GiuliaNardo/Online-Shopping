@@ -1,5 +1,8 @@
 package it.unitn.progettoweb.utils;
 
+import it.unitn.progettoweb.Objects.TipoUtente;
+import it.unitn.progettoweb.Objects.Utente;
+
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,7 +11,7 @@ import java.util.Date;
 
 public class Database {
     //TODO: categorie,ImmaginiArticoli,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,utente,venditore
-    Connection connection = null;
+    private Connection connection = null;
 
     /***
      * Costruttore del database che inizializza il driver JDBC per connettersi al DB
@@ -17,8 +20,8 @@ public class Database {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             connection = DriverManager
-                    .getConnection("jdbc:mysql://localhost/progettoweb?"
-                            + "user=root");
+                    .getConnection("jdbc:mysql://databaseweb:3306/progettoweb?"
+                            + "user=userSO4&password=kvplmmooeUJyFN3m");
 
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -29,6 +32,88 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /***
+     * Restituisce l'utente con lo username passato nell'argomento.
+     * @param usernameToSearch Nome dell'utente da cercare
+     * @return Utente ricercato, null se non viene trovato.
+     */
+
+    public Utente getUtente(String usernameToSearch) {
+        Utente utente = null;
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE UserName = ?;");
+            preparedStatement.setString(1, usernameToSearch);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+
+                int id = resultSet.getInt("IdUtente");
+                String userName = resultSet.getString("UserName");
+                String password = resultSet.getString("Password");
+                String nome = resultSet.getString("Nome");
+                String cognome = resultSet.getString("Cognome");
+                String email = resultSet.getString("Email");
+                java.sql.Date dataNascita = resultSet.getDate("DataNascita");
+                String tipoString = resultSet.getString("Tipo");
+                TipoUtente tipo = TipoUtente.ERROR;
+                if(tipoString.equals("User")) {
+                    tipo = TipoUtente.USER;
+                } else if (tipoString.equals("Administrator")) {
+                    tipo = TipoUtente.ADMIN;
+                } else if (tipoString.equals("Seller")) {
+                    tipo = TipoUtente.SELLER;
+                }
+
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utente;
+    }
+
+    /***
+     * Restituisce l'utente con l'id passato nell'argomento.
+     * @param userId Id dell'utente da cercare
+     * @return Utente ricercato, null se non viene trovato.
+     */
+
+    public Utente getUtente(int userId) {
+        Utente utente = null;
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE IdUtente = ?;");
+            preparedStatement.setInt(1, userId);
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+
+                int id = resultSet.getInt("IdUtente");
+                String userName = resultSet.getString("UserName");
+                String password = resultSet.getString("Password");
+                String nome = resultSet.getString("Nome");
+                String cognome = resultSet.getString("Cognome");
+                String email = resultSet.getString("Email");
+                java.sql.Date dataNascita = resultSet.getDate("DataNascita");
+                String tipoString = resultSet.getString("Tipo");
+                TipoUtente tipo = TipoUtente.ERROR;
+                if(tipoString.equals("User")) {
+                    tipo = TipoUtente.USER;
+                } else if (tipoString.equals("Administrator")) {
+                    tipo = TipoUtente.ADMIN;
+                } else if (tipoString.equals("Seller")) {
+                    tipo = TipoUtente.SELLER;
+                }
+
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utente;
     }
 
     /***

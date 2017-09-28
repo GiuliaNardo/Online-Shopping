@@ -39,10 +39,10 @@
             </td>
         </tr>
         <tr>
-            <td class="field">
-                <li>Giulia</li>
-                <li>Puzzola</li>
-                <li>Date of birth</li>
+            <td class="field" nowrap>
+                <li><span class="etichette">Name: </span>Giulia</li>
+                <li><span class="etichette">Last Name: </span>Puzzola</li>
+                <li><span class="etichette">Date of birth: </span>18/18/18</li>
 
             </td>
         </tr>

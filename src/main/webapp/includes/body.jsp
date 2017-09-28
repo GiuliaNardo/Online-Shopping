@@ -34,6 +34,10 @@
             RequestDispatcher rd5 = request.getRequestDispatcher("/includes/bodies/itembody.jsp");
             rd5.include(request, response);
             break;
+        case "login":
+            RequestDispatcher rd6= request.getRequestDispatcher("/includes/bodies/loginbody.jsp");
+            rd6.include(request, response);
+            break;
 
     }
 %>

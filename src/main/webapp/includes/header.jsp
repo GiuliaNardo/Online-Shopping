@@ -58,7 +58,7 @@
                 <span class="[ icon-bar ]"></span>
             </button>
             <div class="[ animbrand ]">
-                <a class="[ navbar-brand ][ animate ]" href="#">DemaShop</a>
+                <a class="[ navbar-brand ][ animate ]" href="index.jsp">DemaShop</a>
             </div>
         </div>
 

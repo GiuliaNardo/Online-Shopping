@@ -1,5 +1,3 @@
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel="stylesheet" type="text/css" href="styles/loginstyle.css">
 
@@ -8,23 +6,38 @@
 
 <script>
     $(document).ready(function () {
-        $('.forgot-pass').click(function(event) {
-            $(".pr-wrap").toggleClass("show-pass-reset");
-        });
+        var a = false;
+        $('.forgot-pass').click(function () {
 
-        $('.pass-reset-submit').click(function(event) {
-            $(".pr-wrap").removeClass("show-pass-reset");
-        });
+            if (!a){
+                console.log("if1 "+a);
+                $(".pr-wrap").toggleClass("show-pass-reset");
+                a = true;
+                console.log("if "+a);
+            } else {
+                console.log("else1 "+a);
+                $(".pr-wrap").removeClass("show-pass-reset");
+                a = false;
+                console.log("else "+a);
+            }
+            console.log("fin "+a);
     });
 
+    $('.pass-reset-submit').click(function () {
+        $(".pr-wrap").removeClass("show-pass-reset");
+        a = false;
+        console.log("but "+a);
+    });
+        console.log("fin2 "+a);
+    });
 </script>
 <div class="container" style="margin-top:40px">
-    <div class="pr-wrap">
+    <div class="pr-wrap" id="mail">
         <div class="pass-reset">
             <label>
                 Enter the email you signed up with</label>
-            <input type="email" placeholder="Email" />
-            <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+            <input type="email" placeholder="Email"/>
+            <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm"/>
         </div>
     </div>
     <div class="row">
@@ -39,7 +52,8 @@
                             <div class="row">
                                 <div class="center-block">
                                     <img class="profile-img"
-                                         src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+                                         src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                         alt="">
                                 </div>
                             </div>
                             <div class="row">
@@ -49,7 +63,8 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span>
-                                            <input class="form-control" placeholder="Username" name="loginname" type="text" autofocus>
+                                            <input class="form-control" placeholder="Username" name="loginname"
+                                                   type="text" autofocus>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -57,7 +72,8 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
-                                            <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                            <input class="form-control" placeholder="Password" name="password"
+                                                   type="password" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -68,8 +84,9 @@
                         </fieldset>
                     </form>
                 </div>
-                <div>Forgot your password? <a href="javascript:void(0)" class="forgot-pass">Forgot Password</a></div>
-
+                <div class="forgot-pass-content">
+                    Forgot Password? <a href="javascript:void(0)" class="forgot-pass">Click here!</a>
+                </div>
                 <div class="panel-footer ">
                     Don't have an account! <a href="#" onClick=""> Sign Up Here </a>
                 </div>

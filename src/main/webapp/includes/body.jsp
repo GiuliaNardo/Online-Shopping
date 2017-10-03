@@ -38,6 +38,10 @@
             RequestDispatcher rd6= request.getRequestDispatcher("/includes/bodies/loginbody.jsp");
             rd6.include(request, response);
             break;
+        case "register":
+            RequestDispatcher rd7= request.getRequestDispatcher("/includes/bodies/registerbody.jsp");
+            rd7.include(request, response);
+            break;
 
     }
 %>

@@ -1,0 +1,36 @@
+#reg-cont {
+    padding-top:3%;
+    margin-left: 40%;
+}
+.form-control {
+    margin-bottom: 10px;
+    font: Roboto;
+    font-size: 1.5em;
+}
+
+.row label{
+    font: Roboto;
+    font-size: 1.5em;
+}
+
+.radio-inline{
+    padding-left: 22px;
+}
+
+#all{
+
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+
+@media screen and (min-width: 300px) {
+    #reg-cont {
+        margin-left: 2%;
+        width: 96%;
+    }
+}
+@media screen and (min-width: 700px) {
+    #reg-cont {
+        margin-left: 40%;
+    }
+}

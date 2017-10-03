@@ -71,8 +71,6 @@ nav.sidebar, .main{
 }
 
 /* .....NavBar: Icon only with coloring/layout.....*/
-
-/*small/medium side display*/
 @media (min-width: 768px) {
 
     /*Allow main to be next to Nav*/
@@ -82,7 +80,9 @@ nav.sidebar, .main{
         margin-left: 40px;
         float: right;
     }
-
+    .destra{
+        width: calc(100% - 40px);
+    }
     /*lets nav bar to be showed on mouseover*/
     nav.sidebar:hover + .main{
         margin-left: 200px;
@@ -169,7 +169,9 @@ nav.sidebar, .main{
         width: calc(100% - 200px); /*keeps 100% minus nav size*/
         margin-left: 200px;
     }
-
+    .destra{
+        width: calc(100% - 200px);
+    }
     /*Show all nav*/
     nav.sidebar{
         margin-left: 0px;
@@ -179,6 +181,18 @@ nav.sidebar, .main{
     nav.sidebar .forAnimate{
         opacity: 1;
     }
+}
+
+nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
+    color: #CCC;
+    background-color: transparent;
+}
+
+nav:hover .forAnimate{
+    opacity: 1;
+}
+section{
+    padding-left: 15px;
 }
 
 nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {

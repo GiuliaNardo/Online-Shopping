@@ -13,7 +13,7 @@
 <body>
 <script>
     $(document).ready(function () {
-        $('.carousel').carousel({interval: 2000});
+        $('.carousel').carousel({interval: 4000});
     });
 
     function htmlbodyHeightUpdate() {
@@ -129,10 +129,10 @@
                     </ol>
                     <!-- Items -->
                     <div class="carousel-inner">
-                        <div class="active item"><img src="//placehold.it/1300x500" class="img-responsive">
+                        <div class="active item"><img src="http://www.superedo.it/sfondi/sfondi/Paesaggi/Mongolfiere%20Colorate/mongolfiere_colorate_6.jpg" class="img-responsive">
                         </div>
-                        <div class="item"><img src="//placehold.it/1300x500" class="img-responsive"></div>
-                        <div class="item"><img src="//placehold.it/1300x500" class="img-responsive"></div>
+                        <div class="item"><img src="http://wallpaperart.altervista.org/Immagini/fiori_blu_fiore_1280x800.jpg" class="img-responsive"></div>
+                        <div class="item"><img src="http://2.bp.blogspot.com/-Hc6TN4iB_RM/UTKMrWZF_WI/AAAAAAAAC5Y/r0vMbUSpXSo/s1600/skull_wallpaper4.jpg" class="img-responsive"></div>
                     </div>
                     <!-- Navigation -->
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -157,10 +157,10 @@
                     </ol>
                     <!-- Items -->
                     <div class="carousel-inner">
-                        <div class="active item"><img src="//placehold.it/1300x500" class="img-responsive">
+                        <div class="active item"><img src="http://2.bp.blogspot.com/-Hc6TN4iB_RM/UTKMrWZF_WI/AAAAAAAAC5Y/r0vMbUSpXSo/s1600/skull_wallpaper4.jpg" class="img-responsive">
                         </div>
-                        <div class="item"><img src="//placehold.it/1300x500" class="img-responsive"></div>
-                        <div class="item"><img src="//placehold.it/1300x500" class="img-responsive"></div>
+                        <div class="item"><img src="http://www.superedo.it/sfondi/sfondi/Paesaggi/Mongolfiere%20Colorate/mongolfiere_colorate_6.jpg" class="img-responsive"></div>
+                        <div class="item"><img src="http://wallpaperart.altervista.org/Immagini/fiori_blu_fiore_1280x800.jpg" class="img-responsive"></div>
                     </div>
                     <!-- Navigation -->
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -185,10 +185,10 @@
                     </ol>
                     <!-- Items -->
                     <div class="carousel-inner">
-                        <div class="active item"><img src="//placehold.it/1300x500" class="img-responsive">
+                        <div class="active item"><img src="http://2.bp.blogspot.com/-Hc6TN4iB_RM/UTKMrWZF_WI/AAAAAAAAC5Y/r0vMbUSpXSo/s1600/skull_wallpaper4.jpg" class="img-responsive">
                         </div>
-                        <div class="item"><img src="//placehold.it/1300x500" class="img-responsive"></div>
-                        <div class="item"><img src="//placehold.it/1300x500" class="img-responsive"></div>
+                        <div class="item"><img src="http://wallpaperart.altervista.org/Immagini/fiori_blu_fiore_1280x800.jpg" class="img-responsive"></div>
+                        <div class="item"><img src="http://www.superedo.it/sfondi/sfondi/Paesaggi/Mongolfiere%20Colorate/mongolfiere_colorate_6.jpg" class="img-responsive"></div>
                     </div>
                     <!-- Navigation -->
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">

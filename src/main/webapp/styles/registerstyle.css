@@ -1,4 +1,4 @@
-#reg-cont {
+.reg-cont {
     padding-top:3%;
     margin-left: 40%;
 }
@@ -21,16 +21,34 @@
 
     border: 1px solid rgba(0,0,0,0.3);
 }
-
-
 @media screen and (min-width: 300px) {
-    #reg-cont {
+    .reg-cont {
         margin-left: 2%;
         width: 96%;
+        font-size: 0.8em;
+        margin-right: 0;
+        padding: 0 auto;
+    }
+}
+@media screen and (min-width: 400px) {
+    .reg-cont {
+        margin-left: 8%;
+        width: 85%;
+        font-size: 0.8em;
+        margin-right: 0;
+        padding: 0 auto;
     }
 }
 @media screen and (min-width: 700px) {
-    #reg-cont {
-        margin-left: 40%;
+    .reg-cont {
+        margin-left: 2%;
+        width: 40%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .reg-cont {
+        width: 100%;
+        margin-left: 25%;
     }
 }

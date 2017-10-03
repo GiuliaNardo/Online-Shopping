@@ -10,25 +10,18 @@
         $('.forgot-pass').click(function () {
 
             if (!a){
-                console.log("if1 "+a);
                 $(".pr-wrap").toggleClass("show-pass-reset");
                 a = true;
-                console.log("if "+a);
             } else {
-                console.log("else1 "+a);
                 $(".pr-wrap").removeClass("show-pass-reset");
                 a = false;
-                console.log("else "+a);
             }
-            console.log("fin "+a);
     });
 
     $('.pass-reset-submit').click(function () {
         $(".pr-wrap").removeClass("show-pass-reset");
         a = false;
-        console.log("but "+a);
     });
-        console.log("fin2 "+a);
     });
 </script>
 <div class="container" style="margin-top:40px">

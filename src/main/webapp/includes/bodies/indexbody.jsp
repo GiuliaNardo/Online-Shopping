@@ -163,10 +163,10 @@
                         <div class="item"><img src="http://wallpaperart.altervista.org/Immagini/fiori_blu_fiore_1280x800.jpg" class="img-responsive"></div>
                     </div>
                     <!-- Navigation -->
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <a class="left carousel-control" href="#myCarousel-1" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <a class="right carousel-control" href="#myCarousel-1" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right"></span>
                     </a>
                 </div>
@@ -191,10 +191,10 @@
                         <div class="item"><img src="http://www.superedo.it/sfondi/sfondi/Paesaggi/Mongolfiere%20Colorate/mongolfiere_colorate_6.jpg" class="img-responsive"></div>
                     </div>
                     <!-- Navigation -->
-                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <a class="left carousel-control" href="#myCarousel-2" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
                     </a>
-                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <a class="right carousel-control" href="#myCarousel-2" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right"></span>
                     </a>
                 </div>

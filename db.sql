@@ -17,7 +17,7 @@ create table venditore (
   IdVenditore int AUTO_INCREMENT primary key,
   IdUtente int not null,
   NomeNegozio varchar(50),
-  RegioneSociale varchar(50),
+  RagioneSociale varchar(50),
   PartitaIva varchar(11),
   Iban varchar(12),
   Indirizzo varchar(100),

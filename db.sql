@@ -102,7 +102,7 @@ create table ticket (
   IdVenditore int,
   IdUtente int,
   Testo varchar(255) not null,
-  Stato enum ("Aperto", "In Lavorazione", "Chiuso con successo", "Annullato"),
+  Stato enum ("Aperto", "In_Lavorazione", "Chiuso_con_successso", "Annullato"),
   foreign key (IdOrdine) references ordine(IdOrdine),
   foreign key (IdArticolo) references articolo(IdArticolo),
   foreign key (IdVenditore) references venditore(IdVenditore),

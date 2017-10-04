@@ -14,9 +14,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--<script src="../../js/jquery-3.2.1.js"></script>-->
 <script type="text/javascript">
-    $('.courosel').courosel({
+    $('.courosel').courosel(){
         interval: true
-    });
+    };
 </script>
 
 

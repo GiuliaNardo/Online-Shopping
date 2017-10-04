@@ -85,7 +85,7 @@ create table ordine (
   PagamentoRicevuto enum("TRUE","FALSE") not null,
   Ricevuto enum("TRUE","FALSE") not null,
   foreign key (IdVenditore) references venditore(IdVenditore),
-  foreign key (IdVenditore) references utente(IdUtente)
+  foreign key (IdUtente) references utente(IdUtente)
 );
 create table articoloOrdine (
   IdOrdine int,

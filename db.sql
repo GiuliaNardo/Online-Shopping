@@ -50,7 +50,7 @@ create table recensioneVenditore (
   IdUtente int,
   voto int,
   Testo varchar(255),
-  Visualizzato boolean,
+  Visualizzato enum("TRUE", "FALSE"),
   IdVenditore int,
   foreign key (IdVenditore) references venditore(IdVenditore),
   foreign key (IdUtente) references utente(IdUtente)

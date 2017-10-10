@@ -17,6 +17,9 @@ body {
     justify-content: space-between;
 }
 
+.container{
+    height: 100%;
+}
 
 .flex-rw li{
     padding-top: 0.5em;

@@ -9,42 +9,16 @@
 <html>
 <head>
     <title><%=request.getParameter("pageTitle")%></title>
-    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="styles/style.css">
     <link rel="stylesheet" type="text/css" href="styles/styleheader.css">
+    <link rel="stylesheet" type="text/css" href="styles/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-    <script>
-        $(function() {
-
-            $('a[href="#toggle-search"], .navbar-bootsnipp .bootsnipp-search .input-group-btn > .btn[type="reset"]').on('click', function(event) {
-                console.log("schiacciato");
-                event.preventDefault();
-                $('.navbar-bootsnipp .bootsnipp-search .input-group > input').val('');
-                $('.navbar-bootsnipp .bootsnipp-search').toggleClass('open');
-                $('a[href="#toggle-search"]').closest('li').toggleClass('active');
-
-                if ($('.navbar-bootsnipp .bootsnipp-search').hasClass('open')) {
-                    /* I think .focus dosen't like css animations, set timeout to make sure input gets focus */
-                    setTimeout(function() {
-                        console.log("schiacciato2");
-                        $('.navbar-bootsnipp .bootsnipp-search .form-control').focus();
-                    }, 100);
-                }
-            });
-
-            $(document).on('keyup', function(event) {
-                if (event.which == 27 && $('.navbar-bootsnipp .bootsnipp-search').hasClass('open')) {
-                    $('a[href="#toggle-search"]').trigger('click');
-                }
-            });
-
-        });
-    </script>
 </head>
 <body>
 <nav class="[ navbar navbar-fixed-top ][ navbar-bootsnipp animate ]" role="navigation">
@@ -76,8 +50,8 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="index.jsp" class="[ animate ]">Home</a></li>
-                <li><a href="shop.jsp" class="[ animate ]">Shop</a></li>
+                <li><a href="/index.jsp" class="[ animate ]">Home</a></li>
+                <li><a href="/shop.jsp" class="[ animate ]">Shop</a></li>
                 <li>
                     <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Categorie <span class="[ caret ]"></span></a>
                     <ul class="[ dropdown-menu ]" role="menu">
@@ -86,12 +60,12 @@
                         </ul>
                 </li>
                 <li>
-                    <a href="cart.jsp" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Carrello <span class="[ caret ]"></span></a>
+                    <a href="/cart.jsp" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Carrello <span class="[ caret ]"></span></a>
                     <ul class="[ dropdown-menu ]" role="menu">
-                        <li><a href="item.jsp" class="[ animate ]">item <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
+                        <li><a href="/item.jsp" class="[ animate ]">item <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
                     </ul>
                 </li>
-                <li><a class="animate" href="profile.jsp">Login</a></li>
+                <li><a class="animate" href="/profile.jsp">Login</a></li>
                 <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
             </ul>
         </div>
@@ -100,7 +74,7 @@
         <div class="[ container ]">
             <form action="" method="GET" role="search">
                 <div class="[ input-group ]">
-                    <input type="text" class="[ form-control ]" name="q" placeholder="Cerca un articolo">
+                    <input type="text" class="[ form-control ]" id="searchbox-text" name="q" placeholder="Cerca un articolo">
                     <span class="[ input-group-btn ]">
 							<button class="[ btn btn-danger ]" type="reset"><span class="[ glyphicon glyphicon-remove ]"></span></button>
 						</span>

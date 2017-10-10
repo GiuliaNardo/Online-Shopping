@@ -1,5 +1,6 @@
 package it.unitn.progettoweb.utils;
 
+import com.google.gson.Gson;
 import it.unitn.progettoweb.Objects.TipoUtente;
 import it.unitn.progettoweb.Objects.Utente;
 
@@ -8,9 +9,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Database {
-    //TODO: categorie,ImmaginiArticoli,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,utente,venditore
+    //TODO: categorie,ImmaginiArticoli,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,venditore
     private Connection connection = null;
 
     /***
@@ -19,9 +21,12 @@ public class Database {
     public Database() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            connection = DriverManager
+            /*connection = DriverManager
                     .getConnection("jdbc:mysql://databaseweb:3306/progettoweb?"
-                            + "user=userSO4&password=kvplmmooeUJyFN3m");
+                            + "user=userSO4&password=kvplmmooeUJyFN3m");*/
+            connection = DriverManager
+                    .getConnection("jdbc:mysql://localhost/progettoweb?"
+                            + "user=root");
 
         } catch (InstantiationException e) {
             e.printStackTrace();
@@ -32,47 +37,6 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    /***
-     * Restituisce l'utente con lo username passato nell'argomento.
-     * @param usernameToSearch Nome dell'utente da cercare
-     * @return Utente ricercato, null se non viene trovato.
-     */
-
-    public Utente getUtente(String usernameToSearch) {
-        Utente utente = null;
-        ResultSet resultSet;
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE UserName = ?;");
-            preparedStatement.setString(1, usernameToSearch);
-            resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
-
-                int id = resultSet.getInt("IdUtente");
-                String userName = resultSet.getString("UserName");
-                String password = resultSet.getString("Password");
-                String nome = resultSet.getString("Nome");
-                String cognome = resultSet.getString("Cognome");
-                String email = resultSet.getString("Email");
-                java.sql.Date dataNascita = resultSet.getDate("DataNascita");
-                String tipoString = resultSet.getString("Tipo");
-                TipoUtente tipo = TipoUtente.ERROR;
-                if(tipoString.equals("User")) {
-                    tipo = TipoUtente.USER;
-                } else if (tipoString.equals("Administrator")) {
-                    tipo = TipoUtente.ADMIN;
-                } else if (tipoString.equals("Seller")) {
-                    tipo = TipoUtente.SELLER;
-                }
-
-                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return utente;
     }
 
     /***
@@ -88,7 +52,7 @@ public class Database {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE IdUtente = ?;");
             preparedStatement.setInt(1, userId);
             resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
 
                 int id = resultSet.getInt("IdUtente");
                 String userName = resultSet.getString("UserName");
@@ -99,7 +63,7 @@ public class Database {
                 java.sql.Date dataNascita = resultSet.getDate("DataNascita");
                 String tipoString = resultSet.getString("Tipo");
                 TipoUtente tipo = TipoUtente.ERROR;
-                if(tipoString.equals("User")) {
+                if (tipoString.equals("User")) {
                     tipo = TipoUtente.USER;
                 } else if (tipoString.equals("Administrator")) {
                     tipo = TipoUtente.ADMIN;
@@ -117,6 +81,104 @@ public class Database {
     }
 
     /***
+     * Restituisce l'utente con lo username passato nell'argomento.
+     * @param usernameToSearch Nome dell'utente da cercare
+     * @return Utente ricercato, null se non viene trovato.
+     */
+
+    public Utente getUtente(String usernameToSearch) {
+        Utente utente = null;
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE UserName = ?;");
+            preparedStatement.setString(1, usernameToSearch);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt("IdUtente");
+                String userName = resultSet.getString("UserName");
+                String password = resultSet.getString("Password");
+                String nome = resultSet.getString("Nome");
+                String cognome = resultSet.getString("Cognome");
+                String email = resultSet.getString("Email");
+                java.sql.Date dataNascita = resultSet.getDate("DataNascita");
+                String tipoString = resultSet.getString("Tipo");
+                TipoUtente tipo = TipoUtente.ERROR;
+                if (tipoString.equals("User")) {
+                    tipo = TipoUtente.USER;
+                } else if (tipoString.equals("Administrator")) {
+                    tipo = TipoUtente.ADMIN;
+                } else if (tipoString.equals("Seller")) {
+                    tipo = TipoUtente.SELLER;
+                }
+
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return utente;
+    }
+
+    /***
+     * Inserisce un nuovo utente nel database
+     * @param user L'utente da inserire nel database
+     * @return Restituisce true se l'inserimento è andato a buon fine false se è fallito
+     */
+
+    public boolean insertNewUser(Utente user) {
+        boolean insertSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utente (UserName,Password,Nome,Cognome,Email,DataNascita,Tipo) VALUES (?,?,?,?,?,?,?);");
+            preparedStatement.setString(1, user.getUserName());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getNome());
+            preparedStatement.setString(4, user.getCognome());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setDate(6, user.getDataNascita());
+            preparedStatement.setString(7, user.getTipo().toString());
+            if (preparedStatement.executeUpdate() > 0) {
+                insertSuccesful = true;
+            } else {
+                insertSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return insertSuccesful;
+    }
+
+    /***
+     * Aggiorna i dati di un utente già esistente nel database
+     * @param user L'utente da aggiornare nel database
+     * @return Restituisce true se l'aggiornamento è andato a buon fine false se è fallito
+     */
+
+    public boolean editUser(Utente user) {
+        boolean insertSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("REPLACE INTO utente VALUES (?,?,?,?,?,?,?,?);");
+            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setString(2, user.getUserName());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getNome());
+            preparedStatement.setString(5, user.getCognome());
+            preparedStatement.setString(6, user.getEmail());
+            preparedStatement.setDate(7, user.getDataNascita());
+            preparedStatement.setString(8, user.getTipo().toString());
+            if (preparedStatement.executeUpdate() > 0) {
+                insertSuccesful = true;
+            } else {
+                insertSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return insertSuccesful;
+    }
+
+    /***
      * Si occupa di inserire un nuovo articolo in vendita
      * @param nome Nome dell'articolo
      * @param idVenditore Id del venditore
@@ -129,10 +191,10 @@ public class Database {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO articolo (Nome,IdVenditore,Prezzo,Categoria,Voto) VALUES (?,?,?,?,?);");
             preparedStatement.setString(1, nome);
-            preparedStatement.setInt(2,idVenditore);
+            preparedStatement.setInt(2, idVenditore);
             preparedStatement.setFloat(3, prezzo);
             preparedStatement.setString(4, categoria);
-            preparedStatement.setFloat(5, (float)0.00);
+            preparedStatement.setFloat(5, (float) 0.00);
             if (preparedStatement.executeUpdate() > 0) {
                 insertSuccesful = true;
             } else {
@@ -159,7 +221,7 @@ public class Database {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE articolo SET Nome = ?,IdVenditore = ?,Prezzo = ?,Categoria = ?,Voto = ? WHERE IdArticolo = ?;");
             preparedStatement.setString(1, nome);
-            preparedStatement.setInt(2,idVenditore);
+            preparedStatement.setInt(2, idVenditore);
             preparedStatement.setFloat(3, prezzo);
             preparedStatement.setString(4, categoria);
             preparedStatement.setFloat(5, voto);
@@ -219,7 +281,7 @@ public class Database {
                 enumPayment = "FALSE";
             }
             String orderType = "";
-            if(isShipment) {
+            if (isShipment) {
                 orderType = "spedizione";
             } else {
                 orderType = "ritiro";
@@ -240,14 +302,14 @@ public class Database {
                 PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 int idOrdine = resultSet.getInt(1);
-                for(Integer itemId: items) {
+                for (Integer itemId : items) {
                     preparedStatement2.setInt(1, idOrdine);
                     preparedStatement2.setInt(2, itemId);
                     preparedStatement2.addBatch();
                 }
                 int[] batchEdits = preparedStatement2.executeBatch();
                 connection.commit();
-                if(batchEdits.length == items.size()) {
+                if (batchEdits.length == items.size()) {
                     insertSuccesful = true;
                 } else {
                     insertSuccesful = false;
@@ -268,7 +330,7 @@ public class Database {
      * @param idOrdine Ordine che è stato spedito
      * @return Restituisce true se l'inserimento è andato a buon fine false se è fallito
      */
-    public boolean setOrderShipmentDate (Date date, int idOrdine) {
+    public boolean setOrderShipmentDate(Date date, int idOrdine) {
         boolean updateSuccesful = false;
         PreparedStatement preparedStatement = null;
         try {
@@ -294,7 +356,7 @@ public class Database {
      * @param idOrdine Id dell'ordine
      * @return Restituisce true se l'inserimento è andato a buon fine false se è fallito
      */
-    public boolean setOrderDelivered (int idOrdine) {
+    public boolean setOrderDelivered(int idOrdine) {
         boolean updateSuccesful = false;
         Statement statement = null;
         try {
@@ -309,6 +371,31 @@ public class Database {
             e.printStackTrace();
         }
         return updateSuccesful;
+    }
+
+    /***
+     * Serve ad ottenere un array JSON per l'autocomplete del cerca
+     * @param searchText Il nome dell'articolo da cercare nel DB
+     * @return Una array JSON contenente tutti gli articoli che corrispondono alla ricerca
+     */
+
+    public String getAutocompleteJson(String searchText) {
+        ArrayList articoli = new ArrayList<String>();
+        ResultSet resultSet;
+        Statement statement = null;
+        String sql = "SELECT DISTINCT Nome FROM articolo WHERE Nome LIKE '"+ searchText + "%' LIMIT 5;";
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                articoli.add(resultSet.getString("Nome"));
+            }
+        } catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+
+        Gson gson = new Gson();
+        return gson.toJson(articoli.toArray());
     }
 
 }

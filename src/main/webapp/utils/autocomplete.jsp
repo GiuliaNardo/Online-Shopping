@@ -10,6 +10,8 @@
 <%
     Database database = new Database();
     String parameter = request.getParameter("term");
+    String json = database.getAutocompleteJson(parameter);
+    database.close();
     response.setHeader("Content-Disposition", "inline");
 %>
-<%=database.getAutocompleteJson(parameter)%>
+<%=json%>

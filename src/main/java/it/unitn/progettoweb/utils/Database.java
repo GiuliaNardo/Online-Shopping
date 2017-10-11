@@ -1,6 +1,7 @@
 package it.unitn.progettoweb.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import it.unitn.progettoweb.Objects.TipoUtente;
 import it.unitn.progettoweb.Objects.Utente;
 
@@ -9,7 +10,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class Database {
     //TODO: categorie,ImmaginiArticoli,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,venditore
@@ -388,14 +388,27 @@ public class Database {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                articoli.add(resultSet.getString("Nome"));
+                String item = resultSet.getString("Nome").toLowerCase();
+               articoli.add(item);
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
         }
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().disableHtmlEscaping().create();;
         return gson.toJson(articoli.toArray());
+    }
+
+    /***
+     * Serve per rilasciare la connessione al database una volta che le operazioni sul database sono state effettuate
+     */
+
+    public void close() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -204,3 +204,11 @@ body { padding-top: 70px; }
         padding: 0px;
     }
 }
+
+.ui-menu .ui-menu-item-wrapper {
+    position: relative;
+    padding: 3px 1em 3px .4em;
+    height: 40px;
+    background: red;
+    font-size:1.5em;
+}

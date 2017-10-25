@@ -8,7 +8,13 @@
 body{
     background-color:white;
 }
+.menu{
+    float: left;
+}
 
+.prova-padding{
+    float: left;
+}
 
 .profile-generic-anchor {
     color: #000080;
@@ -165,6 +171,7 @@ body{
     }
     .profile-center{
         width: 95%;
+        height: 50%;
         margin-left: auto;
         margin-right: auto;
         position: relative;
@@ -176,14 +183,14 @@ body{
     }
 
     .profile-td-head{
-        font-size: 1em;
+        font-size: 2em;
         padding-bottom: 10%;
         padding-top: 10%;
     }
 
     .field{
         text-align: center;
-        font-size: 0.8em;
+        font-size: 1.2em;
         font-weight: 100;
     }
     .td-profile-center{
@@ -240,16 +247,17 @@ body{
     }
 
     .profile-td-head{
-        font-size: 2em;
+        font-size: 2.2em;
     }
 
     .field{
         text-align: center;
-        font-size: 1em;
+        font-size: 1.3em;
         font-weight: 100;
     }
     .td-profile-center{
-        font-size: 1.5em;
+        font-size: 1.3em;
+    }
     }
     .img-pacco{
         width: 80px;
@@ -278,5 +286,20 @@ body{
         width: 100%;
         margin-left: 0%;
 
+    }
+}
+
+
+@media (min-width:1280px){
+    .prova-padding{
+        height: 70%;
+    }
+    .profile-td-head{
+        font-size: 2em;
+        padding-bottom: 5%;
+    }
+
+    .field{
+        font-size: 1.3em;
     }
 }

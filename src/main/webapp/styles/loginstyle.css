@@ -1,3 +1,7 @@
+.container{
+    height: 100%;
+}
+
 .forgot-pass-content
 {
     min-height: 20px;

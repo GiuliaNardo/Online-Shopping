@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import it.unitn.progettoweb.Objects.TipoUtente;
 import it.unitn.progettoweb.Objects.Utente;
+import it.unitn.progettoweb.Objects.ValidazioneUtente;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -71,7 +72,17 @@ public class Database {
                     tipo = TipoUtente.SELLER;
                 }
 
-                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo);
+                String validazioneString = resultSet.getString("Validazione");
+                ValidazioneUtente validazioneUtente = ValidazioneUtente.ERROR;
+                if(validazioneString.equals("true")) {
+                    validazioneUtente = ValidazioneUtente.TRUE;
+                } else if(validazioneString.equals("false")) {
+                    validazioneUtente = ValidazioneUtente.FALSE;
+                }
+
+                String validationhash = resultSet.getString("validationhash");
+
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo, validazioneUtente, validationhash);
             }
 
         } catch (SQLException e) {
@@ -111,8 +122,17 @@ public class Database {
                 } else if (tipoString.equals("Seller")) {
                     tipo = TipoUtente.SELLER;
                 }
+                String validazioneString = resultSet.getString("Validazione");
+                ValidazioneUtente validazioneUtente = ValidazioneUtente.ERROR;
+                if(validazioneString.equals("true")) {
+                    validazioneUtente = ValidazioneUtente.TRUE;
+                } else if(validazioneString.equals("false")) {
+                    validazioneUtente = ValidazioneUtente.FALSE;
+                }
 
-                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo);
+                String validationhash = resultSet.getString("validationhash");
+
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo, validazioneUtente, validationhash);
             }
 
         } catch (SQLException e) {
@@ -130,7 +150,7 @@ public class Database {
     public boolean insertNewUser(Utente user) {
         boolean insertSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utente (UserName,Password,Nome,Cognome,Email,DataNascita,Tipo) VALUES (?,?,?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utente (UserName,Password,Nome,Cognome,Email,DataNascita,Tipo,Validazione,validationhash) VALUES (?,?,?,?,?,?,?,?,?);");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getNome());
@@ -138,6 +158,8 @@ public class Database {
             preparedStatement.setString(5, user.getEmail());
             preparedStatement.setDate(6, user.getDataNascita());
             preparedStatement.setString(7, user.getTipo().toString());
+            preparedStatement.setString(8, user.getValidazioneUtente().toString());
+            preparedStatement.setString(9, user.getValidationhash());
             if (preparedStatement.executeUpdate() > 0) {
                 insertSuccesful = true;
             } else {
@@ -158,7 +180,7 @@ public class Database {
     public boolean editUser(Utente user) {
         boolean insertSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("REPLACE INTO utente VALUES (?,?,?,?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("REPLACE INTO utente VALUES (?,?,?,?,?,?,?,?,?,?);");
             preparedStatement.setInt(1, user.getId());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.setString(3, user.getPassword());
@@ -167,6 +189,8 @@ public class Database {
             preparedStatement.setString(6, user.getEmail());
             preparedStatement.setDate(7, user.getDataNascita());
             preparedStatement.setString(8, user.getTipo().toString());
+            preparedStatement.setString(9, user.getValidazioneUtente().toString());
+            preparedStatement.setString(10, user.getValidationhash());
             if (preparedStatement.executeUpdate() > 0) {
                 insertSuccesful = true;
             } else {

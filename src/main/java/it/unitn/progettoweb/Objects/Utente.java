@@ -11,9 +11,10 @@ public class Utente {
     private String email;
     private Date dataNascita;
     private TipoUtente tipo;
+    private ValidazioneUtente validazioneUtente;
+    private String validationhash;
 
-    public Utente(int id, String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo) {
-
+    public Utente(int id, String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo, ValidazioneUtente validazioneUtente, String validationhash) {
         this.userName = userName;
         this.password = password;
         this.nome = nome;
@@ -21,10 +22,11 @@ public class Utente {
         this.email = email;
         this.dataNascita = dataNascita;
         this.tipo = tipo;
+        this.validazioneUtente = validazioneUtente;
+        this.validationhash = validationhash;
     }
 
-    public Utente(String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo) {
-
+    public Utente(String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo, ValidazioneUtente validazioneUtente, String validationhash) {
         this.userName = userName;
         this.password = password;
         this.nome = nome;
@@ -32,6 +34,8 @@ public class Utente {
         this.email = email;
         this.dataNascita = dataNascita;
         this.tipo = tipo;
+        this.validazioneUtente = validazioneUtente;
+        this.validationhash = validationhash;
     }
 
     public int getId() {
@@ -88,5 +92,17 @@ public class Utente {
 
     public TipoUtente getTipo() {
         return tipo;
+    }
+
+    public ValidazioneUtente getValidazioneUtente() {
+        return validazioneUtente;
+    }
+
+    public void setValidazioneUtente(ValidazioneUtente validazioneUtente) {
+        this.validazioneUtente = validazioneUtente;
+    }
+
+    public String getValidationhash() {
+        return validationhash;
     }
 }

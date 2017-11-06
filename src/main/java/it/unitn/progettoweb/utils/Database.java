@@ -72,7 +72,7 @@ public class Database {
                     tipo = TipoUtente.SELLER;
                 }
 
-                String validazioneString = resultSet.getString("Validazione");
+                String validazioneString = resultSet.getString("Validato");
                 ValidazioneUtente validazioneUtente = ValidazioneUtente.ERROR;
                 if(validazioneString.equals("true")) {
                     validazioneUtente = ValidazioneUtente.TRUE;
@@ -122,7 +122,7 @@ public class Database {
                 } else if (tipoString.equals("Seller")) {
                     tipo = TipoUtente.SELLER;
                 }
-                String validazioneString = resultSet.getString("Validazione");
+                String validazioneString = resultSet.getString("Validato");
                 ValidazioneUtente validazioneUtente = ValidazioneUtente.ERROR;
                 if(validazioneString.equals("true")) {
                     validazioneUtente = ValidazioneUtente.TRUE;
@@ -150,7 +150,7 @@ public class Database {
     public boolean insertNewUser(Utente user) {
         boolean insertSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utente (UserName,Password,Nome,Cognome,Email,DataNascita,Tipo,Validazione,validationhash) VALUES (?,?,?,?,?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO utente (UserName,Password,Nome,Cognome,Email,DataNascita,Tipo,Validato,validationhash) VALUES (?,?,?,?,?,?,?,?,?);");
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getNome());

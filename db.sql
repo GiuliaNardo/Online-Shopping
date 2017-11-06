@@ -11,7 +11,9 @@ create table utente (
   Cognome varchar(50) not null,
   Email varchar(100) not null,
   DataNascita Date,
-  Tipo enum('Administrator', 'User', 'Seller')
+  Tipo enum('Administrator', 'User', 'Seller') not null,
+  Validato enum('true', 'false')not null,
+  validationhash varchar(25) not null
 );
 create table venditore (
   IdVenditore int AUTO_INCREMENT primary key,

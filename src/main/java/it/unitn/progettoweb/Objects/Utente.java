@@ -13,7 +13,18 @@ public class Utente {
     private TipoUtente tipo;
 
     public Utente(int id, String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo) {
-        this.id = id;
+
+        this.userName = userName;
+        this.password = password;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.email = email;
+        this.dataNascita = dataNascita;
+        this.tipo = tipo;
+    }
+
+    public Utente(String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo) {
+
         this.userName = userName;
         this.password = password;
         this.nome = nome;

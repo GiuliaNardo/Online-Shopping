@@ -90,11 +90,11 @@ create table ordine (
   foreign key (IdUtente) references utente(IdUtente)
 );
 create table articoloOrdine (
+  Id int primary key,
   IdOrdine int,
   IdArticolo int,
   foreign key (IdOrdine) references ordine(IdOrdine),
-  foreign key (IdArticolo) references articolo(IdArticolo),
-  primary key (IdOrdine, IdArticolo)
+  foreign key (IdArticolo) references articolo(IdArticolo)
 );
 create table ticket (
   IdTicket int AUTO_INCREMENT primary key,

@@ -2,6 +2,7 @@ package it.unitn.progettoweb.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.unitn.progettoweb.Objects.Articolo;
 import it.unitn.progettoweb.Objects.TipoUtente;
 import it.unitn.progettoweb.Objects.Utente;
 import it.unitn.progettoweb.Objects.ValidazioneUtente;
@@ -10,7 +11,6 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Database {
     //TODO: categorie,ImmaginiArticoli,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,venditore
@@ -421,6 +421,89 @@ public class Database {
 
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();;
         return gson.toJson(articoli.toArray());
+    }
+
+    /***
+     * Restituisce gli ultimi 5 articoli inseriti nel sito. Funzione specifica per la Homepage.
+     * @return ArrayList di Articolo
+     */
+
+    public ArrayList<Articolo> getHomeLastArticles() {
+        ArrayList<Articolo> articoli = new ArrayList<>();
+        ResultSet resultSet;
+        Statement statement = null;
+        String sql = "SELECT * FROM articolo ORDER BY IdArticolo DESC LIMIT 5;";
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                int idArticolo = resultSet.getInt("IdArticolo");
+                String titolo = resultSet.getString("Nome");
+                int idVenditore = resultSet.getInt("IdVenditore");
+                float prezzo = resultSet.getFloat("Prezzo");
+                String categoria = resultSet.getString("Categoria");
+                float voto = resultSet.getFloat("Voto");
+                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return articoli;
+
+    }
+
+    /***
+     * Restituisce i 5 articoli più venduti di tutto il sito. Funzione specifica per la Homepage.
+     * @return ArrayList di Articolo
+     */
+
+    public ArrayList<Articolo> getHomeMostSold() {
+        ArrayList<Articolo> articoli = new ArrayList<>();
+        ResultSet resultSet;
+        Statement statement = null;
+        String sql = "SELECT * FROM articolo WHERE IdArticolo IN (SELECT IdArticolo FROM articoloOrdine GROUP BY IdArticolo ORDER BY COUNT(*) DESC) LIMIT 5;";
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                int idArticolo = resultSet.getInt("IdArticolo");
+                String titolo = resultSet.getString("Nome");
+                int idVenditore = resultSet.getInt("IdVenditore");
+                float prezzo = resultSet.getFloat("Prezzo");
+                String categoria = resultSet.getString("Categoria");
+                float voto = resultSet.getFloat("Voto");
+                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return articoli;
+
+    }
+
+    /***
+     * Controlla se un utente con lo username passato esiste già
+     * @param usernameToSearch Lo username da cercare
+     * @return true se l'username è già usato o false se è disponibile
+     */
+
+    public boolean isUsernameAlreadyTaken(String usernameToSearch) {
+        boolean result = true;
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE UserName = ?;");
+            preparedStatement.setString(1, usernameToSearch);
+            resultSet = preparedStatement.executeQuery();
+            if(!resultSet.next()) {
+                result = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     /***

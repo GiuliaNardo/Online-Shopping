@@ -493,11 +493,13 @@ public class Database {
         boolean result = true;
         ResultSet resultSet;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE UserName = ?;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) as count from utente where UserName = ?;");
             preparedStatement.setString(1, usernameToSearch);
             resultSet = preparedStatement.executeQuery();
-            if(!resultSet.next()) {
-                result = false;
+            if(resultSet.next()) {
+                if(resultSet.getInt("count") == 0) {
+                    result = false;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,3 +1,7 @@
+create database progettoweb collate utf8_general_ci;
+
+use progettoweb;
+
 create table categorie (
   Nome varchar(50) not null PRIMARY KEY,
   Descrizione varchar(255)

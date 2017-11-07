@@ -7,6 +7,7 @@ create table categorie (
   Descrizione varchar(255)
 );
 
+
 create table utente (
   IdUtente int AUTO_INCREMENT primary key,
   UserName varchar(50) not null,
@@ -18,6 +19,12 @@ create table utente (
   Tipo enum('Administrator', 'User', 'Seller') not null,
   Validato enum('true', 'false')not null,
   validationhash varchar(25) not null
+);
+create table sessionUser(
+  IdSession int AUTO_INCREMENT primary key,
+  username varchar(50) not null,
+  dataSession date,
+  hashcode varchar(50)
 );
 create table venditore (
   IdVenditore int AUTO_INCREMENT primary key,
@@ -114,4 +121,5 @@ create table ticket (
   foreign key (IdVenditore) references venditore(IdVenditore),
   foreign key (IdUtente) references utente(IdUtente)
 );
+
 

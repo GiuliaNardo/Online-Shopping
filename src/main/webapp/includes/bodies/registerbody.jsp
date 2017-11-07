@@ -1,13 +1,13 @@
 <!--
-  Created by IntelliJ IDEA.
-  User: Giulia
-  Date: 02/10/2017
-  Time: 23:36
-  To change this template use File | Settings | File Templates.
+Created by IntelliJ IDEA.
+User: Giulia
+Date: 02/10/2017
+Time: 23:36
+To change this template use File | Settings | File Templates.
 -->
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="it.unitn.progettoweb.utils.Database"%>
+<%@ page import="it.unitn.progettoweb.utils.Database" %>
 
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -27,13 +27,13 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-4 well well-sm" id="all">
-                <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!
-                </legend>
-                <div class="reg-cont">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4 well well-sm" id="all">
+            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!
+            </legend>
+            <div class="reg-cont">
                 <form action="#" method="post" class="form" role="form">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
@@ -50,17 +50,17 @@
                     <input class="form-control" name="youremail" placeholder="Your Email" type="email"/>
                     <input class="form-control" name="reenteremail" placeholder="Re-enter Email" type="email"/>
                     <input class="form-control" name="password" placeholder="New Password" type="password"/>
-                    <div class="row"  id="reg-field">
+                    <div class="row" id="reg-field">
                         <script>
-                            $( function() {
-                                $( "#datepicker" ).datepicker();
+                            $(function () {
+                                $("#datepicker").datepicker();
                                 $.datepicker.setDefaults(
                                     $.extend(
-                                        {'dateFormat':'dd/mm/yy'},
+                                        {'dateFormat': 'dd/mm/yy'},
                                         $.datepicker.regional['it']
                                     )
                                 );
-                            } );
+                            });
                         </script>
                         <input type="text" name="date" id="datepicker" placeholder="Your birth date">
                     </div>
@@ -88,37 +88,39 @@
 NON SO SE FUNZIONA
 !-->
 <%!
+    public boolean isValidEmailAddress(String email) {
+        String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
     private boolean checkMail(String real, String check) {
-        /*if (real.length() != 0){
-            if (real.contains("@") && ((real.contains(".com")) || (real.contains(".it")))){
-                if(check.equals(real)){
-                    return true;
-                }else {
-                    return false;
-                }
-            } else {
+        if (real.length() != 0) {
+            if (!isValidEmailAddress(real)) {
                 return false;
+            } else {
+                return true;
             }
 
         } else {
             return false;
-        }*/
-        return true;
+        }
 
     }
 %>
 <%
-    if ((request.getParameter("submit")!= null) && (request.getParameter("username")!= null) &&
-            (request.getParameter("firstname")!= null) && (request.getParameter("lastname")!= null) &&(request.getParameter("youremail")!= null) &&
-            (request.getParameter("reenteremail")!= null) && (request.getParameter("password")!= null) && (request.getParameter("date")!= null) &&
-            (request.getParameter("sex")!= null)){
+    if ((request.getParameter("submit") != null) && (request.getParameter("username") != null) &&
+            (request.getParameter("firstname") != null) && (request.getParameter("lastname") != null) && (request.getParameter("youremail") != null) &&
+            (request.getParameter("reenteremail") != null) && (request.getParameter("password") != null) && (request.getParameter("date") != null) &&
+            (request.getParameter("sex") != null)) {
 
-        String userName="";
-        String firstName="";
-        String lastName="";
-        String email="";
-        String email1="";
-        String password="";
+        String userName = "";
+        String firstName = "";
+        String lastName = "";
+        String email = "";
+        String email1 = "";
+        String password = "";
         String dateOfBirth;
         java.util.Date tmp = null;
         Date result = null;
@@ -151,30 +153,40 @@ NON SO SE FUNZIONA
             System.out.println(c);
 
             if (c) {
-                //System.out.println(userName +" "+ password+" "+ firstName +" "+ lastName +" "+ email +" "+ (java.sql.Date) result);
+                System.out.println(userName + " " + password + " " + firstName + " " + lastName + " " + email + " " + (java.sql.Date) result);
                 user = new Utente(userName, password, firstName, lastName, email, result, TipoUtente.USER, ValidazioneUtente.FALSE, "kk");
                /* db = new Database();
                 db.insertNewUser(user);
                 db.close();*/
-            } else{
+                String redirectURL = "index.jsp";
+                response.sendRedirect(redirectURL);
+            } else {
+
+            %>
+            <script type="text/javascript">
+                alert('Invalid mail');
+            </script>
+            <%
                 String redirectURL = "register.jsp";
                 response.sendRedirect(redirectURL);
                 System.out.println("email sbagliata");
             }
 
-        } catch (Exception e){
-            System.out.println(""+e);
+        } catch (Exception e) {
+            System.out.println("" + e);
         }
-        System.out.println(request.getParameter("username") + " " + request.getParameter("lastname") + " "+ request.getParameter("firstname") + " " +
+        /*System.out.println(request.getParameter("username") + " " + request.getParameter("lastname") + " "+ request.getParameter("firstname") + " " +
                 request.getParameter("password") + " " + request.getParameter("youremail") + " " + request.getParameter("reenteremail") + " " +
                 request.getParameter("sex") + " " + request.getParameter("date") + " " + request.getParameter("submit"));
+        */
 
     } else {
         System.out.println("niente\n");
-
+        /*
         System.out.println(request.getParameter("username") + " " + request.getParameter("lastname") + " "+ request.getParameter("firstname") + " " +
                 request.getParameter("password") + " " + request.getParameter("youremail") + " " + request.getParameter("reenteremail") + " " +
                 request.getParameter("sex") + " " + request.getParameter("date") + " " + request.getParameter("submit"));
+                */
     }
 
 %>

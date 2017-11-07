@@ -5,7 +5,7 @@ public class Articolo {
     private String titolo;
     private int idVenditore;
     private float prezzo;
-    private float categoria;
+    private String categoria;
     private float voto;
 
     /**
@@ -17,7 +17,8 @@ public class Articolo {
      * @param categoria
      * @param voto
      */
-    public Articolo(int idArticolo, String titolo, int idVenditore, float prezzo, float categoria, float voto){
+
+    public Articolo(int idArticolo, String titolo, int idVenditore, float prezzo, String categoria, float voto){
         this.idArticolo = idArticolo;
         this.titolo = titolo;
         this.idVenditore = idVenditore;
@@ -25,8 +26,7 @@ public class Articolo {
         this.categoria = categoria;
         this.voto = voto;
     }
-    //set e get
-    public float getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
@@ -50,7 +50,7 @@ public class Articolo {
         return titolo;
     }
 
-    public void setCategoria(float categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

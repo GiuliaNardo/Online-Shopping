@@ -22,4 +22,16 @@ INSERT INTO `articolo` (`Nome`, `IdVenditore`, `Prezzo`, `Categoria`, `Voto`) VA
 
 INSERT INTO `recensionearticoli` (`IdUtente`, `Voto`, `Testo`, `Visualizzato`, `IdArticolo`) VALUES ('3', '3', NULL, 'FALSE', '1');
 
+INSERT INTO `ordine` (`IdOrdine`, `IdVenditore`, `IdUtente`, `PrezzoTot`, `DataOrdine`, `DataSpedizione`, `TipoOrdine`, `PagamentoRicevuto`, `Ricevuto`) VALUES
+(1, 2, 1, 20, '2017-11-07', NULL, 'spedizione', 'TRUE', 'FALSE'),
+(2, 2, 1, 60, '2017-11-01', NULL, NULL, 'TRUE', 'FALSE');
+
+INSERT INTO `articoloOrdine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
+(0, 2, 1),
+(1, 2, 2),
+(2, 2, 3),
+(3, 1, 3),
+(4, 1, 3),
+(5, 2, 2);
+
 

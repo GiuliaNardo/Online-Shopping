@@ -88,6 +88,14 @@ To change this template use File | Settings | File Templates.
 NON SO SE FUNZIONA
 !-->
 <%!
+    private boolean checkUsername(String userName, Database db) {
+        if (db.isUsernameAlreadyTaken(userName)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -95,12 +103,17 @@ NON SO SE FUNZIONA
         return m.matches();
     }
 
-    private boolean checkMail(String real, String check) {
-        if (real.length() != 0) {
-            if (!isValidEmailAddress(real)) {
+    private boolean checkMail(String realMail, String mailCheck) {
+        if (realMail.length() != 0) {
+            if (!isValidEmailAddress(realMail)) {
                 return false;
             } else {
-                return true;
+                if (realMail.equals(mailCheck)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
             }
 
         } else {
@@ -126,8 +139,10 @@ NON SO SE FUNZIONA
         Date result = null;
         Utente user;
         Database db;
-        boolean c = false;
+        boolean validMail = false, validUsername = false;
         System.out.println("dentro\n");
+
+        db = new Database();
 
         try {
             userName = request.getParameter("username");
@@ -149,24 +164,32 @@ NON SO SE FUNZIONA
                 System.out.println("Data errata " + dateOfBirth);
             }
 
-            c = checkMail(email, email1);
-            System.out.println(c);
+            validMail = checkMail(email, email1);
+            validUsername = checkUsername(userName, db);
+            System.out.println(validMail);
 
-            if (c) {
+            if (validMail && validUsername) {
                 System.out.println(userName + " " + password + " " + firstName + " " + lastName + " " + email + " " + (java.sql.Date) result);
                 user = new Utente(userName, password, firstName, lastName, email, result, TipoUtente.USER, ValidazioneUtente.FALSE, "kk");
-               /* db = new Database();
-                db.insertNewUser(user);
-                db.close();*/
+
+                /*db.insertNewUser(user);*/
+
                 String redirectURL = "index.jsp";
                 response.sendRedirect(redirectURL);
             } else {
-
+                if (!validMail) {
             %>
             <script type="text/javascript">
                 alert('Invalid mail');
             </script>
             <%
+            } else {
+            %>
+            <script type="text/javascript">
+                alert('Invalid username. Already token.');
+            </script>
+            <%
+                }
                 String redirectURL = "register.jsp";
                 response.sendRedirect(redirectURL);
                 System.out.println("email sbagliata");
@@ -179,7 +202,7 @@ NON SO SE FUNZIONA
                 request.getParameter("password") + " " + request.getParameter("youremail") + " " + request.getParameter("reenteremail") + " " +
                 request.getParameter("sex") + " " + request.getParameter("date") + " " + request.getParameter("submit"));
         */
-
+        db.close();
     } else {
         System.out.println("niente\n");
         /*

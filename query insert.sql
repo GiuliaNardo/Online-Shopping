@@ -1,4 +1,6 @@
-﻿INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas');
+﻿use progettoweb;
+
+INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas');
 INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Giulia', 'giu1', 'Giulia', 'Nardò', 'giu@nardo.it', '1996-08-12', 'Admin', 'true', 'asdasdas');
 INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Debla', 'debla1', 'Simone', 'De Blasiis', 'simo@debla.it', '1996-02-12', 'User', 'true', 'asdasdas');
 INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Simo', 'simo1', 'Simone', 'De Cassan', 'simo@deca.it', '1998/08/16', 'Seller', 'true', 'asdasdas');

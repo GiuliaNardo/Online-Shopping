@@ -84,18 +84,27 @@ To change this template use File | Settings | File Templates.
 </div>
 
 </body>
-<!--
-NON SO SE FUNZIONA
-!-->
+
 <%!
+    /**
+     *
+     * @param userName
+     * @param db
+     * @return true se lo username è valido
+     */
     private boolean checkUsername(String userName, Database db) {
         if (db.isUsernameAlreadyTaken(userName)) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
+    /***
+     *
+     * @param email
+     * @return true se la mail è valida
+     */
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
@@ -103,6 +112,13 @@ NON SO SE FUNZIONA
         return m.matches();
     }
 
+    /***
+     *
+     * @param realMail
+     * @param mailCheck
+     * @return controlla se la mail è valida. Se lo è controlla se la mail di controllo corrisponde con la prima inserita.
+     * retituisce true se sono uguali.
+     */
     private boolean checkMail(String realMail, String mailCheck) {
         if (realMail.length() != 0) {
             if (!isValidEmailAddress(realMail)) {
@@ -140,7 +156,7 @@ NON SO SE FUNZIONA
         Utente user;
         Database db;
         boolean validMail = false, validUsername = false;
-        System.out.println("dentro\n");
+        System.out.println("dentro");
 
         db = new Database();
 
@@ -166,10 +182,10 @@ NON SO SE FUNZIONA
 
             validMail = checkMail(email, email1);
             validUsername = checkUsername(userName, db);
-            System.out.println(validMail);
 
             if (validMail && validUsername) {
                 System.out.println(userName + " " + password + " " + firstName + " " + lastName + " " + email + " " + (java.sql.Date) result);
+                System.out.println("v "+ validUsername + " db "+ db.isUsernameAlreadyTaken(userName));
                 user = new Utente(userName, password, firstName, lastName, email, result, TipoUtente.USER, ValidazioneUtente.FALSE, "kk");
 
                 /*db.insertNewUser(user);*/
@@ -183,28 +199,35 @@ NON SO SE FUNZIONA
                 alert('Invalid mail');
             </script>
             <%
-            } else {
+            } else if(!validUsername) {
+                System.out.println(""+db.isUsernameAlreadyTaken(userName));
             %>
             <script type="text/javascript">
                 alert('Invalid username. Already token.');
             </script>
             <%
-                }
-                String redirectURL = "register.jsp";
-                response.sendRedirect(redirectURL);
-                System.out.println("email sbagliata");
             }
-
-        } catch (Exception e) {
-            System.out.println("" + e);
+            String redirectURL = "register.jsp";
+            response.sendRedirect(redirectURL);
         }
+
+    } catch (Exception e) {
+        System.out.println("" + e);
+    }
         /*System.out.println(request.getParameter("username") + " " + request.getParameter("lastname") + " "+ request.getParameter("firstname") + " " +
                 request.getParameter("password") + " " + request.getParameter("youremail") + " " + request.getParameter("reenteremail") + " " +
                 request.getParameter("sex") + " " + request.getParameter("date") + " " + request.getParameter("submit"));
         */
-        db.close();
-    } else {
-        System.out.println("niente\n");
+    db.close();
+} else {
+    System.out.println("niente\n");
+    if (request.getParameter("submit")!=null){
+    %>
+    <script type="text/javascript">
+        alert('Check your insert data. Any field must not be empty');
+    </script>
+    <%
+    }
         /*
         System.out.println(request.getParameter("username") + " " + request.getParameter("lastname") + " "+ request.getParameter("firstname") + " " +
                 request.getParameter("password") + " " + request.getParameter("youremail") + " " + request.getParameter("reenteremail") + " " +

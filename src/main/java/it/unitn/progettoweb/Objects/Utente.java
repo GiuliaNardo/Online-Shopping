@@ -15,6 +15,7 @@ public class Utente {
     private String validationhash;
 
     public Utente(int id, String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo, ValidazioneUtente validazioneUtente, String validationhash) {
+        this.id = id;
         this.userName = userName;
         this.password = password;
         this.nome = nome;

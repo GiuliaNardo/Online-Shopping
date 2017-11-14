@@ -2,10 +2,7 @@ package it.unitn.progettoweb.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import it.unitn.progettoweb.Objects.Articolo;
-import it.unitn.progettoweb.Objects.TipoUtente;
-import it.unitn.progettoweb.Objects.Utente;
-import it.unitn.progettoweb.Objects.ValidazioneUtente;
+import it.unitn.progettoweb.Objects.*;
 
 import java.sql.*;
 import java.text.DateFormat;
@@ -506,6 +503,54 @@ public class Database {
         }
 
         return result;
+    }
+
+    /***
+     * Inserisce una nuova sessione nel database
+     * @param session
+     * @return true se l'inserimento è andato a buon fine e false se c'è stato un errore
+     */
+
+    public boolean insertUserSession(Session session) {
+        boolean insertSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO sessionUser (utente,dataSession,hashcode) VALUES (?,?,?);");
+            preparedStatement.setInt(1, session.getIdUtente());
+            preparedStatement.setDate(2, session.getDate());
+            preparedStatement.setString(3, session.getHash());
+            if (preparedStatement.executeUpdate() > 0) {
+                insertSuccesful = true;
+            }
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return insertSuccesful;
+    }
+
+    /***
+     * Restituisce la sessione richiesta
+     * @param hashcode hashcode nel cookie del client
+     * @return restituisce la sessione o null se non è stata trovata alcuna sessione con l'hash inviato
+     */
+
+    public Session getSessionForUser(String hashcode) {
+        Session session = null;
+        ResultSet resultSet;
+        Statement statement = null;
+        String sql = "SELECT * FROM sessionUser WHERE hashcode = '"+ hashcode + "';";
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            if (resultSet.next()) {
+                int idUtente = resultSet.getInt("utente");
+                Date date = resultSet.getDate("dataSession");
+                String hash = resultSet.getString("hashcode");
+                session = new Session(idUtente,date,hash);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return session;
     }
 
     /***

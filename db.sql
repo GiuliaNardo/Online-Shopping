@@ -18,7 +18,8 @@ create table utente (
   DataNascita Date,
   Tipo enum('Administrator', 'User', 'Seller') not null,
   Validato enum('true', 'false')not null,
-  validationhash varchar(25) not null
+  validationhash varchar(25) not null,
+  UNIQUE(UserName)
 );
 create table sessionUser(
   IdSession int AUTO_INCREMENT primary key,

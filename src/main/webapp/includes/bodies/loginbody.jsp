@@ -81,7 +81,7 @@
                     Forgot Password? <a href="javascript:void(0)" class="forgot-pass">Click here!</a>
                 </div>
                 <div class="panel-footer ">
-                    Don't have an account! <a href="#" onClick=""> Sign Up Here </a>
+                    Don't have an account! <a href="register.jsp" onClick=""> Sign Up Here </a>
                 </div>
             </div>
         </div>

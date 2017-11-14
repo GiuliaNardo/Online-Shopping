@@ -1,4 +1,4 @@
-﻿use progettoweb;
+use progettoweb;
 
 INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas');
 INSERT INTO `utente` (`UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`,`Validato`,`validationhash`) VALUES ('Giulia', 'giu1', 'Giulia', 'Nardò', 'giu@nardo.it', '1996-08-12', 'Admin', 'true', 'asdasdas');

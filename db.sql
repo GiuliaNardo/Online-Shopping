@@ -6,26 +6,24 @@ create table categorie (
   Nome varchar(50) not null PRIMARY KEY,
   Descrizione varchar(255)
 );
-
-
 create table utente (
   IdUtente int AUTO_INCREMENT primary key,
   UserName varchar(50) not null,
-  Password varchar(100) not null,
+  Password varchar(64) not null,
   Nome varchar(50) not null,
   Cognome varchar(50) not null,
   Email varchar(100) not null,
   DataNascita Date,
   Tipo enum('Administrator', 'User', 'Seller') not null,
   Validato enum('true', 'false')not null,
-  validationhash varchar(25) not null,
+  validationhash varchar(64) not null,
   UNIQUE(UserName)
 );
 create table sessionUser(
   IdSession int AUTO_INCREMENT primary key,
   utente int not null,
   dataSession date,
-  hashcode varchar(50),
+  hashcode varchar(64),
   foreign key (utente) references utente(IdUtente)
 );
 create table venditore (

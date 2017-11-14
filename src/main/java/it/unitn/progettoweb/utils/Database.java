@@ -533,7 +533,7 @@ public class Database {
      * @return restituisce la sessione o null se non è stata trovata alcuna sessione con l'hash inviato
      */
 
-    public Session getSessionForUser(String hashcode) {
+    public Session getUserSession(String hashcode) {
         Session session = null;
         ResultSet resultSet;
         Statement statement = null;

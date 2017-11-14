@@ -86,19 +86,6 @@ To change this template use File | Settings | File Templates.
 </body>
 
 <%!
-    /**
-     *
-     * @param userName
-     * @param db
-     * @return true se lo username è valido
-     */
-    private boolean checkUsername(String userName, Database db) {
-        if (db.isUsernameAlreadyTaken(userName)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     /***
      *
@@ -181,15 +168,14 @@ To change this template use File | Settings | File Templates.
             }
 
             validMail = checkMail(email, email1);
-            validUsername = checkUsername(userName, db);
+            validUsername = !db.isUsernameAlreadyTaken(userName);
 
             if (validMail && validUsername) {
                 System.out.println(userName + " " + password + " " + firstName + " " + lastName + " " + email + " " + (java.sql.Date) result);
-                System.out.println("v "+ validUsername + " db "+ db.isUsernameAlreadyTaken(userName));
+                System.out.println("valid "+ validUsername + " db "+ db.isUsernameAlreadyTaken(userName));
                 user = new Utente(userName, password, firstName, lastName, email, result, TipoUtente.USER, ValidazioneUtente.FALSE, "kk");
 
-                /*db.insertNewUser(user);*/
-
+                System.out.println("inserito "+ db.insertNewUser(user));
                 String redirectURL = "index.jsp";
                 response.sendRedirect(redirectURL);
             } else {
@@ -203,7 +189,7 @@ To change this template use File | Settings | File Templates.
                 System.out.println(""+db.isUsernameAlreadyTaken(userName));
             %>
             <script type="text/javascript">
-                alert('Invalid username. Already token.');
+                alert('Invalid username. Already taken.');
             </script>
             <%
             }

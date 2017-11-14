@@ -22,9 +22,10 @@ create table utente (
 );
 create table sessionUser(
   IdSession int AUTO_INCREMENT primary key,
-  username varchar(50) not null,
+  utente int not null,
   dataSession date,
-  hashcode varchar(50)
+  hashcode varchar(50),
+  foreign key (utente) references utente(IdUtente)
 );
 create table venditore (
   IdVenditore int AUTO_INCREMENT primary key,

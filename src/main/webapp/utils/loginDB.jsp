@@ -25,13 +25,13 @@
         utente = database.getUtente(username);
         if(utente.getPassword().equals(password)){
             hashSha2 = Hashing.sha256().hashString(""+username+""+ System.currentTimeMillis(), StandardCharsets.UTF_8).toString();
-            System.out.println(utente.getId()+" "+utente.getCognome());
-            System.out.println(hashSha2);
             sessioneLogin = new Session(utente.getId(), new java.sql.Date(System.currentTimeMillis()), hashSha2 );
             database.insertUserSession(sessioneLogin);
             cookieUtente = new Cookie("SessioneUtente", hashSha2);
             cookieUtente.setMaxAge(60*60*2);
+            cookieUtente.setPath("/");
             response.addCookie(cookieUtente);
+
             database.close();
             response.sendRedirect("../index.jsp");
         }

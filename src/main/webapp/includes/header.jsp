@@ -9,22 +9,30 @@
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
+<%!
+    public Utente utente = null;
+    public Session sessione = null;
+%>
+
 <%
-    Database database = new Database();
-    Utente utente = null;
-    Session sessione = null;
+
+
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
-    for(int i = 0; i < cookies.length; i++){
-        if(cookies[i].getName().equals("SessioneUtente")){
-            if(!(database.getUserSession(cookies[i].getValue()) == null)) {
-                sessione = database.getUserSession(cookies[i].getValue());
-                utente = database.getUtente(sessione.getIdUtente());
-                isLogged = true;
+    if(cookies.length != 0) {
+        Database database = new Database();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("SessioneUtente")) {
+                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = database.getUserSession(cookies[i].getValue());
+                    utente = database.getUtente(sessione.getIdUtente());
+                    isLogged = true;
+                }
             }
         }
+        database.close();
     }
-    database.close();
+
 %>
 <html>
 <head>

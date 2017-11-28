@@ -7,10 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<link rel="stylesheet" type="text/css" href="../../styles/indexstyle.css">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body>
+<<<<<<< HEAD
 <script>
 
 </script>
@@ -89,5 +87,8 @@
 </div>
 
 
+=======
+    <h1>Index</h1>
+>>>>>>> parent of d3f4543... Revert "index"
 </body>
 

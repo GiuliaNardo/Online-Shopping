@@ -9,14 +9,12 @@
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
-<%!
-    public Utente utente = null;
-    public Session sessione = null;
-%>
+
 
 <%
 
-
+    Utente utente = null;
+    Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
     if(cookies.length != 0) {

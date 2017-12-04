@@ -1,4 +1,113 @@
+.order-container{
+}
+#profile-cont{
+    position: relative;
+    margin-top: 50px;
+    font: Roboto;
+    border: 1px solid #ddd;
+}
+#opzioni{
+    font-size: 1.5em;
+}
+.field{
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    font-size: 1.5em;
+}
 
+.name-field{
+    font-weight: 600;
+    margin-right: 5px;
+}
+.row{
+    margin: auto;
+}
+
+.title{
+    margin: 30px;
+    letter-spacing: 5px;
+    text-align: center;
+    height: 60px;
+    font: Roboto;
+    font-size: 2em;
+    font-weight: 600;
+    border-bottom: 1px solid #ddd;
+}
+
+#profilo{
+    border-right: 1px solid #ddd;
+    margin: auto;
+
+}
+.main{
+    text-align: center;
+    position: relative;
+
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 30px;
+
+}
+#profile-image1{
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    margin: auto;
+}
+
+.img{
+    width: 80px;
+    height: 80px;
+}
+
+.secondary{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.sec1{
+
+    margin: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+
+@media screen and (min-width: 300px) {
+
+    #profilo{
+        border-right: none;
+        border-bottom: 1px solid #ddd;;
+    }
+    #profile-cont{
+        width: 98%;
+        margin-top: 0px;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+    #profilo{
+        border-bottom: none;
+    }
+    .order-container{
+        height: 100%;
+    }
+
+    #profile-cont{
+        width: 98%;
+        height: 80%
+
+    }
+    #opzioni{
+        text-align: none;
+        border-left: 1px solid #ddd;
+    }
+
+}
+
+
+
+/*
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -36,6 +145,7 @@ body{
     width: 33.3%;
 }*/
 
+/*
 #profile-image1 {
     cursor: pointer;
     width: 180px;
@@ -303,3 +413,5 @@ body{
         font-size: 1.3em;
     }
 }
+
+*/

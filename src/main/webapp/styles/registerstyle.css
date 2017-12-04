@@ -1,3 +1,7 @@
+#reg-container, body{
+    height: 100%;
+}
+
 .reg-cont {
     padding-top:3%;
     margin-left: 40%;

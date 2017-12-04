@@ -3,7 +3,8 @@ body,html{
 }
 
 footer{
-    height: 25%;
+    height: auto;
+    padding-bottom: 10px;
     text-align: center;
     background-color: #353435;
     color: white;
@@ -24,21 +25,8 @@ footer{
     margin-top: 40px;
     text-align: center;
 }
-@media screen and (min-width: 300px) {
 
-    footer{
-        height: 550px;
-    }
 
-}
-
-@media screen and (min-width: 700px) {
-
-    footer{
-        height: 220px;
-    }
-
-}
 /*
 *{
     box-sizing: border-box;

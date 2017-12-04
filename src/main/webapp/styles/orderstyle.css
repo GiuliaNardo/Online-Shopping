@@ -1,11 +1,20 @@
 
+#pagingControls ul {
+    display:inline;
+    padding-left:0.5em
+}
+
+#pagingControls li{
+    display:inline;
+    padding:0 0.5em
+}
 
 /*Style main content*/
 #order-c{
     position: relative;
     width: 70%;
     padding: 20px;
-
+    height: 100%;
 
 }
 #nav-home{

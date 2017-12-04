@@ -36,9 +36,8 @@
 <!--Some of this HTML is directly from Pavilion.  You can change it to whatever you want if you want to mimic this design.-->
 
 <footer class="row align-items-end">
-    <footer class="order-container">
         <div class="row">
-            <div class="col col-lg-4 col-4">
+            <div class="col col-lg-4 col-md-4 col-12">
                 <div class="foot-title">
                     About Us
                 </div>
@@ -46,7 +45,7 @@
                     <a href='#' class="generic-anchor">Know Us</a>
                 </div>
             </div>
-            <div class="col col-lg-4 col-4">
+            <div class="col col-lg-4 col-md-4 col-12">
                 <div class="foot-title">
                     Contact Us
                 </div>
@@ -57,7 +56,7 @@
 
                 </div>
             </div>
-            <div class="col col-lg-4 col-4">
+            <div class="col col-lg-4 col-md-4 col-12">
                 <div class="foot-title">
                     Please Help Me
                 </div>
@@ -73,13 +72,13 @@
 
         </div>
     <div class="row align-items-end">
-        <div class="col col-lg-6 col-6 sinistra">
+        <div class="col col-lg-6 col-md-6 col-6 sinistra">
             <div class="">
                 Trento, TN <br>
                 - All Rights Reserved -
             </div>
         </div>
-        <div class="col col-lg-6 col-6 destra">
+        <div class="col col-lg-6 col-6 col-md-6 destra">
 
             <div class="">
                 <a href="" class="generic-anchor">Terms</a> |
@@ -139,6 +138,5 @@
 </footer>
 -->
 <!--/.Footer-->
-
     </footer>
 </html>

@@ -1,4 +1,6 @@
-<%--
+<%@ page import="it.unitn.progettoweb.utils.Database" %>
+<%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Simone
   Date: 19/09/17
@@ -11,15 +13,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<body>
 <script>
 
 </script>
 
+<%
+    Database db = new Database();
 
-<div class="container">
-    <div class="row">
-        <div id="myCarousel" class="carousel  slide">
+    ArrayList<Articolo> ultimi = db.getHomeLastArticles();
+    ArrayList<Articolo> mostSold = db.getHomeMostSold();
+
+%>
+<div class="container index-container">
+    <div class="row top">
+        <div id="myCarousel" class="carousel slide">
             <!-- Dot Indicators -->
             <ol class="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -49,45 +56,100 @@
         </div>
     </div>
 
-    <div class="bottom">
-        <div class="bottom-sinistra">
-            Benvenuto
-            <a href="../login.jsp" role="button">
-                <div class="btn-accesso">Accedi</div>
-            </a>
-        </div>
-        <div class="bottom-centro">
-            In evidenza
-            <div>
-                <a href="">
-                    <img src="https://cdn.cultofmac.com/wp-content/uploads/2017/02/iPhone-8-concept.jpg.png"
-                         class="img-centro">
-                </a>
+    <div class="row bottom">
+        <div class="col col-lg-4 col-sm-12 content">
+            <div class="row title">
+                Benvenuto
             </div>
-            <div>
-                <a href="">
-                    <img src="https://cdn.cultofmac.com/wp-content/uploads/2017/02/iPhone-8-concept.jpg.png"
-                         class="img-centro">
+            <div class="row">
+                <a href="../login.jsp" role="button">
+                    <div class="btn btn-lg btn-accesso">Accedi</div>
                 </a>
             </div>
         </div>
-        <div class="bottom-destra">
-            Offerte
-            <div>
+        <div class=" col col-lg-4 col-sm-12 content">
+            <div class="row title">
+                Più venduto
+            </div>
+            <div class="row">
                 <a href="">
-                    <img src="https://cdn.cultofmac.com/wp-content/uploads/2017/02/iPhone-8-concept.jpg.png"
-                         class="img-destra">
+                    <div id="carousel-center" class="carousel slide">
+                        <!-- Items -->
+                        <div class="carousel-inner">
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=mostSold.get(0).getTitolo() %>">
+                            </div>
+                            <div class="item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=mostSold.get(1).getTitolo() %>">
+                            </div>
+                            <div class="item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=mostSold.get(2).getTitolo() %>">
+                            </div>
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=mostSold.get(3).getTitolo() %>">
+                            </div>
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=mostSold.get(4).getTitolo() %>">
+                            </div>
+
+                        </div>
+                    </div>
+
                 </a>
             </div>
-            <div>
+
+        </div>
+        <div class=" col col-lg-4 col-sm-12 content">
+            <div class="row title">
+                Latest items
+            </div>
+            <div class="row">
                 <a href="">
-                    <img src="https://cdn.cultofmac.com/wp-content/uploads/2017/02/iPhone-8-concept.jpg.png"
-                         class="img-destra">
+                    <div id="carousel-left" class="carousel slide">
+                        <!-- Items -->
+                        <div class="carousel-inner">
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=ultimi.get(0).getTitolo() %>">
+                                <%
+                                    System.out.println("" + ultimi.get(0).getTitolo());
+                                %>
+                            </div>
+                            <div class="item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=ultimi.get(1).getTitolo() %>">
+                            </div>
+                            <div class="item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=ultimi.get(2).getTitolo() %>">
+                            </div>
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=ultimi.get(3).getTitolo() %>">
+                            </div>
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=ultimi.get(4).getTitolo() %>">
+                            </div>
+
+                        </div>
+                    </div>
+
                 </a>
             </div>
+
         </div>
     </div>
 </div>
 
 </body>
 
+<%
+
+    db.close();
+%>

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <body>
-<div class="container">
+<div class="order-container">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">

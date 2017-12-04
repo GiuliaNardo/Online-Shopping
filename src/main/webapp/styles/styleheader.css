@@ -200,7 +200,7 @@ body { padding-top: 70px; }
         transform: rotateX(0deg);
         visibility: visible;
     }
-    .navbar-bootsnipp .bootsnipp-search > .container {
+    .navbar-bootsnipp .bootsnipp-search > .order-container {
         padding: 0px;
     }
 }

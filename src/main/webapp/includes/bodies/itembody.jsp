@@ -11,7 +11,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <body class="item-body">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--<script src="../../js/jquery-3.2.1.js"></script>-->
 <script type="text/javascript">
     $('.courosel').courosel(){
@@ -23,7 +22,7 @@
 <div class="container-fluid">
     <div class="content-wrapper">
         <div class="item-container">
-            <div class="container">
+            <div class="order-container">
                 <div class="carousel slide article-slide" id="article-photo-carousel">
                     <div class="up">
                         <!-- Wrapper for slides -->
@@ -98,7 +97,7 @@
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active" id="service-one">
 
-                        <section class="container product-info">
+                        <section class="order-container product-info">
                             The Corsair Gaming Series GS600 power supply is the ideal price-performance solution for
                             building or upgrading a Gaming PC. A single +12V rail provides up to 48A of reliable,
                             continuous power for multi-core gaming PCs with multiple graphics cards. The ultra-quiet,
@@ -135,7 +134,7 @@
                     </div>
                     <div class="tab-pane fade" id="service-two">
 
-                        <section class="container">
+                        <section class="order-container">
 
                         </section>
 

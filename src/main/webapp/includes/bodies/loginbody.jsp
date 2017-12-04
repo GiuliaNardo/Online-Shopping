@@ -24,7 +24,7 @@
     });
     });
 </script>
-<div class="container" style="margin-top:40px">
+<div class="container" >
     <div class="pr-wrap" id="mail">
         <div class="pass-reset">
             <label>

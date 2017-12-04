@@ -17,7 +17,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="styles/shopstyle.css">
 
-<div class="container">
+<div class="order-container">
     <div class="well well-sm">
         <strong>Display</strong>
         <div class="btn-group">

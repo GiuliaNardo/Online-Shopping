@@ -27,7 +27,7 @@ To change this template use File | Settings | File Templates.
 
 <body>
 
-<div class="container">
+<div class="order-container">
 
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 well well-sm" id="all">
@@ -180,18 +180,18 @@ To change this template use File | Settings | File Templates.
                 response.sendRedirect(redirectURL);
             } else {
                 if (!validMail) {
-            %>
-            <script type="text/javascript">
-                alert('Invalid mail');
-            </script>
-            <%
-            } else if(!validUsername) {
-                System.out.println(""+db.isUsernameAlreadyTaken(userName));
-            %>
-            <script type="text/javascript">
-                alert('Invalid username. Already taken.');
-            </script>
-            <%
+%>
+<script type="text/javascript">
+    alert('Invalid mail');
+</script>
+<%
+} else if(!validUsername) {
+    System.out.println(""+db.isUsernameAlreadyTaken(userName));
+%>
+<script type="text/javascript">
+    alert('Invalid username. Already taken.');
+</script>
+<%
             }
             String redirectURL = "register.jsp";
             response.sendRedirect(redirectURL);
@@ -208,12 +208,12 @@ To change this template use File | Settings | File Templates.
 } else {
     System.out.println("niente\n");
     if (request.getParameter("submit")!=null){
-    %>
-    <script type="text/javascript">
-        alert('Check your insert data. Any field must not be empty');
-    </script>
-    <%
-    }
+%>
+<script type="text/javascript">
+    alert('Check your insert data. Any field must not be empty');
+</script>
+<%
+        }
         /*
         System.out.println(request.getParameter("username") + " " + request.getParameter("lastname") + " "+ request.getParameter("firstname") + " " +
                 request.getParameter("password") + " " + request.getParameter("youremail") + " " + request.getParameter("reenteremail") + " " +

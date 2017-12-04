@@ -34,22 +34,76 @@
 <!--Footer-->
 
 <!--Some of this HTML is directly from Pavilion.  You can change it to whatever you want if you want to mimic this design.-->
-<footer class="flex-rw">
-    <table>
+
+<footer class="row align-items-end">
+    <footer class="order-container">
+        <div class="row">
+            <div class="col col-lg-4 col-4">
+                <div class="foot-title">
+                    About Us
+                </div>
+                <div class="foot-content">
+                    <a href='#' class="generic-anchor">Know Us</a>
+                </div>
+            </div>
+            <div class="col col-lg-4 col-4">
+                <div class="foot-title">
+                    Contact Us
+                </div>
+                <div class="foot-content">
+                        E-mail: sitobello@siti.com<br>
+                        Telephone Number: 0000 1245<br>
+                        Fax: 0000 15546
+
+                </div>
+            </div>
+            <div class="col col-lg-4 col-4">
+                <div class="foot-title">
+                    Please Help Me
+                </div>
+                <div class="foot-content">
+
+                        <a href='orders.jsp' class="generic-anchor">My Order</a><br>
+                        <a href='' class="generic-anchor">FAQ</a><br>
+                        <a href='webapp\register.jsp' class="generic-anchor">New User</a>
+
+
+                </div>
+            </div>
+
+        </div>
+    <div class="row align-items-end">
+        <div class="col col-lg-6 col-6 sinistra">
+            <div class="">
+                Trento, TN <br>
+                - All Rights Reserved -
+            </div>
+        </div>
+        <div class="col col-lg-6 col-6 destra">
+
+            <div class="">
+                <a href="" class="generic-anchor">Terms</a> |
+                <a href="" class="generic-anchor">Privacy</a>
+            </div>
+
+        </div>
+    </div>
+
+<!--
         <tr>
             <td class="td-up-head">
-                About Us
+
             </td>
             <td class="td-up-head">
-                Contact Us
+
             </td>
             <td class="td-up-head">
-                Please Help Me
+
             </td>
         </tr>
         <tr>
             <td nowrap class="td-up">
-                <li><a href='' class="generic-anchor">Know Us</a></li>
+                <li></li>
             </td>
 
             <td nowrap class="td-up">
@@ -81,8 +135,10 @@
 
         </tr>
     </table>
+    </div>
 </footer>
+-->
 <!--/.Footer-->
 
-</body>
+    </footer>
 </html>

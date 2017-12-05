@@ -481,6 +481,28 @@ public class Database {
     }
 
     /***
+     * restituisce le categorie presenti nel database
+     * @reutn arraylist
+     */
+    public ArrayList<Categorie> getCategorie(){
+        ArrayList<Categorie> categorie = new ArrayList<>();
+        ResultSet resultSet;
+        Statement statement = null;
+        String sql = "SELECT * from categorie";
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()){
+                String nome = resultSet.getString("Nome");
+                String descrizione = resultSet.getString("Descrizione");
+                categorie.add(new Categorie(nome, descrizione));
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categorie;
+    }
+    /***
      * Controlla se un utente con lo username passato esiste già
      * @param usernameToSearch Lo username da cercare
      * @return true se l'username è già usato o false se è disponibile
@@ -527,6 +549,26 @@ public class Database {
         return insertSuccesful;
     }
 
+    /***
+     * Cancella la sessione in base all'hash
+     * @param hash hashcode nel cookie del client
+     * @return true se operazione eseguita con successo altrimenti false
+     */
+    public boolean deleteUserSession(String hash) {
+        boolean updateSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM articolo WHERE IdArticolo = ? LIMIT 1;");
+            preparedStatement.setString(1, hash);
+            if (preparedStatement.executeUpdate() > 0) {
+                updateSuccesful = true;
+            } else {
+                updateSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return updateSuccesful;
+    }
     /***
      * Restituisce la sessione richiesta
      * @param hashcode hashcode nel cookie del client

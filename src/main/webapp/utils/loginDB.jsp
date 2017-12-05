@@ -20,10 +20,13 @@
     String hashSha2 = null;
     String username = request.getParameter("username");
     String password = request.getParameter("password");
+
+    String hashPwd = "faustolibero!!liberatelooooo";
+    String passwordHash = Hashing.sha256().hashString(""+username+""+password+""+hashPwd , StandardCharsets.UTF_8).toString();
     utente = database.getUtente(username);
     if(!(database.getUtente(username) == null)){
         utente = database.getUtente(username);
-        if(utente.getPassword().equals(password)){
+        if(utente.getPassword().equals(passwordHash)){
             hashSha2 = Hashing.sha256().hashString(""+username+""+ System.currentTimeMillis(), StandardCharsets.UTF_8).toString();
             sessioneLogin = new Session(utente.getId(), new java.sql.Date(System.currentTimeMillis()), hashSha2 );
             database.insertUserSession(sessioneLogin);

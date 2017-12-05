@@ -34,7 +34,7 @@ To change this template use File | Settings | File Templates.
             <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!
             </legend>
             <div class="reg-cont">
-                <form action="#" method="post" class="form" role="form">
+                <form action="/utils/signup.jsp" method="post" class="form" role="form">
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
                             <input class="form-control" name="firstname" placeholder="First Name" type="text"

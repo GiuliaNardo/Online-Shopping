@@ -10,23 +10,13 @@
 }
 
 /*Style main content*/
-#order-c{
-    position: relative;
-    width: 70%;
-    padding: 20px;
-    height: 100%;
 
-}
 #nav-home{
     max-height: 200px;
 }
 
 .cont-two{
     max-height: 1000px;
-}
-#edit{
-    width: 50px;
-    margin: 0;
 }
 #text-block{
     overflow: hidden;
@@ -44,17 +34,21 @@
 .btn{
     background-color: #ddd;
     color: black;
-    padding-left: 10px;
-    padding-left: 10px;
     cursor: pointer;
+    margin-right: 2px;
+    width: 80px;
 }
-
+#delete, #edit{
+    margin-left: 0.2em;
+}
 /*testo annuncio*/
 
 
 
 .titolo{
     font-weight: 500;
+    font-size: 1.3em;
+    color: #37182A;
 }
 
 
@@ -72,42 +66,49 @@
 
 
 /*Style insertion*/
-/*
+
 .ann-block{
     position: relative;
     margin: 10px;
     padding-bottom: 5px;
-    border-bottom: 1px solid #A3BAC3;
+    border-bottom: 1px solid #ddd;
 }
 
 .content-block{
     margin: auto;
 }
 
-.delete-btn > .btn{
-    width: 100px;
-//background-color: #EF626C;
-    background-color: #EE6352;
-//background-color: #FF3C38;
+#delete-button{
+    background-color: #C63D2E;
+    color:white
 }
 
-.edit-btn > button{
-    width: 100px;
-//background-color: #59CD90;
-//background-color: #C1AE7C;
-//background-color: #F7C97C;
-    background-color: #5C9FB3;
-}
-.edit-btn{
-    margin-bottom: 20px;
+#edit-button{
+    background-color: #336392;
+    color: white;
 }
 
-.btn-block{
-    text-align: right;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
 
 .nond{
     margin: 20px;
+}
+
+
+
+@media screen and (min-width: 480px) {
+
+    #contentmain{
+        max-height: 300px;
+        overflow: scroll;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+
+    #contentmain{
+        max-height: 800px;
+        overflow: scroll;
+    }
+
 }

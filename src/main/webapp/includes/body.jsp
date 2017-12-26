@@ -42,7 +42,10 @@
             RequestDispatcher rd7= request.getRequestDispatcher("/includes/bodies/registerbody.jsp");
             rd7.include(request, response);
             break;
-
+        case "notification":
+            RequestDispatcher rd8= request.getRequestDispatcher("/includes/bodies/notificationbody.jsp");
+            rd8.include(request, response);
+            break;
     }
 %>
 

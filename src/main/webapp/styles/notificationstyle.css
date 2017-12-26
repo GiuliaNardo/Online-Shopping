@@ -1,0 +1,122 @@
+#contentmain{
+    margin-bottom: 30px;
+}
+
+#espandi-button{
+    width: 200px;
+    margin-bottom: 100px;
+    background-color: #ddd;
+}
+#pagingControls ul {
+    display:inline;
+    padding-left:0.5em
+}
+
+#pagingControls li{
+    display:inline;
+    padding:0 0.5em
+}
+
+/*Style main content*/
+
+#nav-home{
+    max-height: 200px;
+}
+
+.cont-two{
+    max-height: 1000px;
+}
+#text-block{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 1.5em;
+    max-height: 6em;
+    margin-bottom: 5px;
+}
+.row{
+    margin: auto;
+}
+.btn{
+    background-color: #ddd;
+    color: black;
+    cursor: pointer;
+    margin-right: 2px;
+    width: 80px;
+}
+#delete, #edit{
+    margin-left: 0.2em;
+}
+/*testo annuncio*/
+
+
+
+.titolo{
+    font-weight: 500;
+    font-size: 1.3em;
+    color: #37182A;
+}
+
+
+.back{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+#testo{
+    margin-left: 5px;
+    margin-bottom: auto;
+    cursor: pointer;
+}
+
+
+/*Style insertion*/
+
+.ann-block{
+    position: relative;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.content-block{
+    margin: auto;
+}
+
+#delete-button{
+    background-color: #C63D2E;
+    color:white
+}
+
+#edit-button{
+    background-color: #336392;
+    color: white;
+}
+
+
+.nond{
+    margin: 20px;
+}
+
+
+
+@media screen and (min-width: 480px) {
+
+    #contentmain{
+        max-height: 300px;
+        overflow: scroll;
+    }
+
+}
+
+@media screen and (min-width: 700px) {
+
+    #contentmain{
+        max-height: 800px;
+        overflow: scroll;
+    }
+
+}

@@ -64,14 +64,7 @@ To change this template use File | Settings | File Templates.
                         </script>
                         <input type="text" name="date" id="datepicker" placeholder="Your birth date">
                     </div>
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="inlineCheckbox1" value="male"/>
-                        Male
-                    </label>
-                    <label class="radio-inline">
-                        <input type="radio" name="sex" id="inlineCheckbox2" value="female"/>
-                        Female
-                    </label>
+
                     <br/>
                     <br/>
                     <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">

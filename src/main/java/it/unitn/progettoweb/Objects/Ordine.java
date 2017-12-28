@@ -1,32 +1,19 @@
 package it.unitn.progettoweb.Objects;
-import java.util.Date;
-public class Ordine {
-//dichiarazione enum
-    private enum tipoOrdine{
-        spedizione,
-        ritiro
-    }
+import java.sql.Date;
 
-    private enum pagRicevuto{
-        TRUE,
-        FALSE
-    }
-    private enum ricevuto{
-        TRUE,
-        FALSE
-    }
-    
-    //dichiarazione attributi classe
+public class Ordine {
+
     private int idOrdine;
     private int idVenditore;
     private int idUtente;
     private float prezzoTot;
     private Date dataOrdine;
     private Date dataSpedizione;
-    private tipoOrdine tipoOrdine;
-    private pagRicevuto pagRicevuto;
-    private ricevuto ricevuto;
-    public Ordine(int idOrdine, int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, tipoOrdine tipoOrdine,pagRicevuto pagRicevuto, ricevuto ricevuto){
+    private TipoOrdine tipoOrdine;
+    private boolean pagRicevuto;
+    private boolean ricevuto;
+
+    public Ordine(int idOrdine, int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine,boolean pagRicevuto, boolean ricevuto){
         this.idOrdine = idOrdine;
         this.idVenditore = idVenditore;
         this.idUtente = idUtente;
@@ -86,27 +73,27 @@ public class Ordine {
         this.dataSpedizione = dataSpedizione;
     }
 
-    public Ordine.tipoOrdine getTipoOrdine() {
+    public TipoOrdine getTipoOrdine() {
         return tipoOrdine;
     }
 
-    public void setTipoOrdine(Ordine.tipoOrdine tipoOrdine) {
+    public void setTipoOrdine(TipoOrdine tipoOrdine) {
         this.tipoOrdine = tipoOrdine;
     }
 
-    public Ordine.pagRicevuto getPagRicevuto() {
+    public boolean getPagRicevuto() {
         return pagRicevuto;
     }
 
-    public void setPagRicevuto(Ordine.pagRicevuto pagRicevuto) {
+    public void setPagRicevuto(boolean pagRicevuto) {
         this.pagRicevuto = pagRicevuto;
     }
 
-    public Ordine.ricevuto getRicevuto() {
+    public boolean getRicevuto() {
         return ricevuto;
     }
 
-    public void setRicevuto(Ordine.ricevuto ricevuto) {
+    public void setRicevuto(boolean ricevuto) {
         this.ricevuto = ricevuto;
     }
 }

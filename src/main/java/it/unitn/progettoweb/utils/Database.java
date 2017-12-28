@@ -596,6 +596,58 @@ public class Database {
     }
 
     /***
+     * Restituisce tutti gli ordini di un utente
+     * @param utente utente di cui cercare gli ordini
+     * @return un ArrayList di Ordine contenente gli ordini dell'utente
+     */
+
+    public ArrayList<Ordine> getUserOrders(Utente utente) {
+        ArrayList<Ordine> ordini = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ordine where IdUtente = ?;");
+            preparedStatement.setInt(1, utente.getId());
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int idOrdine = resultSet.getInt("IdOrdine");
+                int idVenditore = resultSet.getInt("IdVenditore");
+                int idUtente = resultSet.getInt("IdUtente");
+                float prezzoTot = resultSet.getFloat("PrezzoTot");
+                Date dataOrdine = resultSet.getDate("DataOrdine");
+                Date dataSpedizione = resultSet.getDate("DataSpedizione");
+                String tipoOrdineString = resultSet.getString("TipoOrdine");
+                TipoOrdine tipoOrdine;
+                if(tipoOrdineString.equals("spedizione")) {
+                    tipoOrdine = TipoOrdine.SPEDIZIONE;
+                } else {
+                    tipoOrdine = TipoOrdine.RITIRO;
+                }
+
+                boolean pagRicevuto;
+                String pagRicevutoString = resultSet.getString("PagamentoRicevuto");
+                if(pagRicevutoString.equals("TRUE")) {
+                    pagRicevuto = true;
+                } else {
+                    pagRicevuto = false;
+                }
+
+                boolean ricevuto;
+                String ricevutoString = resultSet.getString("Ricevuto");
+                if(ricevutoString.equals("TRUE")) {
+                    ricevuto = true;
+                } else {
+                    ricevuto = false;
+                }
+
+                ordini.add(new Ordine(idOrdine,idVenditore,idUtente,prezzoTot,dataOrdine,dataSpedizione,tipoOrdine,pagRicevuto,ricevuto));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ordini;
+    }
+
+    /***
      * Serve per rilasciare la connessione al database una volta che le operazioni sul database sono state effettuate
      */
 

@@ -42,7 +42,6 @@
 
 <script type="text/javascript">
 
-    //TODO: queryper restituire gli ordini di un utente
     var notifiche= 0;
     var notifiche_tot =20;
     var titolo="";

@@ -121,5 +121,14 @@ create table ticket (
   foreign key (IdVenditore) references venditore(IdVenditore),
   foreign key (IdUtente) references utente(IdUtente)
 );
+create table notification (
+  IdNotifica int AUTO_INCREMENT PRIMARY KEY,
+  IdUtente int not null,
+  Testo varchar(255) not null,
+  Url varchar(255) not null,
+  DataNotifica DATE not null ,
+  Stato ENUM("Nuova","Letta") not null,
+  FOREIGN KEY (IdUtente) REFERENCES  utente(IdUtente)
+);
 
 

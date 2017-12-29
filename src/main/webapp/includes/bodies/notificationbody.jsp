@@ -9,6 +9,9 @@
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.unitn.progettoweb.Objects.Notifica" %>
+<%@ page import="com.google.gson.Gson" %>
 <link rel="stylesheet" type="text/css" href="styles/notificationstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
@@ -42,32 +45,53 @@
 
 <script type="text/javascript">
 
-    var notifiche= 0;
-    var notifiche_tot =20;
-    var titolo="";
-    var testo="";
-    var data="";
+    <%
+    Utente utente = null;
+    Session sessione = null;
+    Gson gson = new Gson();
+    Cookie cookies[] = request.getCookies();
+    boolean isLogged = false;
+    ArrayList<Notifica> notifiche = new ArrayList<>();
+    if(cookies.length != 0) {
+        Database database = new Database();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("SessioneUtente")) {
+                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = database.getUserSession(cookies[i].getValue());
+                    utente = database.getUtente(sessione.getIdUtente());
+                    isLogged = true;
+                    notifiche = database.getUserNotifications(utente);
+                }
+            }
+        }
+        database.close();
+    }
+    %>
+
+    var notifiche = <%= gson.toJson(notifiche)%>;
+    var maxRecentFor = 5;
+    if(notifiche.length < 5) {
+        maxRecentFor = notifiche.length;
+        $('#espandi-button').hide();
+    }
 
     window.onload = function (){
         var i=0;
         notifiche = 10;
 
-        for(i =0; i <notifiche; i++){
-            titolo= "Ciao";
-            testo="Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.";
-            data = "02/05/2017";
-            $('#content').append(new_div(testo, titolo));
+        for(i = 0; i < maxRecentFor; i++){
+            $('#content').append(new_div(notifiche[i].id,notifiche[i].testo, "Notifica" ,notifiche[i].url));
             console.log('ciao');
             notifiche_tot--;
         }
 
-    }
-    //TODO: query che restituisce le notifiche più recenti (da una certa data in poi)
-    function new_div(testo,titolo){
+    };
+    function new_div(id,testo,titolo,url){
         return (
             '<div class="row ann-block align-items-center" id="ann">'+
-            '<div class="col col-md-9 col-sm-12 col-12 content-block" id="text-block"><span class="titolo">'+titolo +'<br></span>'+ testo+
-            '</div>'+
+            '<a href="'+url+'">'+
+            '<div class="col col-md-9 col-sm-12 col-12 content-block" id="notifica" onmouseleave="markAsRead(' + id + ');"><span class="titolo">'+titolo +'<br></span>'+ testo+
+            '</div></a>'+
 
             '<div class="col col-md-3 col-sm-12 col-12">'+
 
@@ -82,24 +106,33 @@
 
     }
 
-    //TODO: query che restituisce tutte le notifiche meno le più recenti ( quelle restituite dalla query sopra)
     function espandi() {
-        var i=0;
-
-            while ( i < 5 && notifiche_tot>0) {
-
-                titolo = "Ciao";
-                testo = "Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.";
-                data = "02/05/2017";
-                $('#content').append(new_div(testo, titolo));
-                console.log('ciao');
-                notifiche_tot--;
-                i++;
-            }
-        if (notifiche_tot==0){
-            $('#espandi-button').hide();
+        for (var i = 5;i < notifiche.length;i++) {
+            $('#content').append(new_div(notifiche[i].testo, "Notifica" ,notifiche[i].url));
+            console.log('ciao');
         }
 
+    }
+    
+    function markAsRead(id) {
+        $.ajax({
+            type: "POST",
+            url: "/utils/notificationRead.jsp",
+            data: {
+                "idNotifica" : id
+            },
+            dataType: "html",
+            success: function(msg)
+            {
+                if(msg.success == "true") {
+                    alert("Notifica con id " + id + " segnata come letta");
+                }
+            },
+            error: function()
+            {
+                alert("C'è stato un errore nel segnare una notifica come letta");
+            }
+        });
     }
 
 </script>

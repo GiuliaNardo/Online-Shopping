@@ -648,6 +648,88 @@ public class Database {
     }
 
     /***
+     * Metodo per inserire una nuova notifica nel database
+     * @param notifica La notifica da inserire nel DB
+     * @return true se l'inserimento è andato a buon fine, false se c'è stato un errore
+     */
+
+    public boolean insertNotification(Notifica notifica) {
+        boolean insertSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO notifica (IdUtente,Testo,Url,DataNotifica,Stato) VALUES (?,?,?,?,?);");
+            preparedStatement.setInt(1, notifica.getIdUtente());
+            preparedStatement.setString(2, notifica.getTesto());
+            preparedStatement.setString(3, notifica.getUrl());
+            preparedStatement.setDate(4, notifica.getDate());
+            preparedStatement.setString(5, notifica.getStato().toString());
+            if (preparedStatement.executeUpdate() > 0) {
+                insertSuccesful = true;
+            } else {
+                insertSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return insertSuccesful;
+    }
+
+    /***
+     * Restituisce le notifiche per un determinato utente
+     * @param utente L'utente per cui cercare notifiche
+     * @return ArrayList di Notifica con all'interno tutte le notifiche dell'utente specificato ordinate dalla più recente alla meno recente.
+     */
+
+    public ArrayList<Notifica> getUserNotifications(Utente utente) {
+        ArrayList<Notifica> notifiche = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM notifica where IdUtente = ? ORDER BY DataNotifica DESC;");
+            preparedStatement.setInt(1, utente.getId());
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int idNotifica = resultSet.getInt("IdNotifica");
+                String testo = resultSet.getString("Testo");
+                String url = resultSet.getString("Url");
+                Date date = resultSet.getDate("DataNotifica");
+                String statoString = resultSet.getString("Stato");
+                StatoNotifica statoNotifica = StatoNotifica.NUOVA;
+                if(statoString.equals("Letta")) {
+                    statoNotifica = StatoNotifica.LETTA;
+                }
+                notifiche.add(new Notifica(idNotifica,utente.getId(),testo,url,date,statoNotifica));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return notifiche;
+    }
+
+    /***
+     * Setta lo stato di una notifica come letta
+     * @param idNotifica L'id della notifica da settare come letta
+     * @return true se l'update è andato a buon fine, false altrimenti
+     */
+
+    public boolean setNotificationAsRead(int idNotifica, Utente utente) {
+        boolean updateSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE notifica SET Stato = 'Letta' WHERE IdNotifica = ? AND IdUtente = ? VALUES (?,?);");
+            preparedStatement.setInt(1, idNotifica);
+            preparedStatement.setInt(2, utente.getId());
+            if (preparedStatement.executeUpdate() > 0) {
+                updateSuccesful = true;
+            } else {
+                updateSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return updateSuccesful;
+
+    }
+
+    /***
      * Serve per rilasciare la connessione al database una volta che le operazioni sul database sono state effettuate
      */
 

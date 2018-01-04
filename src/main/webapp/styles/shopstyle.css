@@ -1,3 +1,8 @@
+.order-container{
+    height: 120%!important;
+    margin: auto;
+}
+
 .glyphicon { margin-right:5px; }
 .thumbnail
 {
@@ -56,10 +61,32 @@
     margin: 0 0 11px;
 }
 .container2{
-    margin-top:10px;
+    margin: auto;
+    margin-bottom: 30px;
 }
 
 .filter-col{
     padding-left:10px;
     padding-right:10px;
 }
+
+.list-group{
+    max-height: 70%;
+    overflow: scroll;
+    margin: auto;
+}
+
+#filter-bottom{
+    margin: auto;
+    margin-top: 20px;
+}
+
+.span{
+    margin-left: 10px;
+}
+
+
+
+
+
+

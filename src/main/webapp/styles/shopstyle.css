@@ -1,7 +1,4 @@
-.order-container{
-    margin: auto;
-    margin-bottom: 10%;
-}
+
 
 .glyphicon { margin-right:5px; }
 .thumbnail
@@ -71,9 +68,12 @@
 }
 
 .list-group{
-    max-height: 70%;
+    max-height: 100%;
     overflow: scroll;
     margin: auto;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 
 #filter-bottom{
@@ -83,6 +83,14 @@
 
 .span{
     margin-left: 10px;
+}
+
+.shop-container{
+    margin: 30px;
+}
+
+#shop-content{
+    margin: 30px;
 }
 
 

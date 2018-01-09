@@ -18,7 +18,7 @@
 </script>
 <link rel="stylesheet" type="text/css" href="styles/shopstyle.css">
 
-<div class="container order-container " style="height: 100%">
+<div class="shop-container ">
     <div class="well well-sm">
         <strong>Display</strong>
         <div class="btn-group">
@@ -106,8 +106,16 @@
                 <span class="glyphicon glyphicon-cog"></span> Advanced Search
             </button>
     </div>
+</div>
     <div id="products" class="row list-group">
-        
+        <div class="articoli-box" id="">
+            <div class="row" id="shop-content">
+
+
+            </div>
+
+        </div>
+        <!--
         <div class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
                 <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
@@ -234,8 +242,48 @@
                 </div>
             </div>
         </div>
+        -->
     </div>
-</div>
 
 </body>
 
+<script>
+    window.onload = function (){
+        var i=0;
+        var articoli = 10;
+        var descrizione="Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,\n" +
+            "                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat";
+        var titolo="Articolo a caso";
+        var prezzo ='20.00';
+
+        for(i = 0; i < articoli; i++){
+            $('#shop-content').append(new_div(1,descrizione, titolo,prezzo));
+            console.log('ciao');
+        }
+
+    };
+    function new_div(id,descrizione,titolo,prezzo){
+        return (
+            '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +
+            '            <div class="thumbnail">\n' +
+            '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
+            '                <div class="caption">\n' +
+            '                    <h4 class="group inner list-group-item-heading">'+titolo+'</h4> '+
+            '                    <p class="group inner list-group-item-text">'+descrizione+'</p>\n' +
+            '                    <div class="row">\n' +
+            '                        <div class="col-xs-12 col-md-6">\n' +
+            '                            <p class="lead">'+prezzo+'</p>\n' +
+            '                        </div>\n' +
+            '                        <div class="col-xs-12 col-md-6">\n' +
+            '                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>\n' +
+            '                        </div>\n' +
+            '                    </div>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>'
+
+        );
+
+
+    }
+</script>

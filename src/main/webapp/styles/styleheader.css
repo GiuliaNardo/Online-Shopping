@@ -216,14 +216,6 @@ body { padding-top: 70px; }
     display: none;
 }
 
-.main, .bell{
-    float: left;
-}
-
-.bell{
-    margin: auto;
-    margin-top: 20px;
-}
 #a-bell:link{
     color: #777;
 }

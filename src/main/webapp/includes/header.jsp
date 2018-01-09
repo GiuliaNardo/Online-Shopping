@@ -45,6 +45,8 @@
     <link rel="stylesheet" type="text/css" href="styles/styleheader.css">
     <link rel="stylesheet" type="text/css" href="styles/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
 </head>
 <body>
 <%
@@ -116,7 +118,7 @@
     }else{
 %>
 <nav class="[ navbar navbar-fixed-top ][ navbar-bootsnipp animate ]" role="navigation">
-    <div class="[ container ]">
+    <div class="[ container ] main">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="[ navbar-header ]">
             <button type="button" class="[ navbar-toggle ]" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -168,6 +170,13 @@
                     </ul>
                 </li>
                 <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
+                <li>
+                    <a href="/notification.jsp" class="[ animate ]" id="a-bell">
+                        <div class="bell-off" id="bell-off"><i class="zmdi zmdi-notifications-none zmdi-hc-lg "></i></div>
+
+                        <div class="bell-on" id="bell-on"><i class="zmdi zmdi-notifications-active zmdi-hc-lg "></i></div>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -187,4 +196,33 @@
 <%}%>
 </body>
 
+
+<script>
+
+    $(document).ready(function () {
+        <%
+            //TODO: query per sapere se ci sono notifiche non lette
+            if (isLogged){
+                boolean nuove = true;
+                if (nuove){
+                    System.out.println("nuove notifiche");
+                    %>
+                document.getElementById('bell-off').style.display = "none";
+                document.getElementById('bell-on').style.display = "block";
+        document.getElementById('a-bell').style.color = "#D40000";
+
+
+                    <%
+                } else{
+                    System.out.println("nessuna nuova notifica");
+                    %>
+        document.getElementById('bell-off').style.display = "block";
+        document.getElementById('bell-on').style.display = "none";
+                    <%
+                }
+
+            }
+            %>
+    });
+</script>
 

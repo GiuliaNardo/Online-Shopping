@@ -211,3 +211,19 @@ body { padding-top: 70px; }
     height: 40px;
     font-size:1.7em;
 }
+
+.bell-on{
+    display: none;
+}
+
+.main, .bell{
+    float: left;
+}
+
+.bell{
+    margin: auto;
+    margin-top: 20px;
+}
+#a-bell:link{
+    color: #777;
+}

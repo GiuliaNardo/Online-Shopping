@@ -84,21 +84,23 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="/index.jsp" class="[ animate ]">Home</a></li>
-                <li><a href="/shop.jsp" class="[ animate ]">Shop</a></li>
+                <li><a href="/index.jsp" class="[ animate ]"><i class="zmdi zmdi-home"></i>
+                    Home</a></li>
+                <li><a href="/shop.jsp" class="[ animate ]"><i class="zmdi zmdi-shopping-basket"></i>
+                    Shop</a></li>
                 <li>
-                    <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Categorie <span class="[ caret ]"></span></a>
+                    <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="zmdi zmdi-menu"></i>
+                        Categorie <span class="[ caret ]"></span></a>
                     <ul class="[ dropdown-menu ]" role="menu" id="categorie">
 
                     </ul>
                 </li>
                 <li>
-                    <a href="/cart.jsp" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Carrello <span class="[ caret ]"></span></a>
-                    <ul class="[ dropdown-menu ]" role="menu">
-                        <li><a href="/item.jsp" class="[ animate ]">item <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
-                    </ul>
+                    <a href="/cart.jsp" class="[ animate ]"><i class="zmdi zmdi-shopping-cart"></i>
+                        Cart</a>
                 </li>
-                <li><a class="animate" href="/login.jsp">Login</a></li>
+                <li><a class="animate" href="/login.jsp"><i class="zmdi zmdi-face"></i>
+                    Login</a></li>
                 <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
             </ul>
         </div>
@@ -148,22 +150,26 @@
                         </div>
                     </form>
                 </li>
-                <li><a href="/index.jsp" class="[ animate ]">Home</a></li>
-                <li><a href="/shop.jsp" class="[ animate ]">Shop</a></li>
+                <li><a href="/index.jsp" class="[ animate ]"><i class="zmdi zmdi-home"></i>
+                    Home</a></li>
+                <li><a href="/shop.jsp" class="[ animate ]"><i class="zmdi zmdi-shopping-basket"></i>
+                    Shop</a></li>
                 <li>
-                    <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Categorie <span class="[ caret ]"></span></a>
+                    <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="zmdi zmdi-menu"></i>
+                        Categorie <span class="[ caret ]"></span></a>
                     <ul class="[ dropdown-menu ]" role="menu" id="categorielog">
 
                     </ul>
                 </li>
                 <li>
-                    <a href="/cart.jsp" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Carrello <span class="[ caret ]"></span></a>
-                    <ul class="[ dropdown-menu ]" role="menu">
-                        <li><a href="/item.jsp" class="[ animate ]">item <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
-                    </ul>
+                    <a href="/cart.jsp" class="[ animate ]"><i class="zmdi zmdi-shopping-cart"></i>
+                        Cart</i>
+                    </a>
+
                 </li>
                 <li>
-                    <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><%=utente.getUserName()%><span class="[ caret ]"></span></a>
+                    <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="zmdi zmdi-face"></i>
+                        <%=utente.getUserName()%><span class="[ caret ]"></span></a>
                     <ul class="[ dropdown-menu ]" role="menu">
                         <li><a href="profile.jsp" class="[ animate ]">Profile <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
                         <li><a href="orders.jsp" class="[ animate ]">I miei Ordini <span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>

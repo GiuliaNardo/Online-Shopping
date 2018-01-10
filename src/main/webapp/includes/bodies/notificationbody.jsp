@@ -30,7 +30,7 @@
             <!--<div class="row" id="nav-home">-->
             <div class="container" id="contentmain">
                 <div class="row" id="content">
-                    <div class="niente">There isn't any notification</div>
+                    <div class="niente" id="no-notifications-div">There isn't any notification</div>
 
                 </div>
 
@@ -43,10 +43,6 @@
     </div>
 
 </div>
-</body>
-
-
-
 <script type="text/javascript">
     <%
     Utente utente = null;
@@ -75,9 +71,9 @@
     var maxRecentFor = 5;
 
     if (notifiche.length==0){
-        document.getElementById('niente').style.display = "block";
+        document.getElementById('no-notifications-div').style.display = "block";
     } else {
-        document.getElementById('niente').style.display = "none";
+        document.getElementById('no-notifications-div').style.display = "none";
     }
 
 
@@ -88,41 +84,19 @@
 
     window.onload = function (){
         var i=0;
-        notifiche = 10;
-
         for(i = 0; i < maxRecentFor; i++){
-            $('#content').append(new_div(notifiche[i].id,notifiche[i].testo, "Notifica" ,notifiche[i].url));
-            console.log('ciao');
-            notifiche_tot--;
+            var div = new_notification_div(notifiche[i].id,notifiche[i].testo, "Notifica" ,notifiche[i].url);
+            console.log(div);
+            $('#content').append(div);
         }
 
     };
-    function new_div(id,testo,titolo,url){
-        return (
-            '<div class="row ann-block align-items-center" id="ann">'+
-            '<a href="'+url+'">'+
-            '<div class="col col-md-9 col-sm-12 col-12 content-block" id="notifica" onmouseleave="markAsRead(' + id + ');"><span class="titolo">'+titolo +'<br></span>'+ testo+
-            '</div></a>'+
-
-            '<div class="col col-md-3 col-sm-12 col-12">'+
-
-            '<button class="btn btn-sm" id="edit-button" onclick="myedit(this.getAttribute(\'data-id\'),this.getAttribute(\'data-tipologia\'))">'+
-            '<i class="zmdi zmdi-mail-reply"></i>\n<label id="testo">Reply</label>'+
-            '</button>'+
-
-
-            '</div>'+
-            '<div>');
-
-
-    }
 
     function espandi() {
         for (var i = 5;i < notifiche.length;i++) {
-            $('#content').append(new_div(notifiche[i].testo, "Notifica" ,notifiche[i].url));
+            $('#content').append(new_notification_div(notifiche[i].testo, "Notifica" ,notifiche[i].url));
             console.log('ciao');
         }
-
     }
 
     function markAsRead(id) {
@@ -146,5 +120,25 @@
         });
     }
 
+    function new_notification_div(id,testo,titolo,url){
+        return (
+            '<div class="row ann-block align-items-center" id="ann" onmouseleave="markAsRead(' + id + ')">'+
+            '<a href="'+url+'">'+
+            '<div class="col col-md-9 col-sm-12 col-12 content-block" id="notifica"><span class="titolo">'+titolo +'<br></span>'+ testo+
+            '</div></a>'+
+
+            '<div class="col col-md-3 col-sm-12 col-12">'+
+
+            '<button class="btn btn-sm" id="edit-button" onclick="myedit(this.getAttribute(\'data-id\'),this.getAttribute(\'data-tipologia\'))">'+
+            '<i class="zmdi zmdi-mail-reply"></i>\n<label id="testo">Reply</label>'+
+            '</button>'+
+
+
+            '</div>'+
+            '<div>');
+    }
+
 </script>
+</body>
+
 

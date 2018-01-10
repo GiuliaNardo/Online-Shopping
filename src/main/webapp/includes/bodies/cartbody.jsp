@@ -6,72 +6,46 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<link rel="stylesheet" type="text/css" href="styles/cartstyle.css">
+
 <body>
+
 <div class="order-container">
     <div class="row">
+        <div class="title">Your Cart</div>
+    </div>
+
+    <div class="">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Carrello</div>
+
                 <div class="panel-body">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>Categoria</th>
-                            <th>Quantità</th>
-                            <th class="text-center">Prezzo</th>
-                            <th class="text-center">SubTotale</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="col-md-5">
-                                <h4><a href="#">Prodotto1</a></h4>
-                                <h5>Descrizione</h5>
-                                <span>Categoria: </span><span><strong>Fottiti</strong></span>
-                            </td>
-                            <td class="col-md-3"><h5><strong>Ciaone</strong></h5></td>
-                            <td class="col-md-1" style="text-align: center">
-                                <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default btn-number" min="0" step="1" ng-click="minus()">
-                                                <i class="glyphicon glyphicon-minus"></i>
-                                            </button>
-                                        </span>
-                                    <input type="text" class="form-control input-number" ng-change="change()" ng-model="qnt" required>
-                                    <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default btn-number" ng-click="plus()">
-                                                <i class="glyphicon glyphicon-plus"></i>
-                                            </button>
-                                        </span>
-                                </div>
-                            </td>
-                            <td class="col-md-1 text-center"><strong>$4.87</strong></td>
-                            <td class="col-md-1 text-center"><strong>$14.61</strong></td>
-                            <td class="col-sm-1 col-md-1">
-                                <button type="button" class="btn btn-danger">
-                                    <i class="glyphicon glyphicon-remove"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td class="text-right"><h5>Totale</h5></td>
-                            <td class="text-center"><h5><strong>$24.59</strong></h5></td>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class="table table-striped">
+
+                        <div class="row all-title">
+                            <div class="col-md-3 item-title">Descrizione ordine</div>
+                            <div class="col-md-3 item-title">Categoria</div>
+                            <div class="col-md-2 item-title">Quantità</div>
+                            <div class="col-md-1 item-title" >Prezzo</div>
+                            <div class="col-md-2 item-title" >SubTotale</div>
+                            <div class="col-md-1 item-title"></div>
+                        </div>
+                        <div class="row all-item" id="cart-content">
+
+
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-8">
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-shopping-cart"></span> Contina con lo shop
+                        <div id="colonnamaledetta">
+                            <button type="button" class="btn btn-default btn-bottom col-12 col-md-8" id="btn-maledetto">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Contina con lo shopping
                             </button>
-                            <a href="/checkout" class="btn btn-success">
-                                Checkout <span class="glyphicon glyphicon-play"></span>
+                            <a href="/checkout" class="col-12 col-md-4">
+                                <button class="btn btn-bottom btn-success ">
+                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                </button>
+
                             </a>
                         </div>
                     </div>
@@ -82,4 +56,119 @@
 </div>
 
 </body>
+
+
+
+<script>
+
+
+//funziona solo la prima volta perchè hanno tutti gli id uguali
+    function aumenta(id,quantita){
+        quantita++;
+        $('#count').val(quantita);
+        if (quantita>1){
+            document.getElementById('minus').disabled = "false";
+        }
+        console.log('ciao ' + quantita);
+    };
+    function diminuisci(id,quantita){
+        if (quantita > 1) {
+            quantita--;
+            $('#count').val(quantita);
+        } else{
+            document.getElementById('minus').disabled = "true";
+        }
+        console.log('ciao ' + quantita);
+    };
+
+
+</script>
+
+<script>
+
+
+    window.onload = function (){
+        var num_articoli = 3;
+        var id;
+        var prezzo;
+        var sub_tot;
+        var tot=0;
+        var quantita;
+        var categoria;
+        var nome;
+        var descrizione;
+
+
+            var j = 0;
+            sub_tot = 0;
+            tot = 0;
+            for(j;j<num_articoli;j++){  //articoli relativi all'ordine
+                prezzo = 3.58;
+                descrizione="iphone senza tasti";
+                nome="iphone";
+                categoria= "Telefonia";
+                quantita=5;
+                id = 2;
+
+                sub_tot=prezzo*quantita;
+                tot+=sub_tot;
+                $('#cart-content').append(add_articolo(id, nome, descrizione, sub_tot, categoria, quantita,prezzo));
+
+            }
+
+            $('#cart-content').append(add_ordine(id,tot));
+
+
+
+    };
+
+    function add_articolo(id, nome, descrizione, sub_tot, categoria, quantita,prezzo) {
+        return '<div class="row item">\n' +
+            '                            <div class="col-md-3 col-sm-12 articolo">\n' +
+            '                                <div class="el"><a href="#" class="sub-title">'+nome+'</a></div>\n' +
+            '                                <div id="testo-piccolo el">'+descrizione+'</div>\n' +
+            '                            </div>\n' +
+            '                            <div class="col-md-3 col-sm-12 el"><strong>'+categoria+'</strong></div>\n' +
+            '                            <div class="col-md-2 col-sm-12 el" style="text-align: center">\n' +
+            '                                <div class="input-group input-group1">\n' +
+                                    '          <span class="input-group-btn">\n' +
+                                    '              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" id="minus" onclick="diminuisci('+id+','+quantita+')">\n' +
+                                    '                  <span class="glyphicon glyphicon-minus"></span>\n' +
+                                    '              </button>\n' +
+                                    '          </span>\n' +
+                                    '          <input type="text" name="quant" class="form-control input-number" id="count" value="'+quantita+'">\n' +
+                                    '          <span class="input-group-btn">\n' +
+                                    '              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" id="plus" onclick="aumenta('+id+','+quantita+')">\n' +
+                                    '                  <span class="glyphicon glyphicon-plus"></span>\n' +
+                                    '              </button>\n' +
+                                    '          </span>\n' +
+                                    '      </div>' +
+            '                            </div>\n' +
+            '                            <div class="col-md-1 col-sm-12 el text-center"><strong>'+prezzo+'</strong></div>\n' +
+            '                            <div class="col-md-2 col-sm-12 el text-center"><strong>'+sub_tot.toFixed(2)+'</strong></div>\n' +
+            '                            <div class="col-sm-12 col-md-1 el">\n' +
+            '                                <button type="button" class="btn btn-danger">\n' +
+            '                                    <i class="glyphicon glyphicon-remove"></i>\n' +
+            '                                </button>\n' +
+            '                            </div>\n' +
+            '                        </div>'
+    };
+
+    function add_ordine(id, tot) {
+        return '<div class="row">\n' +
+            '                            <div class="col-md-7"></div>\n' +
+            '                            <div class="text-right tot col-md-3 col-sm-12">Totale</div>\n' +
+            '                            <div class="text-center tot col-md-2 col-sm-12"><strong>euro '+tot.toFixed(2)+'</strong></div>\n' +
+
+            '                        </div>'
+    };
+
+
+
+</script>
+
+
+
+
+
 

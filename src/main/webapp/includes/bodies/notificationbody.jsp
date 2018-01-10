@@ -82,7 +82,7 @@
         $('#espandi-button').hide();
     }
 
-    window.onload = function (){
+    $(document).ready(function (){
         var i=0;
         for(i = 0; i < maxRecentFor; i++){
             var div = new_notification_div(notifiche[i].id,notifiche[i].testo, "Notifica" ,notifiche[i].url);
@@ -90,7 +90,7 @@
             $('#content').append(div);
         }
 
-    };
+    });
 
     function espandi() {
         for (var i = 5;i < notifiche.length;i++) {

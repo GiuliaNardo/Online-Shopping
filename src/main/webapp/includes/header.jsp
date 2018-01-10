@@ -9,16 +9,17 @@
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
-
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.unitn.progettoweb.Objects.Categorie" %>
 
 <%
-
+    Database database = new Database();
     Utente utente = null;
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
     if(cookies.length != 0 && cookies != null) {
-        Database database = new Database();
+
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
                 if (!(database.getUserSession(cookies[i].getValue()) == null)) {
@@ -28,9 +29,11 @@
                 }
             }
         }
-        database.close();
+
     }
 
+    ArrayList<Categorie> categorie = database.getCategorie();
+    database.close();
 %>
 <html>
 <head>
@@ -85,10 +88,9 @@
                 <li><a href="/shop.jsp" class="[ animate ]">Shop</a></li>
                 <li>
                     <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Categorie <span class="[ caret ]"></span></a>
-                    <ul class="[ dropdown-menu ]" role="menu">
-                        <li><a href="#" class="[ animate ]">Bau <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
-                        <li><a href="#" class="[ animate ]">Ciaone <span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
-                        </ul>
+                    <ul class="[ dropdown-menu ]" role="menu" id="categorie">
+
+                    </ul>
                 </li>
                 <li>
                     <a href="/cart.jsp" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Carrello <span class="[ caret ]"></span></a>
@@ -150,9 +152,8 @@
                 <li><a href="/shop.jsp" class="[ animate ]">Shop</a></li>
                 <li>
                     <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown">Categorie <span class="[ caret ]"></span></a>
-                    <ul class="[ dropdown-menu ]" role="menu">
-                        <li><a href="#" class="[ animate ]">Bau <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
-                        <li><a href="#" class="[ animate ]">Ciaone <span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
+                    <ul class="[ dropdown-menu ]" role="menu" id="categorielog">
+
                     </ul>
                 </li>
                 <li>
@@ -207,22 +208,42 @@
                 if (nuove){
                     System.out.println("nuove notifiche");
                     %>
-                document.getElementById('bell-off').style.display = "none";
-                document.getElementById('bell-on').style.display = "block";
-        document.getElementById('a-bell').style.color = "#D40000";
+                    document.getElementById('bell-off').style.display = "none";
+                    document.getElementById('bell-on').style.display = "block";
+                    document.getElementById('a-bell').style.color = "#D40000";
 
 
                     <%
                 } else{
                     System.out.println("nessuna nuova notifica");
                     %>
-        document.getElementById('bell-off').style.display = "block";
-        document.getElementById('bell-on').style.display = "none";
+                    document.getElementById('bell-off').style.display = "block";
+                    document.getElementById('bell-on').style.display = "none";
                     <%
                 }
 
             }
             %>
     });
+
+    $(document).ready(function(){
+        console.log("muori");
+
+    <%
+        for (int i =0; i< categorie.size(); i++){
+            %>
+            $('#categorie').append(new_categoria("<%=categorie.get(i).getNome()%>"));
+            $('#categorielog').append(new_categoria("<%=categorie.get(i).getNome()%>"));
+            console.log("chiamato");
+            <%
+        }
+    %>
+
+    });
+
+    function new_categoria(titolo){
+        console.log("creato");
+        return ('<li><a href="#" class="[ animate ]">'+titolo+'</a></li>');
+    }
 </script>
 

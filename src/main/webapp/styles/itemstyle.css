@@ -180,6 +180,32 @@
     width: 60%;
     height: 40%;
 }
+.row{
+    margin:auto;
+
+}
+
+#title-review{
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #428BCA;
+}
+
+#text-review{
+    height: 200px;
+    width: 100%;
+    overflow: scroll;
+    font-size: 1em;
+    margin-bottom: 30px;
+
+}
+
+#btn-review{
+    margin: auto;
+    width: 150px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
 
 @media screen and (min-width: 200px) {
     .container-fluid{
@@ -190,12 +216,9 @@
     .tab-content{
         font-size: 15px;
 
-
     }
     .col-md-7{
         clear: both;
-
-
     }
     #foto{
         float: left;
@@ -207,7 +230,6 @@
         width: 60px;
     }
     .content-wrapper{
-        width: 50%;
         margin: auto 0;
 
     }
@@ -215,7 +237,7 @@
         margin: 0 auto;
     }
     #myTab li{
-        width: 33.3%;
+        width: auto;;
     }
     #myTab a{
         font-size: 0.9em;
@@ -240,6 +262,10 @@
     #article-photo-carousel{
         width: 100%;
     }
+    .product-info{
+        width: 100%;
+        padding: 0;
+    }
 }
 
 @media screen and (min-width: 780px) {
@@ -250,7 +276,7 @@
         padding-left: 2.8%;
     }
     .tab-content{
-        font-size: 20px;
+        font-size: 18px;
 
     }
     #pricipale{

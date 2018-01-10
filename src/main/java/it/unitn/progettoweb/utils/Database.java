@@ -656,7 +656,7 @@ public class Database {
     public boolean insertNotification(Notifica notifica) {
         boolean insertSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO notifica (IdUtente,Testo,Url,DataNotifica,Stato) VALUES (?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO notification (IdUtente,Testo,Url,DataNotifica,Stato) VALUES (?,?,?,?,?);");
             preparedStatement.setInt(1, notifica.getIdUtente());
             preparedStatement.setString(2, notifica.getTesto());
             preparedStatement.setString(3, notifica.getUrl());
@@ -683,7 +683,7 @@ public class Database {
         ArrayList<Notifica> notifiche = new ArrayList<>();
         ResultSet resultSet;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM notifica where IdUtente = ? ORDER BY DataNotifica DESC;");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM notification where IdUtente = ? ORDER BY DataNotifica DESC;");
             preparedStatement.setInt(1, utente.getId());
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -714,7 +714,7 @@ public class Database {
     public boolean setNotificationAsRead(int idNotifica, Utente utente) {
         boolean updateSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE notifica SET Stato = 'Letta' WHERE IdNotifica = ? AND IdUtente = ? VALUES (?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE notification SET Stato = 'Letta' WHERE IdNotifica = ? AND IdUtente = ?;");
             preparedStatement.setInt(1, idNotifica);
             preparedStatement.setInt(2, utente.getId());
             if (preparedStatement.executeUpdate() > 0) {

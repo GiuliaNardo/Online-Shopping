@@ -2,6 +2,24 @@
     margin-bottom: 30px;
 }
 
+.order-container{
+    height: 100%;
+    /*se in mobile sfora, togliere height*/
+}
+
+.niente{
+    display: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.title{
+    font-size: 2em;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
 #espandi-button{
     width: 200px;
     margin-bottom: 100px;

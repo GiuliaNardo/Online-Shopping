@@ -5,6 +5,7 @@
   Time: 17:27
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
@@ -12,6 +13,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.progettoweb.Objects.Notifica" %>
 <%@ page import="com.google.gson.Gson" %>
+
 <link rel="stylesheet" type="text/css" href="styles/notificationstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
@@ -23,12 +25,12 @@
     <div class="row">
         <div class="container">
             <div class="page-header">
-                <h2 class="title">My notifications</h2>
+                <span class="title">My notifications</span>
             </div>
             <!--<div class="row" id="nav-home">-->
             <div class="container" id="contentmain">
                 <div class="row" id="content">
-
+                    <div class="niente">There isn't any notification</div>
 
                 </div>
 
@@ -43,8 +45,9 @@
 </div>
 </body>
 
-<script type="text/javascript">
 
+
+<script type="text/javascript">
     <%
     Utente utente = null;
     Session sessione = null;
@@ -70,6 +73,14 @@
 
     var notifiche = <%= gson.toJson(notifiche)%>;
     var maxRecentFor = 5;
+
+    if (notifiche.length==0){
+        document.getElementById('niente').style.display = "block";
+    } else {
+        document.getElementById('niente').style.display = "none";
+    }
+
+
     if(notifiche.length < 5) {
         maxRecentFor = notifiche.length;
         $('#espandi-button').hide();
@@ -113,7 +124,7 @@
         }
 
     }
-    
+
     function markAsRead(id) {
         $.ajax({
             type: "POST",
@@ -136,5 +147,4 @@
     }
 
 </script>
-</body>
 

@@ -9,80 +9,149 @@
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
+<%@ page import="it.unitn.progettoweb.Objects.Ordine" %>
+<%@ page import="java.util.ArrayList" %>
 <link rel="stylesheet" type="text/css" href="styles/orderstyle.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<%
+    Database db = new Database();
+    Utente utente = null;
+    Session sessione = null;
+    Cookie cookies[] = request.getCookies();
+    boolean isLogged = false;
+    ArrayList<Ordine> ordini = null;
+
+    if(cookies.length != 0) {
+        Database database = new Database();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("SessioneUtente")) {
+                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = database.getUserSession(cookies[i].getValue());
+                    utente = database.getUtente(sessione.getIdUtente());
+                    isLogged = true;
+                    ordini = db.getUserOrders(utente);
+                }
+            }
+        }
+        database.close();
+    }
+
+    if (isLogged) {
+
+    %>
 <body>
-   <div class="container order-container" id="order-c">
+<div class="container order-container" id="order-c">
 
-       <div class="row">
-           <div class="container">
-               <div class="cont-two">
-                   <div class="page-header">
-                       <h2>My orders</h2>
-                   </div>
+    <div class="row">
+        <div class="container">
+            <div class="page-header">
+                <div class="title">My orders</div>
+            </div>
 
-                   <div class="row" id="nav-home">
-
-                   </div>
-               </div>
-               <div class="row">
-                   <nav aria-label="Page navigation example">
-                       <ul class="pagination">
-                           <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                           <li class="page-item"><a class="page-link" href="#">1</a></li>
-                           <li class="page-item"><a class="page-link" href="#">2</a></li>
-                           <li class="page-item"><a class="page-link" href="#">3</a></li>
-                           <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                       </ul>
-                   </nav>
-               </div>
-           </div>
-       </div>
-   </div>
-       <!--     <div class="row">
-
-
-                <div class="order-container">
-
-                    <nav class="nav nav-tabs" id="myTab" role="tablist">
-                        <a class="nav-item nav-link active nav-order" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
-                            In attesa
-                        </a>
-                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">
-                            Conclusi
-                        </a>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-                        </div>
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledbav-profile-tab">
-
-                        </div>
+            <!--<div class="row" id="nav-home">-->
+            <div class="container" id="contentmain">
+                <div class="row" id="content">
+                    <div id="noOrders">
+                        Nessun ordine
                     </div>
-                    <!--
-                    <div class="row justify-content-between buttons">
-                        <div class="col col-md-6  col-sm-12 align-self-center">
-                            <a href="#" class="">
-                                <button class="btn bottom-btn" id="button-back">
-                                    Ritorna alla chat
-                                </button>
-                            </a>
-                        </div>
-                        <div class="col col-md-6 col-sm-12 align-self-center">
-                            <a href="profile.html" class="">
-                                <button class="btn bottom-btn">
-                                    Ritorna al profilo
-                                </button>
-                            </a>
-                        </div>
 
-                    </div>-->
-           </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
-       </div>
-   </div>
+
 </body>
+<%
+    }else{
+    String redirectURL = "../../login.jsp";
+    response.sendRedirect(redirectURL);
+
+    }
+%>
+
+<script type="text/javascript">
+
+
+/*
+    $(document).ready(function () {
+        htmlbodyHeightUpdate()
+        $(window).resize(function () {
+            htmlbodyHeightUpdate()
+        });
+        $(window).scroll(function () {
+            height2 = $('.main').height()
+            htmlbodyHeightUpdate()
+        });
+    });
+*/
+//TODO: query per restituire gli ordini di un utente
+
+    var titolo="";
+    var testo="";
+
+    $(document).ready(function (){
+
+            titolo= "Ciao";
+            testo="Et et consectetur ipsum labore excepteur est proident excepteur ad velit occaecat qui minim occaecat veniam.";
+        <%
+            if (ordini.size()==0){
+              %>
+                document.getElementById("noOrders").style.display = "block";
+
+        <%
+            }else{
+                %>
+        document.getElementById("noOrders").style.display = "none";
+        <%
+            }
+            System.out.println(""+ordini.size());
+            for(int i =0;i < ordini.size(); i++ ){
+                %>
+                $('#content').append(new_ordine(testo,titolo,<%=ordini.get(i).getPrezzoTot()%> ));
+                console.log("fatto");
+        <%
+        }
+    %>
+
+    });
+
+
+function new_ordine(testo,titolo,prezzo){
+    return ('<div>\n' +
+        '    <div class="row align-items-center">\n' +
+        '        <div class="col-12 col-md-9 col-sm-12">\n' +
+        '            <div class="row titolo">\n' +titolo+
+        '            </div>\n' +
+        '            <div class="row">\n' +testo+
+        '            </div>\n' +
+        '            <div class="row titolo">\n' +'Totale:\n' +prezzo.toFixed(2)+
+        '            euro</div>\n' +
+        '        </div>\n' +
+        '        <div class="row col-12 col-md-3 col-sm-12">\n' +
+        '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="edit-button" onclick="myedit(this.getAttribute(\'data-id\'),this.getAttribute(\'data-tipologia\'))">\n' +
+        '                    <i class="zmdi zmdi-edit"></i><label id="edit">Edit</label>\n' +
+        '            </button></div>\n' +
+        '            <div class="col-12 col-sm-12 col-md-6"><a href="../../notification.jsp"><button class="btn btn-sm " id="delete-button">\n' +
+        '                <i class="zmdi zmdi-notifications"></i>\n<label id="delete">Notify</label>\n' +
+        '            </button></a></div>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '</div>');
+}
+
+</script>
+
+
 

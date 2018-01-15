@@ -1,6 +1,7 @@
 package it.unitn.progettoweb.Objects;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Utente {
     private int id;
@@ -13,8 +14,9 @@ public class Utente {
     private TipoUtente tipo;
     private ValidazioneUtente validazioneUtente;
     private String validationhash;
+    private ImmagineUtente immagineUtente = null;
 
-    public Utente(int id, String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo, ValidazioneUtente validazioneUtente, String validationhash) {
+    public Utente(int id, String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo, ValidazioneUtente validazioneUtente, String validationhash, ImmagineUtente immagineUtente) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -25,6 +27,7 @@ public class Utente {
         this.tipo = tipo;
         this.validazioneUtente = validazioneUtente;
         this.validationhash = validationhash;
+        this.immagineUtente = immagineUtente;
     }
 
     public Utente(String userName, String password, String nome, String cognome, String email, Date dataNascita, TipoUtente tipo, ValidazioneUtente validazioneUtente, String validationhash) {
@@ -105,5 +108,13 @@ public class Utente {
 
     public String getValidationhash() {
         return validationhash;
+    }
+
+    public ImmagineUtente getImmagineUtente() {
+        return immagineUtente;
+    }
+
+    public void setImmagineUtente(ImmagineUtente immagineUtente) {
+        this.immagineUtente = immagineUtente;
     }
 }

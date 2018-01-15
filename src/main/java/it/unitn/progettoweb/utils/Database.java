@@ -50,9 +50,20 @@ public class Database {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE IdUtente = ?;");
             preparedStatement.setInt(1, userId);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            String sql2 = "SELECT * FROM ImmaginiUtente WHERE IdUtente = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
 
+            while (resultSet.next()) {
                 int id = resultSet.getInt("IdUtente");
+                preparedStatement2.setInt(1, id);
+                resultSet2 = preparedStatement2.executeQuery();
+                ImmagineUtente immagineUtente = null;
+                if(resultSet2.next()) {
+                    int idImmagine = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immagineUtente = new ImmagineUtente(idImmagine,path,id);
+                }
                 String userName = resultSet.getString("UserName");
                 String password = resultSet.getString("Password");
                 String nome = resultSet.getString("Nome");
@@ -79,7 +90,7 @@ public class Database {
 
                 String validationhash = resultSet.getString("validationhash");
 
-                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo, validazioneUtente, validationhash);
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo, validazioneUtente, validationhash, immagineUtente);
             }
 
         } catch (SQLException e) {
@@ -101,9 +112,20 @@ public class Database {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM utente WHERE UserName = ?;");
             preparedStatement.setString(1, usernameToSearch);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            String sql2 = "SELECT * FROM ImmaginiUtente WHERE IdUtente = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
 
+            while (resultSet.next()) {
                 int id = resultSet.getInt("IdUtente");
+                preparedStatement2.setInt(1, id);
+                resultSet2 = preparedStatement2.executeQuery();
+                ImmagineUtente immagineUtente = null;
+                if(resultSet2.next()) {
+                    int idImmagine = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immagineUtente = new ImmagineUtente(idImmagine,path,id);
+                }
                 String userName = resultSet.getString("UserName");
                 String password = resultSet.getString("Password");
                 String nome = resultSet.getString("Nome");
@@ -129,7 +151,7 @@ public class Database {
 
                 String validationhash = resultSet.getString("validationhash");
 
-                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo, validazioneUtente, validationhash);
+                utente = new Utente(id, userName, password, nome, cognome, email, dataNascita, tipo, validazioneUtente, validationhash, immagineUtente);
             }
 
         } catch (SQLException e) {

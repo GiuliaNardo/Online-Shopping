@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Database {
-    //TODO: categorie,ImmagineArticolo,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,venditore
+    //TODO: recensioneArticoli,recensioneVenditore,ticket
     private Connection connection = null;
 
     /***
@@ -158,6 +158,147 @@ public class Database {
             e.printStackTrace();
         }
         return utente;
+    }
+
+    /***
+     * Restituisce un venditore conoscendo il suo id
+     * @param id l'id del venditore da cercare
+     * @return restituisce l'oggetto venditore se è stato trovato un venditore con quell'id, altrimenti restituisce null
+     */
+
+    public Venditore getVenditore(int id) {
+        Venditore venditore = null;
+        ResultSet resultSet;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM venditore WHERE IdVenditore = ?;");
+            preparedStatement.setInt(1, id);
+            resultSet = preparedStatement.executeQuery();
+            String sql2 = "SELECT * FROM ImmaginiVenditore WHERE IdVenditore = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
+
+            if(resultSet.next()) {
+                preparedStatement2.setInt(1, id);
+                resultSet2 = preparedStatement2.executeQuery();
+                ImmagineVenditore immagineVenditore = null;
+
+                if(resultSet2.next()) {
+                    int idImmagine = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immagineVenditore = new ImmagineVenditore(idImmagine,path,id);
+                }
+
+                int idUtente = resultSet.getInt("IdUtente");
+                String nomeNegozio = resultSet.getString("NomeNegozio");
+                String ragioneSociale = resultSet.getString("RagioneSociale");
+                String partitaIva = resultSet.getString("PartitaIva");
+                String iban = resultSet.getString("Iban");
+                String indirizzo = resultSet.getString("Indirizzo");
+                double valutazione = resultSet.getDouble("Valutazione");
+
+                venditore = new Venditore(id,idUtente,nomeNegozio,ragioneSociale,partitaIva,iban,indirizzo,valutazione);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return venditore;
+    }
+
+    /***
+     * Restituisce un venditore associato ad un utente
+     * @param utente l'utente per il quale cercare il venditore associato
+     * @return restituisce l'oggetto venditore se è stato trovato un venditore associato all'utente passato, altrimenti restituisce null
+     */
+
+    public Venditore getVenditore(Utente utente) {
+        Venditore venditore = null;
+        ResultSet resultSet;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM venditore WHERE IdUtente = ?;");
+            preparedStatement.setInt(1, utente.getId());
+            resultSet = preparedStatement.executeQuery();
+            String sql2 = "SELECT * FROM ImmaginiVenditore WHERE IdVenditore = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
+
+            if(resultSet.next()) {
+                int id = resultSet.getInt("IdVenditore");
+                preparedStatement2.setInt(1, id);
+                resultSet2 = preparedStatement2.executeQuery();
+                ImmagineVenditore immagineVenditore = null;
+
+                if(resultSet2.next()) {
+                    int idImmagine = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immagineVenditore = new ImmagineVenditore(idImmagine,path,id);
+                }
+
+                int idUtente = resultSet.getInt("IdUtente");
+                String nomeNegozio = resultSet.getString("NomeNegozio");
+                String ragioneSociale = resultSet.getString("RagioneSociale");
+                String partitaIva = resultSet.getString("PartitaIva");
+                String iban = resultSet.getString("Iban");
+                String indirizzo = resultSet.getString("Indirizzo");
+                double valutazione = resultSet.getDouble("Valutazione");
+
+                venditore = new Venditore(id,idUtente,nomeNegozio,ragioneSociale,partitaIva,iban,indirizzo,valutazione);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return venditore;
+    }
+
+    /***
+     * Restituisce tutti i venditori presenti nel database
+     * @return un ArrayList di Venditore. Se non ci sono venditori questo sarà vuoto.
+     */
+
+    public ArrayList<Venditore> getVenditori() {
+        ArrayList<Venditore> venditori = new ArrayList<>();
+        ResultSet resultSet;
+
+        try {
+            Statement statement = connection.createStatement();
+            String sql  = "SELECT * FROM venditore;";;
+            resultSet = statement.executeQuery(sql);
+            String sql2 = "SELECT * FROM ImmaginiVenditore WHERE IdVenditore = ?";
+            PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
+            if(resultSet.next()) {
+                int id = resultSet.getInt("IdVenditore");
+                preparedStatement2.setInt(1, id);
+                resultSet2 = preparedStatement2.executeQuery();
+                ImmagineVenditore immagineVenditore = null;
+
+                if(resultSet2.next()) {
+                    int idImmagine = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immagineVenditore = new ImmagineVenditore(idImmagine,path,id);
+                }
+
+                int idUtente = resultSet.getInt("IdUtente");
+                String nomeNegozio = resultSet.getString("NomeNegozio");
+                String ragioneSociale = resultSet.getString("RagioneSociale");
+                String partitaIva = resultSet.getString("PartitaIva");
+                String iban = resultSet.getString("Iban");
+                String indirizzo = resultSet.getString("Indirizzo");
+                double valutazione = resultSet.getDouble("Valutazione");
+
+                venditori.add(new Venditore(id,idUtente,nomeNegozio,ragioneSociale,partitaIva,iban,indirizzo,valutazione));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return venditori;
     }
 
     /***

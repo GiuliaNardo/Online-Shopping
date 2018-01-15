@@ -2,25 +2,22 @@ package it.unitn.progettoweb.Objects;
 
 public class RecensioneVenditore {
     private int idRecVen;
-    private int idUtente;
+    private Utente utente;
     private int voto;
     private String testo;
-    private enum visualizzato{
-        TRUE, FALSE
-    }
     private int idVenditore;
 
     /**
      *
      * @param idRecVen
-     * @param idUtente
+     * @param utente
      * @param voto
      * @param testo
      * @param idVenditore
      */
-    public RecensioneVenditore(int idRecVen, int idUtente, int voto, String testo, int idVenditore) {
+    public RecensioneVenditore(int idRecVen, Utente utente, int voto, String testo, int idVenditore) {
         this.idRecVen = idRecVen;
-        this.idUtente = idUtente;
+        this.utente = utente;
         this.voto = voto;
         this.testo = testo;
         this.idVenditore = idVenditore;
@@ -34,12 +31,12 @@ public class RecensioneVenditore {
         this.idRecVen = idRecVen;
     }
 
-    public int getIdUtente() {
-        return idUtente;
+    public Utente getUtente() {
+        return utente;
     }
 
-    public void setIdUtente(int idUtente) {
-        this.idUtente = idUtente;
+    public void setUtente(Utente utente) {
+        this.utente = utente;
     }
 
     public int getVoto() {

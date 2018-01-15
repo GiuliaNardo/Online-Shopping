@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Database {
-    //TODO: recensioneArticoli,recensioneVenditore,ticket
+    //TODO SICURO: ticket, ricerca   FORSE: insert recensioneArticoli, insert recensioneVenditore
     private Connection connection = null;
 
     /***

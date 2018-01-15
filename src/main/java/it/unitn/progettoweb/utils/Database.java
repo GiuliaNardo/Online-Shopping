@@ -945,6 +945,36 @@ public class Database {
     }
 
     /***
+     * Restituisce tutte le recensioni per un determinato venditore
+     * @param venditore venditore per cui cercare le recensioni
+     * @return ArrayList di RecensioneVenditore. Nel caso in cui non ci siano recensioni l'ArrayList sarà vuoto.
+     */
+
+    public ArrayList<RecensioneVenditore> getRecensioniVenditore(Venditore venditore) {
+        ArrayList<RecensioneVenditore> recensioniVenditori = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM recensioneVenditore WHERE IdVenditore = ?;");
+            preparedStatement.setInt(1, venditore.getIdVenditore());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("IdRecVen");
+                int idUtente = resultSet.getInt("IdUtente");
+                Utente utente = getUtente(idUtente);
+                int voto = resultSet.getInt("Voto");
+                String testo = resultSet.getString("Testo");
+
+                recensioniVenditori.add(new RecensioneVenditore(id,utente,voto,testo,venditore.getIdVenditore()));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return recensioniVenditori;
+    }
+
+    /***
      * Serve per rilasciare la connessione al database una volta che le operazioni sul database sono state effettuate
      */
 

@@ -915,6 +915,36 @@ public class Database {
     }
 
     /***
+     * Restituisce tutte le recensioni per un determinato articolo
+     * @param articolo articolo per cui cercare le recensioni
+     * @return ArrayList di RecensioneArticolo. Nel caso in cui non ci siano recensioni l'ArrayList sarà vuoto.
+     */
+
+    public ArrayList<RecensioneArticolo> getRecensioniArticolo(Articolo articolo) {
+        ArrayList<RecensioneArticolo> recensioniArticolo = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM recensioneArticoli WHERE IdArticolo = ?;");
+            preparedStatement.setInt(1, articolo.getIdArticolo());
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("IdRecArt");
+                int idUtente = resultSet.getInt("IdUtente");
+                Utente utente = getUtente(idUtente);
+                int voto = resultSet.getInt("Voto");
+                String testo = resultSet.getString("Testo");
+
+                recensioniArticolo.add(new RecensioneArticolo(id,utente,voto,testo,articolo.getIdArticolo()));
+                }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return recensioniArticolo;
+    }
+
+    /***
      * Serve per rilasciare la connessione al database una volta che le operazioni sul database sono state effettuate
      */
 

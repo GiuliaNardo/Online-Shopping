@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Database {
-    //TODO: categorie,ImmaginiArticoli,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,venditore
+    //TODO: categorie,ImmagineArticolo,ImmaginiUtente,ImmaginiVenditore,recensioneArticoli,recensioneVenditore,ticket,venditore
     private Connection connection = null;
 
     /***
@@ -433,14 +433,25 @@ public class Database {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+            String sql2 = "SELECT * FROM ImmaginiArticoli WHERE IdArticolo = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
             while (resultSet.next()) {
                 int idArticolo = resultSet.getInt("IdArticolo");
+                preparedStatement.setInt(1, idArticolo);
+                resultSet2 = preparedStatement.executeQuery();
+                ArrayList<ImmagineArticolo> immaginiArticoli = new ArrayList<>();
+                while(resultSet2.next()) {
+                    int id = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
+                }
                 String titolo = resultSet.getString("Nome");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
                 float voto = resultSet.getFloat("Voto");
-                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto));
+                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -463,14 +474,25 @@ public class Database {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
+            String sql2 = "SELECT * FROM ImmaginiArticoli WHERE IdArticolo = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
             while (resultSet.next()) {
                 int idArticolo = resultSet.getInt("IdArticolo");
+                preparedStatement.setInt(1, idArticolo);
+                resultSet2 = preparedStatement.executeQuery();
+                ArrayList<ImmagineArticolo> immaginiArticoli = new ArrayList<>();
+                while(resultSet2.next()) {
+                    int id = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
+                }
                 String titolo = resultSet.getString("Nome");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
                 float voto = resultSet.getFloat("Voto");
-                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto));
+                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
             }
         } catch (SQLException e) {
             e.printStackTrace();

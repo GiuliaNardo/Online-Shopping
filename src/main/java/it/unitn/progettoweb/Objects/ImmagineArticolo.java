@@ -1,6 +1,6 @@
 package it.unitn.progettoweb.Objects;
 
-public class ImmaginiArticoli {
+public class ImmagineArticolo {
     private int idImmagine;
     private String percorso;
     private int idArticolo;
@@ -11,7 +11,7 @@ public class ImmaginiArticoli {
      * @param percorso
      * @param idArticolo
      */
-    public ImmaginiArticoli(int idImmagine, String percorso, int idArticolo) {
+    public ImmagineArticolo(int idImmagine, String percorso, int idArticolo) {
         this.idImmagine = idImmagine;
         this.percorso = percorso;
         this.idArticolo = idArticolo;

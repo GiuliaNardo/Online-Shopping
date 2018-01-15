@@ -1,5 +1,7 @@
 package it.unitn.progettoweb.Objects;
 
+import java.util.ArrayList;
+
 public class Articolo {
     private int idArticolo;
     private String titolo;
@@ -7,6 +9,7 @@ public class Articolo {
     private float prezzo;
     private String categoria;
     private float voto;
+    private ArrayList<ImmagineArticolo> immagini;
 
     /**
      * Costruttore
@@ -18,13 +21,14 @@ public class Articolo {
      * @param voto
      */
 
-    public Articolo(int idArticolo, String titolo, int idVenditore, float prezzo, String categoria, float voto){
+    public Articolo(int idArticolo, String titolo, int idVenditore, float prezzo, String categoria, float voto, ArrayList<ImmagineArticolo> immagini){
         this.idArticolo = idArticolo;
         this.titolo = titolo;
         this.idVenditore = idVenditore;
         this.prezzo = prezzo;
         this.categoria = categoria;
         this.voto = voto;
+        this.immagini = immagini;
     }
     public String getCategoria() {
         return categoria;
@@ -72,5 +76,13 @@ public class Articolo {
 
     public void setVoto(float voto) {
         this.voto = voto;
+    }
+
+    public ArrayList<ImmagineArticolo> getImmagini() {
+        return immagini;
+    }
+
+    public void setImmagini(ArrayList<ImmagineArticolo> immagini) {
+        this.immagini = immagini;
     }
 }

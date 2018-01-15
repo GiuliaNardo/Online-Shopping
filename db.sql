@@ -52,7 +52,6 @@ create table recensioneArticoli (
   IdUtente int,
   Voto int,
   Testo varchar(255),
-  Visualizzato enum("TRUE","FALSE"),
   IdArticolo int,
   foreign key (IdArticolo) references articolo(IdArticolo),
   foreign key (IdUtente) references utente(IdUtente)
@@ -63,7 +62,6 @@ create table recensioneVenditore (
   IdUtente int,
   voto int,
   Testo varchar(255),
-  Visualizzato enum("TRUE", "FALSE"),
   IdVenditore int,
   foreign key (IdVenditore) references venditore(IdVenditore),
   foreign key (IdUtente) references utente(IdUtente)

@@ -207,6 +207,19 @@
     margin-top: 20px;
 }
 
+.item{
+    height: 300px;
+    max-width: 600px;
+
+}
+
+#imm{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
 @media screen and (min-width: 200px) {
     .container-fluid{
         padding-left: 20px;

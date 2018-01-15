@@ -1,3 +1,14 @@
+.title{
+    font-size: 1.5em;
+    font-weight:800;
+    margin: auto;
+    margin-left:20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    font: Roboto;
+    letter-spacing: 2px;
+}
+
 
 #pagingControls ul {
     display:inline;
@@ -39,16 +50,19 @@
     width: 80px;
 }
 #delete, #edit{
-    margin-left: 0.2em;
+    margin-left: 0.5em;
+    font-weight: 200;
+    letter-spacing: 2px;
 }
 /*testo annuncio*/
 
 
 
 .titolo{
-    font-weight: 500;
-    font-size: 1.3em;
-    color: #37182A;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
 }
 
 
@@ -57,7 +71,9 @@
     margin-bottom: 20px;
 }
 
-
+.order-container{
+    height: 100%;
+}
 #testo{
     margin-left: 5px;
     margin-bottom: auto;
@@ -80,12 +96,19 @@
 
 #delete-button{
     background-color: #C63D2E;
-    color:white
+    color:white;
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
 }
 
 #edit-button{
     background-color: #336392;
     color: white;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
 }
 
 
@@ -93,7 +116,14 @@
     margin: 20px;
 }
 
+#noOrders{
 
+    display: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
 
 @media screen and (min-width: 480px) {
 
@@ -109,6 +139,22 @@
     #contentmain{
         max-height: 800px;
         overflow: scroll;
+    }
+    #delete-button{
+        width: auto;
+        height: auto;
+        font-size: 1em;
+    }
+
+    #edit-button{
+        width: auto;
+        height: auto;
+        margin-bottom: auto;
+        font-size: 1em;
+    }
+    #delete, #edit{
+        font-weight: 500;
+        letter-spacing: 0px;
     }
 
 }

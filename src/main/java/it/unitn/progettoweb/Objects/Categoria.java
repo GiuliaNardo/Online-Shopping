@@ -1,6 +1,6 @@
 package it.unitn.progettoweb.Objects;
 
-public class Categorie {
+public class Categoria {
     private String nome;
     private String descrizione;
 
@@ -9,7 +9,7 @@ public class Categorie {
      * @param nome
      * @param descrizione
      */
-    public Categorie(String nome, String descrizione) {
+    public Categoria(String nome, String descrizione) {
         this.nome = nome;
         this.descrizione = descrizione;
     }

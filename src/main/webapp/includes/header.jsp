@@ -10,7 +10,7 @@
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unitn.progettoweb.Objects.Categorie" %>
+<%@ page import="it.unitn.progettoweb.Objects.Categoria" %>
 
 <%
     Database database = new Database();
@@ -32,7 +32,7 @@
 
     }
 
-    ArrayList<Categorie> categorie = database.getCategorie();
+    ArrayList<Categoria> categorie = database.getCategorie();
     database.close();
 %>
 <html>

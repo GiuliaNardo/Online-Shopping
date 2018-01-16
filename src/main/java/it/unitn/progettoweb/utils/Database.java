@@ -669,8 +669,8 @@ public class Database {
      * restituisce le categorie presenti nel database
      * @reutn arraylist
      */
-    public ArrayList<Categorie> getCategorie(){
-        ArrayList<Categorie> categorie = new ArrayList<>();
+    public ArrayList<Categoria> getCategorie(){
+        ArrayList<Categoria> categorie = new ArrayList<>();
         ResultSet resultSet;
         Statement statement = null;
         String sql = "SELECT * from categorie";
@@ -680,7 +680,7 @@ public class Database {
             while (resultSet.next()){
                 String nome = resultSet.getString("Nome");
                 String descrizione = resultSet.getString("Descrizione");
-                categorie.add(new Categorie(nome, descrizione));
+                categorie.add(new Categoria(nome, descrizione));
             }
         }catch (SQLException e) {
             e.printStackTrace();
@@ -972,6 +972,75 @@ public class Database {
         }
 
         return recensioniVenditori;
+    }
+
+    /***
+     * Restituisce gli articoli che soddisfano i parametri avanzati della ricerca
+     * @param searchParams l'oggetto con tutti i parametri della ricerca avanzata
+     * @return ArrayList di Articolo con gli articoli che soddisfano i requisiti. Vuoto se nessun articolo soddisfa i parametri di ricerca.
+     */
+
+    public ArrayList<Articolo> getAdvancedSearchResults(AdvancedSearchParameters searchParams) {
+        ArrayList<Articolo> articoli = new ArrayList<>();
+        ResultSet resultSet;
+        try {
+            String query = "SELECT * FROM articolo WHERE (Nome = '" + searchParams.getTesto() + "') ";
+
+            if(searchParams.getStartPrice() != -10) {
+                if(searchParams.getEndPrice() != -10) {
+                    query += "AND (Prezzo BETWEEN " + searchParams.getStartPrice() + " " + searchParams.getEndPrice() + ") ";
+                } else {
+                    query += "AND (Prezzo > " + searchParams.getStartPrice() + ") ";
+                }
+            } else if(searchParams.getEndPrice() != -10) {
+                query += "AND (Prezzo < " + searchParams.getEndPrice() + ") ";
+            }
+
+            if (searchParams.getMinReview() != -10) {
+                query += "AND (Voto >= " + searchParams.getMinReview() + ") ";
+            }
+
+            if(searchParams.getCategoria() != null) {
+                query += "AND (Categoria = " + searchParams.getCategoria() + ") ";
+            }
+
+            if(searchParams.getQueryOrder() == QueryOrder.DESC) {
+                query += "ORDER BY Prezzo DESC;";
+            } else {
+                query += "ORDER BY Prezzo ASC";
+            }
+
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+
+            String sql2 = "SELECT * FROM ImmaginiArticoli WHERE IdArticolo = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
+            while (resultSet.next()) {
+                int idArticolo = resultSet.getInt("IdArticolo");
+                preparedStatement.setInt(1, idArticolo);
+                resultSet2 = preparedStatement.executeQuery();
+                ArrayList<ImmagineArticolo> immaginiArticoli = new ArrayList<>();
+                while (resultSet2.next()) {
+                    int id = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immaginiArticoli.add(new ImmagineArticolo(id, path, idArticolo));
+                }
+                String titolo = resultSet.getString("Nome");
+                int idVenditore = resultSet.getInt("IdVenditore");
+                float prezzo = resultSet.getFloat("Prezzo");
+                String categoria = resultSet.getString("Categoria");
+                float voto = resultSet.getFloat("Voto");
+                articoli.add(new Articolo(idArticolo, titolo, idVenditore, prezzo, categoria, voto, immaginiArticoli));
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return articoli;
     }
 
     /***

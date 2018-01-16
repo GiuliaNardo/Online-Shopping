@@ -46,6 +46,10 @@
             RequestDispatcher rd8= request.getRequestDispatcher("/includes/bodies/notificationbody.jsp");
             rd8.include(request, response);
             break;
+        case "shopprofile":
+            RequestDispatcher rd9= request.getRequestDispatcher("/includes/bodies/shopprofilebody.jsp");
+            rd9.include(request, response);
+            break;
     }
 %>
 

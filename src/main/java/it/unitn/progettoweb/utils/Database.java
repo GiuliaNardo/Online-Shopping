@@ -874,7 +874,7 @@ public class Database {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM notification where IdUtente = ? ORDER BY DataNotifica DESC;");
             preparedStatement.setInt(1, utente.getId());
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int idNotifica = resultSet.getInt("IdNotifica");
                 String testo = resultSet.getString("Testo");
                 String url = resultSet.getString("Url");

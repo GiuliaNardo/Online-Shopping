@@ -40,7 +40,7 @@ create table venditore (
 create table articolo (
   IdArticolo int AUTO_INCREMENT primary key,
   Nome varchar(100) not null,
-  Descrizione varchar(500) not null,
+  Descrizione varchar(10000) not null,
   IdVenditore int not null,
   Prezzo float,
   Categoria varchar(50) not null,

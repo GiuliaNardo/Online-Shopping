@@ -22,6 +22,7 @@
 <body>
 <div class="container order-container" id="order-c">
 
+
     <div class="row">
         <div class="container">
             <div class="page-header">
@@ -45,6 +46,7 @@
 </div>
 <script type="text/javascript">
     <%
+    //non serve che il venditore rispond alle recensioni perchè fa parte dei 5+
     Utente utente = null;
     Session sessione = null;
     Gson gson = new Gson();
@@ -68,6 +70,7 @@
     %>
 
     var notifiche = <%= gson.toJson(notifiche)%>;
+
     var maxRecentFor = 5;
 
     if (notifiche.length==0){
@@ -121,7 +124,7 @@
     }
 
     function new_notification_div(id,testo,titolo,url){
-        return (
+        var div = (
             '<div class="row ann-block align-items-center" id="ann" onmouseleave="markAsRead(' + id + ')">'+
             '<a href="'+url+'">'+
             '<div class="col col-md-9 col-sm-12 col-12 content-block" id="notifica"><span class="titolo">'+titolo +'<br></span>'+ testo+
@@ -132,13 +135,38 @@
             '<button class="btn btn-sm" id="edit-button" onclick="myedit(this.getAttribute(\'data-id\'),this.getAttribute(\'data-tipologia\'))">'+
             '<i class="zmdi zmdi-mail-reply"></i>\n<label id="testo">Reply</label>'+
             '</button>'+
+            <%
+            if (utente.getTipo().toString().equals("Admin")){
 
+            %>
+                '<div class="input-group">\n' +
+            '    <select class="custom-select" id="inputGroupSelect04">\n' +
+            '        <option selected value="0">Non procedere</option>\n' +
+            '        <option value="2">Rimborso</option>\n' +
+            '        <option value="3">Rigetta anomalia</option>\n' +
+            '    </select>\n' +
+                '<div class="input-group-prepend">\n' +
+            '        <div class="input-group-text">\n' +
+            '            <input type="checkbox" aria-label="Checkbox for following text input">\n' +
+            '        </div>\n' +
+            '    </div>'+
+            '    <div class="input-group-append">\n' +
+            '        <button class="btn btn-outline-secondary" type="submit">Submit</button>\n' +
+            '    </div>\n' +
+            '</div>'+
+            <%
+            }
+            %>
 
             '</div>'+
             '<div>');
+        return div;
     }
 
 </script>
+
+
+
 </body>
 
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Articolo {
     private int idArticolo;
     private String titolo;
+    private String descrizione;
     private int idVenditore;
     private float prezzo;
     private String categoria;
@@ -21,9 +22,10 @@ public class Articolo {
      * @param voto
      */
 
-    public Articolo(int idArticolo, String titolo, int idVenditore, float prezzo, String categoria, float voto, ArrayList<ImmagineArticolo> immagini){
+    public Articolo(int idArticolo, String titolo, String descrizione, int idVenditore, float prezzo, String categoria, float voto, ArrayList<ImmagineArticolo> immagini){
         this.idArticolo = idArticolo;
         this.titolo = titolo;
+        this.descrizione = descrizione;
         this.idVenditore = idVenditore;
         this.prezzo = prezzo;
         this.categoria = categoria;

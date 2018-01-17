@@ -18,8 +18,7 @@
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
-    if(cookies.length != 0 && cookies != null) {
-
+    if(cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
                 if (!(database.getUserSession(cookies[i].getValue()) == null)) {

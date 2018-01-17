@@ -99,6 +99,45 @@ public class Database {
         return utente;
     }
 
+    /**
+     * restituisce un articolo in base al suo id
+     * @param id id dell'articolo da cercate
+     * @return Articolo
+     */
+    public Articolo getArticolo(int idArt){
+        Articolo articolo = null;
+        ResultSet resultSet;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * from articolo where idArticolo = ?");
+            preparedStatement.setInt(1, idArt);
+            resultSet = preparedStatement.executeQuery();
+            String sql2 = "SELECT * FROM ImmaginiArticoli WHERE IdArticolo = ?";
+            preparedStatement = connection.prepareStatement(sql2);
+            ResultSet resultSet2;
+            if (resultSet.next()) {
+                int idArticolo = resultSet.getInt("IdArticolo");
+                preparedStatement.setInt(1, idArticolo);
+                resultSet2 = preparedStatement.executeQuery();
+                ArrayList<ImmagineArticolo> immaginiArticoli = new ArrayList<>();
+                while(resultSet2.next()) {
+                    int id = resultSet2.getInt("IdImmagine");
+                    String path = resultSet2.getString("Percorso");
+                    immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
+                }
+                String titolo = resultSet.getString("Nome");
+                String descrizione = resultSet.getString("Descrizione");
+                int idVenditore = resultSet.getInt("IdVenditore");
+                float prezzo = resultSet.getFloat("Prezzo");
+                String categoria = resultSet.getString("Categoria");
+                float voto = resultSet.getFloat("Voto");
+                articolo = new Articolo(idArticolo,titolo, descrizione, idVenditore,prezzo,categoria,voto,immaginiArticoli);
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return articolo;
+    }
+
     /***
      * Restituisce l'utente con lo username passato nell'argomento.
      * @param usernameToSearch Nome dell'utente da cercare

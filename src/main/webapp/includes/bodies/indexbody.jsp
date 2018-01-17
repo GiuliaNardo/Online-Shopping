@@ -18,66 +18,6 @@
     Database db = new Database();
     ArrayList<Articolo> ultimi = db.getHomeLastArticles();
     ArrayList<Articolo> mostSold =  db.getHomeMostSold();
-    String src0 = "", altU0 = "";
-    String src1 = "",altU1 = "";
-    String src2 = "", altU2 = "";
-    String src3 = "", altU3 = "";
-    String src4 = "", altU4 = "";
-    String srcU0 = "", alt0 = "";
-    String srcU1 = "", alt1 = "";
-    String srcU2 = "", alt2 = "";
-    String srcU3 = "", alt3 = "";
-    String srcU4 = "", alt4 = "";
-
-    System.out.println(mostSold.size()+"");
-    if(mostSold.size()!=0){
-        alt0 = mostSold.get(0).getTitolo();
-        alt1 = mostSold.get(1).getTitolo();
-        alt2 = mostSold.get(2).getTitolo();
-        alt3 = mostSold.get(3).getTitolo();
-        alt4 = mostSold.get(4).getTitolo();
-        if (!mostSold.get(0).getImmagini().isEmpty()){
-            src0= mostSold.get(0).getImmagini().get(0).getPercorso();
-        }
-        if (!mostSold.get(1).getImmagini().isEmpty()){
-            src1 = mostSold.get(1).getImmagini().get(0).getPercorso();
-        }
-        if (!mostSold.get(2).getImmagini().isEmpty()){
-            src2 = mostSold.get(2).getImmagini().get(0).getPercorso();
-        }
-        if (!mostSold.get(3).getImmagini().isEmpty()){
-            src3 = mostSold.get(3).getImmagini().get(0).getPercorso();
-        }
-        if (!mostSold.get(4).getImmagini().isEmpty()){
-            src4 = mostSold.get(4).getImmagini().get(0).getPercorso();
-        }
-    }
-
-    if (ultimi.size()!=0) {
-        altU0 = ultimi.get(0).getTitolo();
-        altU1 = ultimi.get(1).getTitolo();
-        altU2 = ultimi.get(2).getTitolo();
-        altU3 = ultimi.get(3).getTitolo();
-        altU4 = ultimi.get(4).getTitolo();
-
-        if (!ultimi.get(0).getImmagini().isEmpty()) {
-            srcU0 = ultimi.get(0).getImmagini().get(0).getPercorso();
-        }
-        if (!ultimi.get(1).getImmagini().isEmpty()) {
-            srcU1 = ultimi.get(1).getImmagini().get(0).getPercorso();
-        }
-        if (!ultimi.get(2).getImmagini().isEmpty()) {
-            srcU2 = ultimi.get(2).getImmagini().get(0).getPercorso();
-        }
-        if (!ultimi.get(3).getImmagini().isEmpty()) {
-            srcU3 = ultimi.get(3).getImmagini().get(0).getPercorso();
-        }
-        if (!ultimi.get(4).getImmagini().isEmpty()) {
-            srcU4 = ultimi.get(4).getImmagini().get(0).getPercorso();
-        }
-    }
-
-
 
 
 
@@ -135,30 +75,8 @@
                 <a href="">
                     <div id="carousel-center" class="carousel slide">
                         <!-- Items -->
-                        <div class="carousel-inner">
-                            <div class="active item"><img
-                                    src="<%=src0%>"
-                                    class="img-responsive" alt="<%=alt0%>">
+                        <div class="carousel-inner" id="most">
 
-                            </div>
-                            <div class="item"><img
-                                    src="<%=src1%>"
-                                    class="img-responsive" alt="<%=alt1%>">
-                            </div>
-                            <div class="item"><img
-                                    src="<%=src2%>"
-                                    class="img-responsive" alt="<%=alt2%>">
-                            </div>
-                            <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=alt3%>">
-                            </div>
-
-                            <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=alt4%>">
-
-                            </div>
                         </div>
                     </div>
 
@@ -174,28 +92,8 @@
                 <a href="">
                     <div id="carousel-left" class="carousel slide">
                         <!-- Items -->
-                        <div class="carousel-inner">
-                            <div class="active item"><img
-                                    src="<%=srcU0 %>"
-                                    class="img-responsive" alt="<%=altU0%>">
+                        <div class="carousel-inner" id="last">
 
-                            </div>
-                            <div class="item"><img
-                                    src="<%=srcU1 %>"
-                                    class="img-responsive" alt="<%=altU1 %>">
-                            </div>
-                            <div class="item"><img
-                                    src="<%=srcU2%>"
-                                    class="img-responsive" alt="<%=altU2%>">
-                            </div>
-                            <div class="active item"><img
-                                    src="<%=srcU3 %>"
-                                    class="img-responsive" alt="<%=altU3%>">
-                            </div>
-                            <div class="active item"><img
-                                    src="<%=srcU4%>"
-                                    class="img-responsive" alt="<%=altU4%>">
-                            </div>
 
                         </div>
                     </div>
@@ -212,3 +110,56 @@
         db.close();
 
 %>
+
+<script>
+    $(document).ready(function(){
+
+        <%
+
+            String src="";
+
+                System.out.println("Ultimi src: "+src+"   titolo:  " +ultimi.size());
+            if(ultimi.size()>0){
+            for (int i =0; i< ultimi.size(); i++){
+                if (ultimi.get(i).getImmagini().size()>0){
+                    src=ultimi.get(i).getImmagini().get(0).getPercorso();
+                }
+                %>
+        $('#last').append(new_last("<%=mostSold.get(i).getTitolo()%>","<%=src%>"));
+        <%
+
+                }
+            }
+        %>
+        <%
+           String srcU="";
+
+               System.out.println("Most src: "+src+"   titolo:  " +ultimi.size());
+           if(mostSold.size()>0){
+           for (int i =0; i< mostSold.size(); i++){
+               if (mostSold.get(i).getImmagini().size()>0){
+                   src=mostSold.get(i).getImmagini().get(0).getPercorso();
+               }
+               %>
+        $('#most').append(new_most("<%=ultimi.get(i).getTitolo()%>","<%=srcU%>"));
+        console.log("chi");
+        <%
+        System.out.println("aa");
+                }
+            }
+        %>
+
+    });
+
+    function new_most(titolo,path){
+        var div= ('<div class="active item"><img src="'+path+'" class="img-responsive" alt="'+titolo+'"> </div>');
+        console.log("fatto",titolo)
+        return div;
+    }
+    function new_last(titolo,path){
+        var div= ('<div class="active item"><img src="'+path+'" class="img-responsive" alt="'+titolo+'"> </div>');
+        console.log("fatto",titolo)
+        return div;
+    }
+
+</script>

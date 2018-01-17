@@ -88,6 +88,6 @@ public class Articolo {
         this.immagini = immagini;
     }
 
-    public String getDescrizione(){return descrizione};
+    public String getDescrizione(){return descrizione;};
     public void setDescrizione(String descrizione){this.descrizione = descrizione;}
 }

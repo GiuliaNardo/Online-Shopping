@@ -1,4 +1,6 @@
-
+#shop-content{
+    height: 100%;
+}
 
 .glyphicon { margin-right:5px; }
 .thumbnail
@@ -93,7 +95,14 @@
     margin: 30px;
 }
 
-
+.niente{
+    display: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-align: center;
+}
 
 @media screen and (min-width: 1300px) {
     #filter-bottom{

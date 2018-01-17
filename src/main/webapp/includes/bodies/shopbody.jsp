@@ -1,4 +1,8 @@
-<%@ page import="it.unitn.progettoweb.utils.Database" %><%--
+<%@ page import="it.unitn.progettoweb.utils.Database" %>
+<%@ page import="javax.xml.crypto.Data" %>
+<%@ page import="it.unitn.progettoweb.Objects.AdvancedSearchParameters" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.unitn.progettoweb.Objects.Articolo" %><%--
   Created by IntelliJ IDEA.
   User: Federico
   Date: 22/09/2017
@@ -6,6 +10,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+<%
+    String nameS = request.getParameter("q");
+    AdvancedSearchParameters advS = new AdvancedSearchParameters();
+    advS.setTesto(nameS);
+    System.out.println(""+nameS);
+    Database db = new Database();
+    ArrayList<Articolo> results = db.getAdvancedSearchResults(advS);
+    String nome ="";
+    db.close();
+%>
 
 
 <body>
@@ -107,7 +123,9 @@
             </button>
     </div>
 </div>
+<div class="niente" id="no-item">There isn't any item for your search</div>
     <div id="products" class="row list-group">
+
         <div class="articoli-box" id="">
             <div class="row" id="shop-content">
 
@@ -258,20 +276,34 @@
             "                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat";
         var titolo="Articolo a caso";
         var prezzo ='20.00';
+    <%
+        if(results.size()!=0){
+             %>
+        document.getElementById("no-item").style.display = "none";
+        <%
+            for(int i =0; i< results.size(); i++){
+               %>
 
-        for(i = 0; i < articoli; i++){
-            $('#shop-content').append(new_div(1,descrizione, titolo,prezzo));
-            console.log('ciao');
+            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>",descrizione, "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>"));
+            <%
+            }
         }
+        else{
+            %>
+            document.getElementById("no-item").style.display = "block";
+        <%
+        }
+    %>
+
 
     });
-    function new_div(id,descrizione,titolo,prezzo){
+    function new_item(id,descrizione,titolo,prezzo){
         return (
             '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +
             '            <div class="thumbnail">\n' +
             '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
             '                <div class="caption">\n' +
-            '                    <h4 class="group inner list-group-item-heading">'+titolo+'</h4> '+
+            '                    <h4 class="group inner list-group-item-heading"><a href="../../item.jsp?id='+id+'">'+titolo+'</a></h4> '+
             '                    <p class="group inner list-group-item-text">'+descrizione+'</p>\n' +
             '                    <div class="row">\n' +
             '                        <div class="col-xs-12 col-md-6">\n' +

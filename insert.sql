@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 17, 2018 alle 16:18
+-- Creato il: Gen 17, 2018 alle 17:11
 -- Versione del server: 10.1.26-MariaDB
 -- Versione PHP: 7.1.9
 
@@ -32,7 +32,6 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (3, 'HP Pavillion', 'HP Pavilion Business Flagship Laptop PC (2018 Edition) 15.6\" HD WLED-backlit Display 8th Gen Intel i5-8250U Quad-Core Processor, 8GB DDR4 RAM, 1TB HDD, Bluetooth, Webcam, B&O Audio, Windows 10', 1, 1000.77, 'Informatica', NULL),
 (4, 'Lavatrice XTR', 'Lavatrice bellissima e super veloce. Portata 6kg', 2, 899.99, 'Elettrodomestici', NULL),
 (5, 'Samsung Galaxi 5', 'Samsung SM-G900V - Galaxy S5 - 16GB Android Smartphone Verizon - Black (Certified Refurbished)', 2, 600, 'Smartphone', NULL),
-(6, 'Mouse wireless', 'Mouse wireless nero', 3, 20, 'Informatica', NULL),
 (7, 'Wiko rainbow', 'kwmobile Crystal hard case for Wiko Rainbow Jam - thin transparent protection cover in black', 1, 150, 'Informatica', NULL),
 (8, 'T-shirt LV', 'T-shirt', 3, 50, 'Abbigliamento', NULL),
 (9, 'T-shirt Supreme', 'T-shirt', 3, 50, 'Abbigliamento', NULL),
@@ -56,6 +55,14 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (27, 'Topolino-4', 'fumetto topolino', 2, 6.3, 'Libri', NULL);
 
 --
+-- Dump dei dati per la tabella `articoloordine`
+--
+
+INSERT INTO `articoloordine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
+(0, 1, 11),
+(1, 1, 11);
+
+--
 -- Dump dei dati per la tabella `categorie`
 --
 
@@ -65,6 +72,22 @@ INSERT INTO `categorie` (`Nome`, `Descrizione`) VALUES
 ('Informatica', NULL),
 ('Libri', NULL),
 ('Smartphone', NULL);
+
+--
+-- Dump dei dati per la tabella `ordine`
+--
+
+INSERT INTO `ordine` (`IdOrdine`, `IdVenditore`, `IdUtente`, `PrezzoTot`, `DataOrdine`, `DataSpedizione`, `TipoOrdine`, `PagamentoRicevuto`, `Ricevuto`) VALUES
+(1, 9, 27, 18, '2018-01-10', '2018-01-25', 'spedizione', 'TRUE', 'FALSE');
+
+--
+-- Dump dei dati per la tabella `sessionuser`
+--
+
+INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VALUES
+(1, 27, '2018-01-17', '6d79195a2bcc2d527640218127e22ecd2feee6bd914ce2fc64174e6dd5c95730'),
+(2, 28, '2018-01-17', 'd25c4f95fa6d8a7e96a911dd070489bbfb657a121d74960daa062f5d3aedcc12'),
+(3, 27, '2018-01-17', '84baa293a05a3a5cb98123160db62ab29d6dbfc3388f9e13e601d99147f28432');
 
 --
 -- Dump dei dati per la tabella `utente`
@@ -96,7 +119,9 @@ INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Em
 (23, 'cloco79', 'albicocca', 'Fabio', 'Bruno', 'brunetto66@gmail.com', '1995-02-16', 'User', 'true', 'asad'),
 (24, 'walp8', 'mirtillo', 'Simone', 'Lallo', 'simolallo8@gmail.com', '1985-07-11', 'User', 'true', 'asad'),
 (25, 'giacchina3', 'mela', 'Melinda', 'Giacca', 'giacchina@gmail.com', '1963-07-14', 'User', 'true', 'asad'),
-(26, 'selli8', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '1976-03-16', 'User', '', '');
+(26, 'selli8', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '1976-03-16', 'User', '', ''),
+(27, 'pippo1', '982c38dc43dc57c14adebe399c6556893b5114c877d90b83921b2e0945191801', 'pippo', 'pippo', 'l@h.com', '2018-01-17', 'Seller', 'false', '33d2cf014275ec8f7ab705bb59780829089250e182f7a510aca578f27daf78a6'),
+(28, 'pippoAdmin', '69842058052e167cba8a62acf64dd207d936f0ea2977190df543ea8e26859aa9', 'PippoA', 'pippo', 'l@h.com', '1998-01-17', 'User', 'false', '19c96d8d4cab0b2ce07cd0af59f9c6473e2106d8a259df027501f8752d630d24');
 
 --
 -- Dump dei dati per la tabella `venditore`
@@ -113,7 +138,8 @@ INSERT INTO `venditore` (`IdVenditore`, `IdUtente`, `NomeNegozio`, `RagioneSocia
 (13, 18, 'Yogurtino', NULL, '25896300021', '258963000210', 'Via boh', NULL),
 (14, 19, 'Kolorato', NULL, '01200236589', '012002365890', 'Via sal', NULL),
 (15, 20, 'Trold', NULL, '12897589456', '128975894560', 'Via UU', NULL),
-(16, 22, 'Polly', NULL, '12897589452', '128975894520', 'Via Ulp 5', NULL);
+(16, 22, 'Polly', NULL, '12897589452', '128975894520', 'Via Ulp 5', NULL),
+(17, 27, 'pippo', 'n', '12345678912', '123456789784', 'Topolandia', 2.3);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

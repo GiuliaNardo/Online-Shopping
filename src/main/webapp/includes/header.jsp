@@ -107,7 +107,7 @@
     </div>
     <div class="[ bootsnipp-search animate ]">
         <div class="[ container ]">
-            <form action="" method="GET" role="search">
+            <form action="shop.jsp" method="GET" role="search">
                 <div class="[ input-group ]">
                     <input type="text" class="[ form-control ]" id="searchbox-text" name="q" placeholder="Cerca un articolo">
                     <span class="[ input-group-btn ]">
@@ -189,7 +189,7 @@
     </div>
     <div class="[ bootsnipp-search animate ]">
         <div class="[ container ]">
-            <form action="" method="GET" role="search">
+            <form action="shop.jsp" method="GET" role="search">
                 <div class="[ input-group ]">
                     <input type="text" class="[ form-control ]" id="searchbox-text" name="q" placeholder="Cerca un articolo">
                     <span class="[ input-group-btn ]">
@@ -250,6 +250,10 @@
     function new_categoria(titolo){
         console.log("creato");
         return ('<li><a href="#" class="[ animate ]">'+titolo+'</a></li>');
+    }
+
+    function shop(){
+        window.location.href = "./shop.jsp";
     }
 </script>
 

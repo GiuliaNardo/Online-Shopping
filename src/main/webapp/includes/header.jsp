@@ -252,8 +252,5 @@
         return ('<li><a href="#" class="[ animate ]">'+titolo+'</a></li>');
     }
 
-    function shop(){
-        window.location.href = "./shop.jsp";
-    }
 </script>
 

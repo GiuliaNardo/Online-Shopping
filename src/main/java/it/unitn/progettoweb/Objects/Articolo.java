@@ -87,4 +87,7 @@ public class Articolo {
     public void setImmagini(ArrayList<ImmagineArticolo> immagini) {
         this.immagini = immagini;
     }
+
+    public String getDescrizione(){return descrizione};
+    public void setDescrizione(String descrizione){this.descrizione = descrizione;}
 }

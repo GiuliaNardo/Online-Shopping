@@ -370,15 +370,16 @@ public class Database {
      * @param categoria Categoria
      * @return Restituisce true se l'inserimento è andato a buon fine false se è fallito
      */
-    public boolean insertItem(String nome, int idVenditore, float prezzo, String categoria) {
+    public boolean insertItem(String nome, String descrizione, int idVenditore, float prezzo, String categoria) {
         boolean insertSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO articolo (Nome,IdVenditore,Prezzo,Categoria,Voto) VALUES (?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO articolo (Nome, Descrizione, IdVenditore,Prezzo,Categoria,Voto) VALUES (?,?,?,?,?,?);");
             preparedStatement.setString(1, nome);
-            preparedStatement.setInt(2, idVenditore);
-            preparedStatement.setFloat(3, prezzo);
-            preparedStatement.setString(4, categoria);
-            preparedStatement.setFloat(5, (float) 0.00);
+            preparedStatement.setString(2, descrizione);
+            preparedStatement.setInt(3, idVenditore);
+            preparedStatement.setFloat(4, prezzo);
+            preparedStatement.setString(5, categoria);
+            preparedStatement.setFloat(6, (float) 0.00);
             if (preparedStatement.executeUpdate() > 0) {
                 insertSuccesful = true;
             } else {
@@ -610,11 +611,12 @@ public class Database {
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
                 String titolo = resultSet.getString("Nome");
+                String descrizione = resultSet.getString("Descrizione");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
                 float voto = resultSet.getFloat("Voto");
-                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
+                articoli.add(new Articolo(idArticolo,titolo, descrizione, idVenditore,prezzo,categoria,voto,immaginiArticoli));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -651,11 +653,12 @@ public class Database {
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
                 String titolo = resultSet.getString("Nome");
+                String descrizione = resultSet.getString("Descrizione");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
                 float voto = resultSet.getFloat("Voto");
-                articoli.add(new Articolo(idArticolo,titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
+                articoli.add(new Articolo(idArticolo, descrizione, titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -984,7 +987,7 @@ public class Database {
         ArrayList<Articolo> articoli = new ArrayList<>();
         ResultSet resultSet;
         try {
-            String query = "SELECT * FROM articolo WHERE (Nome = '" + searchParams.getTesto() + "') ";
+            String query = "SELECT * FROM articolo WHERE (Nome LIKE '" + searchParams.getTesto() + "%') ";
 
             if(searchParams.getStartPrice() != -10) {
                 if(searchParams.getEndPrice() != -10) {
@@ -1028,11 +1031,12 @@ public class Database {
                     immaginiArticoli.add(new ImmagineArticolo(id, path, idArticolo));
                 }
                 String titolo = resultSet.getString("Nome");
+                String descrizione = resultSet.getString("Descrizione");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
                 float voto = resultSet.getFloat("Voto");
-                articoli.add(new Articolo(idArticolo, titolo, idVenditore, prezzo, categoria, voto, immaginiArticoli));
+                articoli.add(new Articolo(idArticolo, titolo, descrizione ,idVenditore, prezzo, categoria, voto, immaginiArticoli));
             }
 
 

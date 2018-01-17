@@ -12,11 +12,7 @@
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <link rel="stylesheet" type="text/css" href="styles/profilestyle.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 <script>
@@ -36,6 +32,8 @@
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
+    String path = "";
+
     if(cookies.length != 0) {
         Database database = new Database();
         for (int i = 0; i < cookies.length; i++) {
@@ -47,16 +45,17 @@
                 }
             }
         }
+
         database.close();
     }
-    if (isLogged){
-
+        if (isLogged){
+        System.out.println("loggato");
 
 
 %>
 
 <body>
-<div class="order-container">
+<div class="container">
     <div class="order-container" id="profile-cont">
         <div class="row title">
             <div class="col col-md-12 col-12">
@@ -67,7 +66,18 @@
             <div class="col col-md-6 col-12 main " id="profilo">
 
                 <img alt="User Pic"
+                     <%
+
+                    if (path.length()==0){
+                     %>
                      src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
+                     <%
+                    }else{
+                     %>
+                        src="<%=path%>"
+                    <%
+                    }
+                    %>
                      id="profile-image1" class="img-circle img-responsive">
                 <div class="row">
                     <div class="field">
@@ -76,6 +86,7 @@
                         <div><label class="name-field">Username:</label><%=utente.getUserName()%></div>
                         <div><label class="name-field">Date of birth:</label><%=utente.getDataNascita()%></div>
                         <div><label class="name-field">Email:</label><%=utente.getEmail()%></div>
+                        <div><label class="name-field">Tipo utente:</label><%=utente.getTipo()%></div>
                     </div>
                 </div>
             </div>
@@ -109,8 +120,14 @@
 
 <%
     } else{
-        String redirectURL = "./loginbody.jsp";
+       %>
+    <script>
+        alert('NON PUOI');
+    </script>
+<%
+        String redirectURL = "../../login.jsp";
         response.sendRedirect(redirectURL);
+        System.out.println("rediretto  "+ redirectURL.length());
     }
 %>
 

@@ -1,6 +1,8 @@
 <%@ page import="it.unitn.progettoweb.utils.Database" %>
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.unitn.progettoweb.Objects.ImmagineArticolo" %>
+<%@ page import="java.util.concurrent.atomic.AtomicReference" %><%--
   Created by IntelliJ IDEA.
   User: Simone
   Date: 19/09/17
@@ -12,18 +14,75 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-<script>
-
-</script>
-
 <%
     Database db = new Database();
-
     ArrayList<Articolo> ultimi = db.getHomeLastArticles();
-    ArrayList<Articolo> mostSold = db.getHomeMostSold();
+    ArrayList<Articolo> mostSold =  db.getHomeMostSold();
+    String src0 = "", altU0 = "";
+    String src1 = "",altU1 = "";
+    String src2 = "", altU2 = "";
+    String src3 = "", altU3 = "";
+    String src4 = "", altU4 = "";
+    String srcU0 = "", alt0 = "";
+    String srcU1 = "", alt1 = "";
+    String srcU2 = "", alt2 = "";
+    String srcU3 = "", alt3 = "";
+    String srcU4 = "", alt4 = "";
+
+    System.out.println(mostSold.size()+"");
+    if(mostSold.size()!=0){
+        alt0 = mostSold.get(0).getTitolo();
+        alt1 = mostSold.get(1).getTitolo();
+        alt2 = mostSold.get(2).getTitolo();
+        alt3 = mostSold.get(3).getTitolo();
+        alt4 = mostSold.get(4).getTitolo();
+        if (!mostSold.get(0).getImmagini().isEmpty()){
+            src0= mostSold.get(0).getImmagini().get(0).getPercorso();
+        }
+        if (!mostSold.get(1).getImmagini().isEmpty()){
+            src1 = mostSold.get(1).getImmagini().get(0).getPercorso();
+        }
+        if (!mostSold.get(2).getImmagini().isEmpty()){
+            src2 = mostSold.get(2).getImmagini().get(0).getPercorso();
+        }
+        if (!mostSold.get(3).getImmagini().isEmpty()){
+            src3 = mostSold.get(3).getImmagini().get(0).getPercorso();
+        }
+        if (!mostSold.get(4).getImmagini().isEmpty()){
+            src4 = mostSold.get(4).getImmagini().get(0).getPercorso();
+        }
+    }
+
+    if (ultimi.size()!=0) {
+        altU0 = ultimi.get(0).getTitolo();
+        altU1 = ultimi.get(1).getTitolo();
+        altU2 = ultimi.get(2).getTitolo();
+        altU3 = ultimi.get(3).getTitolo();
+        altU4 = ultimi.get(4).getTitolo();
+
+        if (!ultimi.get(0).getImmagini().isEmpty()) {
+            srcU0 = ultimi.get(0).getImmagini().get(0).getPercorso();
+        }
+        if (!ultimi.get(1).getImmagini().isEmpty()) {
+            srcU1 = ultimi.get(1).getImmagini().get(0).getPercorso();
+        }
+        if (!ultimi.get(2).getImmagini().isEmpty()) {
+            srcU2 = ultimi.get(2).getImmagini().get(0).getPercorso();
+        }
+        if (!ultimi.get(3).getImmagini().isEmpty()) {
+            srcU3 = ultimi.get(3).getImmagini().get(0).getPercorso();
+        }
+        if (!ultimi.get(4).getImmagini().isEmpty()) {
+            srcU4 = ultimi.get(4).getImmagini().get(0).getPercorso();
+        }
+    }
+
+
+
+
 
 %>
+
 <div class="container index-container">
     <div class="row top">
         <div id="myCarousel" class="carousel slide">
@@ -56,18 +115,19 @@
         </div>
     </div>
 
-    <div class="row bottom">
-        <div class="col col-lg-4 col-sm-12 content">
+    <div class="row bottom ">
+        <div class="col col-lg-4 col-md-4 col-12 col-sm-12 content">
             <div class="row title">
                 Benvenuto
             </div>
-            <div class="row">
+            <div class="row align-items-center">
                 <a href="../login.jsp" role="button">
                     <div class="btn btn-lg btn-accesso">Accedi</div>
                 </a>
             </div>
         </div>
-        <div class=" col col-lg-4 col-sm-12 content">
+
+        <div class="col col-lg-4 col-md-4 col-12 col-sm-12 content">
             <div class="row title">
                 Più venduto
             </div>
@@ -77,34 +137,36 @@
                         <!-- Items -->
                         <div class="carousel-inner">
                             <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=mostSold.get(0).getTitolo() %>">
+                                    src="<%=src0%>"
+                                    class="img-responsive" alt="<%=alt0%>">
+
                             </div>
                             <div class="item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=mostSold.get(1).getTitolo() %>">
+                                    src="<%=src1%>"
+                                    class="img-responsive" alt="<%=alt1%>">
                             </div>
                             <div class="item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=mostSold.get(2).getTitolo() %>">
+                                    src="<%=src2%>"
+                                    class="img-responsive" alt="<%=alt2%>">
                             </div>
                             <div class="active item"><img
                                     src=""
-                                    class="img-responsive" alt="<%=mostSold.get(3).getTitolo() %>">
-                            </div>
-                            <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=mostSold.get(4).getTitolo() %>">
+                                    class="img-responsive" alt="<%=alt3%>">
                             </div>
 
+                            <div class="active item"><img
+                                    src=""
+                                    class="img-responsive" alt="<%=alt4%>">
+
+                            </div>
                         </div>
                     </div>
 
                 </a>
             </div>
-
         </div>
-        <div class=" col col-lg-4 col-sm-12 content">
+
+        <div class=" col col-lg-4 col-md-4 col-12 col-sm-12 content">
             <div class="row title">
                 Latest items
             </div>
@@ -114,27 +176,25 @@
                         <!-- Items -->
                         <div class="carousel-inner">
                             <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=ultimi.get(0).getTitolo() %>">
-                                <%
-                                    System.out.println("" + ultimi.get(0).getTitolo());
-                                %>
+                                    src="<%=srcU0 %>"
+                                    class="img-responsive" alt="<%=altU0%>">
+
                             </div>
                             <div class="item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=ultimi.get(1).getTitolo() %>">
+                                    src="<%=srcU1 %>"
+                                    class="img-responsive" alt="<%=altU1 %>">
                             </div>
                             <div class="item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=ultimi.get(2).getTitolo() %>">
+                                    src="<%=srcU2%>"
+                                    class="img-responsive" alt="<%=altU2%>">
                             </div>
                             <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=ultimi.get(3).getTitolo() %>">
+                                    src="<%=srcU3 %>"
+                                    class="img-responsive" alt="<%=altU3%>">
                             </div>
                             <div class="active item"><img
-                                    src=""
-                                    class="img-responsive" alt="<%=ultimi.get(4).getTitolo() %>">
+                                    src="<%=srcU4%>"
+                                    class="img-responsive" alt="<%=altU4%>">
                             </div>
 
                         </div>
@@ -147,9 +207,8 @@
     </div>
 </div>
 
-</body>
 
 <%
+        db.close();
 
-    db.close();
 %>

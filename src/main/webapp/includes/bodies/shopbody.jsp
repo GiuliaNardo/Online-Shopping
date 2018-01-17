@@ -246,9 +246,12 @@
     </div>
 
 </body>
-
+<%
+    //TODO: query per la ricerca
+%>
 <script>
-    window.onload = function (){
+
+    $(document).ready(function (){
         var i=0;
         var articoli = 10;
         var descrizione="Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,\n" +
@@ -261,7 +264,7 @@
             console.log('ciao');
         }
 
-    };
+    });
     function new_div(id,descrizione,titolo,prezzo){
         return (
             '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +

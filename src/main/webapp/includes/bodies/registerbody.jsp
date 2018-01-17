@@ -12,7 +12,6 @@ To change this template use File | Settings | File Templates.
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.ParseException" %>
-<%@ page import="jdk.jfr.events.ExceptionThrownEvent" %>
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.TipoUtente" %>
 <%@ page import="it.unitn.progettoweb.Objects.ValidazioneUtente" %>

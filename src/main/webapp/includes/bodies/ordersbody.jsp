@@ -11,6 +11,11 @@
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page import="it.unitn.progettoweb.Objects.Ordine" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.util.SimpleTimeZone" %>
+<%@ page import="java.util.logging.SimpleFormatter" %>
+<%@ page import="it.unitn.progettoweb.Objects.StatoNotifica" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <link rel="stylesheet" type="text/css" href="styles/orderstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
@@ -70,8 +75,6 @@
 
 </div>
 
-
-
 </body>
 <%
     }else{
@@ -96,7 +99,7 @@
         });
     });
 */
-//TODO: query per restituire gli ordini di un utente
+//TODO: query per restituire gli articoli relativi all'ordine di un utente
 
     var titolo="";
     var testo="";
@@ -140,15 +143,35 @@ function new_ordine(testo,titolo,prezzo){
         '            euro</div>\n' +
         '        </div>\n' +
         '        <div class="row col-12 col-md-3 col-sm-12">\n' +
-        '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="edit-button" onclick="myedit(this.getAttribute(\'data-id\'),this.getAttribute(\'data-tipologia\'))">\n' +
+        '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="edit-button">\n' +
         '                    <i class="zmdi zmdi-edit"></i><label id="edit">Edit</label>\n' +
         '            </button></div>\n' +
-        '            <div class="col-12 col-sm-12 col-md-6"><a href="../../notification.jsp"><button class="btn btn-sm " id="delete-button">\n' +
-        '                <i class="zmdi zmdi-notifications"></i>\n<label id="delete">Notify</label>\n' +
-        '            </button></a></div>\n' +
+        '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="delete-button">\n' +
+        '                <i class="zmdi zmdi-notifications"></i>\n<label id="delete" onclick="ticket()">Ticket</label>\n' +
+        '            </button></div>\n' +
         '        </div>\n' +
         '    </div>\n' +
+            '<div class="ticket" id="ticket">\n' +
+        '    <div class="row up-ticket">\n' +
+        '        <select class="select custom-select">\n' +
+        '            <option class="selected">Rimborso</option>\n' +
+        '            <option>Ordine in ritardo</option>\n' +
+        '            <option>Oggetto danneggiato</option>\n' +
+        '            <option>Altro</option>\n' +
+        '        </select>\n' +
+        '    </div>\n' +
+        '    <div class="row down-ticket">\n' +
+        '        <textarea class="textarea"></textarea>\n' +
+        '    </div>\n' +
+            '<div class="row ">\n' +
+        '    <button class="btn btn-ticket" type="submit">Send</button>\n' +
+        '</div>'+
+        '</div>'+
         '</div>');
+}
+
+function ticket() {
+        document.getElementById("ticket").style.display = "block";
 }
 
 </script>

@@ -51,6 +51,7 @@
 }
 #delete, #edit{
     margin-left: 0.5em;
+    padding-right: 0.5em;
     font-weight: 200;
     letter-spacing: 2px;
 }
@@ -125,6 +126,24 @@
     margin-bottom: 20px;
 }
 
+.up-ticket, .down-ticket, .btn-ticket{
+    margin-bottom: 20px;
+}
+
+.btn-ticket:hover{
+    background-color: grey;
+}
+.textarea{
+    width: 100%;
+    min-height: 100px;
+}
+
+.select{
+    height: 30px;
+}
+.ticket{
+    display: none;
+}
 @media screen and (min-width: 480px) {
 
     #contentmain{

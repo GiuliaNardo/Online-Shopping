@@ -23,6 +23,7 @@
 
 %>
 
+
 <div class="container index-container">
     <div class="row top">
         <div id="myCarousel" class="carousel slide">
@@ -76,7 +77,26 @@
                     <div id="carousel-center" class="carousel slide">
                         <!-- Items -->
                         <div class="carousel-inner" id="most">
+                            <%
+                                String src="";
+                                if(mostSold.size()>0){
+                                    for (int i =0; i< mostSold.size(); i++) {
+                                        if (mostSold.get(i).getImmagini().size() > 0) {
+                                            src = mostSold.get(i).getImmagini().get(0).getPercorso();
+                                        }
+                                        if (i==0){
+                            %>
+                            <div class="active item"><img src="<%=src%>" class="img-responsive" alt="<%=mostSold.get(i).getTitolo()%>"> </div>
+                            <%
+                                        }else{
 
+                            %>
+                            <div class="item"><img src="<%=src%>" class="img-responsive" alt="<%=mostSold.get(i).getTitolo()%>"> </div>
+                            <%
+                                    }
+                                    }
+                                }
+                            %>
                         </div>
                     </div>
 
@@ -93,7 +113,27 @@
                     <div id="carousel-left" class="carousel slide">
                         <!-- Items -->
                         <div class="carousel-inner" id="last">
+                            <%
+                                String srcU="";
+                                if(ultimi.size()>0){
+                                    for (int i =0; i< ultimi.size(); i++) {
+                                        if (ultimi.get(i).getImmagini().size() > 0) {
+                                            srcU = ultimi.get(i).getImmagini().get(0).getPercorso();
+                                        }
+                                        if (i==0){
+                            %>
+                            <div class="active item"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"> </div>
+                            <%
+                                        }else{
 
+                            %>
+                            <div class="item"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"> </div>
+                            <%
+                                        System.out.println("creato ultimo");
+                                    }
+                                    }
+                                }
+                            %>
 
                         </div>
                     </div>
@@ -110,57 +150,3 @@
         db.close();
 
 %>
-
-<script>
-    $(document).ready(function(){
-
-        <%
-
-            String srcU="";
-
-                System.out.println("Ultimi src: "+srcU+"   titolo:  " +ultimi.size());
-            if(ultimi.size()>0){
-            for (int i =0; i< ultimi.size(); i++){
-                if (ultimi.get(i).getImmagini().size()>0){
-                    srcU=ultimi.get(i).getImmagini().get(0).getPercorso();
-                }
-                %>
-        $('#last').append(new_last("<%=mostSold.get(i).getTitolo()%>","<%=srcU%>"));
-        <%
-
-                }
-            }
-        %>
-        <%
-           String src="";
-
-
-           if(mostSold.size()>0){
-           for (int i =0; i< mostSold.size(); i++){
-               if (mostSold.get(i).getImmagini().size()>0){
-                   src = mostSold.get(i).getImmagini().get(0).getPercorso();
-                   System.out.println("Most src: "+src+"   titolo:  " +ultimi.size());
-               }
-               %>
-        $('#most').append(new_most("<%=ultimi.get(i).getTitolo()%>","<%=src%>"));
-        console.log("chi");
-        <%
-        System.out.println("aa");
-                }
-            }
-        %>
-
-    });
-
-    function new_most(titolo,path){
-        var div= ('<div class="active item"><img src="'+path+'" class="img-responsive" alt="'+titolo+'"> </div>');
-        console.log("fatto",titolo)
-        return div;
-    }
-    function new_last(titolo,path){
-        var div= ('<div class="active item"><img src="'+path+'" class="img-responsive" alt="'+titolo+'"> </div>');
-        console.log("fatto",titolo)
-        return div;
-    }
-
-</script>

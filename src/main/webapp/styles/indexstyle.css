@@ -16,6 +16,7 @@
 }
 .content{
     background-color: #ddd;
+
 }
 
 .img{
@@ -65,13 +66,18 @@
     color: white;
 }
 
+
+
+
 @media (min-width: 300px){
     .content{
         margin-bottom: 10px;
         padding: 10px;
         border-radius: 5px;
     }
-
+    #last, #most{
+        height: 60%;
+    }
 }
 
 @media (min-width: 700px) {
@@ -80,19 +86,24 @@
         margin-bottom: 10px;
         padding: 10px;
         border-radius: 5px;
+        height: 500px;
     }
+
 }
 
 
 @media (min-width: 1030px) {
     .content{
-        height: 300px;
+        height: 400px;
         width: 30%;
         margin-left: 1.5%;
         margin-right: 1.5%;
         margin-bottom: 10px;
         padding: 10px;
         border-radius: 5px;
+    }
+    #last, #most{
+        height: 80%;
     }
 }
 

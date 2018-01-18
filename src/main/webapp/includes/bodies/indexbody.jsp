@@ -116,32 +116,33 @@
 
         <%
 
-            String src="";
+            String srcU="";
 
-                System.out.println("Ultimi src: "+src+"   titolo:  " +ultimi.size());
+                System.out.println("Ultimi src: "+srcU+"   titolo:  " +ultimi.size());
             if(ultimi.size()>0){
             for (int i =0; i< ultimi.size(); i++){
                 if (ultimi.get(i).getImmagini().size()>0){
-                    src=ultimi.get(i).getImmagini().get(0).getPercorso();
+                    srcU=ultimi.get(i).getImmagini().get(0).getPercorso();
                 }
                 %>
-        $('#last').append(new_last("<%=mostSold.get(i).getTitolo()%>","<%=src%>"));
+        $('#last').append(new_last("<%=mostSold.get(i).getTitolo()%>","<%=srcU%>"));
         <%
 
                 }
             }
         %>
         <%
-           String srcU="";
+           String src="";
 
-               System.out.println("Most src: "+src+"   titolo:  " +ultimi.size());
+
            if(mostSold.size()>0){
            for (int i =0; i< mostSold.size(); i++){
                if (mostSold.get(i).getImmagini().size()>0){
-                   src=mostSold.get(i).getImmagini().get(0).getPercorso();
+                   src = mostSold.get(i).getImmagini().get(0).getPercorso();
+                   System.out.println("Most src: "+src+"   titolo:  " +ultimi.size());
                }
                %>
-        $('#most').append(new_most("<%=ultimi.get(i).getTitolo()%>","<%=srcU%>"));
+        $('#most').append(new_most("<%=ultimi.get(i).getTitolo()%>","<%=src%>"));
         console.log("chi");
         <%
         System.out.println("aa");

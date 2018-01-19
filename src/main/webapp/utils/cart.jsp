@@ -31,9 +31,10 @@
     else if (azione.equals("elimina")) {
         carrello = (List<Articolo>) sessione.getAttribute("carrello");
         if(carrello != null){
-            for (Articolo a: carrello) {
-                if(a.getIdArticolo() == idArticolo){
-                    carrello.remove(a);
+            for (Iterator<Articolo> iterator = carrello.iterator(); iterator.hasNext(); ) {
+                Articolo value = iterator.next();
+                if (value.getIdArticolo() == idArticolo) {
+                    iterator.remove();
                 }
             }
             response.sendRedirect("../cart.jsp");

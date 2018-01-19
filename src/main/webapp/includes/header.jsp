@@ -232,15 +232,15 @@
     });
 
     $(document).ready(function(){
-        console.log("muori");
 
     <%
+        if(categorie.size()>0){
         for (int i =0; i< categorie.size(); i++){
             %>
             $('#categorie').append(new_categoria("<%=categorie.get(i).getNome()%>"));
             $('#categorielog').append(new_categoria("<%=categorie.get(i).getNome()%>"));
-            console.log("chiamato");
             <%
+        }
         }
     %>
 

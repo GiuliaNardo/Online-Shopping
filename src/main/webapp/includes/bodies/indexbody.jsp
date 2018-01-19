@@ -129,7 +129,6 @@
                             %>
                             <div class="item"><a href="../../item.jsp?id=<%=ultimi.get(i).getIdArticolo()%>"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"></a> </div>
                             <%
-                                        System.out.println("creato ultimo");
                                     }
                                     }
                                 }

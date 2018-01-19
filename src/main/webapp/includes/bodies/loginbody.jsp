@@ -2,6 +2,24 @@
 <link rel="stylesheet" type="text/css" href="../../styles/loginstyle.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%
+    String error = request.getParameter("error");
+    if(error != null){
+        if(error.equals("errore1")){
+        %>
+            <script>
+                var errore = "Username o password errato";
+            </script>
+        <%
+        }else if(error.equals("errore2")){
+        %>
+            <script>
+                var errore = "Utente inesistente, perfavore effetturare registrazione";
+            </script>
+        <%
+        }
+    }
+%>
 <body>
 
 <script>
@@ -23,6 +41,10 @@
         a = false;
     });
     });
+
+    if(errore != null){
+        alert(errore);
+    }
 </script>
 <div class="container" >
     <div class="pr-wrap" id="mail">

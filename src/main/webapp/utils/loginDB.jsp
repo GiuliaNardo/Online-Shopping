@@ -37,8 +37,11 @@
 
             database.close();
             response.sendRedirect("../index.jsp");
+        }else{
+            response.sendRedirect("../login.jsp?error=errore1");
         }
     }else{
+        response.sendRedirect("../login.jsp?error=errore2");
         System.out.println("Utente "+username+" inesistente");
     }
 %>

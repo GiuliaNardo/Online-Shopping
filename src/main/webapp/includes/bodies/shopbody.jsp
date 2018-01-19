@@ -18,7 +18,12 @@
     advS.setTesto(nameS);
     System.out.println(""+nameS);
     Database db = new Database();
-    ArrayList<Articolo> results = db.getAdvancedSearchResults(advS);
+    ArrayList<Articolo> results = null;
+    if(nameS == null){
+        results = db.getHomeLastArticles();
+    }else {
+        results = db.getAdvancedSearchResults(advS);
+    }
     String nome ="";
     db.close();
 %>

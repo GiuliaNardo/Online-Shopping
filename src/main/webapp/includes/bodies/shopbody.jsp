@@ -36,6 +36,16 @@
         $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
         $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
     });
+
+    $(document).ready(function(e){
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#","");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    });
 </script>
 <link rel="stylesheet" type="text/css" href="styles/shopstyle.css">
 
@@ -46,6 +56,27 @@
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
                 class="glyphicon glyphicon-th"></span>Grid</a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <div class="input-group">
+                            <div class="input-group-btn search-panel">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">Categorie</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#contains">Categorie..</a></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" name="search_param" value="all" id="search_param">
+                            <input type="text" class="form-control" name="x" placeholder="Search term...">
+                            <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="container2 row">
@@ -275,12 +306,6 @@
 <script>
 
     $(document).ready(function (){
-        var i=0;
-        var articoli = 10;
-        var descrizione="Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,\n" +
-            "                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat";
-        var titolo="Articolo a caso";
-        var prezzo ='20.00';
     <%
         if(results.size()!=0){
              %>
@@ -289,7 +314,7 @@
             for(int i =0; i< results.size(); i++){
                %>
 
-            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>",descrizione, "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>"));
+            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione()%>", "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>€"));
             <%
             }
         }

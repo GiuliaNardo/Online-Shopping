@@ -39,10 +39,6 @@
     database.insertNewUser(user);
 
     database.close();
-%>
-<script>
-    alert("Registrazione avvenuta con successo");
-</script>
-<%
-    response.sendRedirect("../index.jsp");
+
+    response.sendRedirect("../signup.jsp");
 %>

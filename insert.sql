@@ -140,7 +140,13 @@ INSERT INTO `venditore` (`IdVenditore`, `IdUtente`, `NomeNegozio`, `RagioneSocia
 (15, 20, 'Trold', NULL, '12897589456', '128975894560', 'Via UU', NULL),
 (16, 22, 'Polly', NULL, '12897589452', '128975894520', 'Via Ulp 5', NULL),
 (17, 27, 'pippo', 'n', '12345678912', '123456789784', 'Topolandia', 2.3);
+
+INSERT INTO `recensionearticoli` (`IdRecArt`, `IdUtente`, `Voto`, `Testo`, `IdArticolo`) VALUES
+(NULL, '7', '3.6', 'Bel fumetto, ricevuto in ottime condizioni', '25'),
+(NULL, '5', '1', 'Ricevuto strappato con due settimane di ritardo', '25'),
+(NULL, '23', '3.00', 'Carino come fumetto. Giusto per ingrandire la mia collezione', '25');
 COMMIT;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -7,10 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
-<%@ page import="it.unitn.progettoweb.Objects.Utente" %>
-<%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unitn.progettoweb.Objects.Categoria" %>
+<%@ page import="it.unitn.progettoweb.Objects.*" %>
 
 <%
     Database database = new Database();
@@ -18,6 +16,8 @@
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
+    Venditore venditore = null;
+
     if(cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
@@ -29,6 +29,12 @@
             }
         }
 
+    }
+    if (utente!= null){
+        if(utente.getTipo().equals(TipoUtente.SELLER)){
+            venditore = database.getVenditore(utente);
+            System.out.println("venditore: "+ venditore.toString());
+        }
     }
 
     ArrayList<Categoria> categorie = database.getCategorie();
@@ -175,7 +181,23 @@
                         <li><a href="utils/logout.jsp">Log out</a></li>
                     </ul>
                 </li>
+                <%
+                        if (venditore != null){
+                            System.out.println("sono un venditore dove cazzo è la sezione");
+                %>
+                <li>
+                    <a href="./shopprofile.jsp?id=<%=venditore.getIdVenditore()%>" class="[ animate ]"><i class="zmdi zmdi-store"></i>
+                        Your Shop
+                    </a>
+
+                </li>
+                <%
+                    }
+                %>
                 <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
+                <%
+                    if (utente.getTipo().equals(TipoUtente.SELLER)||utente.getTipo().equals(TipoUtente.ADMIN)){
+                %>
                 <li>
                     <a href="/notification.jsp" class="[ animate ]" id="a-bell">
                         <div class="bell-off" id="bell-off"><i class="zmdi zmdi-notifications-none zmdi-hc-lg "></i></div>
@@ -183,6 +205,9 @@
                         <div class="bell-on" id="bell-on"><i class="zmdi zmdi-notifications-active zmdi-hc-lg "></i></div>
                     </a>
                 </li>
+                <%
+                    }
+                %>
             </ul>
         </div>
     </div>
@@ -211,7 +236,6 @@
             if (isLogged){
                 boolean nuove = true;
                 if (nuove){
-                    System.out.println("nuove notifiche");
                     %>
                     document.getElementById('bell-off').style.display = "none";
                     document.getElementById('bell-on').style.display = "block";
@@ -220,7 +244,6 @@
 
                     <%
                 } else{
-                    System.out.println("nessuna nuova notifica");
                     %>
                     document.getElementById('bell-off').style.display = "block";
                     document.getElementById('bell-on').style.display = "none";
@@ -247,7 +270,6 @@
     });
 
     function new_categoria(titolo){
-        console.log("creato");
         return ('<li><a href="#" class="[ animate ]">'+titolo+'</a></li>');
     }
 

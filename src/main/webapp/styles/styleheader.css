@@ -157,9 +157,11 @@ body { padding-top: 70px; }
 .navbar-nav, #categorielog{
     font-size: 1.2em;
     width: auto;
-    margin: auto
+    margin: auto;
 }
+
 @media screen and (min-width: 768px) {
+
     .input-group{
         width: auto;
         margin: auto;
@@ -170,8 +172,8 @@ body { padding-top: 70px; }
         padding: 15px 5px;
     }
     .navbar-bootsnipp .navbar-nav > li > a {
-        font-size: 20px;
-        letter-spacing: 1px;
+        font-size: 1.1em;
+        letter-spacing: 0.5px;
     }
     .navbar-bootsnipp .navbar-nav > li:not(.disabled).open > a,
     .navbar-bootsnipp .navbar-nav > li:not(.disabled).active > a,

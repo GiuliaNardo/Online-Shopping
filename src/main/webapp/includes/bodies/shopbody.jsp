@@ -200,7 +200,7 @@
             '                            <p class="lead">'+prezzo+'</p>\n' +
             '                        </div>\n' +
             '                        <div class="col-xs-12 col-md-6">\n' +
-            '                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>\n' +
+            '                            <a class="btn btn-success" href="../../utils/cart.jsp?action=aggiungi&idArticolo='+id+'">Add to cart</a>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
             '                </div>\n' +

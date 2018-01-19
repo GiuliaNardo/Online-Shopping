@@ -11,6 +11,7 @@ public class Articolo {
     private String categoria;
     private float voto;
     private ArrayList<ImmagineArticolo> immagini;
+    private int quantitaNelcarrello = 1;
 
     /**
      * Costruttore
@@ -90,4 +91,7 @@ public class Articolo {
 
     public String getDescrizione(){return descrizione;}
     public void setDescrizione(String descrizione){this.descrizione = descrizione;}
+
+    public void setQuantitaNelcarrello(int quantita){this.quantitaNelcarrello = quantita;}
+    public int getQuantitaNelcarrello(){return this.quantitaNelcarrello;};
 }

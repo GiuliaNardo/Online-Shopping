@@ -15,11 +15,22 @@
     String azione = request.getParameter("action");
     int idArticolo = Integer.parseInt(request.getParameter("idArticolo"));
     HttpSession sessione = request.getSession();
+    boolean esiste = false;
     List<Articolo> carrello = null;
     if (azione.equals("aggiungi")) {
        if(sessione.getAttribute("carrello") != null){
            carrello =(List<Articolo>)sessione.getAttribute("carrello");
-           carrello.add(db.getArticolo(idArticolo));
+           for (Iterator<Articolo> iterator = carrello.iterator(); iterator.hasNext(); ) {
+               Articolo value = iterator.next();
+               if (value.getIdArticolo() == idArticolo) {
+                   value.setQuantitaNelcarrello(value.getQuantitaNelcarrello()+1);
+                   esiste = true;
+               }
+           }
+           if(!esiste){
+               carrello.add(db.getArticolo(idArticolo));
+           }
+            db.close();
            response.sendRedirect("../shop.jsp");
        }else{
            carrello = new ArrayList<Articolo>();
@@ -34,9 +45,15 @@
             for (Iterator<Articolo> iterator = carrello.iterator(); iterator.hasNext(); ) {
                 Articolo value = iterator.next();
                 if (value.getIdArticolo() == idArticolo) {
-                    iterator.remove();
+                    if(value.getQuantitaNelcarrello() > 1){
+                        value.setQuantitaNelcarrello(value.getQuantitaNelcarrello() - 1);
+                    }else{
+                        iterator.remove();
+                    }
+
                 }
             }
+            db.close();
             response.sendRedirect("../cart.jsp");
         }
     }

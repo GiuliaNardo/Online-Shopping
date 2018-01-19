@@ -86,12 +86,12 @@
                                         }
                                         if (i==0){
                             %>
-                            <div class="active item"><img src="<%=src%>" class="img-responsive" alt="<%=mostSold.get(i).getTitolo()%>"> </div>
+                            <div class="active item"><a href="../../item.jsp?id=<%=mostSold.get(i).getIdArticolo()%>"> <img src="<%=src%>" class="img-responsive" alt="<%=mostSold.get(i).getTitolo()%>"></a> </div>
                             <%
                                         }else{
 
                             %>
-                            <div class="item"><img src="<%=src%>" class="img-responsive" alt="<%=mostSold.get(i).getTitolo()%>"> </div>
+                            <div class="item"><a href="../../item.jsp?id=<%=mostSold.get(i).getIdArticolo()%>"><img src="<%=src%>" class="img-responsive" alt="<%=mostSold.get(i).getTitolo()%>"></a> </div>
                             <%
                                     }
                                     }
@@ -122,12 +122,12 @@
                                         }
                                         if (i==0){
                             %>
-                            <div class="active item"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"> </div>
+                            <div class="active item"><a href="../../item.jsp?id=<%=ultimi.get(i).getIdArticolo()%>"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"></a> </div>
                             <%
                                         }else{
 
                             %>
-                            <div class="item"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"> </div>
+                            <div class="item"><a href="../../item.jsp?id=<%=ultimi.get(i).getIdArticolo()%>"><img src="<%=srcU%>" class="img-responsive" alt="<%=ultimi.get(i).getTitolo()%>"></a> </div>
                             <%
                                         System.out.println("creato ultimo");
                                     }

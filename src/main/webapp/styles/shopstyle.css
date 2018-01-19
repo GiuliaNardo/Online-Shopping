@@ -61,7 +61,10 @@
 }
 .container2{
     margin: auto;
+    margin-right: 0;
+    margin-left: 0;
     margin-bottom: 30px;
+    width: 100%;
 }
 
 .filter-col{
@@ -104,9 +107,47 @@
     text-align: center;
 }
 
-@media screen and (min-width: 1300px) {
+#dropdowCat>li{
+    padding: 5px;
+    margin: 5px;
+}
+
+#dropdowCat>li:hover{
+    background-color: whitesmoke;
+}
+
+.ricerca{
+    height: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.display{
+    text-align: center;
+}
+.gruppo{
+    width: 100%;
+}
+
+
+
+@media screen and (min-width: 700px) {
     #filter-bottom{
         margin: auto;
+        margin-top: 20px;
+    }
+    .ricerca{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .display{
+        margin-top: 15px;
+        margin-bottom: auto;
+        padding-left: 50px;
+        text-align: left;
+    }
+
+    .gruppo{
+        width: 700px;
     }
 }
 

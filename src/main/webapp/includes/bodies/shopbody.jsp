@@ -2,7 +2,8 @@
 <%@ page import="javax.xml.crypto.Data" %>
 <%@ page import="it.unitn.progettoweb.Objects.AdvancedSearchParameters" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unitn.progettoweb.Objects.Articolo" %><%--
+<%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
+<%@ page import="it.unitn.progettoweb.Objects.Categoria" %><%--
   Created by IntelliJ IDEA.
   User: Federico
   Date: 22/09/2017
@@ -18,6 +19,7 @@
     advS.setTesto(nameS);
     System.out.println(""+nameS);
     Database db = new Database();
+    ArrayList<Categoria> categorie= db.getCategorie();
     ArrayList<Articolo> results = null;
     if(nameS == null){
         results = db.getHomeLastArticles();
@@ -50,28 +52,42 @@
 <link rel="stylesheet" type="text/css" href="styles/shopstyle.css">
 
 <div class="shop-container ">
-    <div class="well well-sm">
+    <div class="well well-sm row">
+        <div class="col-md-4 col-sm-12 display">
         <strong>Display</strong>
         <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
             </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
                 class="glyphicon glyphicon-th"></span>Grid</a>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-8 col-xs-offset-2">
+        </div>
+        </div>
+            <div class="">
+                <div class="">
+                    <div class="col-xs-12 col-md-8 gruppo">
                         <div class="input-group">
-                            <div class="input-group-btn search-panel">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span id="search_concept">Categorie</span> <span class="caret"></span>
+                            <div class="ricerca input-group-btn search-panel">
+                                <button type="button" class="ricerca btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <span id="search_concept">Categorie </span><span class="caret"></span>
+
                                 </button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#contains">Categorie..</a></li>
+                                <ul class="dropdown-menu" role="menu" id="dropdowCat">
+                                    <%
+                                        System.out.println(""+categorie.size());
+                                        if (categorie.size()>0){
+                                            for (int i =0; i<categorie.size(); i++){
+                                    %>
+
+                                    <li class="opzioniCat" value="<%=categorie.get(i).getNome()%>"><%=categorie.get(i).getNome()%></li>
+                                    <%
+                                            }
+                                        }
+                                    %>
                                 </ul>
                             </div>
                             <input type="hidden" name="search_param" value="all" id="search_param">
-                            <input type="text" class="form-control" name="x" placeholder="Search term...">
+                            <input type="text" class="ricerca form-control form-control-input" name="x" placeholder="Search term...">
                             <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-default ricerca" type="button" id="searchbtn"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
                         </div>
                     </div>
@@ -79,7 +95,7 @@
             </div>
         </div>
     </div>
-    <div class="container2 row">
+    <div class="container2 container row">
             <div id="filter-panel" class="collapse filter-panel">
                 <div class="panel panel-default">
                     <div class="panel-body">

@@ -4,6 +4,8 @@
 <%@ page import="it.unitn.progettoweb.Objects.Utente" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="it.unitn.progettoweb.Objects.RecensioneArticolo" %>
 <%--
   Created by IntelliJ IDEA.
   User: Giulia
@@ -152,6 +154,7 @@
     boolean isLogged = false;
     String idItem = request.getParameter("id");
     Articolo item= null;
+    ArrayList<RecensioneArticolo> recensioni = null;
     if(cookies.length != 0) {
         Database database = new Database();
         for (int i = 0; i < cookies.length; i++) {
@@ -163,7 +166,9 @@
                 }
             }
         }
+        System.out.println(idItem+"");
         item = database.getArticolo(Integer.parseInt(idItem));
+        recensioni = database.getRecensioniArticolo(item);
         database.close();
     }
 
@@ -209,15 +214,9 @@
                 </div>
 
                 <div class="up">
-                    <div class="col-md-7">
-                        <div class="product-title"><%=item.getTitolo()%></div>
-                        </div>
-                        <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i
-                                class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i
-                                class="fa fa-star-o"></i>
-                        </div>
-                        <hr>
-                        <div class="product-price"><%=item.getPrezzo()%></div>
+
+                        <div class="product-title row"><span>Nome articolo: </span> <%=item.getTitolo()%></div>
+                    <div class="product-price row"><span>Euro: </span><%=item.getPrezzo()%></div>
                         <hr>
                         <div class="btn-group cart">
                             <button type="button" class="btn btn-success">
@@ -228,26 +227,55 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
+        <div class="container">
             <div class="col-md-12 product-info">
                 <ul id="myTab" class="nav nav-tabs nav_tabs">
 
                     <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
-                    <li><a href="#service-three" data-toggle="tab">REVIEWS</a></li>
+                    <li><a href="#service-two" data-toggle="tab">REVIEWS</a></li>
 
                 </ul>
                 <div id="myTabContent" class="tab-content">
                     <div class="tab-pane fade in active product-desc" id="service-one">
 
-                        <section class="order-container product-info">
-                            <%=item.getDescrizione()%>
+                        <section class="item-tab product-info">
+                            <div class="testo">
+                                    <%=item.getDescrizione()%>
+                            </div>
                         </section>
 
                     </div>
                     <div class="tab-pane fade" id="service-two">
 
-                        <section class="order-container">
+                        <section class="item-tab">
+                            <div class="recensioni testo">
+                                <%
+                                    double voto = 0.0;
+                                    if (recensioni.size()>0){
+                                        for (int i =0; i < recensioni.size(); i++){
+                                            if (recensioni.get(i).getVoto()!= 0){
+                                                voto = Math.round(recensioni.get(i).getVoto()*100.0)/100.0;
+                                            }
+                                %>
 
+                                <div class="container recensione">
+                                    <div class="row" id="username">
+                                        <%=recensioni.get(i).getUtente().getUserName()%>
+                                    </div>
+                                    <div class="row">
+
+                                        <div>Voto: <%=voto%></div>
+                                    </div>
+                                    <div class="row">
+                                        <p><%=recensioni.get(i).getTesto()%></p>
+                                    </div>
+                                </div>
+
+                                <%
+                                        }
+                                    }
+                                %>
+                            </div>
                         </section>
 
                     </div>
@@ -256,6 +284,7 @@
             </div>
         </div>
     </div>
+
     <%
         if (isLogged){
     %>

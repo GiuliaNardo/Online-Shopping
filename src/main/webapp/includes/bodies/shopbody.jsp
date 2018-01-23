@@ -16,15 +16,28 @@
 
 <%
 
-
+    String cat = request.getParameter("cat");
     String nameS = request.getParameter("q");
+    String search = request.getParameter("search");
     AdvancedSearchParameters advS = new AdvancedSearchParameters();
-    advS.setTesto(nameS);
-    System.out.println(""+nameS);
+
     Database db = new Database();
     ArrayList<Categoria> categorie= db.getCategorie();
     ArrayList<Articolo> results = null;
-    if(nameS == null){
+
+
+    if (cat!=null && !cat.equals("Categorie")){
+        Categoria categoria = new Categoria(cat,"");
+        System.out.println(categoria.getNome());
+        advS.setCategoria(categoria);
+    }
+    if(nameS != null){
+        advS.setTesto(nameS);
+    }
+    if(search!=null){
+        advS.setTesto(search);
+    }
+    if(nameS == null && cat ==null){
         results = db.getHomeLastArticles();
     }else {
         results = db.getAdvancedSearchResults(advS);
@@ -63,35 +76,56 @@
                 class="glyphicon glyphicon-th"></span>Grid</a>
         </div>
         </div>
+        <form action="./shop.jsp" class="form">
+            <div class="input-group mb-3">
+                    <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select input-group-prepend" data-toggle="dropdown" name="cat">
+                        <option class="opzioniCat">Categorie</option>
+                        <%
+                            System.out.println(""+categorie.size());
+                            if (categorie.size()>0){
+                                for (int i =0; i<categorie.size(); i++){
+                        %>
+
+                        <option class="opzioniCat" value="<%=categorie.get(i).getNome()%>"><%=categorie.get(i).getNome()%></option>
+                        <%
+                                }
+                            }
+                        %>
+                    </select>
+                    <input type="text" name="x" class="custom-file ricerca custom-file-input" id="inputGroupFile03">
+
+
+                        <button class="btn btn-outline-secondary ricerca" class="input-group-prepend" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+
+
+            </div>
+        </form>
+
+<!--
+        <div class="">
             <div class="">
-                <div class="">
+                <form action="./shopbody.jsp" method="GET">
                     <div class="col-xs-12 col-md-8 gruppo">
                         <div class="input-group">
                             <div class="ricerca input-group-btn search-panel">
-                                <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select" data-toggle="dropdown" name="cat">
-                                    <option class="opzioniCat">Categorie</option>
-                                    <%
-                                        System.out.println(""+categorie.size());
-                                        if (categorie.size()>0){
-                                            for (int i =0; i<categorie.size(); i++){
-                                    %>
 
-                                    <option class="opzioniCat" value="<%=categorie.get(i).getNome()%>"><%=categorie.get(i).getNome()%></option>
-                                    <%
-                                            }
-                                        }
-                                    %>
-                                </select>
+
+                                <input type="hidden" name="search_param" value="all" id="search_param">
+                                <input type="text" class="ricerca form-control form-control-input" name="search" placeholder="Search term...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default ricerca" type="submit" id="searchbtn"><span class="glyphicon glyphicon-search"></span></button>
+
+                                    </span>
+
                             </div>
-                            <input type="hidden" name="search_param" value="all" id="search_param">
-                            <input type="text" class="ricerca form-control form-control-input" name="x" placeholder="Search term...">
-                            <span class="input-group-btn">
-                    <button class="btn btn-default ricerca" type="button" id="searchbtn"><span class="glyphicon glyphicon-search"></span></button>
-                </span>
                         </div>
+
                     </div>
-                </div>
+                </form>
             </div>
+        </div>
+-->
+
         </div>
     </div>
     <div class="container2 container row">

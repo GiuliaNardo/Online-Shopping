@@ -1,11 +1,8 @@
 <%@ page import="it.unitn.progettoweb.utils.Database" %>
 
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
-<%@ page import="it.unitn.progettoweb.Objects.Utente" %>
-<%@ page import="it.unitn.progettoweb.Objects.Session" %>
-<%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unitn.progettoweb.Objects.RecensioneArticolo" %>
+<%@ page import="it.unitn.progettoweb.Objects.*" %>
 <%--
   Created by IntelliJ IDEA.
   User: Giulia
@@ -154,6 +151,7 @@
     boolean isLogged = false;
     String idItem = request.getParameter("id");
     Articolo item= null;
+    Venditore venditore = null;
     ArrayList<RecensioneArticolo> recensioni = null;
     if(cookies.length != 0) {
         Database database = new Database();
@@ -169,6 +167,7 @@
         System.out.println(idItem+"");
         item = database.getArticolo(Integer.parseInt(idItem));
         recensioni = database.getRecensioniArticolo(item);
+        venditore = database.getVenditore(item.getIdVenditore());
         database.close();
     }
 
@@ -217,6 +216,7 @@
 
                         <div class="product-title row"><span>Nome articolo: </span> <%=item.getTitolo()%></div>
                     <div class="product-price row"><span>Euro: </span><%=item.getPrezzo()%></div>
+                    <div class="product-price row"><span>Venduto da: </span><%=venditore.getNomeNegozio()%></div>
                         <hr>
                         <div class="btn-group cart">
                             <button type="button" class="btn btn-success">

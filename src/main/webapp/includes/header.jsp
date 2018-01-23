@@ -33,7 +33,6 @@
     if (utente!= null){
         if(utente.getTipo().equals(TipoUtente.SELLER)){
             venditore = database.getVenditore(utente);
-            System.out.println("venditore: "+ venditore.toString());
         }
     }
 
@@ -96,6 +95,7 @@
                 <li>
                     <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="zmdi zmdi-menu"></i>
                         Categorie <span class="[ caret ]"></span></a>
+
                     <ul class="[ dropdown-menu ]" role="menu" id="categorie">
 
                     </ul>
@@ -183,7 +183,6 @@
                 </li>
                 <%
                         if (venditore != null){
-                            System.out.println("sono un venditore dove cazzo è la sezione");
                 %>
                 <li>
                     <a href="./shopprofile.jsp?id=<%=venditore.getIdVenditore()%>" class="[ animate ]"><i class="zmdi zmdi-store"></i>
@@ -270,7 +269,7 @@
     });
 
     function new_categoria(titolo){
-        return ('<li><a href="#" class="[ animate ]">'+titolo+'</a></li>');
+        return ('<li><a href="./shop.jsp?cat='+titolo+'" class="[ animate ]">'+titolo+'</a></li>');
     }
 
 </script>

@@ -123,7 +123,7 @@
     background-color: white;
 }
 .ricerca{
-    height: 40px;
+    height: 35px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -132,6 +132,27 @@
 }
 .gruppo{
     width: 100%;
+}
+.custom-select, .custom-file{
+    margin: 0;
+}
+.custom-file{
+    width:400px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 10px;
+}
+a:link{
+    color: black
+}
+a:hover{
+    style:none;
+}
+
+.btn-outline-secondary:hover{
+    background-color :lightgray;
 }
 
 

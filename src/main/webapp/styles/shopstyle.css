@@ -115,7 +115,13 @@
 #dropdowCat>li:hover{
     background-color: whitesmoke;
 }
+.custom-select{
+    background-color: white;
+}
 
+.custom-select > option{
+    background-color: white;
+}
 .ricerca{
     height: 40px;
     margin-top: 20px;

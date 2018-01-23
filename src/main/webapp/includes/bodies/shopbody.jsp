@@ -3,7 +3,8 @@
 <%@ page import="it.unitn.progettoweb.Objects.AdvancedSearchParameters" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
-<%@ page import="it.unitn.progettoweb.Objects.Categoria" %><%--
+<%@ page import="it.unitn.progettoweb.Objects.Categoria" %>
+<%@ page import="it.unitn.progettoweb.Objects.QueryOrder" %><%--
   Created by IntelliJ IDEA.
   User: Federico
   Date: 22/09/2017
@@ -14,6 +15,8 @@
 
 
 <%
+
+
     String nameS = request.getParameter("q");
     AdvancedSearchParameters advS = new AdvancedSearchParameters();
     advS.setTesto(nameS);
@@ -26,7 +29,6 @@
     }else {
         results = db.getAdvancedSearchResults(advS);
     }
-    String nome ="";
     db.close();
 %>
 
@@ -66,23 +68,20 @@
                     <div class="col-xs-12 col-md-8 gruppo">
                         <div class="input-group">
                             <div class="ricerca input-group-btn search-panel">
-                                <button type="button" class="ricerca btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    <span id="search_concept">Categorie </span><span class="caret"></span>
-
-                                </button>
-                                <ul class="dropdown-menu" role="menu" id="dropdowCat">
+                                <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select" data-toggle="dropdown" name="cat">
+                                    <option class="opzioniCat">Categorie</option>
                                     <%
                                         System.out.println(""+categorie.size());
                                         if (categorie.size()>0){
                                             for (int i =0; i<categorie.size(); i++){
                                     %>
 
-                                    <li class="opzioniCat" value="<%=categorie.get(i).getNome()%>"><%=categorie.get(i).getNome()%></li>
+                                    <option class="opzioniCat" value="<%=categorie.get(i).getNome()%>"><%=categorie.get(i).getNome()%></option>
                                     <%
                                             }
                                         }
                                     %>
-                                </ul>
+                                </select>
                             </div>
                             <input type="hidden" name="search_param" value="all" id="search_param">
                             <input type="text" class="ricerca form-control form-control-input" name="x" placeholder="Search term...">
@@ -106,34 +105,34 @@
                                 <input type="text" class="form-control input-sm" id="pref-search">
                                 -->
                                 <label class="filter-col">Price<span class="span">from:</span></label>
-                                <input type="number" class="form-control input-sm" id="price-from">
+                                <input type="number" class="form-control input-sm" name="priceFrom" id="price-from">
                                 <label class="filter-col"><span class="span">to:</span></label>
-                                <input type="number" class="form-control input-sm" id="price-to">
+                                <input type="number" class="form-control input-sm" name="priceTo" id="price-to">
                             </div>
                             <!-- form group [search] -->
                             <div class="form-group">
                                 <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
-                                <select id="pref-orderby" class="form-control">
-                                    <option>Price: descendent</option>
-                                    <option>Price: increasing</option>
+                                <select name="order-by" id="pref-orderby" class="form-control">
+                                    <option value="desc">Price: descendent</option>
+                                    <option value="asc">Price: increasing</option>
 
                                 </select>
                             </div> <!-- form group [order by] -->
                             <div class="form-group">
                                 <label class="filter-col">Review average:</label>
-                                <select name="sort-review" id="sort-review" class="form-control">Review
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select id="sort-review" class="form-control" name="rev">Review
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
                             <div class="row form-group" id="filter-bottom">
                                 <div class="checkbox" style="margin-left:10px; margin-right:10px;">
                                     <label><input type="checkbox"> Remember parameters</label>
                                 </div>
-                                <button type="submit" class="btn btn-default filter-col">
+                                <button type="submit" class="btn btn-default filter-col" onclick="advancedResearch()">
                                     <span class="glyphicon glyphicon-record"></span> Save Settings
                                 </button>
                             </div>
@@ -169,18 +168,18 @@
     <%
         if(results.size()!=0){
              %>
-        document.getElementById("no-item").style.display = "none";
+        document.getElementById("no-item").style.display = "none"
         <%
             for(int i =0; i< results.size(); i++){
                %>
 
-            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione()%>", "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>€"));
+            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione()%>", "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>"));
             <%
             }
         }
         else{
             %>
-            document.getElementById("no-item").style.display = "block";
+            document.getElementById("no-item").style.display = "block"
         <%
         }
     %>
@@ -211,4 +210,69 @@
 
 
     }
+
+    function advancedResearch(){
+
+        <%
+                   String searchCat;
+                   String searchItem ;
+                   int revAverage;
+
+                   int priceFrom=-10, priceTo=-10;
+                   Database db1 = new Database();
+                   ArrayList<Articolo> results1 = null ;
+                   AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
+                   QueryOrder order;
+                   if(request.getParameter("priceFrom")!= null){
+                       priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
+                       advS1.setStartPrice(priceFrom);
+                   }
+                    if(request.getParameter("priceTo")!=null){
+                        priceTo = Integer.parseInt(request.getParameter("priceTo"));
+                        advS1.setEndPrice(priceTo);
+                    }
+                    if(request.getParameter("rev")!=null){
+                        revAverage = Integer.parseInt(request.getParameter("rev"));
+                        advS1.setMinReview(revAverage);
+                    }
+                    if(request.getParameter("order-by")!= null){
+                       if(request.getParameter("order-by").equals("desc") ){
+                           order = QueryOrder.DESC;
+                       } else{
+                           order = QueryOrder.ASC;
+                       }
+
+                       advS1.setQueryOrder(order);
+                   }
+
+                    if(nameS!=null){
+                        if(nameS.equals("")){
+                                advS1.setTesto(nameS);
+                        }
+                    }
+
+                   results1 = db1.getAdvancedSearchResults(advS1);
+
+                   db1.close();
+
+              if(results1.size()!=0){
+                  System.out.println(results1.size());
+                                %>
+        document.getElementById("no-item").style.display = "none"
+        <%
+            for(int i =0; i< results1.size(); i++){
+                System.out.println(results1.get(i).getTitolo());
+               %>
+        $("#shop-content").append(new_item("<%=results1.get(i).getIdArticolo()%>","<%=results1.get(i).getDescrizione()%>","<%=results1.get(i).getTitolo()%>","<%=results1.get(i).getPrezzo()%>"));
+        <%
+        }
+    }
+    else{
+        %>
+        document.getElementById("no-item").style.display = 'block'
+    <%
+    }
+%>
+    }
+
 </script>

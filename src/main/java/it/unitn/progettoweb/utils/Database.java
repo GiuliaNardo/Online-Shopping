@@ -101,7 +101,7 @@ public class Database {
 
     /**
      * restituisce un articolo in base al suo id
-     * @param id id dell'articolo da cercate
+     * @param idArt id dell'articolo da cercate
      * @return Articolo
      */
     public Articolo getArticolo(int idArt){
@@ -1026,31 +1026,54 @@ public class Database {
         ArrayList<Articolo> articoli = new ArrayList<>();
         ResultSet resultSet;
         try {
-            String query = "SELECT * FROM articolo WHERE (Nome LIKE '" + searchParams.getTesto() + "%') ";
+            String query = "SELECT * FROM articolo WHERE ";
+            boolean firstParam = false;
+            if(searchParams.getTesto() != null) {
+                query += "(Nome LIKE '" + searchParams.getTesto() + "%')";
+                firstParam = true;
+            }
 
             if(searchParams.getStartPrice() != -10) {
+                if(firstParam) {
+                    query += " AND ";
+                }
+                firstParam = true;
                 if(searchParams.getEndPrice() != -10) {
-                    query += "AND (Prezzo BETWEEN " + searchParams.getStartPrice() + " " + searchParams.getEndPrice() + ") ";
+                    query += "(Prezzo BETWEEN " + searchParams.getStartPrice() + " " + searchParams.getEndPrice() + ")";
                 } else {
-                    query += "AND (Prezzo > " + searchParams.getStartPrice() + ") ";
+                    query += "(Prezzo > " + searchParams.getStartPrice() + ") ";
                 }
             } else if(searchParams.getEndPrice() != -10) {
-                query += "AND (Prezzo < " + searchParams.getEndPrice() + ") ";
+                if(firstParam) {
+                    query += " AND ";
+                }
+                firstParam = true;
+                query += "(Prezzo < " + searchParams.getEndPrice() + ")";
             }
 
             if (searchParams.getMinReview() != -10) {
-                query += "AND (Voto >= " + searchParams.getMinReview() + ") ";
+                if(firstParam) {
+                    query += " AND ";
+                }
+                firstParam = true;
+                query += "(Voto >= " + searchParams.getMinReview() + ")";
             }
 
             if(searchParams.getCategoria() != null) {
-                query += "AND (Categoria = " + searchParams.getCategoria() + ") ";
+                if(firstParam) {
+                    query += " AND ";
+                }
+                firstParam = true;
+                query += "(Categoria = '" + searchParams.getCategoria().getNome() + "')";
             }
 
             if(searchParams.getQueryOrder() == QueryOrder.DESC) {
-                query += "ORDER BY Prezzo DESC;";
+                query += " ORDER BY Prezzo DESC;";
             } else {
-                query += "ORDER BY Prezzo ASC";
+                query += " ORDER BY Prezzo ASC";
             }
+
+            System.out.println("Query " + query);
 
             Statement statement = connection.createStatement();
 

@@ -280,7 +280,7 @@
                    }
 
                     if(nameS!=null){
-                        if(nameS.equals("")){
+                        if(!nameS.equals("")){
                                 advS1.setTesto(nameS);
                         }
                     }

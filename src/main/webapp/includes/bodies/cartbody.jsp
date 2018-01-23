@@ -41,7 +41,7 @@
                             <button type="button" class="btn btn-default btn-bottom col-12 col-md-8" id="btn-maledetto">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Contina con lo shopping
                             </button>
-                            <a href="/checkout" class="col-12 col-md-4">
+                            <a href="../../checkout.jsp" class="col-12 col-md-4">
                                 <button class="btn btn-bottom btn-success ">
                                     Checkout <span class="glyphicon glyphicon-play"></span>
                                 </button>

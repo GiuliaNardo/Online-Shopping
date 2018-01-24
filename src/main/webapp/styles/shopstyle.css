@@ -164,6 +164,13 @@
     overflow: hidden;
 }
 
+.list-group-image{
+    max-height: 250px;
+}
+
+.thumbnail{
+    height: 450px;
+}
 
 @media screen and (min-width: 700px) {
     #filter-bottom{

@@ -235,10 +235,14 @@
              %>
         document.getElementById("no-item").style.display = "none"
         <%
+        String path="http://placehold.it/400x250/000/fff";
             for(int i =0; i< results.size(); i++){
+                if(results.get(i).getImmagini() != null){
+                    path = results.get(i).getImmagini().get(0).getPercorso();
+                }
                %>
 
-            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>'));
+            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>','<%=path%>'));
             <%
             }
         }
@@ -251,11 +255,11 @@
 
 
     });
-    function new_item(id,descrizione,titolo,prezzo){
+    function new_item(id,descrizione,titolo,prezzo,immagine){
         return (
             '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +
             '            <div class="thumbnail">\n' +
-            '                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />\n' +
+            '                <img class="group list-group-image" src="'+immagine+'" alt="" />\n' +
             '                <div class="caption">\n' +
             '                    <h4 class="group inner list-group-item-heading"><a href="../../item.jsp?id='+id+'">'+titolo+'</a></h4> '+
             '                    <p class="group inner list-group-item-text">'+descrizione+'</p>\n' +

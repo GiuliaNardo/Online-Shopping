@@ -15,7 +15,7 @@
 
 
 <%
-
+    AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
     String cat = request.getParameter("cat");
     String nameS = request.getParameter("q");
     String search = request.getParameter("search");
@@ -37,7 +37,7 @@
     if(search!=null){
         advS.setTesto(search);
     }
-    if(nameS == null && cat ==null){
+    if(nameS == null && advS1 ==null){
         results = db.getHomeLastArticles();
     }else {
         results = db.getAdvancedSearchResults(advS);
@@ -248,26 +248,31 @@
     function advancedResearch(){
 
         <%
-                   String searchCat;
                    String searchItem ;
                    int revAverage;
 
                    int priceFrom=-10, priceTo=-10;
                    Database db1 = new Database();
                    ArrayList<Articolo> results1 = null ;
-                   AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
+
                    QueryOrder order;
                    if(request.getParameter("priceFrom")!= null){
-                       priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
-                       advS1.setStartPrice(priceFrom);
+                      if (!request.getParameter("priceFrom").equals("")){
+                            priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
+                            advS1.setStartPrice(priceFrom);
+                      }
                    }
                     if(request.getParameter("priceTo")!=null){
-                        priceTo = Integer.parseInt(request.getParameter("priceTo"));
-                        advS1.setEndPrice(priceTo);
+                       if (!request.getParameter("priceTo").equals("")){
+                            priceTo = Integer.parseInt(request.getParameter("priceTo"));
+                            advS1.setEndPrice(priceTo);
+                        }
                     }
                     if(request.getParameter("rev")!=null){
-                        revAverage = Integer.parseInt(request.getParameter("rev"));
-                        advS1.setMinReview(revAverage);
+                        if (!request.getParameter("rev").equals("")){
+                            revAverage = Integer.parseInt(request.getParameter("rev"));
+                            advS1.setMinReview(revAverage);
+                        }
                     }
                     if(request.getParameter("order-by")!= null){
                        if(request.getParameter("order-by").equals("desc") ){
@@ -288,14 +293,14 @@
                    results1 = db1.getAdvancedSearchResults(advS1);
 
                    db1.close();
-
+        System.out.println("result UNO size" + results1.size() + "result " + results.size());
               if(results1.size()!=0){
                   System.out.println(results1.size());
                                 %>
         document.getElementById("no-item").style.display = "none"
         <%
             for(int i =0; i< results1.size(); i++){
-                System.out.println(results1.get(i).getTitolo());
+                System.out.println(results1.get(i).getVoto());
                %>
         $("#shop-content").append(new_item("<%=results1.get(i).getIdArticolo()%>","<%=results1.get(i).getDescrizione()%>","<%=results1.get(i).getTitolo()%>","<%=results1.get(i).getPrezzo()%>"));
         <%
@@ -303,7 +308,7 @@
     }
     else{
         %>
-        document.getElementById("no-item").style.display = 'block'
+        document.getElementById("no-item").style.display = "block";
     <%
     }
 %>

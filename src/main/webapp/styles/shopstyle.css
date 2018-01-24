@@ -133,28 +133,36 @@
 .gruppo{
     width: 100%;
 }
+.form{
+    text-align: center;
+}
 .custom-select, .custom-file{
-    margin: 0;
+    margin: 20;
+    margin-bottom :5px;
+    width: 90%;
+
 }
 .custom-file{
-    width:400px;
+
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-right: 5px;
     margin-left: 5px;
     padding: 10px;
 }
-a:link{
-    color: black
-}
-a:hover{
-    style:none;
-}
 
+.btn-outline-secondary{
+    width :50%;
+    height :40px;
+}
 .btn-outline-secondary:hover{
     background-color :lightgray;
 }
 
+.caption>p{
+    height:95px;
+    overflow: hidden;
+}
 
 
 @media screen and (min-width: 700px) {
@@ -176,6 +184,24 @@ a:hover{
     .gruppo{
         width: 700px;
     }
+    .custom-select, .custom-file{
+        margin: 0;
+        width: auto;
+
+    }
+    .custom-file{
+        width:500px;
+        border-radius: 5px;
+        margin-right: 5px;
+        margin-left: 5px;
+        padding: 10px;
+    }
+
+    .btn-outline-secondary{
+        width :auto;
+        height :35px;;
+    }
+
 }
 
 

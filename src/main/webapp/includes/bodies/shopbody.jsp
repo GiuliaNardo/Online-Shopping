@@ -63,7 +63,7 @@
     }
 
     if(request.getParameter("cat")!=null){
-        if(!request.getParameter("cat").equals("")){
+        if(!request.getParameter("cat").equals("") && !request.getParameter("cat").equals("Categorie")){
             Categoria cat = new Categoria(request.getParameter("cat"),"");
             advS1.setCategoria(cat);
             isSearch = true;
@@ -138,7 +138,7 @@
 
 
             </div>
-        </form>
+
 
 <!--
         <div class="">
@@ -171,7 +171,6 @@
             <div id="filter-panel" class="collapse filter-panel">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form class="form-inline" role="form">
                             <div class="form-group">
                                 <!--
                                 <label class="filter-col"  for="pref-search">Search:</label>
@@ -201,15 +200,7 @@
                                     <option value="5">5</option>
                                 </select>
                             </div>
-                            <div class="row form-group" id="filter-bottom">
-                                <div class="checkbox" style="margin-left:10px; margin-right:10px;">
-                                    <label><input type="checkbox"> Remember parameters</label>
-                                </div>
-                                <button type="submit" class="btn btn-default filter-col" onclick="advancedResearch()">
-                                    <span class="glyphicon glyphicon-record"></span> Save Settings
-                                </button>
-                            </div>
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -218,6 +209,7 @@
             </button>
     </div>
 </div>
+</form>
 <div class="niente" id="no-item">There isn't any item for your search</div>
     <div id="products" class="row list-group">
 
@@ -246,7 +238,7 @@
             for(int i =0; i< results.size(); i++){
                %>
 
-            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione()%>", "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>"));
+            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>'));
             <%
             }
         }

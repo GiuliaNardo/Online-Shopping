@@ -15,33 +15,67 @@
 
 
 <%
-    AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
-    String cat = request.getParameter("cat");
-    String nameS = request.getParameter("q");
-    String search = request.getParameter("search");
-    AdvancedSearchParameters advS = new AdvancedSearchParameters();
-
     Database db = new Database();
     ArrayList<Categoria> categorie= db.getCategorie();
     ArrayList<Articolo> results = null;
 
+    AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
+    boolean isSearch = false;
 
-    if (cat!=null && !cat.equals("Categorie")){
-        Categoria categoria = new Categoria(cat,"");
-        System.out.println(categoria.getNome());
-        advS.setCategoria(categoria);
+
+    if(request.getParameter("priceFrom")!= null){
+        if (!request.getParameter("priceFrom").equals("")){
+            float priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
+            advS1.setStartPrice(priceFrom);
+            isSearch = true;
+        }
     }
-    if(nameS != null){
-        advS.setTesto(nameS);
+    if(request.getParameter("priceTo")!=null){
+        if (!request.getParameter("priceTo").equals("")){
+            float priceTo = Integer.parseInt(request.getParameter("priceTo"));
+            advS1.setEndPrice(priceTo);
+            isSearch = true;
+        }
     }
-    if(search!=null){
-        advS.setTesto(search);
+    if(request.getParameter("rev")!=null){
+        if (!request.getParameter("rev").equals("")){
+            int revAverage = Integer.parseInt(request.getParameter("rev"));
+            advS1.setMinReview(revAverage);
+            isSearch = true;
+        }
     }
-    if(nameS == null && advS1 ==null){
+    if(request.getParameter("order-by")!= null){
+        QueryOrder order;
+        if(request.getParameter("order-by").equals("desc") ){
+            order = QueryOrder.DESC;
+        } else {
+            order = QueryOrder.ASC;
+        }
+        isSearch = true;
+        advS1.setQueryOrder(order);
+    }
+
+    if(request.getParameter("q")!=null){
+        if(!request.getParameter("q").equals("")){
+            advS1.setTesto(request.getParameter("q"));
+            isSearch = true;
+        }
+    }
+
+    if(request.getParameter("cat")!=null){
+        if(!request.getParameter("cat").equals("")){
+            Categoria cat = new Categoria(request.getParameter("cat"),"");
+            advS1.setCategoria(cat);
+            isSearch = true;
+        }
+    }
+
+    if(!isSearch){
         results = db.getHomeLastArticles();
-    }else {
-        results = db.getAdvancedSearchResults(advS);
+    } else {
+        results = db.getAdvancedSearchResults(advS1);
     }
+    System.out.println("Numero risultati: " + results.size());
     db.close();
 %>
 
@@ -81,7 +115,7 @@
                     <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select input-group-prepend" data-toggle="dropdown" name="cat">
                         <option class="opzioniCat">Categorie</option>
                         <%
-                            System.out.println(""+categorie.size());
+                            System.out.println("Numero categorie: "+categorie.size());
                             if (categorie.size()>0){
                                 for (int i =0; i<categorie.size(); i++){
                         %>
@@ -92,7 +126,7 @@
                             }
                         %>
                     </select>
-                    <input type="text" name="x" class="custom-file ricerca custom-file-input" id="inputGroupFile03">
+                    <input type="text" name="q" class="custom-file ricerca custom-file-input" id="inputGroupFile03">
 
 
                         <button class="btn btn-outline-secondary ricerca" class="input-group-prepend" type="submit"><span class="glyphicon glyphicon-search"></span></button>
@@ -243,75 +277,6 @@
         );
 
 
-    }
-
-    function advancedResearch(){
-
-        <%
-                   String searchItem ;
-                   int revAverage;
-
-                   int priceFrom=-10, priceTo=-10;
-                   Database db1 = new Database();
-                   ArrayList<Articolo> results1 = null ;
-
-                   QueryOrder order;
-                   if(request.getParameter("priceFrom")!= null){
-                      if (!request.getParameter("priceFrom").equals("")){
-                            priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
-                            advS1.setStartPrice(priceFrom);
-                      }
-                   }
-                    if(request.getParameter("priceTo")!=null){
-                       if (!request.getParameter("priceTo").equals("")){
-                            priceTo = Integer.parseInt(request.getParameter("priceTo"));
-                            advS1.setEndPrice(priceTo);
-                        }
-                    }
-                    if(request.getParameter("rev")!=null){
-                        if (!request.getParameter("rev").equals("")){
-                            revAverage = Integer.parseInt(request.getParameter("rev"));
-                            advS1.setMinReview(revAverage);
-                        }
-                    }
-                    if(request.getParameter("order-by")!= null){
-                       if(request.getParameter("order-by").equals("desc") ){
-                           order = QueryOrder.DESC;
-                       } else{
-                           order = QueryOrder.ASC;
-                       }
-
-                       advS1.setQueryOrder(order);
-                   }
-
-                    if(nameS!=null){
-                        if(!nameS.equals("")){
-                                advS1.setTesto(nameS);
-                        }
-                    }
-
-                   results1 = db1.getAdvancedSearchResults(advS1);
-
-                   db1.close();
-        System.out.println("result UNO size" + results1.size() + "result " + results.size());
-              if(results1.size()!=0){
-                  System.out.println(results1.size());
-                                %>
-        document.getElementById("no-item").style.display = "none"
-        <%
-            for(int i =0; i< results1.size(); i++){
-                System.out.println(results1.get(i).getVoto());
-               %>
-        $("#shop-content").append(new_item("<%=results1.get(i).getIdArticolo()%>","<%=results1.get(i).getDescrizione()%>","<%=results1.get(i).getTitolo()%>","<%=results1.get(i).getPrezzo()%>"));
-        <%
-        }
-    }
-    else{
-        %>
-        document.getElementById("no-item").style.display = "block";
-    <%
-    }
-%>
     }
 
 </script>

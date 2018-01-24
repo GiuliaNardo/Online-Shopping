@@ -1029,7 +1029,7 @@ public class Database {
             String query = "SELECT * FROM articolo WHERE ";
             boolean firstParam = false;
             if(searchParams.getTesto() != null) {
-                query += "(Nome LIKE '" + searchParams.getTesto() + "%')";
+                query += "(Nome LIKE '%" + searchParams.getTesto() + "%')";
                 firstParam = true;
             }
 
@@ -1041,14 +1041,14 @@ public class Database {
                 if(searchParams.getEndPrice() != -10) {
                     query += "(Prezzo BETWEEN " + searchParams.getStartPrice() + " " + searchParams.getEndPrice() + ")";
                 } else {
-                    query += "(Prezzo > " + searchParams.getStartPrice() + ") ";
+                    query += "(Prezzo >= " + searchParams.getStartPrice() + ") ";
                 }
             } else if(searchParams.getEndPrice() != -10) {
                 if(firstParam) {
                     query += " AND ";
                 }
                 firstParam = true;
-                query += "(Prezzo < " + searchParams.getEndPrice() + ")";
+                query += "(Prezzo <= " + searchParams.getEndPrice() + ")";
             }
 
             if (searchParams.getMinReview() != -10) {
@@ -1072,8 +1072,6 @@ public class Database {
             } else {
                 query += " ORDER BY Prezzo ASC";
             }
-
-            System.out.println("Query " + query);
 
             Statement statement = connection.createStatement();
 

@@ -607,7 +607,7 @@ public class Database {
         ArrayList articoli = new ArrayList<String>();
         ResultSet resultSet;
         Statement statement = null;
-        String sql = "SELECT DISTINCT Nome FROM articolo WHERE Nome LIKE '"+ searchText + "%' LIMIT 5;";
+        String sql = "SELECT DISTINCT Nome FROM articolo WHERE Nome LIKE '%"+ searchText + "%' LIMIT 5;";
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);

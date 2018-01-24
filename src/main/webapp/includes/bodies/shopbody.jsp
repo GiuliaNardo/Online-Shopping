@@ -76,6 +76,11 @@
         results = db.getAdvancedSearchResults(advS1);
     }
     System.out.println("Numero risultati: " + results.size());
+    String nomiArticoli = "";
+    for(Articolo articolo : results) {
+        nomiArticoli += articolo.getTitolo() + ", ";
+    }
+    System.out.println("Nomi articoli: " + nomiArticoli);
     db.close();
 %>
 

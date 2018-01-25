@@ -88,6 +88,19 @@
         border-radius: 5px;
         height: 500px;
     }
+    .item1{
+
+        padding-left: 200px;
+        padding-right: 200px;
+        background-color: black;
+    }
+    #carousel-inner{
+        height: 300px;
+    }
+    .up{
+        width :500px;
+        height: 500px;
+    }
 
 }
 

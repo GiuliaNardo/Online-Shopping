@@ -34,17 +34,28 @@
                 <li data-target="#myCarousel" data-slide-to="2"></li>
             </ol>
             <!-- Items -->
-            <div class="carousel-inner">
-                <div class="active item"><img
-                        src="http://www.superedo.it/sfondi/sfondi/Paesaggi/Mongolfiere%20Colorate/mongolfiere_colorate_6.jpg"
-                        class="img-responsive">
-                </div>
-                <div class="item"><img
-                        src="http://wallpaperart.altervista.org/Immagini/fiori_blu_fiore_1280x800.jpg"
-                        class="img-responsive"></div>
-                <div class="item"><img
-                        src="http://2.bp.blogspot.com/-Hc6TN4iB_RM/UTKMrWZF_WI/AAAAAAAAC5Y/r0vMbUSpXSo/s1600/skull_wallpaper4.jpg"
-                        class="img-responsive"></div>
+            <div class="carousel-inner" id="carousel-inner">
+                <%
+                    String src1="";
+                    if(mostSold.size()>0){
+                        for (int i =0; i< mostSold.size(); i++) {
+                            if (mostSold.get(i).getImmagini().size() > 0) {
+                                src1 = mostSold.get(i).getImmagini().get(0).getPercorso();
+
+                            }
+                            if (i==0){
+                %>
+                <div class="active item item1"><a href="../../item.jsp?id=<%=mostSold.get(i).getIdArticolo()%>"> <img src="<%=src1%>" class="img-responsive up" alt="<%=mostSold.get(i).getTitolo()%>"></a> </div>
+                <%
+                }else{
+
+                %>
+                <div class="item item1"><a href="../../item.jsp?id=<%=mostSold.get(i).getIdArticolo()%>"><img src="<%=src1%>" class="img-responsive up" alt="<%=mostSold.get(i).getTitolo()%>"></a> </div>
+                <%
+                            }
+                        }
+                    }
+                %>
             </div>
             <!-- Navigation -->
             <a class="left carousel-control" href="#myCarousel" data-slide="prev">

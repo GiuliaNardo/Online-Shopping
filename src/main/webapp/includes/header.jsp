@@ -17,7 +17,7 @@
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
     Venditore venditore = null;
-
+    ArrayList<Notifica> notifiche = null;
     if(cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
@@ -33,9 +33,10 @@
     if (utente!= null){
         if(utente.getTipo().equals(TipoUtente.SELLER)){
             venditore = database.getVenditore(utente);
+            notifiche = database.getUserNotifications(utente);
         }
     }
-    ArrayList<Notifica> notifiche = database.getUserNotifications(utente);
+
     ArrayList<Categoria> categorie = database.getCategorie();
     database.close();
 %>

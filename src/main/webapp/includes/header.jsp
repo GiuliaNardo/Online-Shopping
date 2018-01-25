@@ -35,7 +35,7 @@
             venditore = database.getVenditore(utente);
         }
     }
-
+    ArrayList<Notifica> notifiche = database.getUserNotifications(utente);
     ArrayList<Categoria> categorie = database.getCategorie();
     database.close();
 %>
@@ -232,8 +232,15 @@
     $(document).ready(function () {
         <%
             //TODO: query per sapere se ci sono notifiche non lette
-            if (isLogged){
-                boolean nuove = true;
+            if (isLogged && !utente.getTipo().equals(TipoUtente.USER)){
+                boolean nuove = false;
+                if(notifiche != null){
+                    for (int i = 0; i < notifiche.size(); i++){
+                        if (notifiche.get(i).getStato().equals(StatoNotifica.NUOVA)){
+                            nuove = true;
+                        }
+                    }
+                }
                 if (nuove){
                     %>
                     document.getElementById('bell-off').style.display = "none";

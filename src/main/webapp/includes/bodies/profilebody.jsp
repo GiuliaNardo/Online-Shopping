@@ -48,6 +48,9 @@
         path = utente.getImmagineUtente().getPercorso();
         database.close();
     }
+    /*
+    puoi vedere la pagina del profilo solo se sei loggato, altrimenti vieni mandato alla pagina del login
+     */
         if (isLogged){
         System.out.println("loggato");
 
@@ -121,87 +124,11 @@
 
 <%
     } else{
-       %>
-    <script>
-        alert('NON PUOI');
-    </script>
-<%
+
         String redirectURL = "../../login.jsp";
         response.sendRedirect(redirectURL);
         System.out.println("rediretto  "+ redirectURL.length());
     }
 %>
 
-<!--
-<div class="container row">
-<div class="col prova-padding">
 
-<div class="container table-head">
-<div class="row profile-td-head">
-User profile
-</div>
-<div class="row profile-image-div">
-<img alt="User Pic"
-src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"
-id="profile-image1" class="img-circle img-responsive">
-<input id="profile-image-upload" class="hidden" type="file">
-</div>
-<div class="field" nowrap>
-<li><span class="etichette">Name: </span>
-</li>
-<li><span class="etichette">Last Name: </span>
-</li>
-<li><span class="etichette">Username: </span>
-</li>
-<li><span class="etichette">Date of birth: </span>
-</li>
-<li><span class="etichette">Email: </span>
-</li>
-
-
-</div>
-</div>
-</div>
-<div class="col menu">
-<table class="table-profile-center">
-<tr>
-<td class="td-profile-center">
-<div class="div-profile-center">
-<img src="http://www.spedizioni-espresso.it/img/come-prenotare-ritiro-pacchi.png"
-class="img-pacco">
-<a class="profile-generic-anchor" href="orders.jsp">My Orders</a>
-<p class="didascalia">Clicca per visualizzare i tuoi ordini</p>
-</div>
-
-</td>
-</tr>
-<tr>
-<td class="td-profile-center">
-<div class="div-profile-center">
-<img src="https://membershipworks.com/wp-content/uploads/2014/12/shopping-cart.png"
-class="img-cart">
-<a class="profile-generic-anchor" href="cart.jsp">Cart</a>
-<p class="didascalia">Clicca per visualizzare il tuo carrello</p>
-</div>
-
-</td>
-</tr>
-<tr>
-<td class="td-profile-center">
-<div class="div-profile-center">
-<img src="https://s3.amazonaws.com/gumroad/files/4fb88c695aeca5a56d1d2a563e8cb7da/original/pencil.png"
-class="img-edit">
-<a class="profile-generic-anchor" href="profile.jsp">Edit</a>
-<p class="didascalia">Clicca per modificare il tuo profilo</p>
-</div>
-
-</td>
-</tr>
-
-</table>
-</div>
-</div>
-
-</body>
-
--->

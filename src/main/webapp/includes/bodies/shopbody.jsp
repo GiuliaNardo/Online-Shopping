@@ -22,7 +22,9 @@
     AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
     boolean isSearch = false;
 
-
+/*
+    i parametri vengono presi dall'url solo se sono diversi dalla stringa vuota
+ */
     if(request.getParameter("priceFrom")!= null){
         if (!request.getParameter("priceFrom").equals("")){
             float priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
@@ -69,18 +71,22 @@
             isSearch = true;
         }
     }
-
+/*
+se si arriva alla pagina cliccando il tasto shop, non ci sono ricerche specifiche e vengono quindi visualizzati i 5
+articoli più venduti
+altrimenti si procede con la ricerca che è stata effettuata
+ */
     if(!isSearch){
         results = db.getHomeLastArticles();
     } else {
         results = db.getAdvancedSearchResults(advS1);
     }
-    System.out.println("Numero risultati: " + results.size());
+
     String nomiArticoli = "";
     for(Articolo articolo : results) {
         nomiArticoli += articolo.getTitolo() + ", ";
     }
-    System.out.println("Nomi articoli: " + nomiArticoli);
+
     db.close();
 %>
 
@@ -228,7 +234,10 @@
     //TODO: query per la ricerca
 %>
 <script>
-
+/*
+vengono creati gli oggetti html con i dati ricevuti dalla ricerca e dal database
+se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizzato un testo
+ */
     $(document).ready(function (){
     <%
         if(results.size()!=0){
@@ -238,8 +247,11 @@
         String path="http://placehold.it/400x250/000/fff";
             for(int i =0; i< results.size(); i++){
                 if(results.get(i).getImmagini() != null){
-                    path = results.get(i).getImmagini().get(0).getPercorso();
+                    if(results.get(i).getImmagini().size()>0){
+                        path = results.get(i).getImmagini().get(0).getPercorso();
+                    }
                 }
+
                %>
 
             $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>','<%=path%>'));
@@ -256,6 +268,7 @@
 
     });
     function new_item(id,descrizione,titolo,prezzo,immagine){
+        console.log('creato articolo',id)
         return (
             '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +
             '            <div class="thumbnail">\n' +

@@ -286,6 +286,10 @@
     </div>
 
     <%
+        /*
+        se sei loggato hai la possibilità di inserire recensioni
+         */
+
         if (isLogged){
     %>
     <div class="row content-wrapper container">

@@ -111,6 +111,7 @@ altrimenti si procede con la ricerca che è stata effettuata
 </script>
 <link rel="stylesheet" type="text/css" href="styles/shopstyle.css">
 
+<form action="./shop.jsp" class="form">
 <div class="shop-container ">
     <div class="well well-sm row">
         <div class="col-md-4 col-sm-12 display">
@@ -121,7 +122,7 @@ altrimenti si procede con la ricerca che è stata effettuata
                 class="glyphicon glyphicon-th"></span>Grid</a>
         </div>
         </div>
-        <form action="./shop.jsp" class="form">
+
             <div class="input-group mb-3">
                     <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select input-group-prepend" data-toggle="dropdown" name="cat">
                         <option class="opzioniCat">Categorie</option>
@@ -214,7 +215,7 @@ altrimenti si procede con la ricerca che è stata effettuata
                 <span class="glyphicon glyphicon-cog"></span> Advanced Search
             </button>
     </div>
-</div>
+
 </form>
 <div class="niente" id="no-item">There isn't any item for your search</div>
     <div id="products" class="row list-group">

@@ -149,9 +149,6 @@ function new_ordine(testo,titolo,prezzo){
         '            euro</div>\n' +
         '        </div>\n' +
         '        <div class="row col-12 col-md-3 col-sm-12">\n' +
-        '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="edit-button">\n' +
-        '                    <i class="zmdi zmdi-edit"></i><label id="edit">Edit</label>\n' +
-        '            </button></div>\n' +
         '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="delete-button" onclick="ticket()">\n' +
         '                <i class="zmdi zmdi-notifications"></i>\n<label id="delete" >Ticket</label>\n' +
         '            </button></div>\n' +

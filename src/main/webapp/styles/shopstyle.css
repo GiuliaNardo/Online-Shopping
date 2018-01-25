@@ -173,6 +173,15 @@
     height: 450px;
 }
 
+.form-control, .ricerca, .pull-right{
+    height: 50px;
+}
+#grid,#list{
+    height: 40px;
+    width: 90px;
+    padding: 10px;
+}
+
 @media screen and (min-width: 700px) {
     #filter-bottom{
         margin: auto;
@@ -208,6 +217,23 @@
     .btn-outline-secondary{
         width :auto;
         height :35px;;
+    }
+    .form-group{
+        float: left;
+        margin-left :50px;
+        margin-right: 50px;
+    }
+    .panel-body{
+        margin-right:150px;
+        margin-left: 150px;
+    }
+    .form-control, .ricerca, .pull-right{
+        height: 35px;;
+    }
+    #grid,#list{
+        height: 30px;
+        width: 70px;
+        padding: 5px;
     }
 
 }

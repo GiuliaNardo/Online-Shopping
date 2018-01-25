@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
+<%@ page import="it.unitn.progettoweb.utils.Database" %><%--
   Created by IntelliJ IDEA.
   User: Federico
   Date: 25/09/2017
@@ -6,6 +8,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Database db = new Database();
+    List<Articolo> carrello = null;
+    if(request.getSession().getAttribute("carrello") != null){
+        carrello = (List<Articolo>) request.getSession().getAttribute("carrello");
+    }
+
+%>
 
 <link rel="stylesheet" type="text/css" href="styles/cartstyle.css">
 
@@ -88,7 +98,7 @@
 
 
     window.onload = function (){
-        var num_articoli = 3;
+        var num_articoli = <%=carrello.size()%>;
         var id;
         var prezzo;
         var sub_tot;
@@ -97,26 +107,31 @@
         var categoria;
         var nome;
         var descrizione;
-
+        if(num_articoli > 0){
 
             var j = 0;
             sub_tot = 0;
             tot = 0;
-            for(j;j<num_articoli;j++){  //articoli relativi all'ordine
-                prezzo = 3.58;
-                descrizione="iphone senza tasti";
-                nome="iphone";
-                categoria= "Telefonia";
-                quantita=5;
-                id = 2;
+            <%
+            for (Articolo a : carrello) {
+            %>
+                prezzo = <%=a.getPrezzo()%>;
+                descrizione= "<%=a.getDescrizione()%>";
+                nome="<%=a.getTitolo()%>";
+                categoria= "<%=a.getCategoria()%>";
+                quantita=<%=a.getQuantitaNelcarrello()%>;
+                id = <%=a.getIdArticolo()%>;
 
                 sub_tot=prezzo*quantita;
                 tot+=sub_tot;
                 $('#cart-content').append(add_articolo(id, nome, descrizione, sub_tot, categoria, quantita,prezzo));
 
+            <%
             }
+            %>
 
             $('#cart-content').append(add_ordine(id,tot));
+        }
 
 
 
@@ -144,12 +159,10 @@
                                     '          </span>\n' +
                                     '      </div>' +
             '                            </div>\n' +
-            '                            <div class="col-md-1 col-sm-12 el text-center"><strong>'+prezzo+'</strong></div>\n' +
-            '                            <div class="col-md-2 col-sm-12 el text-center"><strong>'+sub_tot.toFixed(2)+'</strong></div>\n' +
+            '                            <div class="col-md-1 col-sm-12 el text-center"><strong>'+prezzo+'€</strong></div>\n' +
+            '                            <div class="col-md-2 col-sm-12 el text-center"><strong>'+sub_tot.toFixed(2)+'€</strong></div>\n' +
             '                            <div class="col-sm-12 col-md-1 el">\n' +
-            '                                <button type="button" class="btn btn-danger">\n' +
-            '                                    <i class="glyphicon glyphicon-remove"></i>\n' +
-            '                                </button>\n' +
+            '                                <a class="btn btn-danger" href="../../utils/cart.jsp?action=elimina&idArticolo='+id+'">x</a>\n'+
             '                            </div>\n' +
             '                        </div>'
     };

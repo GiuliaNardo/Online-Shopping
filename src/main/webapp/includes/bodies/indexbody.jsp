@@ -2,7 +2,8 @@
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.progettoweb.Objects.ImmagineArticolo" %>
-<%@ page import="java.util.concurrent.atomic.AtomicReference" %><%--
+<%@ page import="java.util.concurrent.atomic.AtomicReference" %>
+<%@ page import="java.util.Random" %><%--
   Created by IntelliJ IDEA.
   User: Simone
   Date: 19/09/17
@@ -39,18 +40,20 @@
                     String src1="";
                     if(mostSold.size()>0){
                         for (int i =0; i< mostSold.size(); i++) {
-                            if (mostSold.get(i).getImmagini().size() > 0) {
-                                src1 = mostSold.get(i).getImmagini().get(0).getPercorso();
+                            Random random = new Random();
+                            int r =random.nextInt(mostSold.size());
+                            if (mostSold.get(r).getImmagini().size() > 0) {
+                                src1 = mostSold.get(r).getImmagini().get(0).getPercorso();
 
                             }
                             if (i==0){
                 %>
-                <div class="active item item1"><a href="../../item.jsp?id=<%=mostSold.get(i).getIdArticolo()%>"> <img src="<%=src1%>" class="img-responsive up" alt="<%=mostSold.get(i).getTitolo()%>"></a> </div>
+                <div class="active item item1"><a href="../../item.jsp?id=<%=mostSold.get(r).getIdArticolo()%>"> <img src="<%=src1%>" class="img-responsive up" alt="<%=mostSold.get(r).getTitolo()%>"></a> </div>
                 <%
                 }else{
 
                 %>
-                <div class="item item1"><a href="../../item.jsp?id=<%=mostSold.get(i).getIdArticolo()%>"><img src="<%=src1%>" class="img-responsive up" alt="<%=mostSold.get(i).getTitolo()%>"></a> </div>
+                <div class="item item1"><a href="../../item.jsp?id=<%=mostSold.get(r).getIdArticolo()%>"><img src="<%=src1%>" class="img-responsive up" alt="<%=mostSold.get(r).getTitolo()%>"></a> </div>
                 <%
                             }
                         }

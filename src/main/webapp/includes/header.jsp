@@ -17,7 +17,7 @@
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
     Venditore venditore = null;
-
+    ArrayList<Notifica> notifiche = null;
     if(cookies != null) {
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
@@ -33,7 +33,7 @@
     if (utente!= null){
         if(utente.getTipo().equals(TipoUtente.SELLER)){
             venditore = database.getVenditore(utente);
-            System.out.println("venditore: "+ venditore.toString());
+            notifiche = database.getUserNotifications(utente);
         }
     }
 
@@ -96,6 +96,7 @@
                 <li>
                     <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="zmdi zmdi-menu"></i>
                         Categorie <span class="[ caret ]"></span></a>
+
                     <ul class="[ dropdown-menu ]" role="menu" id="categorie">
 
                     </ul>
@@ -183,7 +184,6 @@
                 </li>
                 <%
                         if (venditore != null){
-                            System.out.println("sono un venditore dove cazzo è la sezione");
                 %>
                 <li>
                     <a href="./shopprofile.jsp?id=<%=venditore.getIdVenditore()%>" class="[ animate ]"><i class="zmdi zmdi-store"></i>
@@ -233,8 +233,15 @@
     $(document).ready(function () {
         <%
             //TODO: query per sapere se ci sono notifiche non lette
-            if (isLogged){
-                boolean nuove = true;
+            if (isLogged && !utente.getTipo().equals(TipoUtente.USER)){
+                boolean nuove = false;
+                if(notifiche != null){
+                    for (int i = 0; i < notifiche.size(); i++){
+                        if (notifiche.get(i).getStato().equals(StatoNotifica.NUOVA)){
+                            nuove = true;
+                        }
+                    }
+                }
                 if (nuove){
                     %>
                     document.getElementById('bell-off').style.display = "none";
@@ -270,7 +277,7 @@
     });
 
     function new_categoria(titolo){
-        return ('<li><a href="#" class="[ animate ]">'+titolo+'</a></li>');
+        return ('<li><a href="./shop.jsp?cat='+titolo+'" class="[ animate ]">'+titolo+'</a></li>');
     }
 
 </script>

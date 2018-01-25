@@ -50,6 +50,10 @@
             RequestDispatcher rd9= request.getRequestDispatcher("/includes/bodies/shopprofilebody.jsp");
             rd9.include(request, response);
             break;
+        case "checkout":
+            RequestDispatcher rd10= request.getRequestDispatcher("/includes/bodies/checkoutbody.jsp");
+            rd10.include(request, response);
+            break;
     }
 %>
 

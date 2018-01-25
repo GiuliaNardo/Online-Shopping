@@ -83,6 +83,7 @@
                                     for (int i =0; i< mostSold.size(); i++) {
                                         if (mostSold.get(i).getImmagini().size() > 0) {
                                             src = mostSold.get(i).getImmagini().get(0).getPercorso();
+
                                         }
                                         if (i==0){
                             %>
@@ -119,6 +120,7 @@
                                     for (int i =0; i< ultimi.size(); i++) {
                                         if (ultimi.get(i).getImmagini().size() > 0) {
                                             srcU = ultimi.get(i).getImmagini().get(0).getPercorso();
+                                            System.out.println(ultimi.get(i).getIdArticolo());
                                         }
                                         if (i==0){
                             %>

@@ -7,15 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
-<%@ page import="it.unitn.progettoweb.Objects.Utente" %>
-<%@ page import="it.unitn.progettoweb.Objects.Session" %>
-<%@ page import="it.unitn.progettoweb.Objects.Ordine" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.Date" %>
 <%@ page import="java.util.SimpleTimeZone" %>
 <%@ page import="java.util.logging.SimpleFormatter" %>
-<%@ page import="it.unitn.progettoweb.Objects.StatoNotifica" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="it.unitn.progettoweb.Objects.*" %>
 <link rel="stylesheet" type="text/css" href="styles/orderstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
@@ -45,7 +42,9 @@
         }
         database.close();
     }
-
+/*
+se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla pagina del login
+ */
     if (isLogged) {
 
     %>
@@ -101,6 +100,11 @@
 */
 //TODO: query per restituire gli articoli relativi all'ordine di un utente
 
+
+/*
+    con il risultato ottenuto dal database viene creata la parte html relativa al <div> dell'ordine
+    per ogni ordine l'utente ha la possibilità di inviare un ticket
+ */
     var titolo="";
     var testo="";
 
@@ -119,11 +123,13 @@
         document.getElementById("noOrders").style.display = "none";
         <%
             }
-            System.out.println(""+ordini.size());
+            TipoOrdine tipo = TipoOrdine.SPEDIZIONE;
             for(int i =0;i < ordini.size(); i++ ){
+                if(ordini.get(i).getTipoOrdine()!=null){
+                    tipo =ordini.get(i).getTipoOrdine();
+                }
                 %>
-                $('#content').append(new_ordine(testo,titolo,<%=ordini.get(i).getPrezzoTot()%> ));
-                console.log("fatto");
+                $('#content').append(new_ordine('<%=tipo%>','<%=ordini.get(i).getDataOrdine()%>','<%=ordini.get(i).getPrezzoTot()*100.0/100.0%> '));
         <%
         }
     %>
@@ -139,13 +145,10 @@ function new_ordine(testo,titolo,prezzo){
         '            </div>\n' +
         '            <div class="row">\n' +testo+
         '            </div>\n' +
-        '            <div class="row titolo">\n' +'Totale:\n' +prezzo.toFixed(2)+
+        '            <div class="row titolo">\n' +'Totale:\n' +prezzo+
         '            euro</div>\n' +
         '        </div>\n' +
         '        <div class="row col-12 col-md-3 col-sm-12">\n' +
-        '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="edit-button">\n' +
-        '                    <i class="zmdi zmdi-edit"></i><label id="edit">Edit</label>\n' +
-        '            </button></div>\n' +
         '            <div class="col-12 col-sm-12 col-md-6"><button class="btn btn-sm " id="delete-button" onclick="ticket()">\n' +
         '                <i class="zmdi zmdi-notifications"></i>\n<label id="delete" >Ticket</label>\n' +
         '            </button></div>\n' +

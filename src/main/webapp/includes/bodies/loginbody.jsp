@@ -3,6 +3,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%
+    /*
+    controllo dello username e della password inseriti, se non sono corretti si chiede il reinserimento
+     */
     String error = request.getParameter("error");
     if(error != null){
         if(error.equals("errore1")){

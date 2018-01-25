@@ -115,9 +115,15 @@
 #dropdowCat>li:hover{
     background-color: whitesmoke;
 }
+.custom-select{
+    background-color: white;
+}
 
+.custom-select > option{
+    background-color: white;
+}
 .ricerca{
-    height: 40px;
+    height: 35px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -127,8 +133,54 @@
 .gruppo{
     width: 100%;
 }
+.form{
+    text-align: center;
+}
+.custom-select, .custom-file{
+    margin: 20;
+    margin-bottom :5px;
+    width: 90%;
 
+}
+.custom-file{
 
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 10px;
+}
+
+.btn-outline-secondary{
+    width :50%;
+    height :40px;
+}
+.btn-outline-secondary:hover{
+    background-color :lightgray;
+}
+
+.caption>p{
+    height:95px;
+    overflow: hidden;
+}
+
+.list-group-image{
+    max-height: 250px;
+    min-height: 250px;
+}
+
+.thumbnail{
+    height: 450px;
+}
+
+.form-control, .ricerca, .pull-right{
+    height: 50px;
+}
+#grid,#list{
+    height: 40px;
+    width: 90px;
+    padding: 10px;
+}
 
 @media screen and (min-width: 700px) {
     #filter-bottom{
@@ -149,6 +201,41 @@
     .gruppo{
         width: 700px;
     }
+    .custom-select, .custom-file{
+        margin: 0;
+        width: auto;
+
+    }
+    .custom-file{
+        width:500px;
+        border-radius: 5px;
+        margin-right: 5px;
+        margin-left: 5px;
+        padding: 10px;
+    }
+
+    .btn-outline-secondary{
+        width :auto;
+        height :35px;;
+    }
+    .form-group{
+        float: left;
+        margin-left :50px;
+        margin-right: 50px;
+    }
+    .panel-body{
+        margin-right:150px;
+        margin-left: 150px;
+    }
+    .form-control, .ricerca, .pull-right{
+        height: 35px;;
+    }
+    #grid,#list{
+        height: 30px;
+        width: 70px;
+        padding: 5px;
+    }
+
 }
 
 

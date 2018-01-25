@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Gen 25, 2018 alle 12:39
+-- Creato il: Gen 25, 2018 alle 19:46
 -- Versione del server: 10.1.26-MariaDB
 -- Versione PHP: 7.1.9
 
@@ -137,7 +137,47 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (112, 'Samsung Electronics', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 9, 1597.99, 'Elettronica', 1),
 (113, 'HP Printer', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 9, 50, 'Elettronica', 1),
 (114, 'GoPro HERO6 Black', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 17, 399, 'Elettronica', 1),
-(115, 'Samsung 32GB 95 MicroSD EVO Select Memory Card with Adapte', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 17, 12.99, 'Elettronica', 1);
+(115, 'Samsung 32GB 95 MicroSD EVO Select Memory Card with Adapte', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 17, 12.99, 'Elettronica', 1),
+(116, 'Dynacraft Mens', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', 9, 150, 'Sport', 2),
+(117, 'Bike Lock Cable', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', 9, 12.97, 'Sport', 3.5),
+(118, 'BV 30FT Security Steel ', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', 9, 19.99, 'Sport', 3),
+(119, 'Trimax lock', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', 9, 10.94, 'Sport', 3.5),
+(120, 'Motorcycle Cover ', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.', 9, 16.99, 'Sport', 5),
+(121, 'Bici Ibrida Cicli Adriatica', 'Bici Ibrida Cicli Adriatica', 9, 273, 'Sport', 3.6),
+(122, 'MBM LIFE IBRIDA', '', 9, 299, 'Sport', 3.9),
+(123, 'Sportstech Cyclette', 'Sportstech Cyclette', 9, 629, 'Sport', 5),
+(124, 'Tappetino 2000x1000x6 mm', 'Tappetino 2000x1000x6 mm', 9, 49.9, 'Sport', 2.6),
+(125, 'Sportstech F38 Tapis roulant elettrico ', 'Sportstech F38 Tapis roulant elettrico ', 9, 500, 'Sport', 4),
+(126, 'Klarfit Pacemaker X3 nastro tapis roulant ', 'Klarfit Pacemaker X3 nastro tapis roulant ', 9, 260, 'Sport', 2.3),
+(127, 'Mountain Warehouse Maglietta a maniche lunghe da donna', 'Mountain Warehouse Maglietta a maniche lunghe da donna', 9, 17, 'Sport', 2.6),
+(128, 'Mountain Warehouse T-shirt melange da donna Panna', 'Mountain Warehouse T-shirt melange da donna Panna', 9, 6, 'Sport', 2),
+(129, 'Fitbit Charge 2 Braccialetto Monitoraggio Battito Cardiaco e Attività Fisica', 'Fitbit Charge 2 Braccialetto Monitoraggio Battito Cardiaco e Attività Fisica', 9, 60, 'Sport', 5),
+(130, 'MOVIT® Twin Set di pesi da polso', 'MOVIT® Twin Set di pesi da polso o di caviglia, armatura, pesi da 0,5 kg, ', 9, 30, 'Sport', 4),
+(131, 'Fasce elastiche di resistenza ', 'Fasce elastiche di resistenza - Set da 4 bande fitness premium allenamento - Perfette per migliorare forza e mobilità, yoga, pilates o per riabilitazione dopo un infortunio - Adatte a uomini e donne - In lattice ', 9, 27, 'Sport', 3),
+(132, 'Bande elastiche', 'Bande elastiche di resistenza - Il set di quattro pezzi include tre bande extra lunghe e ganci per la porta. Allenati ovunque ', 9, 38, 'Sport', 3),
+(133, 'Tunturi 14TUSFU135 Palla Da Ginnastica', 'Tunturi 14TUSFU135 Palla Da Ginnastica, Unisex – Adulto, Blu, Diametro 65 cm', 9, 23, 'Sport', 4),
+(134, 'Tunturi 14Tusyo002 Cuscino Pilates, Unisex', 'Tunturi 14Tusyo002 Cuscino Pilates, Unisex – Adulto, Turchese, 33 x 33 x 8 cm', 9, 35, 'Sport', 4),
+(135, 'Sissel 161040 Balance Board, Unisex ', 'Sissel 161040 Balance Board, Unisex ', 9, 17, 'Sport', 5),
+(136, 'MIUSOL Vintage Donna Pizzo Vestito Slim Una Spalla Abiti Da Sera', 'MIUSOL Vintage Donna Pizzo Vestito Slim Una Spalla Abiti Da Sera', 14, 19.99, 'Abbigliamento', 5),
+(137, 'MIUSOL Vintage Donna Pizzo Vestito Slim Una Spalla Abiti Da Sera', 'MIUSOL Vintage Donna Pizzo Vestito Slim Una Spalla Abiti Da Sera', 14, 20, 'Abbigliamento', 5),
+(138, 'Abito rosa', 'Abito rosa lungo', 14, 25, 'Abbigliamento', 5),
+(139, 'Abito rosso', 'Abito lungo rosso', 14, 26, 'Abbigliamento', 4.8),
+(140, 'Abito rosa', 'Abito lungo rosa', 14, 30, 'Abbigliamento', 5),
+(141, 'Abito azzurro', 'Abito lungo', 14, 60, 'Abbigliamento', 5),
+(142, 'Abito bianco', 'Abito corto bianco', 14, 90, 'Abbigliamento', 5),
+(143, 'Abito bianco', 'Abito bianco', 14, 250, 'Abbigliamento', 5),
+(144, 'Abito beige', 'Abito corto', 14, 25, 'Abbigliamento', 2),
+(145, 'Pantaloni uomo', 'pantaloni grigi', 14, 56, 'Abbigliamento', 3.6),
+(146, 'Pantaloni verde militare', 'pantaloniverde militare', 14, 58, 'Abbigliamento', 5),
+(147, 'Pantaloni tuta', 'pantaloni tuta rossi', 14, 10, 'Abbigliamento', 3.6),
+(148, 'Pantaloni eleganti', 'Pantaloni eleganti blu', 14, 35, 'Abbigliamento', 3.9),
+(149, 'Pantaloni pelle', 'Pantaloni pelle neri', 14, 36, 'Abbigliamento', 4.6),
+(150, 'Polo', 'Polo bianca', 14, 25, 'Abbigliamento', 3.2),
+(151, 'Maglietta colorata', 'Maglietta maniche corte', 14, 52, 'Abbigliamento', 2.1),
+(152, 'Maglia blu', 'Maglia maniche lunghe blu e grigia', 14, 32, 'Abbigliamento', 2.8),
+(153, 'T shirt pollon', 't shirt pollon bianca', 14, 16.99, 'Abbigliamento', 2.3),
+(154, 'Maglia bianca', 'Maglia bianca', 14, 14.58, 'Abbigliamento', 4),
+(155, 'Maglia bianca', 'Maglia bianca disegno collana', 14, 59, 'Abbigliamento', 3.8);
 
 --
 -- Dump dei dati per la tabella `articoloordine`
@@ -171,7 +211,7 @@ INSERT INTO `immaginiarticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
 (1, 'https://s3-eu-west-1.amazonaws.com/s3.quotidiano.net/data/images/gallery/2013/80237/topolino.jpg', 25),
 (2, 'http://milano.repubblica.it/images/2013/04/11/123741360-af54e18b-b08b-4f11-9c46-a0e5ea104be2.jpg', 24),
 (118, 'https://static.lafeltrinelli.it/static/frontside/xxl/601/6990601_1502785.jpg', 17),
-(119, 'http://www.eurodiffusione.com/images/P/11950800.jpg', 11),
+(119, 'http://ektor.org.uk/images/bags_ek/10010/sl-xx-10010-02.jpg', 11),
 (120, 'https://shop.vertecchi.com/73745-home_default/tucano-custodia-neoprene-colore-p-pc-13-14-rosso-bfc1314-r.jpg', 16),
 (121, 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/9881/9881868_ra.jpg;maxHeight=640;maxWidth=550', 47),
 (122, 'https://images-eu.ssl-images-amazon.com/images/I/410Ap0-d+7L._AC_US218_.jpg', 12),
@@ -279,7 +319,48 @@ INSERT INTO `immaginiarticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
 (250, 'https://img.ibs.it/images/9788863931815_0_0_1536_75.jpg', 94),
 (251, 'http://product-images.www8-hp.com/digmedialib/prodimg/lowres/c02949277.png', 113),
 (252, 'https://icdn4.digitaltrends.com/image/gopro-hero-4-black-front-full-800x533-c.jpg?ver=1', 114),
-(253, 'https://i.ebayimg.com/images/g/hngAAOSw8btZf-9I/s-l300.jpg', 115);
+(253, 'https://i.ebayimg.com/images/g/hngAAOSw8btZf-9I/s-l300.jpg', 115),
+(275, 'https://images-na.ssl-images-amazon.com/images/I/41DtMSK5EPL._SX355_.jpg', 116),
+(276, 'http://thebestbikelock.com/wp-content/uploads/2016/01/kryptonite-cable.jpg', 117),
+(277, 'https://images-na.ssl-images-amazon.com/images/I/81w1enh7tJL._SL1500_.jpg', 118),
+(278, 'http://i1.adis.ws/i/washford/271608?w=637&h=403', 119),
+(279, 'https://images-na.ssl-images-amazon.com/images/I/810nq1Hbz4L._SX355_.jpg', 120),
+(280, 'https://images-na.ssl-images-amazon.com/images/I/411iK1aLThL.jpg', 121),
+(281, 'https://images-na.ssl-images-amazon.com/images/I/61NZj9h6woL._SY355_.jpg', 122),
+(282, 'https://images-na.ssl-images-amazon.com/images/I/816sRDDYM7L._SY450_.jpg', 123),
+(283, 'https://images-na.ssl-images-amazon.com/images/I/71UWkcnD6dL._SL1500_.jpg', 124),
+(284, 'https://images-na.ssl-images-amazon.com/images/I/61vbD3U1RjL._SL1500_.jpg', 125),
+(285, 'https://images-eu.ssl-images-amazon.com/images/I/41Z0Z%2BGuN%2BL.jpg', 126),
+(286, 'https://images-eu.ssl-images-amazon.com/images/I/8163-c9jUuL._UL1500_.jpg', 127),
+(287, 'https://images-na.ssl-images-amazon.com/images/I/615jeCYM4tL._SL1227_.jpg', 128),
+(288, 'https://images-na.ssl-images-amazon.com/images/I/615jeCYM4tL._SY550_.jpg', 129),
+(289, 'https://images-na.ssl-images-amazon.com/images/I/81QBcvEEhSL._SL1500_.jpg', 130),
+(290, 'https://images-na.ssl-images-amazon.com/images/I/81scWWPfbbL._SL1500_.jpg', 131),
+(291, 'http://www.fisiocommerce.it/public/products/54.jpg', 132),
+(292, 'https://images-na.ssl-images-amazon.com/images/I/71V1WOmtL5L._SL1500_.jpg', 133),
+(293, 'https://images-na.ssl-images-amazon.com/images/I/81iWoYlP1nL._SL1500_.jpg', 134),
+(294, 'https://www.pilates.de/media/catalog/product/cache/1/small_image/315x210/9df78eab33525d08d6e5fb8d27136e95/s/i/sissel-balancefit-03_1.jpg', 135),
+(295, 'https://images.sissel.com/images/it/products/fit_dome8_t_9851.jpg', 134),
+(296, 'https://ae01.alicdn.com/kf/HTB1feLxRVXXXXbsXpXXq6xXFXXXT/Manica-lunga-Pizzo-Nero-Abiti-Da-Sera-2017-abiti-da-festa-Splendida-Promenade-Della-Sirena-Vestito.jpg_640x640.jpg', 136),
+(297, 'https://www.trubridal.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/o/xmother-of-the-bride-dresses-mw_mb_0155.jpg.pagespeed.ic.veJOJtHSmo.jpg', 137),
+(298, 'http://static.pourfemme.it/r/845X0/moda.pourfemme.it/img/Abito-da-cerimonia-in-pizzo.jpg', 138),
+(299, 'http://www.elenielias.com/col_evening/full/P577_1.jpg', 139),
+(300, 'https://images-na.ssl-images-amazon.com/images/I/61IYj06odQL._UY445_.jpg', 140),
+(301, 'https://d1yd9ixvrhfvhu.cloudfront.net/29121-large_default/abito-da-sera-acquamarina-di-pizzo-scollato-dietro.jpg', 141),
+(302, 'http://redpassionstyle.com/857-thickbox/mini-abito-pizzo-donna-vestito-da-sera-sexy-corto-girocollo-elegante-ds22384.jpg', 142),
+(303, 'https://sites.create-cdn.net/siteimages/32/1/4/321454/10/2/8/10285610/667x1000.jpg?1440527480', 143),
+(304, 'http://img.thewebery.com/1/1e/1e6/l/6c157ff272cdc4364410ccf0e1a4ba8a.jpg', 144),
+(305, 'https://d2a78lufyeqvxg.cloudfront.net/media/catalog/product/P/a/Pantalonicarrotincotone_pantaloni_antonymorato_MMTR00376-FA850140-9000-1-W00362_01.jpg', 145),
+(306, 'https://i.ebayimg.com/00/s/MTYwMFg5OTA=/z/dTQAAOSwr7tZg7EY/$_57.JPG?set_id=8800005007', 146),
+(307, 'https://www.shopsundek.com/upload/articoli/zoom/PANTALONI-UOMO-IN-FELPA-CON-SCRITTA-SUNDEK_7138.jpg', 147),
+(308, 'https://cdn.lanieri.com/images/images/000/547/815/big/b646b092a0e9e253ff8f005ace7fd9ed.jpg', 148),
+(309, 'https://images-eu.ssl-images-amazon.com/images/I/613BHY62K4L._UX385_.jpg', 149),
+(310, 'https://static8.cilory.com/273490-thickbox_default/nologo-white-polo-t-shirt-with-denim-collar.jpg', 150),
+(311, 'https://image1.lacoste.com/dw/image/v2/AAQM_PRD/on/demandware.static/Sites-IT-Site/Sites-master/it/dwca03ae90/TH8001_KDE_24.jpg?sw=460&sh=460&sm=fit', 151),
+(312, 'https://vicmetri.com/wp-content/uploads/2017/11/3.jpeg', 152),
+(313, 'https://images-eu.ssl-images-amazon.com/images/I/71gaSw0qhkL._UX385_.jpg', 153),
+(314, 'https://cdn.shopify.com/s/files/1/1208/8016/products/Render_prodotti_02_abaa469e-8949-4a42-9374-1e071ed2244f.jpg?v=1512766936', 154),
+(315, 'http://www.micaletto.it/thumbnail/get/originali/armani-jeans-t-shirt-donna-da-3463.jpg', 155);
 
 --
 -- Dump dei dati per la tabella `immaginiutente`
@@ -328,7 +409,8 @@ INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VAL
 (9, 27, '2018-01-19', 'b3823eb71775bf6b90be443b11ad427820cc3d8d12b8884b9e69fa597c021144'),
 (10, 29, '2018-01-25', '1b623f0bc8c8132d75b4c512db279821efa7c6bad4520a87214f68434aebecd5'),
 (11, 28, '2018-01-25', '5477548d36b214f0e79b518638fb0690f45c64cbb553d0974948f18fe5308021'),
-(12, 29, '2018-01-25', '97c1fe55817c42d95b33ba4049a989fcfb40bb0c7155143b624e6aa7ab5b5bc4');
+(12, 29, '2018-01-25', '97c1fe55817c42d95b33ba4049a989fcfb40bb0c7155143b624e6aa7ab5b5bc4'),
+(13, 29, '2018-01-25', 'dfdcf6155d49c285f53aca284354f033ae7e416db4db112931c36152f3fad373');
 
 --
 -- Dump dei dati per la tabella `utente`
@@ -336,7 +418,7 @@ INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VAL
 
 INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`, `Validato`, `validationhash`) VALUES
 (1, 'Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas'),
-(2, 'Giulia', 'giu1', 'Giulia', 'NardÃ²', 'giu@nardo.it', '1996-08-12', 'Administrator', 'true', 'asdasdas'),
+(2, 'Giulia', 'giu1', 'Giulia', 'Nardò', 'giu@nardo.it', '1996-08-12', 'Administrator', 'true', 'asdasdas'),
 (3, 'Debla', 'debla1', 'Simone', 'De Blasiis', 'simo@debla.it', '1996-02-12', 'User', 'true', 'asdasdas'),
 (4, 'Simo', 'simo1', 'Simone', 'De Cassan', 'simo@deca.it', '1998-08-16', 'Seller', 'true', 'asdasdas'),
 (5, 'Giada', 'giada1', 'Giada', 'Nunzia', 'giada@nunzia.it', '1994-05-14', 'Seller', 'true', 'asdasdas'),

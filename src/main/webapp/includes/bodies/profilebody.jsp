@@ -45,7 +45,7 @@
                 }
             }
         }
-
+        path = utente.getImmagineUtente().getPercorso();
         database.close();
     }
         if (isLogged){
@@ -76,6 +76,7 @@
                      %>
                         src="<%=path%>"
                     <%
+                    System.out.println(path);
                     }
                     %>
                      id="profile-image1" class="img-circle img-responsive">

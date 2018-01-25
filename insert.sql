@@ -313,7 +313,9 @@ INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Em
 (25, 'giacchina3', 'mela', 'Melinda', 'Giacca', 'giacchina@gmail.com', '1963-07-14', 'User', 'true', 'asad'),
 (26, 'selli8', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '1976-03-16', 'User', '', ''),
 (27, 'pippo1', '982c38dc43dc57c14adebe399c6556893b5114c877d90b83921b2e0945191801', 'pippo', 'pippo', 'l@h.com', '2018-01-17', 'Seller', 'false', '33d2cf014275ec8f7ab705bb59780829089250e182f7a510aca578f27daf78a6'),
-(28, 'pippoAdmin', '69842058052e167cba8a62acf64dd207d936f0ea2977190df543ea8e26859aa9', 'PippoA', 'pippo', 'l@h.com', '1998-01-17', 'User', 'false', '19c96d8d4cab0b2ce07cd0af59f9c6473e2106d8a259df027501f8752d630d24');
+(28, 'pippoAdmin', '69842058052e167cba8a62acf64dd207d936f0ea2977190df543ea8e26859aa9', 'PippoA', 'pippo', 'l@h.com', '1998-01-17', 'User', 'false', '19c96d8d4cab0b2ce07cd0af59f9c6473e2106d8a259df027501f8752d630d24'),
+(29, 'giuPippo', 'fe479ce9949e8a82afe8fb4e46befb7dfbd2cd745608d6dbb7810ee7a65e67f5', 'Giulia', 'Absolute', 'l@h.com', '1996-01-25', 'User', 'false', '95b051c695123fe7bad6637a093ed82d0f852034b3b87b6b516af20bb4324c03');
+
 
 --
 -- Dump dei dati per la tabella `venditore`
@@ -332,6 +334,8 @@ INSERT INTO `venditore` (`IdVenditore`, `IdUtente`, `NomeNegozio`, `RagioneSocia
 (15, 20, 'Trold', NULL, '12897589456', '128975894560', 'Via UU', NULL),
 (16, 22, 'Polly', NULL, '12897589452', '128975894520', 'Via Ulp 5', NULL),
 (17, 27, 'pippo', 'n', '12345678912', '123456789784', 'Topolandia', 2.3);
+
+INSERT INTO `immaginiutente`(`IdImmagine`, `Percorso`, `IdUtente`) VALUES (1,'./images/immProfile.PNG',29);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -54,7 +54,7 @@ create table recensioneArticoli (
   Voto int,
   Testo varchar(255),
   IdArticolo int,
-  foreign key (IdArticolo) references articolo(IdArticolo),
+  foreign key (IdOrdine) references articolo(IdArticolo),
   foreign key (IdUtente) references utente(IdUtente)
 );
 
@@ -108,17 +108,12 @@ create table articoloOrdine (
 );
 create table ticket (
   IdTicket int AUTO_INCREMENT primary key,
-  Titolo varchar(100) not null,
   IdOrdine int,
-  IdArticolo int,
-  IdVenditore int,
   IdUtente int,
+  TipoTicket enum("Rimborso", "Ritardo", "Danneggiato", "Altro"),
   Testo varchar(255) not null,
-  Stato enum ("Aperto", "In_Lavorazione", "Chiuso_con_successso", "Annullato"),
-  foreign key (IdOrdine) references ordine(IdOrdine),
-  foreign key (IdArticolo) references articolo(IdArticolo),
-  foreign key (IdVenditore) references venditore(IdVenditore),
-  foreign key (IdUtente) references utente(IdUtente)
+  Stato enum ("Aperto", "Lavorazione", "Chiuso", "Annullato"),
+  foreign key (IdOrdine) references ordine(IdOrdine)
 );
 create table notification (
   IdNotifica int AUTO_INCREMENT PRIMARY KEY,

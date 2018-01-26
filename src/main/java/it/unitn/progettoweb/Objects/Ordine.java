@@ -1,5 +1,6 @@
 package it.unitn.progettoweb.Objects;
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Ordine {
 
@@ -12,8 +13,9 @@ public class Ordine {
     private TipoOrdine tipoOrdine;
     private boolean pagRicevuto;
     private boolean ricevuto;
+    private ArrayList<Articolo> articoli = new ArrayList<>();
 
-    public Ordine(int idOrdine, int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine,boolean pagRicevuto, boolean ricevuto){
+    public Ordine(int idOrdine, int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine, boolean pagRicevuto, boolean ricevuto, ArrayList<Articolo> articoli) {
         this.idOrdine = idOrdine;
         this.idVenditore = idVenditore;
         this.idUtente = idUtente;
@@ -21,8 +23,21 @@ public class Ordine {
         this.dataOrdine = dataOrdine;
         this.dataSpedizione = dataSpedizione;
         this.tipoOrdine = tipoOrdine;
+        this.pagRicevuto = pagRicevuto;
         this.ricevuto = ricevuto;
+        this.articoli = articoli;
+    }
 
+    public Ordine(int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine, boolean pagRicevuto, boolean ricevuto, ArrayList<Articolo> articoli) {
+        this.idVenditore = idVenditore;
+        this.idUtente = idUtente;
+        this.prezzoTot = prezzoTot;
+        this.dataOrdine = dataOrdine;
+        this.dataSpedizione = dataSpedizione;
+        this.tipoOrdine = tipoOrdine;
+        this.pagRicevuto = pagRicevuto;
+        this.ricevuto = ricevuto;
+        this.articoli = articoli;
     }
 
     public int getIdOrdine() {
@@ -95,5 +110,13 @@ public class Ordine {
 
     public void setRicevuto(boolean ricevuto) {
         this.ricevuto = ricevuto;
+    }
+
+    public ArrayList<Articolo> getArticoli() {
+        return articoli;
+    }
+
+    public void setArticoli(ArrayList<Articolo> articoli) {
+        this.articoli = articoli;
     }
 }

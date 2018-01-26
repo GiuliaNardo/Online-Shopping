@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Database {
-    //TODO SICURO: ticket, ricerca   FORSE: insert recensioneArticoli, insert recensioneVenditore
+    //TODO SICURO: ticket
     private Connection connection = null;
 
     /***
@@ -483,41 +483,31 @@ public class Database {
     }
 
     /***
-     * Serve ad inserire un nuovo ordine
-     * @param idVenditore Id del venditore che ha effettuato la vendita
-     * @param idUtente  Id dell'utente che ha effettuato l'acquisto
-     * @param prezzoTot Prezzo totale dell'ordine
-     * @param date Data in cui viene effettuato l'ordine (java.util.Date)
-     * @param instapayed True se l'utente ha pagato con carta di credito o PayPal, false se paga con bonifico
-     * @param isShipment True se l'ordine dev'essere spedito, false se viene ritirato in negozio
-     * @param items ArrayList di Integer che contiene gli id degli articoli che sono stati acquistati
-     * @return Restituisce true se l'inserimento è andato a buon fine false se è fallito
+     * Inserisce un ordine nel db
+     * @param ordine l'ordine da inserire nel db
+     * @return true se l'inserimento è andato a buon fine false se è fallito
      */
-    public boolean insertOrder(int idVenditore, int idUtente, float prezzoTot, Date date, boolean instapayed, boolean isShipment, ArrayList<Integer> items) {
+
+    public boolean insertOrder(Ordine ordine) {
         boolean insertSuccesful = false;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            java.sql.Date sqlDate = java.sql.Date.valueOf(dateFormat.format(date).toString());
+            java.sql.Date sqlDate = java.sql.Date.valueOf(dateFormat.format(ordine.getDataOrdine()).toString());
             String enumPayment = "";
-            if (instapayed) {
+            if (ordine.getPagRicevuto()) {
                 enumPayment = "TRUE";
             } else {
                 enumPayment = "FALSE";
             }
-            String orderType = "";
-            if (isShipment) {
-                orderType = "spedizione";
-            } else {
-                orderType = "ritiro";
-            }
+
 
             String query = "INSERT INTO ordine (IdVenditore,IdUtente,PrezzoTot,DataOrdine,TipoOrdine,PagamentoRicevuto,Ricevuto) VALUES (?,?,?,?,?,?,?);";
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, idVenditore);
-            preparedStatement.setInt(2, idUtente);
-            preparedStatement.setFloat(3, prezzoTot);
+            preparedStatement.setInt(1, ordine.getIdVenditore());
+            preparedStatement.setInt(2, ordine.getIdUtente());
+            preparedStatement.setFloat(3, ordine.getPrezzoTot());
             preparedStatement.setDate(4, sqlDate);
-            preparedStatement.setString(5, orderType);
+            preparedStatement.setString(5, ordine.getTipoOrdine().toString());
             preparedStatement.setString(6, enumPayment);
             preparedStatement.setString(7, "FALSE");
             if (preparedStatement.executeUpdate() > 0) {
@@ -526,14 +516,14 @@ public class Database {
                 PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
                 ResultSet resultSet = preparedStatement.getGeneratedKeys();
                 int idOrdine = resultSet.getInt(1);
-                for (Integer itemId : items) {
+                for (Articolo articolo : ordine.getArticoli()) {
                     preparedStatement2.setInt(1, idOrdine);
-                    preparedStatement2.setInt(2, itemId);
+                    preparedStatement2.setInt(2, articolo.getIdArticolo());
                     preparedStatement2.addBatch();
                 }
                 int[] batchEdits = preparedStatement2.executeBatch();
                 connection.commit();
-                if (batchEdits.length == items.size()) {
+                if (batchEdits.length == ordine.getArticoli().size()) {
                     insertSuccesful = true;
                 } else {
                     insertSuccesful = false;
@@ -708,8 +698,8 @@ public class Database {
     }
 
     /***
-     * restituisce le categorie presenti nel database
-     * @reutn arraylist
+     * Restituisce le categorie presenti nel database
+     * @return ArrayList di Categoria
      */
     public ArrayList<Categoria> getCategorie(){
         ArrayList<Categoria> categorie = new ArrayList<>();
@@ -866,7 +856,35 @@ public class Database {
                     ricevuto = false;
                 }
 
-                ordini.add(new Ordine(idOrdine,idVenditore,idUtente,prezzoTot,dataOrdine,dataSpedizione,tipoOrdine,pagRicevuto,ricevuto));
+                ArrayList<Articolo> articoli = new ArrayList<>();
+                ResultSet resultSet2;
+                Statement statement = null;
+                String sql = "SELECT * FROM articolo WHERE IdArticolo IN (SELECT IdArticolo FROM articoloOrdine WHERE IdOrdine = "+ idOrdine + ");";
+                statement = connection.createStatement();
+                resultSet2 = statement.executeQuery(sql);
+                String sql2 = "SELECT * FROM ImmaginiArticoli WHERE IdArticolo = ?";
+                PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+                ResultSet resultSet3;
+                while (resultSet2.next()) {
+                    int idArticolo = resultSet2.getInt("IdArticolo");
+                    preparedStatement2.setInt(1, idArticolo);
+                    resultSet3 = preparedStatement2.executeQuery();
+                    ArrayList<ImmagineArticolo> immaginiArticoli = new ArrayList<>();
+                    while(resultSet3.next()) {
+                        int id = resultSet3.getInt("IdImmagine");
+                        String path = resultSet3.getString("Percorso");
+                        immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
+                    }
+                    String titolo = resultSet2.getString("Nome");
+                    String descrizione = resultSet2.getString("Descrizione");
+                    float prezzo = resultSet2.getFloat("Prezzo");
+                    String categoria = resultSet2.getString("Categoria");
+                    float voto = resultSet2.getFloat("Voto");
+                    articoli.add(new Articolo(idArticolo, descrizione, titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
+                }
+
+
+                ordini.add(new Ordine(idOrdine,idVenditore,idUtente,prezzoTot,dataOrdine,dataSpedizione,tipoOrdine,pagRicevuto,ricevuto, articoli));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -975,7 +993,6 @@ public class Database {
                 Utente utente = getUtente(idUtente);
                 int voto = resultSet.getInt("Voto");
                 String testo = resultSet.getString("Testo");
-
                 recensioniArticolo.add(new RecensioneArticolo(id,utente,voto,testo,articolo.getIdArticolo()));
                 }
 
@@ -984,6 +1001,31 @@ public class Database {
         }
 
         return recensioniArticolo;
+    }
+
+    /***
+     * Funzione che inserisce una recensione ad un determinato articolo
+     * @param recensioneArticolo la recensione da inserire nel database
+     * @return true se l'insert è andato a buon fine false se c'è stato un errore
+     */
+
+    public boolean insertRecensioneArticolo(RecensioneArticolo recensioneArticolo) {
+        boolean insertSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO recensioneArticoli (IdUtente, Voto, Testo, IdArticolo) VALUES (?,?,?,?);");
+            preparedStatement.setInt(1, recensioneArticolo.getUtente().getId());
+            preparedStatement.setInt(2, recensioneArticolo.getVoto());
+            preparedStatement.setString(3, recensioneArticolo.getTesto());
+            preparedStatement.setInt(4, recensioneArticolo.getIdArticolo());
+            if (preparedStatement.executeUpdate() > 0) {
+                insertSuccesful = true;
+            } else {
+                insertSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return insertSuccesful;
     }
 
     /***

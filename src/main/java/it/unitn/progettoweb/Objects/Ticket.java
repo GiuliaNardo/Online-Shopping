@@ -1,52 +1,29 @@
 package it.unitn.progettoweb.Objects;
 
 public class Ticket {
-    private int idTicket;
-    private String titolo;
+
+    private int id;
     private int idOrdine;
-    private int idArticolo;
-    private int idVenditore;
     private int idUtente;
+    private TipoTicket tipoTicket;
     private String testo;
-    private enum stato{
-        Aperto, In_Lavorazione, Chiuso_con_Successo, Annullato
-    }
+    private StatoTicket statoTicket;
 
-    /**
-     *
-     * @param idTicket
-     * @param titolo
-     * @param idOrdine
-     * @param idArticolo
-     * @param idVenditore
-     * @param idUtente
-     * @param testo
-     */
-
-    public Ticket(int idTicket, String titolo, int idOrdine, int idArticolo, int idVenditore, int idUtente, String testo) {
-        this.idTicket = idTicket;
-        this.titolo = titolo;
+    public Ticket(int id, int idOrdine, int idUtente, TipoTicket tipoTicket, String testo, StatoTicket statoTicket) {
+        this.id = id;
         this.idOrdine = idOrdine;
-        this.idArticolo = idArticolo;
-        this.idVenditore = idVenditore;
         this.idUtente = idUtente;
+        this.tipoTicket = tipoTicket;
         this.testo = testo;
+        this.statoTicket = statoTicket;
     }
 
-    public int getIdTicket() {
-        return idTicket;
+    public int getId() {
+        return id;
     }
 
-    public void setIdTicket(int idTicket) {
-        this.idTicket = idTicket;
-    }
-
-    public String getTitolo() {
-        return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getIdOrdine() {
@@ -57,22 +34,6 @@ public class Ticket {
         this.idOrdine = idOrdine;
     }
 
-    public int getIdArticolo() {
-        return idArticolo;
-    }
-
-    public void setIdArticolo(int idArticolo) {
-        this.idArticolo = idArticolo;
-    }
-
-    public int getIdVenditore() {
-        return idVenditore;
-    }
-
-    public void setIdVenditore(int idVenditore) {
-        this.idVenditore = idVenditore;
-    }
-
     public int getIdUtente() {
         return idUtente;
     }
@@ -81,11 +42,27 @@ public class Ticket {
         this.idUtente = idUtente;
     }
 
+    public TipoTicket getTipoTicket() {
+        return tipoTicket;
+    }
+
+    public void setTipoTicket(TipoTicket tipoTicket) {
+        this.tipoTicket = tipoTicket;
+    }
+
     public String getTesto() {
         return testo;
     }
 
     public void setTesto(String testo) {
         this.testo = testo;
+    }
+
+    public StatoTicket getStatoTicket() {
+        return statoTicket;
+    }
+
+    public void setStatoTicket(StatoTicket statoTicket) {
+        this.statoTicket = statoTicket;
     }
 }

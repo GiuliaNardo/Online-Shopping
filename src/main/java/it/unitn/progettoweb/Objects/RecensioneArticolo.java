@@ -1,34 +1,29 @@
 package it.unitn.progettoweb.Objects;
 
 public class RecensioneArticolo {
-    private int idRecArt;
+    private int id;
     private Utente utente;
     private int voto;
     private String testo;
     private int idArticolo;
 
-    /**
-     *
-     * @param idRecArt
-     * @param utente
-     * @param voto
-     * @param testo
-     * @param idArticolo
-     */
-    public RecensioneArticolo(int idRecArt, Utente utente, int voto, String testo, int idArticolo) {
-        this.idRecArt = idRecArt;
+    public RecensioneArticolo(int id, Utente utente, int voto, String testo, int idArticolo) {
+        this.id = id;
         this.utente = utente;
         this.voto = voto;
         this.testo = testo;
         this.idArticolo = idArticolo;
     }
 
-    public int getIdRecArt() {
-        return idRecArt;
+    public RecensioneArticolo(Utente utente, int voto, String testo, int idArticolo) {
+        this.utente = utente;
+        this.voto = voto;
+        this.testo = testo;
+        this.idArticolo = idArticolo;
     }
 
-    public void setIdRecArt(int idRecArt) {
-        this.idRecArt = idRecArt;
+    public int getId() {
+        return id;
     }
 
     public Utente getUtente() {

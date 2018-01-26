@@ -288,7 +288,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
             '            <div class="thumbnail">\n' +
             '                <img class="group list-group-image" src="'+immagine+'" alt="" />\n' +
             '                <div class="caption">\n' +
-            '                    <h4 class="group inner list-group-item-heading"><a href="../../item.jsp?id='+id+'">'+titolo+'</a></h4> '+
+            '                    <div class="group inner list-group-item-heading"><a href="../../item.jsp?id='+id+'">'+titolo+'</a></div> '+
             '                    <p class="group inner list-group-item-text">'+descrizione+'</p>\n' +
             '                    <div class="row">\n' +
             '                        <div class="col-xs-12 col-md-6">\n' +

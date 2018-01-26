@@ -206,6 +206,10 @@
         width: auto;
 
     }
+    .list-group-item-heading{
+        max-height: 0px;
+        overflow: hidden;
+    }
     .custom-file{
         width:500px;
         border-radius: 5px;

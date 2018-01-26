@@ -1,0 +1,180 @@
+.title{
+    font-size: 1.5em;
+    font-weight:800;
+    margin: auto;
+    margin-left:20px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    font: Roboto;
+    letter-spacing: 2px;
+}
+
+
+#pagingControls ul {
+    display:inline;
+    padding-left:0.5em
+}
+
+#pagingControls li{
+    display:inline;
+    padding:0 0.5em
+}
+
+/*Style main content*/
+
+#nav-home{
+    max-height: 200px;
+}
+
+.cont-two{
+    max-height: 1000px;
+}
+#text-block{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 1.5em;
+    max-height: 6em;
+    margin-bottom: 5px;
+}
+.row{
+    margin: auto;
+}
+.btn{
+    background-color: #ddd;
+    color: black;
+    cursor: pointer;
+    margin-right: 2px;
+    width: 80px;
+}
+#delete, #edit{
+    margin-left: 0.5em;
+    padding-right: 0.5em;
+    font-weight: 200;
+    letter-spacing: 2px;
+}
+/*testo annuncio*/
+
+
+
+.titolo{
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+
+.back{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-container{
+    height: 100%;
+}
+#testo{
+    margin-left: 5px;
+    margin-bottom: auto;
+    cursor: pointer;
+}
+
+
+/*Style insertion*/
+
+.ann-block{
+    position: relative;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.content-block{
+    margin: auto;
+}
+
+#delete-button{
+    background-color: #C63D2E;
+    color:white;
+    width: 100%;
+    height: 50px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+#edit-button{
+    background-color: #336392;
+    color: white;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+
+.nond{
+    margin: 20px;
+}
+
+#noOrders{
+
+    display: none;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.up-ticket, .down-ticket, .btn-ticket{
+    margin-bottom: 20px;
+}
+
+.btn-ticket:hover{
+    background-color: grey;
+}
+.textarea{
+    width: 100%;
+    min-height: 100px;
+}
+
+.select{
+    height: 30px;
+}
+.ticket{
+    display: none;
+}
+
+.align-items-center{
+    background-color: whitesmoke;
+    padding: 30px;
+    margin-bottom : 30px;
+}
+
+
+@media screen and (min-width: 700px) {
+
+    #contentmain{
+
+
+
+    }
+    #delete-button{
+        width: auto;
+        height: auto;
+        font-size: 1em;
+    }
+
+    #edit-button{
+        width: auto;
+        height: auto;
+        margin-bottom: auto;
+        font-size: 1em;
+    }
+    #delete, #edit{
+        font-weight: 500;
+        letter-spacing: 0px;
+    }
+
+}

@@ -20,6 +20,31 @@
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<%
+    Database db = new Database();
+    Utente utente = null;
+    Session sessione = null;
+    Cookie cookies[] = request.getCookies();
+    boolean isLogged = false;
+
+    if(cookies.length != 0) {
+        Database database = new Database();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("SessioneUtente")) {
+                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = database.getUserSession(cookies[i].getValue());
+                    utente = database.getUtente(sessione.getIdUtente());
+                    isLogged = true;
+                }
+            }
+        }
+        database.close();
+    }
+if (isLogged){
+%>
+
 <body>
 <div class="container order-container" id="order-c">
 
@@ -172,4 +197,10 @@
 
 </body>
 
+<%
+    }else{
+        String redirectURL = "../../login.jsp";
+        response.sendRedirect(redirectURL);
 
+    }
+%>

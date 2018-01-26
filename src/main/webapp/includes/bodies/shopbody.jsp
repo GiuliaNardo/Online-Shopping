@@ -21,6 +21,7 @@
 
     AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
     boolean isSearch = false;
+    String q = "";
 
 /*
     i parametri vengono presi dall'url solo se sono diversi dalla stringa vuota
@@ -59,6 +60,7 @@
 
     if(request.getParameter("q")!=null){
         if(!request.getParameter("q").equals("")){
+            q = request.getParameter("q");
             advS1.setTesto(request.getParameter("q"));
             isSearch = true;
         }
@@ -255,7 +257,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
 
                %>
 
-            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>','<%=path%>'));
+            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>'+'€','<%=path%>'));
             <%
             }
         }
@@ -270,6 +272,17 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
     });
     function new_item(id,descrizione,titolo,prezzo,immagine){
         console.log('creato articolo',id)
+        <%
+        if(q != ""){
+        %>
+        var q = "<%=q%>"
+        <%
+        }else{
+        %>
+        var q = ""
+        <%
+        }
+        %>
         return (
             '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +
             '            <div class="thumbnail">\n' +
@@ -282,7 +295,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
             '                            <p class="lead">'+prezzo+'</p>\n' +
             '                        </div>\n' +
             '                        <div class="col-xs-12 col-md-6">\n' +
-            '                            <a class="btn btn-success" href="../../utils/cart.jsp?action=aggiungi&idArticolo='+id+'">Add to cart</a>\n' +
+            '                            <a class="btn btn-success" href="../../utils/cart.jsp?action=aggiungi&idArticolo='+id+'&q='+q+'">Add to cart</a>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
             '                </div>\n' +

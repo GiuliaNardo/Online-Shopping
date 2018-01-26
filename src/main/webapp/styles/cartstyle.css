@@ -70,9 +70,14 @@
     text-align: center;
     padding-left: 10px;
     font-size: 1em;
+    max-height: 100px;
+    overflow: hidden;
+
 }
+
 #testo-piccolo{
     font-size: 0.9em;
+
 }
 .btn-success{
     float: right;

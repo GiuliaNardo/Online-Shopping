@@ -31,13 +31,10 @@
 
     }
     if (utente!= null){
-        if(utente.getTipo().equals(TipoUtente.SELLER)){
+        if(utente.getTipo().equals(TipoUtente.SELLER)) {
             venditore = database.getVenditore(utente);
-            notifiche = database.getUserNotifications(utente);
-        }else if(utente.getTipo().equals(TipoUtente.ADMIN)){
-            notifiche = database.getUserNotifications(utente);
-
         }
+        notifiche = database.getUserNotifications(utente);
     }
 
     ArrayList<Categoria> categorie = database.getCategorie();
@@ -198,9 +195,7 @@
                     }
                 %>
                 <li class="[ hidden-xs ]"><a href="#toggle-search" class="[ animate ]"><span class="[ glyphicon glyphicon-search ]"></span></a></li>
-                <%
-                    if (utente.getTipo().equals(TipoUtente.SELLER)||utente.getTipo().equals(TipoUtente.ADMIN)){
-                %>
+
                 <li>
                     <a href="/notification.jsp" class="[ animate ]" id="a-bell">
                         <div class="bell-off" id="bell-off"><i class="zmdi zmdi-notifications-none zmdi-hc-lg "></i></div>
@@ -208,9 +203,6 @@
                         <div class="bell-on" id="bell-on"><i class="zmdi zmdi-notifications-active zmdi-hc-lg "></i></div>
                     </a>
                 </li>
-                <%
-                    }
-                %>
             </ul>
         </div>
     </div>
@@ -237,7 +229,7 @@
         <%
 
             //TODO: query per sapere se ci sono notifiche non lette
-            if (isLogged && (utente.getTipo().equals(TipoUtente.ADMIN)||utente.getTipo().equals(TipoUtente.SELLER))){
+            if (isLogged ){
 
                 boolean nuove = false;
                 if(notifiche != null){

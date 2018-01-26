@@ -95,7 +95,7 @@
     margin: auto;
 }
 
-#delete-button{
+.delete-button{
     background-color: #C63D2E;
     color:white;
     width: 100%;
@@ -160,7 +160,7 @@
 
 
     }
-    #delete-button{
+    .delete-button{
         width: auto;
         height: auto;
         font-size: 1em;

@@ -72,14 +72,12 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                                              </div>
                                      </div>
                                  <div class="row col-12 col-md-2 col-sm-12" style="float:left">
-                                             <button class="btn btn-sm " id="delete-button" onclick="alert('inviato')">
+                                             <button class="btn btn-sm delete-button" onclick="alert('inviato')">
                                                  <label id="delete" >Send</label>
                                              </button>
                                      </div>
                              </div>
-
-
-                </div>
+                     </div>
 
             </div>
 

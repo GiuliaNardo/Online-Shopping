@@ -257,7 +257,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
 
                %>
 
-            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>','<%=path%>'));
+            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>'+'€','<%=path%>'));
             <%
             }
         }

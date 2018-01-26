@@ -41,8 +41,8 @@
                     <div class="table table-striped">
 
                         <div class="row all-title">
-                            <div class="col-md-3 item-title">Descrizione ordine</div>
-                            <div class="col-md-3 item-title">Categoria</div>
+                            <div class="col-md-4 item-title">Descrizione ordine</div>
+                            <div class="col-md-2 item-title">Categoria</div>
                             <div class="col-md-2 item-title">Quantità</div>
                             <div class="col-md-1 item-title" >Prezzo</div>
                             <div class="col-md-2 item-title" >SubTotale</div>
@@ -152,24 +152,15 @@
 
     function add_articolo(id, nome, descrizione, sub_tot, categoria, quantita,prezzo) {
         return '<div class="row item">\n' +
-            '                            <div class="col-md-3 col-sm-12 articolo">\n' +
+            '                            <div class="col-md-4 col-sm-12 articolo">\n' +
             '                                <div class="el"><a href="#" class="sub-title">'+nome+'</a></div>\n' +
             '                                <div id="testo-piccolo el">'+descrizione+'</div>\n' +
             '                            </div>\n' +
-            '                            <div class="col-md-3 col-sm-12 el"><strong>'+categoria+'</strong></div>\n' +
+            '                            <div class="col-md-2 col-sm-12 el"><strong>'+categoria+'</strong></div>\n' +
             '                            <div class="col-md-2 col-sm-12 el" style="text-align: center">\n' +
             '                                <div class="input-group input-group1">\n' +
-                                    '          <span class="input-group-btn">\n' +
-                                    '              <button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]" id="minus" onclick="diminuisci('+id+','+quantita+')">\n' +
-                                    '                  <span class="glyphicon glyphicon-minus"></span>\n' +
-                                    '              </button>\n' +
-                                    '          </span>\n' +
                                     '          <input type="text" name="quant" class="form-control input-number" id="count" value="'+quantita+'">\n' +
-                                    '          <span class="input-group-btn">\n' +
-                                    '              <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]" id="plus" onclick="aumenta('+id+','+quantita+')">\n' +
-                                    '                  <span class="glyphicon glyphicon-plus"></span>\n' +
-                                    '              </button>\n' +
-                                    '          </span>\n' +
+
                                     '      </div>' +
             '                            </div>\n' +
             '                            <div class="col-md-1 col-sm-12 el text-center"><strong>'+prezzo+'€</strong></div>\n' +

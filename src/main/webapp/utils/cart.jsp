@@ -36,7 +36,7 @@
            if(!esiste){
                carrello.add(db.getArticolo(idArticolo));
            }
-            db.close();
+           db.close();
            response.sendRedirect("../shop.jsp"+q);
        }else{
            carrello = new ArrayList<Articolo>();
@@ -51,12 +51,7 @@
             for (Iterator<Articolo> iterator = carrello.iterator(); iterator.hasNext(); ) {
                 Articolo value = iterator.next();
                 if (value.getIdArticolo() == idArticolo) {
-                    if(value.getQuantitaNelcarrello() > 1){
-                        value.setQuantitaNelcarrello(value.getQuantitaNelcarrello() - 1);
-                    }else{
                         iterator.remove();
-                    }
-
                 }
             }
             db.close();

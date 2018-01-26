@@ -1,6 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
-<%@ page import="it.unitn.progettoweb.utils.Database" %><%--
+<%@ page import="it.unitn.progettoweb.utils.Database" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Federico
   Date: 25/09/2017
@@ -11,9 +12,15 @@
 <%
     Database db = new Database();
     List<Articolo> carrello = null;
-    if(request.getSession().getAttribute("carrello") != null){
-        carrello = (List<Articolo>) request.getSession().getAttribute("carrello");
+    HttpSession sessione = request.getSession();
+    if(sessione.getAttribute("carrello") != null){
+        carrello = (List<Articolo>) sessione.getAttribute("carrello");
+    }else{
+        carrello = new ArrayList<Articolo>();
+        sessione.setAttribute("carrello", carrello);
     }
+
+
 
 %>
 
@@ -98,7 +105,14 @@
 
 
     window.onload = function (){
-        var num_articoli = <%=carrello.size()%>;
+        var num_articoli = 0;
+        <%
+        if(carrello != null){
+        %>
+        num_articoli = <%=carrello.size()%>;
+        <%
+        }
+        %>
         var id;
         var prezzo;
         var sub_tot;
@@ -108,7 +122,6 @@
         var nome;
         var descrizione;
         if(num_articoli > 0){
-
             var j = 0;
             sub_tot = 0;
             tot = 0;
@@ -179,6 +192,9 @@
 
 
 </script>
+<%
+    db.close();
+%>
 
 
 

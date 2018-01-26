@@ -16,6 +16,12 @@
     int idArticolo = Integer.parseInt(request.getParameter("idArticolo"));
     HttpSession sessione = request.getSession();
     boolean esiste = false;
+    String q = "";
+    if(request.getParameter("q")!= ""){
+        q = "?q="+request.getParameter("q");
+    }else{
+        q = "";
+    }
     List<Articolo> carrello = null;
     if (azione.equals("aggiungi")) {
        if(sessione.getAttribute("carrello") != null){
@@ -31,11 +37,11 @@
                carrello.add(db.getArticolo(idArticolo));
            }
             db.close();
-           response.sendRedirect("../shop.jsp");
+           response.sendRedirect("../shop.jsp"+q);
        }else{
            carrello = new ArrayList<Articolo>();
            carrello.add(db.getArticolo(idArticolo));
-           response.sendRedirect("../shop.jsp");
+           response.sendRedirect("../shop.jsp"+q);
        }
        sessione.setAttribute("carrello", carrello);
     }

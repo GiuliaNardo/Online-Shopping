@@ -183,32 +183,35 @@
                         <!-- Wrapper for slides -->
                         <div class="carousel-inner cont-slider" id="imm">
 
-                            <div class="item active" id="pricipale">
-                                <img alt="" title=""
-                                     src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
+
+                            <%
+                                if (item.getImmagini()!=null){
+                                    if (item.getImmagini().size()>0){
+                                        for ( int i = 0; i < item.getImmagini().size();i++){
+                                            if(i==0){
+                            %>
+                            <div class="item active">
+                                <img alt="" title="" src="<%=item.getImmagini().get(i).getPercorso()%>" width="50%">
                             </div>
-                            <div class="item">
-                                <img alt="" title="" src="http://placehold.it/600x400">
+                            <%
+                            }else{
+                            %>
+                            <div class="item " id="pricipale">
+                                <img alt="" title="" src="<%=item.getImmagini().get(i).getPercorso()%>"  width="50%">
                             </div>
-                            <div class="item">
-                                <img alt="" title=""
-                                     src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
-                            </div>
+
+                            <%
+                                            }
+                                        }
+                                    }
+                                }
+                            %>
+
+
+
+
                         </div>
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                            <li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-                                <img class="img-down" alt=""
-                                     src="https://www.unina.it/documents/11897/1757910/01_Pianeta-Terra.jpg/ea26fdcc-067a-4c6d-83b5-66c606592559?t=1428402313173">
-                            </li>
-                            <li class="" data-slide-to="1" data-target="#article-photo-carousel">
-                                <img class="img-down" alt="" src="http://placehold.it/250x180">
-                            </li>
-                            <li class="" data-slide-to="2" data-target="#article-photo-carousel">
-                                <img class="img-down" alt=""
-                                     src="http://bonkaday.com/wp-content/uploads/2016/04/Immagini-belle-di-fiori-3-e1460300355459.jpg">
-                            </li>
-                        </ol>
+
                     </div>
                 </div>
 
@@ -248,14 +251,17 @@
                     <div class="tab-pane fade" id="service-two">
 
                         <section class="item-tab">
+
                             <div class="recensioni testo">
+
                                 <%
-                                    double voto = 0.0;
-                                    if (recensioni.size()>0){
-                                        for (int i =0; i < recensioni.size(); i++){
-                                            if (recensioni.get(i).getVoto()!= 0){
-                                                voto = Math.round(recensioni.get(i).getVoto()*100.0)/100.0;
-                                            }
+                                    if(recensioni!=null){
+                                        double voto = 0.0;
+                                        if (recensioni.size()>0){
+                                            for (int i =0; i < recensioni.size(); i++){
+                                                if (recensioni.get(i).getVoto()!= 0){
+                                                    voto = Math.round(recensioni.get(i).getVoto()*100.0)/100.0;
+                                                }
                                 %>
 
                                 <div class="container recensione">
@@ -274,10 +280,12 @@
                                 <%
                                         }
                                     }
+                                }
+
                                 %>
                             </div>
                         </section>
-
+                        <div id="noOrders" >Nessuna recensione </div>
                     </div>
                 </div>
                 <hr>

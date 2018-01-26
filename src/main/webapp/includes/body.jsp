@@ -54,6 +54,10 @@
             RequestDispatcher rd10= request.getRequestDispatcher("/includes/bodies/checkoutbody.jsp");
             rd10.include(request, response);
             break;
+        case "ticket":
+            RequestDispatcher rd11= request.getRequestDispatcher("/includes/bodies/ticketbody.jsp");
+            rd11.include(request, response);
+            break;
     }
 %>
 

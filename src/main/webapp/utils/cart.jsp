@@ -17,6 +17,7 @@
     HttpSession sessione = request.getSession();
     boolean esiste = false;
     String q = "";
+    String cat = "";
     if(request.getParameter("q")!= ""){
         q = "?q="+request.getParameter("q");
     }else{
@@ -24,7 +25,7 @@
     }
     List<Articolo> carrello = null;
     if (azione.equals("aggiungi")) {
-       if(sessione.getAttribute("carrello") != null){
+        if(sessione.getAttribute("carrello") != null){
            carrello =(List<Articolo>)sessione.getAttribute("carrello");
            for (Iterator<Articolo> iterator = carrello.iterator(); iterator.hasNext(); ) {
                Articolo value = iterator.next();

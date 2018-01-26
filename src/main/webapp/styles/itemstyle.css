@@ -1,22 +1,11 @@
-/*********************************************
-    			Call Bootstrap
-*********************************************/
 
-/*@import url("/bootstrap/bootstrap.min.css");
-@import url("bootstrap-override.css");
-@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
-*/
-/*********************************************
-        		Theme Elements
-*********************************************/
+#noOrders{
 
-.gold{
-    color: #FFBF00;
+    font-size: 1.1em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
 }
-
-/*********************************************
-					PRODUCTS
-*********************************************/
 
 .product{
     border: 1px solid #dddddd;

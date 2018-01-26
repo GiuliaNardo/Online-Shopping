@@ -13,6 +13,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.progettoweb.Objects.Notifica" %>
 <%@ page import="com.google.gson.Gson" %>
+<%@ page import="it.unitn.progettoweb.Objects.TipoUtente" %>
 
 <link rel="stylesheet" type="text/css" href="styles/notificationstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -124,6 +125,7 @@
     }
 
     function new_notification_div(id,testo,titolo,url){
+
         var div = (
             '<div class="row ann-block align-items-center" id="ann" onmouseleave="markAsRead(' + id + ')">'+
             '<a href="'+url+'">'+
@@ -131,12 +133,17 @@
             '</div></a>'+
 
             '<div class="col col-md-3 col-sm-12 col-12">'+
+            <%
+                        if (utente.getTipo().equals(TipoUtente.SELLER)){
 
+                        %>
             '<button class="btn btn-sm" id="edit-button" onclick="myedit(this.getAttribute(\'data-id\'),this.getAttribute(\'data-tipologia\'))">'+
             '<i class="zmdi zmdi-mail-reply"></i>\n<label id="testo">Reply</label>'+
             '</button>'+
             <%
-            if (utente.getTipo().toString().equals("Admin")){
+            }
+
+            if (utente.getTipo().equals(TipoUtente.ADMIN)){
 
             %>
                 '<div class="input-group">\n' +
@@ -145,11 +152,6 @@
             '        <option value="2">Rimborso</option>\n' +
             '        <option value="3">Rigetta anomalia</option>\n' +
             '    </select>\n' +
-                '<div class="input-group-prepend">\n' +
-            '        <div class="input-group-text">\n' +
-            '            <input type="checkbox" aria-label="Checkbox for following text input">\n' +
-            '        </div>\n' +
-            '    </div>'+
             '    <div class="input-group-append">\n' +
             '        <button class="btn btn-outline-secondary" type="submit">Submit</button>\n' +
             '    </div>\n' +
@@ -160,6 +162,7 @@
 
             '</div>'+
             '<div>');
+
         return div;
     }
 

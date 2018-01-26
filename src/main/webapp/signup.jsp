@@ -14,10 +14,13 @@
     <meta http-equiv="refresh" content="15;URL=./login.jsp">
 </head>
 <body>
-<h1>Registrazione avvenuta con successo</h1>
-<p>
-    Tra 15 secondi avverrà un redirect automatico alla pagina di login del sito.<br>
-    Se non vuoi aspettare <a href="./login.jsp">clicca qui</a>.
-</p>
+<div class="container" style="height: 100%">
+    <h1>Registrazione avvenuta con successo</h1>
+    <p>
+        Tra 15 secondi avverrà un redirect automatico alla pagina di login del sito.<br>
+        Se non vuoi aspettare <a href="./login.jsp">clicca qui</a>.
+    </p>
+</div>
+
 </body>
 <%@ include file="./includes/footer.jsp"%>

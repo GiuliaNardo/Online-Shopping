@@ -33,8 +33,8 @@
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
     String path = "";
-
-    if(cookies.length != 0) {
+    System.out.println(cookies.toString());
+    if(cookies != null) {
         Database database = new Database();
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
@@ -45,8 +45,10 @@
                 }
             }
         }
-        if(utente.getImmagineUtente() != null) {
-            path = utente.getImmagineUtente().getPercorso();
+        if(utente != null) {
+            if (utente.getImmagineUtente() != null) {
+                path = utente.getImmagineUtente().getPercorso();
+            }
         }
         database.close();
     }
@@ -126,10 +128,12 @@
 
 <%
     } else{
-
-        String redirectURL = "../../login.jsp";
-        response.sendRedirect(redirectURL);
-        System.out.println("rediretto  "+ redirectURL.length());
+        %>
+<script>
+    alert("Devi effettuare il login per accedere a questa pagina");
+    location.href = '../../login.jsp';
+</script>
+<%
     }
 %>
 

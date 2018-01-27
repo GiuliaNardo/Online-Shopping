@@ -5,8 +5,34 @@
   Time: 21:45
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="it.unitn.progettoweb.utils.Database"%>
+<%@ page import="it.unitn.progettoweb.Objects.Utente" %>
+<%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Utente utente = null;
+    Session sessione = null;
 
+    Cookie cookies[] = request.getCookies();
+    boolean isLogged = false;
+    String path = "";
+
+    if(cookies.length != 0) {
+        Database database = new Database();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("SessioneUtente")) {
+                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = database.getUserSession(cookies[i].getValue());
+                    utente = database.getUtente(sessione.getIdUtente());
+                    isLogged = true;
+                }
+            }
+        }
+        database.close();
+    }
+    if(isLogged){
+
+%>
 <body>
 
 <link rel="stylesheet" type="text/css" href="styles/checkoutstyle.css">
@@ -71,3 +97,9 @@
 
     }
 </script>
+<%
+    }else{
+        String redirectURL = "../../login.jsp";
+        response.sendRedirect(redirectURL);
+    }
+%>

@@ -51,92 +51,80 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
 
 %>
 <body>
-<div class="container order-container" id="order-c">
+<div class="container " style="height: 100%">
+    <div class="page-header">
+        <div class="title">My orders</div>
+    </div>
+    <div class="" id="contentmain">
+        <div class="row" id="content">
 
-    <div class="row">
-        <div class="container">
-            <div class="page-header">
-                <div class="title">My orders</div>
+            <%
+                if (ordini.size() == 0) {
+
+
+            %>
+            <div id="noOrders">
+                Nessun ordine
+            </div>
+            <%
+            } else {
+                for (Ordine o : ordini) {
+
+
+            %>
+            <div>
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-10 col-sm-12">
+                        <div class="row titolo">
+                            <%=o.getTipoOrdine()%>
+                        </div>
+                        <div class="row"><%=o.getDataOrdine()%>
+                        </div>
+                        <div class="row titolo">
+                            Totale: <%=o.getPrezzoTot() * 100.0 / 100.0%> euro
+                        </div>
+                    </div>
+                    <div class="row col-12 col-md-2 col-sm-12">
+                        <div class="">
+                            <button class="btn btn-sm " id="delete-button"
+                                    onclick="vedere(<%=o.getIdOrdine()%>)">
+                                <i class="zmdi zmdi-notifications"></i> <span id="delete">Send ticket</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="<%=o.getIdOrdine()%>" style="display: none">
+                <form action="../../ticket.jsp">
+                    <div class="ticket" id="ticket">
+                        <div class="row up-ticket">
+                            <select class="select custom-select" name="tipoTicket">
+                                <option class="selected">Rimborso</option>
+                                <option>Ordine in ritardo</option>
+                                <option>Oggetto danneggiato</option>
+                                <option>Altro</option>
+                            </select>
+                        </div>
+                        <div class="row down-ticket">
+                            <textarea name="testo" class="textarea" id="testoTick"></textarea>
+                        </div>
+                        <div class="row ">
+                            <input type="hidden" name="idOrdine" value="<%=o.getIdOrdine()%>">
+                            <button class="btn btn-ticket" type="submit">Send</button>
+                        </div>
+                    </div>
+                </form>
             </div>
 
-            <!--<div class="row" id="nav-home">-->
-            <div class="container" id="contentmain">
-                <div class="row" id="content">
-
-                    <%
-                        if (ordini.size() == 0) {
-
-
-                    %>
-                    <div id="noOrders">
-                        Nessun ordine
-                    </div>
-                    <%
-                    } else {
-                        for (Ordine o : ordini) {
-
-
-                    %>
-
-                    <div>
-                        <div class="row align-items-center">
-                            <div class="col-12 col-md-10 col-sm-12">
-                                <div class="row titolo">
-                                    <%=o.getTipoOrdine()%>
-                                </div>
-                                <div class="row"><%=o.getDataOrdine()%>
-                                </div>
-                                <div class="row titolo">
-                                    Totale: <%=o.getPrezzoTot() * 100.0 / 100.0%> euro
-                                </div>
-                            </div>
-                            <div class="row col-12 col-md-2 col-sm-12">
-                                <div class="">
-                                    <button class="btn btn-sm " id="delete-button"
-                                            onclick="vedere(<%=o.getIdOrdine()%>)">
-                                        <i class="zmdi zmdi-notifications"></i> <span id="delete">Send ticket</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                </div>
-                <div id="<%=o.getIdOrdine()%>" style="display: none">
-                    <form action="../../ticket.jsp">
-                        <div class="ticket" id="ticket">
-                            <div class="row up-ticket">
-                                <select class="select custom-select" name="tipoTicket">
-                                    <option class="selected">Rimborso</option>
-                                    <option>Ordine in ritardo</option>
-                                    <option>Oggetto danneggiato</option>
-                                    <option>Altro</option>
-                                </select>
-                            </div>
-                            <div class="row down-ticket">
-                                <textarea name="testo" class="textarea" id="testoTick"></textarea>
-                            </div>
-                            <div class="row ">
-                                <input type="hidden" name="idOrdine" value="<%=o.getIdOrdine()%>">
-                                <button class="btn btn-ticket" type="submit">Send</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <%
-                        }
+            <%
                     }
-                %>
-            </div>
+                }
+            %>
 
         </div>
-
     </div>
-
 </div>
-
 </body>
 <%
     } else {
@@ -164,15 +152,15 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
     //TODO: query per restituire gli articoli relativi all'ordine di un utente
 
 
- function vedere(id) {
-     console.log(id);
-     var elem = document.getElementById(id);
-     if (elem.style.display === "block"){
-         elem.style.display = "none"
-     } else{
-         elem.style.display ="block"
-     }
- }
+    function vedere(id) {
+        console.log(id);
+        var elem = document.getElementById(id);
+        if (elem.style.display === "block") {
+            elem.style.display = "none"
+        } else {
+            elem.style.display = "block"
+        }
+    }
 
 
 </script>

@@ -129,7 +129,7 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                     tipo =ordini.get(i).getTipoOrdine();
                 }
                 %>
-                $('#content').append(new_ordine('<%=tipo%>','<%=ordini.get(i).getDataOrdine()%>','<%=ordini.get(i).getPrezzoTot()*100.0/100.0%> '));
+                $('#content').append(new_ordine('<%=ordini.get(i).getIdOrdine()%>','<%=tipo%>','<%=ordini.get(i).getDataOrdine()%>','<%=ordini.get(i).getPrezzoTot()*100.0/100.0%> '));
         <%
         }
     %>
@@ -137,7 +137,8 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
     });
 
 
-function new_ordine(testo,titolo,prezzo){
+function new_ordine(idOrdine,testo,titolo,prezzo){
+
     return ('<div>\n' +
         '    <div class="row align-items-center">\n' +
         '        <div class="col-12 col-md-9 col-sm-12">\n' +
@@ -154,9 +155,10 @@ function new_ordine(testo,titolo,prezzo){
         '            </button></div>\n' +
         '        </div>\n' +
         '    </div>\n' +
+            '<form action="../../ticket.jsp">'+
             '<div class="ticket" id="ticket">\n' +
         '    <div class="row up-ticket">\n' +
-        '        <select class="select custom-select">\n' +
+        '        <select class="select custom-select" name="tipoTicket">\n' +
         '            <option class="selected">Rimborso</option>\n' +
         '            <option>Ordine in ritardo</option>\n' +
         '            <option>Oggetto danneggiato</option>\n' +
@@ -164,12 +166,14 @@ function new_ordine(testo,titolo,prezzo){
         '        </select>\n' +
         '    </div>\n' +
         '    <div class="row down-ticket">\n' +
-        '        <textarea class="textarea"></textarea>\n' +
+        '        <textarea name="testo" class="textarea" id="testoTick"></textarea>\n' +
         '    </div>\n' +
             '<div class="row ">\n' +
+            '<input type="hidden" name="idOrdine" value="'+idOrdine+'">'+
         '    <button class="btn btn-ticket" type="submit">Send</button>\n' +
         '</div>'+
         '</div>'+
+            '</form>'+
         '</div>');
 }
 

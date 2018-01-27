@@ -18,6 +18,15 @@ public class Ticket {
         this.statoTicket = statoTicket;
     }
 
+    public Ticket(int idOrdine, int idUtente, TipoTicket tipoTicket, String testo, StatoTicket statoTicket) {
+
+        this.idOrdine = idOrdine;
+        this.idUtente = idUtente;
+        this.tipoTicket = tipoTicket;
+        this.testo = testo;
+        this.statoTicket = statoTicket;
+    }
+
     public int getId() {
         return id;
     }

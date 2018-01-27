@@ -7,12 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.Date" %>
-<%@ page import="java.util.SimpleTimeZone" %>
-<%@ page import="java.util.logging.SimpleFormatter" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="it.unitn.progettoweb.Objects.*" %>
+
 <link rel="stylesheet" type="text/css" href="styles/ticketstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
@@ -21,27 +17,72 @@
 
 
 <%
+    String tipoTicket = request.getParameter("tipoTicket");
+    String idOrdine = request.getParameter("idOrdine");
+    String testoTicket = request.getParameter("testo");
+
+    String testo ="";
+
+    Ticket ticket =null;
+    TipoTicket tipo = TipoTicket.RIMBORSO;
+    int idO=0;
+
     Database db = new Database();
     Utente utente = null;
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
-    ArrayList<Ordine> ticket = null;
+    Ordine ordine1=null;
 
     if(cookies.length != 0) {
-        Database database = new Database();
+
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
-                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
-                    sessione = database.getUserSession(cookies[i].getValue());
-                    utente = database.getUtente(sessione.getIdUtente());
+                if (!(db.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = db.getUserSession(cookies[i].getValue());
+                    utente = db.getUtente(sessione.getIdUtente());
                     isLogged = true;
                 }
             }
         }
-        //ticket = db.ticket
-        database.close();
+
+
     }
+
+    if(utente!=null) {
+
+
+        if (testoTicket != null) {
+            if (!testoTicket.equals("")) {
+                testo = testoTicket;
+            }
+        }
+        if (tipoTicket != null) {
+            if (!tipoTicket.equals("")) {
+                if (tipoTicket.equals("Ordine in ritardo")) {
+                    tipo = (TipoTicket.RITARDO);
+                } else if (tipoTicket.equals("Ordine danneggiato")) {
+                    tipo = (TipoTicket.DANNEGGIATO);
+                } else if (tipoTicket.equals("Rimbordo")) {
+                    tipo = (TipoTicket.RIMBORSO);
+                } else if (tipoTicket.equals("Altro")) {
+                    tipo = (TipoTicket.ALTRO);
+                }
+            }
+
+        }
+
+        if (idOrdine != null) {
+            if (!idOrdine.equals("")) {
+                idO = (Integer.parseInt(idOrdine));
+
+            }
+        }
+        ticket = new Ticket(idO,utente.getId(),tipo,testo,StatoTicket.APERTO);
+        db.insertTicket(ticket);
+        db.close();
+    }
+
 /*
 se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla pagina del login
  */
@@ -66,10 +107,16 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                      <div>
                          <div class="row align-items-center">
                                  <div class="col-12 col-md-10 col-sm-12">
-                                         <div class="row titolo">   TITOLO
-                                             </div>
-                                         <div class="row">   testo
-                                             </div>
+                                     <div class="row titolo">
+                                     <span class="titolo">Tipo ticket: </span><%=tipo%>
+                                 </div>
+
+                                         <div class="row">
+                                            <span class="titolo">Descrizione: </span><%=testo%>
+                                         </div>
+
+
+
                                      </div>
                                  <div class="row col-12 col-md-2 col-sm-12" style="float:left">
                                              <button class="btn btn-sm delete-button" onclick="alert('inviato')">

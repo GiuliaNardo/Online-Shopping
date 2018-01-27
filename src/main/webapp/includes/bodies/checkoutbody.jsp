@@ -59,11 +59,11 @@
 
     <div class=" container1" >
         <div class="content container">
-        <form>
+        <form action="../../utils/addOrder.jsp" method="GET">
             <div class="form-group">
             <select name="tipoO" onchange="change()" id="selectType" style="height: 30px;">
-                <option value="Spedizione">Spedizione</option>
-                <option value="Ritiro">Ritiro</option>
+                <option value="spedizione">Spedizione</option>
+                <option value="ritiro">Ritiro</option>
             </select>
             </div>
             <div class="form-group" id="carta">

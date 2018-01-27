@@ -33,10 +33,7 @@
                     utente = database.getUtente(sessione.getIdUtente());
                     isLogged = true;
                     notifiche = database.getUserNotifications(utente);
-                    for (Notifica notif: notifiche) {
-                        database.setNotificationAsRead(notif.getId(),utente);
-                        notif.setStato(StatoNotifica.LETTA);
-                    }
+                   
                 }
             }
         }

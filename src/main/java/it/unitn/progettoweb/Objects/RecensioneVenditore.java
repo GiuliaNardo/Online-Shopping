@@ -23,6 +23,14 @@ public class RecensioneVenditore {
         this.idVenditore = idVenditore;
     }
 
+    public RecensioneVenditore(Utente utente, int voto, String testo, int idVenditore) {
+        this.idRecVen = idRecVen;
+        this.utente = utente;
+        this.voto = voto;
+        this.testo = testo;
+        this.idVenditore = idVenditore;
+    }
+
     public int getIdRecVen() {
         return idRecVen;
     }

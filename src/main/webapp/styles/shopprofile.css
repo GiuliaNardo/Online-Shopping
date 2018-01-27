@@ -34,7 +34,46 @@
     border-bottom: 1px solid #ddd;
 }
 
+.recensione{
+    background-color: whitesmoke;
+    margin-bottom: 20px;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 
+}
+
+.content-wrapper {
+    max-width: 1140px;
+    background: #fff;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border: 0px;
+    border-radius: 0px;
+}
+
+#title-review{
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #428BCA;
+}
+
+#text-review{
+    height: 200px;
+    width: 100%;
+    overflow: scroll;
+    font-size: 1em;
+    margin-bottom: 30px;
+
+}
+
+#btn-review{
+    margin: auto;
+    width: 150px;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
 
 @media screen and (min-width: 700px) {
     .field{

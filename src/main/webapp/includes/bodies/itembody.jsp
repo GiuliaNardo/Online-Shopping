@@ -175,7 +175,6 @@
                 }
             }
         }
-        System.out.println(idItem+"");
         idArt = Integer.parseInt(idItem);
         item = database.getArticolo(idArt);
         recensioni = database.getRecensioniArticolo(item);
@@ -192,7 +191,6 @@
         RecensioneArticolo recensione = null;
         if (isLogged && utente!=null) {
 
-                System.out.println("ab");
                 if (rate != null) {
                     int r = Integer.parseInt(rate);
                     if (r > 0) {
@@ -209,13 +207,10 @@
                     recensione = new RecensioneArticolo(utente,voto,descr,idArt);
                 }
 
-                database.insertRecensioneArticolo(recensione);
+                boolean inserito = database.insertRecensioneArticolo(recensione);
 
 
-        }else{
-            %>
-                <script>alert("Devi fare il log in per lasciare recensioni!")</script>
-            <%
+
         }
 
     }catch (Exception e){
@@ -270,7 +265,7 @@
 
                         <div class="product-title row"><span>Nome articolo: </span> <%=item.getTitolo()%></div>
                     <div class="product-price row"><span>Euro: </span><%=item.getPrezzo()%></div>
-                    <div class="product-price row"><span>Venduto da: </span><%=venditore.getNomeNegozio()%></div>
+                    <a href="../../shopprofile.jsp?id=<%=venditore.getIdVenditore()%>"><div class="product-price row"><span>Venduto da: </span><%=venditore.getNomeNegozio()%></div></a>
                         <hr>
                         <div class="btn-group cart">
                             <a href="../../utils/cart.jsp?action=aggiungi&idArticolo=<%=item.getIdArticolo()%>&q=">

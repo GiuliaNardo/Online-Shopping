@@ -306,12 +306,12 @@
                                     if(recensioni!=null){
                                         double voto = 0.0;
                                         if (recensioni.size()>0){
+                                            System.out.println(recensioni.size());
                                             for (int i =0; i < recensioni.size(); i++){
                                                 if (recensioni.get(i).getVoto()!= 0){
                                                     voto = Math.round(recensioni.get(i).getVoto()*100.0)/100.0;
                                                 }
                                 %>
-
                                 <div class="container recensione">
                                     <div class="row" id="username">
                                         <%=recensioni.get(i).getUtente().getUserName()%>
@@ -326,14 +326,20 @@
                                 </div>
 
                                 <%
-                                        }
-                                    }
-                                }
-
-                                %>
+                                    }%>
                             </div>
+
                         </section>
+                        <%
+                        } else{
+                                            %>
                         <div id="noOrders" >Nessuna recensione </div>
+                        <%
+                        }
+                        }
+
+                    %>
+
                     </div>
                 </div>
                 <hr>

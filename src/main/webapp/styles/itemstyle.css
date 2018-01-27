@@ -35,6 +35,7 @@
 
 .product-info{
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /*********************************************
@@ -207,6 +208,8 @@
 }
 .testo{
     font-size: 1em;
+    margin: 30px;
+
 }
 
 #username{

@@ -3,6 +3,7 @@
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.progettoweb.Objects.*" %>
+<%@ page import="java.rmi.server.ExportException" %>
 <%--
   Created by IntelliJ IDEA.
   User: Giulia
@@ -25,7 +26,7 @@
 </script>
 
 <script>
-
+    var valore = 0;
     // Starrr plugin (https://github.com/dobtco/starrr)
     var __slice = [].slice;
 
@@ -128,23 +129,32 @@
     })(window.jQuery, window);
 
     $(function() {
+
         return $(".starrr").starrr();
+
     });
 
     $( document ).ready(function() {
 
         $('#stars').on('starrr:change', function(e, value){
-            $('#count').html(value);
-            //value ono le stelle
+            $('#count').html(value);//VALUE E' IL NUMERO DI STELLE
+            valore = value;
+
         });
 
         $('#stars-existing').on('starrr:change', function(e, value){
             $('#count-existing').html(value);
+
         });
     });
 </script>
 
 <%
+    String testo = "";
+    String rate = "";
+
+
+    Database database = new Database();
     Utente utente = null;
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
@@ -152,9 +162,10 @@
     String idItem = request.getParameter("id");
     Articolo item= null;
     Venditore venditore = null;
+    int idArt = 0;
     ArrayList<RecensioneArticolo> recensioni = null;
     if(cookies.length != 0) {
-        Database database = new Database();
+
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
                 if (!(database.getUserSession(cookies[i].getValue()) == null)) {
@@ -165,12 +176,52 @@
             }
         }
         System.out.println(idItem+"");
-        item = database.getArticolo(Integer.parseInt(idItem));
+        idArt = Integer.parseInt(idItem);
+        item = database.getArticolo(idArt);
         recensioni = database.getRecensioniArticolo(item);
         venditore = database.getVenditore(item.getIdVenditore());
-        database.close();
+
     }
 
+    try{
+        testo = request.getParameter("testo");
+        rate = request.getParameter("valstar");
+        int voto = 0;
+        String descr = "";
+
+        RecensioneArticolo recensione = null;
+        if (isLogged && utente!=null) {
+
+                System.out.println("ab");
+                if (rate != null) {
+                    int r = Integer.parseInt(rate);
+                    if (r > 0) {
+                        voto = r;
+                    } else {
+                        voto = 1;
+                    }
+
+                }
+                if (testo != null) {
+                    descr = testo;
+                }
+                if (idArt!=0){
+                    recensione = new RecensioneArticolo(utente,voto,descr,idArt);
+                }
+
+                database.insertRecensioneArticolo(recensione);
+
+
+        }else{
+            %>
+                <script>alert("Devi fare il log in per lasciare recensioni!")</script>
+            <%
+        }
+
+    }catch (Exception e){
+
+    }
+    database.close();
     System.out.println("id: "+idItem);
 %>
 
@@ -307,11 +358,15 @@
         <form>
         <div>
             <textarea id="text-review" name="testo"></textarea>
+
         </div>
+            <input type="hidden" value="<%=idItem%>" name="id">
         <div class="row lead">
             <div id="stars" class="starrr"></div>
             You gave a rating of <span id="count">0</span> star(s)
         </div>
+
+            <input type="hidden" name="valstar" id="stelle" value="">
         <button class="btn" id="btn-review" type="submit" onclick="sendNotification()">Send</button>
         </form>
     </div>
@@ -322,3 +377,12 @@
 </body>
 
 
+<script>
+    function sendNotification() {
+        if(valore!==null){
+            document.getElementById('stelle').value = valore;
+            alert("Grazie!")
+        }
+
+    }
+</script>

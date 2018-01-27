@@ -431,24 +431,19 @@ public class Database {
 
     /***
      * Serve a modificare i dati di un articolo già inserito nel DB
-     * @param id Id
-     * @param nome Nome dell'articolo
-     * @param idVenditore Id del venditore
-     * @param prezzo Prezzo
-     * @param categoria Categoria
-     * @param voto Voto dell'articolo
+     * @param articolo l'articolo da modificare
      * @return Restituisce true se l'inserimento è andato a buon fine false se è fallito
      */
-    public boolean editItem(int id, String nome, int idVenditore, float prezzo, String categoria, float voto) {
+    public boolean editItem(Articolo articolo) {
         boolean updateSuccesful = false;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE articolo SET Nome = ?,IdVenditore = ?,Prezzo = ?,Categoria = ?,Voto = ? WHERE IdArticolo = ?;");
-            preparedStatement.setString(1, nome);
-            preparedStatement.setInt(2, idVenditore);
-            preparedStatement.setFloat(3, prezzo);
-            preparedStatement.setString(4, categoria);
-            preparedStatement.setFloat(5, voto);
-            preparedStatement.setInt(6, id);
+            preparedStatement.setString(1, articolo.getTitolo());
+            preparedStatement.setInt(2, articolo.getIdVenditore());
+            preparedStatement.setFloat(3, articolo.getPrezzo());
+            preparedStatement.setString(4, articolo.getCategoria());
+            preparedStatement.setFloat(5, articolo.getVoto());
+            preparedStatement.setInt(6, articolo.getIdArticolo());
             if (preparedStatement.executeUpdate() > 0) {
                 updateSuccesful = true;
             } else {
@@ -1030,6 +1025,15 @@ public class Database {
                     StatoNotifica statoNotifica = StatoNotifica.NUOVA;
                     Notifica notifica = new Notifica(idUtente,testo,url,date,statoNotifica);
                     insertNotification(notifica);
+                    Articolo articolo = getArticolo(recensioneArticolo.getIdArticolo());
+                    ArrayList<RecensioneArticolo> recensioni = getRecensioniArticolo(articolo);
+                    recensioni.add(recensioneArticolo);
+                    int somma = 0;
+                    for(RecensioneArticolo recen : recensioni) {
+                        somma += recen.getVoto();
+                    }
+                    articolo.setVoto((somma/recensioni.size()));
+                    editItem(articolo);
                 }
 
                 insertSuccesful = true;

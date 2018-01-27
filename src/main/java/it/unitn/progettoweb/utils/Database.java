@@ -487,7 +487,7 @@ public class Database {
      * @return true se l'inserimento è andato a buon fine false se è fallito
      */
 
-    public boolean insertOrder(Ordine ordine) {
+    public boolean insertOrderinsertOrder(Ordine ordine) {
         boolean insertSuccesful = false;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -500,15 +500,14 @@ public class Database {
             }
 
 
-            String query = "INSERT INTO ordine (IdVenditore,IdUtente,PrezzoTot,DataOrdine,TipoOrdine,PagamentoRicevuto,Ricevuto) VALUES (?,?,?,?,?,?,?);";
+            String query = "INSERT INTO ordine (IdUtente,PrezzoTot,DataOrdine,TipoOrdine,PagamentoRicevuto,Ricevuto) VALUES (?,?,?,?,?,?);";
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, ordine.getIdVenditore());
-            preparedStatement.setInt(2, ordine.getIdUtente());
-            preparedStatement.setFloat(3, ordine.getPrezzoTot());
-            preparedStatement.setDate(4, sqlDate);
-            preparedStatement.setString(5, ordine.getTipoOrdine().toString());
-            preparedStatement.setString(6, enumPayment);
-            preparedStatement.setString(7, "FALSE");
+            preparedStatement.setInt(1, ordine.getIdUtente());
+            preparedStatement.setFloat(2, ordine.getPrezzoTot());
+            preparedStatement.setDate(3, sqlDate);
+            preparedStatement.setString(4, ordine.getTipoOrdine().toString());
+            preparedStatement.setString(5, enumPayment);
+            preparedStatement.setString(6, "FALSE");
             if (preparedStatement.executeUpdate() > 0) {
                 connection.setAutoCommit(false);
                 String query2 = "INSERT INTO articoloOrdine (IdOrdine,IdArticolo) VALUES(?,?)";
@@ -883,7 +882,7 @@ public class Database {
                 }
 
 
-                ordini.add(new Ordine(idOrdine,idVenditore,idUtente,prezzoTot,dataOrdine,dataSpedizione,tipoOrdine,pagRicevuto,ricevuto, articoli));
+                ordini.add(new Ordine(idOrdine,idUtente,prezzoTot,dataOrdine,dataSpedizione,tipoOrdine,pagRicevuto,ricevuto, articoli));
             }
         } catch (SQLException e) {
             e.printStackTrace();

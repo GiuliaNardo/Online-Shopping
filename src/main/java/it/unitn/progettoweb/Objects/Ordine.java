@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Ordine {
 
     private int idOrdine;
-    private int idVenditore;
     private int idUtente;
     private float prezzoTot;
     private Date dataOrdine;
@@ -15,9 +14,8 @@ public class Ordine {
     private boolean ricevuto;
     private ArrayList<Articolo> articoli = new ArrayList<>();
 
-    public Ordine(int idOrdine, int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine, boolean pagRicevuto, boolean ricevuto, ArrayList<Articolo> articoli) {
+    public Ordine(int idOrdine, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine, boolean pagRicevuto, boolean ricevuto, ArrayList<Articolo> articoli) {
         this.idOrdine = idOrdine;
-        this.idVenditore = idVenditore;
         this.idUtente = idUtente;
         this.prezzoTot = prezzoTot;
         this.dataOrdine = dataOrdine;
@@ -28,8 +26,8 @@ public class Ordine {
         this.articoli = articoli;
     }
 
-    public Ordine(int idVenditore, int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine, boolean pagRicevuto, boolean ricevuto, ArrayList<Articolo> articoli) {
-        this.idVenditore = idVenditore;
+    public Ordine(int idUtente, float prezzoTot, Date dataOrdine, Date dataSpedizione, TipoOrdine tipoOrdine, boolean pagRicevuto, boolean ricevuto, ArrayList<Articolo> articoli) {
+
         this.idUtente = idUtente;
         this.prezzoTot = prezzoTot;
         this.dataOrdine = dataOrdine;
@@ -46,14 +44,6 @@ public class Ordine {
 
     public void setIdOrdine(int idOrdine) {
         this.idOrdine = idOrdine;
-    }
-
-    public int getIdVenditore() {
-        return idVenditore;
-    }
-
-    public void setIdVenditore(int idVenditore) {
-        this.idVenditore = idVenditore;
     }
 
     public int getIdUtente() {

@@ -1,0 +1,32 @@
+.container1{
+    height: 100%;
+    font: Roboto;
+}
+
+.titolo{
+    font-size: 1.2em;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.item{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    font-size: 1.2em;
+
+}
+
+.content{
+    border: 1px solid #DDDDDD;
+    padding: 50px;
+    width: 900px;
+    border-radius: 5px;
+}
+
+.articoli{
+    margin-top: 50px;
+    margin-bottom: 40px;
+    background-color: whitesmoke;
+    padding: 20px;
+}

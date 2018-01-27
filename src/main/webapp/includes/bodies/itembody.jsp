@@ -222,9 +222,11 @@
                     <div class="product-price row"><span>Venduto da: </span><%=venditore.getNomeNegozio()%></div>
                         <hr>
                         <div class="btn-group cart">
+                            <a href="../../utils/cart.jsp?action=aggiungi&idArticolo=<%=item.getIdArticolo()%>&q=">
                             <button type="button" class="btn btn-success">
                                 Add to cart
                             </button>
+                            </a>
                         </div>
                     </div>
                 </div>

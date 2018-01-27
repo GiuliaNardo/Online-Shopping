@@ -153,13 +153,13 @@
     function add_articolo(id, nome, descrizione, sub_tot, categoria, quantita,prezzo) {
         return '<div class="row item">\n' +
             '                            <div class="col-md-4 col-sm-12 articolo">\n' +
-            '                                <div class="el"><a href="#" class="sub-title">'+nome+'</a></div>\n' +
+            '                                <div class="el"><a href="../../item.jsp?id='+id+'" class="sub-title">'+nome+'</a></div>\n' +
             '                                <div id="testo-piccolo el">'+descrizione+'</div>\n' +
             '                            </div>\n' +
             '                            <div class="col-md-2 col-sm-12 el"><strong>'+categoria+'</strong></div>\n' +
             '                            <div class="col-md-2 col-sm-12 el" style="text-align: center">\n' +
             '                                <div class="input-group input-group1">\n' +
-                                    '          <input type="text" name="quant" class="form-control input-number" id="count" value="'+quantita+'">\n' +
+                                    '          <input readonly="readonly" type="text" name="quant" class="form-control input-number" id="count" value="'+quantita+'">\n' +
 
                                     '      </div>' +
             '                            </div>\n' +

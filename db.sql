@@ -54,7 +54,7 @@ create table recensioneArticoli (
   Voto int,
   Testo varchar(255),
   IdArticolo int,
-  foreign key (IdOrdine) references articolo(IdArticolo),
+  foreign key (IdArticolo) references articolo(IdArticolo),
   foreign key (IdUtente) references utente(IdUtente)
 );
 

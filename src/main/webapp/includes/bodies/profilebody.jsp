@@ -45,7 +45,9 @@
                 }
             }
         }
-        path = utente.getImmagineUtente().getPercorso();
+        if(utente.getImmagineUtente() != null) {
+            path = utente.getImmagineUtente().getPercorso();
+        }
         database.close();
     }
     /*
@@ -90,7 +92,7 @@
                         <div><label class="name-field">Username:</label><%=utente.getUserName()%></div>
                         <div><label class="name-field">Date of birth:</label><%=utente.getDataNascita()%></div>
                         <div><label class="name-field">Email:</label><%=utente.getEmail()%></div>
-                        <div><label class="name-field">Tipo utente:</label><%=utente.getTipo()%></div>
+                        <div><label class="name-field">Tipo utente:</label><%=utente.getTipo().toString()%></div>
                     </div>
                 </div>
             </div>

@@ -50,7 +50,7 @@
                             prezzoTot += a.getPrezzo()*a.getQuantitaNelcarrello();
                         }
                         ordine = new Ordine(utente.getId(), prezzoTot,new Date(new java.util.Date().getTime()),new Date(new java.util.Date().getTime()),tipoOrdine,true, false, carrello );
-                        if(database.insertOrderinsertOrder(ordine)){
+                        if(database.insertOrder(ordine)){
                             response.sendRedirect("../shop.jsp");
                         }else{
                             response.sendRedirect("../checkout.jsp");

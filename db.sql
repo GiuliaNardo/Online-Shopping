@@ -87,7 +87,7 @@ create table ImmaginiArticoli (
   foreign key (IdArticolo) references articolo(IdArticolo)
 );
 create table ordine (
-  IdOrdine int AUTO_INCREMENT primary key,
+  IdOrdine int NOT NULL AUTO_INCREMENT primary key,
   IdUtente int,
   PrezzoTot float,
   DataOrdine date not null,
@@ -98,7 +98,7 @@ create table ordine (
   foreign key (IdUtente) references utente(IdUtente)
 );
 create table articoloOrdine (
-  Id int primary key,
+  Id int primary key AUTO_INCREMENT,
   IdOrdine int,
   IdArticolo int,
   foreign key (IdOrdine) references ordine(IdOrdine),

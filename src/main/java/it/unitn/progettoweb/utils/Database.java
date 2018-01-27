@@ -487,7 +487,7 @@ public class Database {
      * @return true se l'inserimento è andato a buon fine false se è fallito
      */
 
-    public boolean insertOrderinsertOrder(Ordine ordine) {
+    public boolean insertOrder(Ordine ordine) {
         boolean insertSuccesful = false;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -501,7 +501,8 @@ public class Database {
 
 
             String query = "INSERT INTO ordine (IdUtente,PrezzoTot,DataOrdine,TipoOrdine,PagamentoRicevuto,Ricevuto) VALUES (?,?,?,?,?,?);";
-            PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            String genKeysToReturn[] = {"IdOrdine"};
+            PreparedStatement preparedStatement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, ordine.getIdUtente());
             preparedStatement.setFloat(2, ordine.getPrezzoTot());
             preparedStatement.setDate(3, sqlDate);
@@ -509,24 +510,24 @@ public class Database {
             preparedStatement.setString(5, enumPayment);
             preparedStatement.setString(6, "FALSE");
             if (preparedStatement.executeUpdate() > 0) {
-                connection.setAutoCommit(false);
-                String query2 = "INSERT INTO articoloOrdine (IdOrdine,IdArticolo) VALUES(?,?)";
-                PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-                int idOrdine = resultSet.getInt(1);
-                for (Articolo articolo : ordine.getArticoli()) {
-                    preparedStatement2.setInt(1, idOrdine);
-                    preparedStatement2.setInt(2, articolo.getIdArticolo());
-                    preparedStatement2.addBatch();
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+                if(generatedKeys.next()) {
+                    int idOrdine = generatedKeys.getInt(1);
+                    String query2 = "INSERT INTO articoloOrdine (IdOrdine,IdArticolo) VALUES(?,?)";
+                    PreparedStatement preparedStatement2 = connection.prepareStatement(query2);
+                    for (Articolo articolo : ordine.getArticoli()) {
+                        preparedStatement2.setInt(1, idOrdine);
+                        preparedStatement2.setInt(2, articolo.getIdArticolo());
+                        preparedStatement2.addBatch();
+                    }
+                    int[] batchEdits = preparedStatement2.executeBatch();
+                    if (batchEdits.length == ordine.getArticoli().size()) {
+                        insertSuccesful = true;
+                    } else {
+                        insertSuccesful = false;
+                    }
                 }
-                int[] batchEdits = preparedStatement2.executeBatch();
-                connection.commit();
-                if (batchEdits.length == ordine.getArticoli().size()) {
-                    insertSuccesful = true;
-                } else {
-                    insertSuccesful = false;
-                }
-                connection.setAutoCommit(true);
+
             } else {
                 insertSuccesful = false;
             }

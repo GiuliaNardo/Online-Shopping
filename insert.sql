@@ -288,10 +288,10 @@ INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VAL
 --
 
 INSERT INTO `articoloordine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
-(0, 1, 11),
 (1, 1, 11),
-(2, 2, 114),
-(3, 2, 19);
+(2, 1, 11),
+(3, 2, 114),
+(4, 2, 19);
 
 --
 -- Dump dei dati per la tabella `categorie`

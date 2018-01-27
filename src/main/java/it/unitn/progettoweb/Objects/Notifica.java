@@ -50,4 +50,6 @@ public class Notifica {
     public StatoNotifica getStato() {
         return stato;
     }
+
+    public void setStato(StatoNotifica stato) { this.stato = stato;}
 }

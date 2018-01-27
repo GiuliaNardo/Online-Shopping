@@ -8,18 +8,45 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="it.unitn.progettoweb.utils.Database"%>
-<%@ page import="it.unitn.progettoweb.Objects.Utente" %>
-<%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="it.unitn.progettoweb.Objects.Notifica" %>
 <%@ page import="com.google.gson.Gson" %>
-<%@ page import="it.unitn.progettoweb.Objects.TipoUtente" %>
+<%@ page import="it.unitn.progettoweb.Objects.*" %>
 
 <link rel="stylesheet" type="text/css" href="styles/notificationstyle.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%
+    Utente utente = null;
+    Session sessione = null;
+    Gson gson = new Gson();
+    Cookie cookies[] = request.getCookies();
+    boolean isLogged = false;
+    ArrayList<Notifica> notifiche = new ArrayList<>();
+    if(cookies.length != 0) {
+        Database database = new Database();
+        for (int i = 0; i < cookies.length; i++) {
+            if (cookies[i].getName().equals("SessioneUtente")) {
+                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
+                    sessione = database.getUserSession(cookies[i].getValue());
+                    utente = database.getUtente(sessione.getIdUtente());
+                    isLogged = true;
+                    notifiche = database.getUserNotifications(utente);
+                    for (Notifica notif: notifiche) {
+                        database.setNotificationAsRead(notif.getId(),utente);
+                        notif.setStato(StatoNotifica.LETTA);
+                    }
+                }
+            }
+        }
+        database.close();
+    }
+
+    if ( isLogged){
+%>
+
+
 <body>
 <div class="container order-container" id="order-c">
 
@@ -45,30 +72,16 @@
     </div>
 
 </div>
-<script type="text/javascript">
-    <%
-    //non serve che il venditore rispond alle recensioni perchè fa parte dei 5+
-    Utente utente = null;
-    Session sessione = null;
-    Gson gson = new Gson();
-    Cookie cookies[] = request.getCookies();
-    boolean isLogged = false;
-    ArrayList<Notifica> notifiche = new ArrayList<>();
-    if(cookies.length != 0) {
-        Database database = new Database();
-        for (int i = 0; i < cookies.length; i++) {
-            if (cookies[i].getName().equals("SessioneUtente")) {
-                if (!(database.getUserSession(cookies[i].getValue()) == null)) {
-                    sessione = database.getUserSession(cookies[i].getValue());
-                    utente = database.getUtente(sessione.getIdUtente());
-                    isLogged = true;
-                    notifiche = database.getUserNotifications(utente);
-                }
-            }
-        }
-        database.close();
+<%
+    } else{
+
+        String redirectURL = "../../login.jsp";
+        response.sendRedirect(redirectURL);
+        System.out.println("rediretto  "+ redirectURL.length());
     }
-    %>
+%>
+<script type="text/javascript">
+
 
     var notifiche = <%= gson.toJson(notifiche)%>;
 

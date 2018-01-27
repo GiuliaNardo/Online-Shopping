@@ -21,6 +21,65 @@ SET time_zone = "+00:00";
 --
 -- Database: `progettoweb`
 --
+INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`, `Validato`, `validationhash`) VALUES
+(1, 'Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas'),
+(2, 'Giulia', 'giu1', 'Giulia', 'Nardò', 'giu@nardo.it', '1996-08-12', 'Administrator', 'true', 'asdasdas'),
+(3, 'Debla', 'debla1', 'Simone', 'De Blasiis', 'simo@debla.it', '1996-02-12', 'User', 'true', 'asdasdas'),
+(4, 'Simo', 'simo1', 'Simone', 'De Cassan', 'simo@deca.it', '1998-08-16', 'Seller', 'true', 'asdasdas'),
+(5, 'Giada', 'giada1', 'Giada', 'Nunzia', 'giada@nunzia.it', '1994-05-14', 'Seller', 'true', 'asdasdas'),
+(6, 'Giacoz', 'giacoz1', 'Giacomo', 'Mazzini', 'giacoz@maz.it', '1990-05-08', 'User', 'true', 'asdasdas'),
+(7, 'Carlo1', 'cachi', 'Carlo', 'Magno', 'carlomagno@gmail.com', '1954-11-03', 'User', 'true', 'asad'),
+(8, 'Pistolero18', 'fico', 'Davide', 'Pistore', 'davi@gmail.com', '1977-12-03', 'Seller', 'true', 'asad'),
+(9, 'luke14', 'banana', 'Luca', 'Todesco', 'toddi@gmail.com', '0000-00-00', 'Seller', 'true', 'asad'),
+(10, 'occhialuto26', 'fragola', 'Federico', 'Magno', 'magnotanto@gmail.com', '0000-00-00', 'Seller', 'true', 'asad'),
+(11, 'tasty6', 'peach', 'Mario', 'Collina', 'colly@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
+(12, 'tolly45', 'pompelmo', 'Laura', 'Magna', 'lolly@gmail.com', '0000-00-00', 'Seller', 'true', 'asad'),
+(13, 'cloco74', 'albicocca', 'Fabio', 'Bruno', 'brunetto@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
+(14, 'walp9', 'mirtillo', 'Simone', 'Lallo', 'simolallo@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
+(15, 'giacchina2', 'mela', 'Melinda', 'Giacca', 'giacchina@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
+(16, 'selli9', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '0000-00-00', 'User', 'true', 'asad'),
+(17, 'Carlo2', 'cachi2', 'Carlino', 'Magno', 'carlomagno2@gmail.com', '1954-11-03', 'User', 'true', 'asad'),
+(18, 'Pistolero20', 'fico2', 'Dario', 'Pistore', 'davi20@gmail.com', '1977-12-03', 'Seller', 'true', 'asad'),
+(19, 'luke6', 'banana2', 'Simone', 'Todesco', 'toddi6@gmail.com', '1996-11-13', 'Seller', 'true', 'asad'),
+(20, 'occhialuto3', 'fragola2', 'Filippo', 'Magno', 'magnotanto6@gmail.com', '1976-05-05', 'Seller', 'true', 'asad'),
+(21, 'tasty9', 'peach2', 'Maria', 'Collina', 'collymary@gmail.com', '1985-09-16', 'User', 'true', 'asad'),
+(22, 'tolly46', 'pompelmo', 'Laura', 'Magna', 'lolly33@gmail.com', '1993-04-15', 'Seller', 'true', 'asad'),
+(23, 'cloco79', 'albicocca', 'Fabio', 'Bruno', 'brunetto66@gmail.com', '1995-02-16', 'User', 'true', 'asad'),
+(24, 'walp8', 'mirtillo', 'Simone', 'Lallo', 'simolallo8@gmail.com', '1985-07-11', 'User', 'true', 'asad'),
+(25, 'giacchina3', 'mela', 'Melinda', 'Giacca', 'giacchina@gmail.com', '1963-07-14', 'User', 'true', 'asad'),
+(26, 'selli8', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '1976-03-16', 'User', '', ''),
+(27, 'Giulia1', '982c38dc43dc57c14adebe399c6556893b5114c877d90b83921b2e0945191801', 'pippo', 'pippo', 'l@h.com', '2018-01-17', 'Seller', 'false', '33d2cf014275ec8f7ab705bb59780829089250e182f7a510aca578f27daf78a6'),
+(28, 'pippoAdmin', '69842058052e167cba8a62acf64dd207d936f0ea2977190df543ea8e26859aa9', 'PippoA', 'pippo', 'l@h.com', '1998-01-17', 'User', 'false', '19c96d8d4cab0b2ce07cd0af59f9c6473e2106d8a259df027501f8752d630d24'),
+(29, 'giuPippo', 'fe479ce9949e8a82afe8fb4e46befb7dfbd2cd745608d6dbb7810ee7a65e67f5', 'Giulia', 'Absolute', 'l@h.com', '1985-01-25', 'Seller', 'true', '95b051c695123fe7bad6637a093ed82d0f852034b3b87b6b516af20bb4324c03');
+
+--
+-- Dump dei dati per la tabella `venditore`
+--
+
+INSERT INTO `venditore` (`IdVenditore`, `IdUtente`, `NomeNegozio`, `RagioneSociale`, `PartitaIva`, `Iban`, `Indirizzo`, `Valutazione`) VALUES
+(1, 4, 'Simoncelli', 'SPA', '15478972300', '000510258741', 'Via simo 5', NULL),
+(2, 1, 'Dema Shop', 'SRL', '02154879632', '125489632755', 'Via dema 8', NULL),
+(3, 5, 'GIAA', 'SRL', '12589636547', '103200587960', 'Via G 9', NULL),
+(9, 8, 'Boollo', NULL, '11125489637', '111254896370', 'Via Lilli', NULL),
+(10, 9, 'Dart Veder', NULL, '11125489589', '111254895890', NULL, NULL),
+(11, 10, 'Glass', NULL, '12547896587', '125478965870', 'Via Goi 9', NULL),
+(12, 12, 'TollyBolly', NULL, '14587963215', '145879632150', 'Via fou 9', NULL),
+(13, 18, 'Yogurtino', NULL, '25896300021', '258963000210', 'Via boh', NULL),
+(14, 19, 'Kolorato', NULL, '01200236589', '012002365890', 'Via sal', NULL),
+(15, 20, 'Trold', NULL, '12897589456', '128975894560', 'Via UU', NULL),
+(16, 22, 'Polly', NULL, '12897589452', '128975894520', 'Via Ulp 5', NULL),
+(17, 27, 'pippo', 'n', '12345678912', '123456789784', 'Topolandia', 2.3),
+(18, 29, 'PIppolandia', 'Non lo so', '01234569845', '012345698450', 'Via Topolandia 67', 5);
+
+INSERT INTO `categorie` (`Nome`, `Descrizione`) VALUES
+('Abbigliamento', NULL),
+('Elettrodomestici', NULL),
+('Elettronica', NULL),
+('Informatica', NULL),
+('Libri', NULL),
+('Smartphone', NULL),
+('Sport', NULL),
+('Videogame', NULL);
 
 --
 -- Dump dei dati per la tabella `articolo`
@@ -179,6 +238,51 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (154, 'Maglia bianca', 'Maglia bianca', 14, 14.58, 'Abbigliamento', 4),
 (155, 'Maglia bianca', 'Maglia bianca disegno collana', 14, 59, 'Abbigliamento', 3.8);
 
+INSERT INTO `immaginiutente` (`IdImmagine`, `Percorso`, `IdUtente`) VALUES
+(2, './images/immProfile.PNG', 29);
+
+--
+-- Dump dei dati per la tabella `notification`
+--
+
+INSERT INTO `notification` (`IdNotifica`, `IdUtente`, `Testo`, `Url`, `DataNotifica`, `Stato`) VALUES
+(1, 29, 'Ciao', 'http://localhost:8080/index.jsp', '2018-01-16', 'Nuova');
+
+--
+-- Dump dei dati per la tabella `ordine`
+--
+
+INSERT INTO `ordine` (`IdOrdine`, `IdUtente`, `PrezzoTot`, `DataOrdine`, `DataSpedizione`, `TipoOrdine`, `PagamentoRicevuto`, `Ricevuto`) VALUES
+(1, 27, 18, '2018-01-10', '2018-01-25', 'spedizione', 'TRUE', 'FALSE'),
+(2, 28, 35, '2018-01-03', '2018-01-05', 'spedizione', 'TRUE', 'TRUE');
+
+--
+-- Dump dei dati per la tabella `recensionearticoli`
+--
+
+INSERT INTO `recensionearticoli` (`IdRecArt`, `IdUtente`, `Voto`, `Testo`, `IdArticolo`) VALUES
+(1, 23, 3, 'Carino come fumetto. Giusto per ingrandire la mia collezione', 25),
+(2, 7, 4, 'Bel fumetto, ricevuto in ottime condizioni', 25),
+(3, 5, 1, 'Ricevuto strappato con due settimane di ritardo', 25);
+
+--
+-- Dump dei dati per la tabella `sessionuser`
+--
+
+INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VALUES
+(1, 27, '2018-01-17', '6d79195a2bcc2d527640218127e22ecd2feee6bd914ce2fc64174e6dd5c95730'),
+(2, 28, '2018-01-17', 'd25c4f95fa6d8a7e96a911dd070489bbfb657a121d74960daa062f5d3aedcc12'),
+(3, 27, '2018-01-17', '84baa293a05a3a5cb98123160db62ab29d6dbfc3388f9e13e601d99147f28432'),
+(4, 28, '2018-01-18', '5028bebe0fda73d0d86d8ccb05cdedb58a48f08fa7ab18ab13661ff84692ff96'),
+(5, 27, '2018-01-18', '74398dcf3619896bb1865491a2db370a8c30fabf2c6e21dc8e7a80edfa21abc5'),
+(6, 27, '2018-01-19', '0c294ff4ce08cfe1789f9f79e5cfa0a0d3f4f6799da4a533306fd930c764af93'),
+(7, 27, '2018-01-19', '2495fa551d571674ec74ce85eba87b2a100eca973f67c8711c11bd720ed3f8f3'),
+(8, 27, '2018-01-19', '1b946904c7a98abdb6e1355da714d8153590b47bdaccb91c06153fdbbcd556a6'),
+(9, 27, '2018-01-19', 'b3823eb71775bf6b90be443b11ad427820cc3d8d12b8884b9e69fa597c021144'),
+(10, 29, '2018-01-25', '1b623f0bc8c8132d75b4c512db279821efa7c6bad4520a87214f68434aebecd5'),
+(11, 28, '2018-01-25', '5477548d36b214f0e79b518638fb0690f45c64cbb553d0974948f18fe5308021'),
+(12, 29, '2018-01-25', '97c1fe55817c42d95b33ba4049a989fcfb40bb0c7155143b624e6aa7ab5b5bc4'),
+(13, 29, '2018-01-25', 'dfdcf6155d49c285f53aca284354f033ae7e416db4db112931c36152f3fad373');
 --
 -- Dump dei dati per la tabella `articoloordine`
 --
@@ -193,15 +297,7 @@ INSERT INTO `articoloordine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
 -- Dump dei dati per la tabella `categorie`
 --
 
-INSERT INTO `categorie` (`Nome`, `Descrizione`) VALUES
-('Abbigliamento', NULL),
-('Elettrodomestici', NULL),
-('Elettronica', NULL),
-('Informatica', NULL),
-('Libri', NULL),
-('Smartphone', NULL),
-('Sport', NULL),
-('Videogame', NULL);
+
 
 --
 -- Dump dei dati per la tabella `immaginiarticoli`
@@ -366,105 +462,13 @@ INSERT INTO `immaginiarticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
 -- Dump dei dati per la tabella `immaginiutente`
 --
 
-INSERT INTO `immaginiutente` (`IdImmagine`, `Percorso`, `IdUtente`) VALUES
-(2, './images/immProfile.PNG', 29);
 
---
--- Dump dei dati per la tabella `notification`
---
-
-INSERT INTO `notification` (`IdNotifica`, `IdUtente`, `Testo`, `Url`, `DataNotifica`, `Stato`) VALUES
-(1, 29, 'Ciao', 'http://localhost:8080/index.jsp', '2018-01-16', 'Nuova');
-
---
--- Dump dei dati per la tabella `ordine`
---
-
-INSERT INTO `ordine` (`IdOrdine`, `IdUtente`, `PrezzoTot`, `DataOrdine`, `DataSpedizione`, `TipoOrdine`, `PagamentoRicevuto`, `Ricevuto`) VALUES
-(1, 27, 18, '2018-01-10', '2018-01-25', 'spedizione', 'TRUE', 'FALSE'),
-(2, 28, 35, '2018-01-03', '2018-01-05', 'spedizione', 'TRUE', 'TRUE');
-
---
--- Dump dei dati per la tabella `recensionearticoli`
---
-
-INSERT INTO `recensionearticoli` (`IdRecArt`, `IdUtente`, `Voto`, `Testo`, `IdArticolo`) VALUES
-(1, 23, 3, 'Carino come fumetto. Giusto per ingrandire la mia collezione', 25),
-(2, 7, 4, 'Bel fumetto, ricevuto in ottime condizioni', 25),
-(3, 5, 1, 'Ricevuto strappato con due settimane di ritardo', 25);
-
---
--- Dump dei dati per la tabella `sessionuser`
---
-
-INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VALUES
-(1, 27, '2018-01-17', '6d79195a2bcc2d527640218127e22ecd2feee6bd914ce2fc64174e6dd5c95730'),
-(2, 28, '2018-01-17', 'd25c4f95fa6d8a7e96a911dd070489bbfb657a121d74960daa062f5d3aedcc12'),
-(3, 27, '2018-01-17', '84baa293a05a3a5cb98123160db62ab29d6dbfc3388f9e13e601d99147f28432'),
-(4, 28, '2018-01-18', '5028bebe0fda73d0d86d8ccb05cdedb58a48f08fa7ab18ab13661ff84692ff96'),
-(5, 27, '2018-01-18', '74398dcf3619896bb1865491a2db370a8c30fabf2c6e21dc8e7a80edfa21abc5'),
-(6, 27, '2018-01-19', '0c294ff4ce08cfe1789f9f79e5cfa0a0d3f4f6799da4a533306fd930c764af93'),
-(7, 27, '2018-01-19', '2495fa551d571674ec74ce85eba87b2a100eca973f67c8711c11bd720ed3f8f3'),
-(8, 27, '2018-01-19', '1b946904c7a98abdb6e1355da714d8153590b47bdaccb91c06153fdbbcd556a6'),
-(9, 27, '2018-01-19', 'b3823eb71775bf6b90be443b11ad427820cc3d8d12b8884b9e69fa597c021144'),
-(10, 29, '2018-01-25', '1b623f0bc8c8132d75b4c512db279821efa7c6bad4520a87214f68434aebecd5'),
-(11, 28, '2018-01-25', '5477548d36b214f0e79b518638fb0690f45c64cbb553d0974948f18fe5308021'),
-(12, 29, '2018-01-25', '97c1fe55817c42d95b33ba4049a989fcfb40bb0c7155143b624e6aa7ab5b5bc4'),
-(13, 29, '2018-01-25', 'dfdcf6155d49c285f53aca284354f033ae7e416db4db112931c36152f3fad373');
 
 --
 -- Dump dei dati per la tabella `utente`
 --
 
-INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`, `Validato`, `validationhash`) VALUES
-(1, 'Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas'),
-(2, 'Giulia', 'giu1', 'Giulia', 'Nardò', 'giu@nardo.it', '1996-08-12', 'Administrator', 'true', 'asdasdas'),
-(3, 'Debla', 'debla1', 'Simone', 'De Blasiis', 'simo@debla.it', '1996-02-12', 'User', 'true', 'asdasdas'),
-(4, 'Simo', 'simo1', 'Simone', 'De Cassan', 'simo@deca.it', '1998-08-16', 'Seller', 'true', 'asdasdas'),
-(5, 'Giada', 'giada1', 'Giada', 'Nunzia', 'giada@nunzia.it', '1994-05-14', 'Seller', 'true', 'asdasdas'),
-(6, 'Giacoz', 'giacoz1', 'Giacomo', 'Mazzini', 'giacoz@maz.it', '1990-05-08', 'User', 'true', 'asdasdas'),
-(7, 'Carlo1', 'cachi', 'Carlo', 'Magno', 'carlomagno@gmail.com', '1954-11-03', 'User', 'true', 'asad'),
-(8, 'Pistolero18', 'fico', 'Davide', 'Pistore', 'davi@gmail.com', '1977-12-03', 'Seller', 'true', 'asad'),
-(9, 'luke14', 'banana', 'Luca', 'Todesco', 'toddi@gmail.com', '0000-00-00', 'Seller', 'true', 'asad'),
-(10, 'occhialuto26', 'fragola', 'Federico', 'Magno', 'magnotanto@gmail.com', '0000-00-00', 'Seller', 'true', 'asad'),
-(11, 'tasty6', 'peach', 'Mario', 'Collina', 'colly@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
-(12, 'tolly45', 'pompelmo', 'Laura', 'Magna', 'lolly@gmail.com', '0000-00-00', 'Seller', 'true', 'asad'),
-(13, 'cloco74', 'albicocca', 'Fabio', 'Bruno', 'brunetto@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
-(14, 'walp9', 'mirtillo', 'Simone', 'Lallo', 'simolallo@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
-(15, 'giacchina2', 'mela', 'Melinda', 'Giacca', 'giacchina@gmail.com', '0000-00-00', 'User', 'true', 'asad'),
-(16, 'selli9', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '0000-00-00', 'User', 'true', 'asad'),
-(17, 'Carlo2', 'cachi2', 'Carlino', 'Magno', 'carlomagno2@gmail.com', '1954-11-03', 'User', 'true', 'asad'),
-(18, 'Pistolero20', 'fico2', 'Dario', 'Pistore', 'davi20@gmail.com', '1977-12-03', 'Seller', 'true', 'asad'),
-(19, 'luke6', 'banana2', 'Simone', 'Todesco', 'toddi6@gmail.com', '1996-11-13', 'Seller', 'true', 'asad'),
-(20, 'occhialuto3', 'fragola2', 'Filippo', 'Magno', 'magnotanto6@gmail.com', '1976-05-05', 'Seller', 'true', 'asad'),
-(21, 'tasty9', 'peach2', 'Maria', 'Collina', 'collymary@gmail.com', '1985-09-16', 'User', 'true', 'asad'),
-(22, 'tolly46', 'pompelmo', 'Laura', 'Magna', 'lolly33@gmail.com', '1993-04-15', 'Seller', 'true', 'asad'),
-(23, 'cloco79', 'albicocca', 'Fabio', 'Bruno', 'brunetto66@gmail.com', '1995-02-16', 'User', 'true', 'asad'),
-(24, 'walp8', 'mirtillo', 'Simone', 'Lallo', 'simolallo8@gmail.com', '1985-07-11', 'User', 'true', 'asad'),
-(25, 'giacchina3', 'mela', 'Melinda', 'Giacca', 'giacchina@gmail.com', '1963-07-14', 'User', 'true', 'asad'),
-(26, 'selli8', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '1976-03-16', 'User', '', ''),
-(27, 'Giulia1', '982c38dc43dc57c14adebe399c6556893b5114c877d90b83921b2e0945191801', 'pippo', 'pippo', 'l@h.com', '2018-01-17', 'Seller', 'false', '33d2cf014275ec8f7ab705bb59780829089250e182f7a510aca578f27daf78a6'),
-(28, 'pippoAdmin', '69842058052e167cba8a62acf64dd207d936f0ea2977190df543ea8e26859aa9', 'PippoA', 'pippo', 'l@h.com', '1998-01-17', 'User', 'false', '19c96d8d4cab0b2ce07cd0af59f9c6473e2106d8a259df027501f8752d630d24'),
-(29, 'giuPippo', 'fe479ce9949e8a82afe8fb4e46befb7dfbd2cd745608d6dbb7810ee7a65e67f5', 'Giulia', 'Absolute', 'l@h.com', '1985-01-25', 'Seller', 'true', '95b051c695123fe7bad6637a093ed82d0f852034b3b87b6b516af20bb4324c03');
 
---
--- Dump dei dati per la tabella `venditore`
---
-
-INSERT INTO `venditore` (`IdVenditore`, `IdUtente`, `NomeNegozio`, `RagioneSociale`, `PartitaIva`, `Iban`, `Indirizzo`, `Valutazione`) VALUES
-(1, 4, 'Simoncelli', 'SPA', '15478972300', '000510258741', 'Via simo 5', NULL),
-(2, 1, 'Dema Shop', 'SRL', '02154879632', '125489632755', 'Via dema 8', NULL),
-(3, 5, 'GIAA', 'SRL', '12589636547', '103200587960', 'Via G 9', NULL),
-(9, 8, 'Boollo', NULL, '11125489637', '111254896370', 'Via Lilli', NULL),
-(10, 9, 'Dart Veder', NULL, '11125489589', '111254895890', NULL, NULL),
-(11, 10, 'Glass', NULL, '12547896587', '125478965870', 'Via Goi 9', NULL),
-(12, 12, 'TollyBolly', NULL, '14587963215', '145879632150', 'Via fou 9', NULL),
-(13, 18, 'Yogurtino', NULL, '25896300021', '258963000210', 'Via boh', NULL),
-(14, 19, 'Kolorato', NULL, '01200236589', '012002365890', 'Via sal', NULL),
-(15, 20, 'Trold', NULL, '12897589456', '128975894560', 'Via UU', NULL),
-(16, 22, 'Polly', NULL, '12897589452', '128975894520', 'Via Ulp 5', NULL),
-(17, 27, 'pippo', 'n', '12345678912', '123456789784', 'Topolandia', 2.3),
-(18, 29, 'PIppolandia', 'Non lo so', '01234569845', '012345698450', 'Via Topolandia 67', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

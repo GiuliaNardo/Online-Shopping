@@ -88,7 +88,6 @@ create table ImmaginiArticoli (
 );
 create table ordine (
   IdOrdine int AUTO_INCREMENT primary key,
-  IdVenditore int,
   IdUtente int,
   PrezzoTot float,
   DataOrdine date not null,
@@ -96,7 +95,6 @@ create table ordine (
   TipoOrdine enum("spedizione","ritiro"),
   PagamentoRicevuto enum("TRUE","FALSE") not null,
   Ricevuto enum("TRUE","FALSE") not null,
-  foreign key (IdVenditore) references venditore(IdVenditore),
   foreign key (IdUtente) references utente(IdUtente)
 );
 create table articoloOrdine (

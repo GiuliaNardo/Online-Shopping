@@ -33,6 +33,10 @@
             isSearch = true;
         }
     }
+
+    System.out.println("pFr "+isSearch);
+
+
     if(request.getParameter("priceTo")!=null){
         if (!request.getParameter("priceTo").equals("")){
             float priceTo = Integer.parseInt(request.getParameter("priceTo"));
@@ -40,23 +44,38 @@
             isSearch = true;
         }
     }
+
+    System.out.println("pTO "+isSearch);
+
     if(request.getParameter("rev")!=null){
         if (!request.getParameter("rev").equals("")){
-            int revAverage = Integer.parseInt(request.getParameter("rev"));
-            advS1.setMinReview(revAverage);
-            isSearch = true;
+            if(!request.getParameter("rev").equals("choose")){
+                int revAverage = Integer.parseInt(request.getParameter("rev"));
+                advS1.setMinReview(revAverage);
+                isSearch = true;
+            } else{
+                advS1.setMinReview(1);
+
+            }
         }
     }
+
+    System.out.println("rev "+isSearch);
     if(request.getParameter("order-by")!= null){
         QueryOrder order;
-        if(request.getParameter("order-by").equals("desc") ){
-            order = QueryOrder.DESC;
+        if(!request.getParameter("rev").equals("choose")) {
+            if (request.getParameter("order-by").equals("desc")) {
+                order = QueryOrder.DESC;
+            } else {
+                order = QueryOrder.ASC;
+            }
+            isSearch = true;
+            advS1.setQueryOrder(order);
         } else {
-            order = QueryOrder.ASC;
+            advS1.setQueryOrder(QueryOrder.DESC);
         }
-        isSearch = true;
-        advS1.setQueryOrder(order);
     }
+    System.out.println("ord "+isSearch);
 
     if(request.getParameter("q")!=null){
         if(!request.getParameter("q").equals("")){
@@ -65,14 +84,17 @@
             isSearch = true;
         }
     }
-
+    System.out.println("q "+isSearch);
     if(request.getParameter("cat")!=null){
-        if(!request.getParameter("cat").equals("") && !request.getParameter("cat").equals("Categorie")){
-            Categoria cat = new Categoria(request.getParameter("cat"),"");
-            advS1.setCategoria(cat);
-            isSearch = true;
+        if(!request.getParameter("cat").equals("") ){
+            if(!request.getParameter("cat").equals("Categorie")) {
+                Categoria cat = new Categoria(request.getParameter("cat"), "");
+                advS1.setCategoria(cat);
+                isSearch = true;
+            }
         }
     }
+    System.out.println("cat "+isSearch);
 /*
 se si arriva alla pagina cliccando il tasto shop, non ci sono ricerche specifiche e vengono quindi visualizzati i 5
 articoli più venduti
@@ -80,8 +102,10 @@ altrimenti si procede con la ricerca che è stata effettuata
  */
     if(!isSearch){
         results = db.getHomeLastArticles();
+        System.out.println("a");
     } else {
         results = db.getAdvancedSearchResults(advS1);
+        System.out.println(advS1.getCategoria()+" "+ advS1.getMinReview());
     }
 
     String nomiArticoli = "";
@@ -194,6 +218,7 @@ altrimenti si procede con la ricerca che è stata effettuata
                             <div class="form-group">
                                 <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
                                 <select name="order-by" id="pref-orderby" class="form-control">
+                                    <option value="choose">Choose</option>
                                     <option value="desc">Price: descendent</option>
                                     <option value="asc">Price: increasing</option>
 
@@ -202,6 +227,7 @@ altrimenti si procede con la ricerca che è stata effettuata
                             <div class="form-group">
                                 <label class="filter-col">Review average:</label>
                                 <select id="sort-review" class="form-control" name="rev">Review
+                                    <option value="choose">choose</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

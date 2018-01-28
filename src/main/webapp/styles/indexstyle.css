@@ -29,7 +29,7 @@
     overflow: hidden;
 }
 .carousel-inner{
-    height:30%;
+    height: 150px;
 }
 .carousel .item {
 
@@ -64,10 +64,14 @@
     box-sizing: border-box;
     background-color: #777;
     color: white;
+    border-radius: 3px;
+    width: 150px;
 }
 
 
-
+.align-items-center{
+    margin-top: 60px;
+}
 
 @media (min-width: 300px){
     .content{
@@ -95,7 +99,7 @@
         background-color: black;
     }
     #carousel-inner{
-        height: 300px;
+        height: 250px;
     }
     .up{
         width :500px;
@@ -106,6 +110,9 @@
 
 
 @media (min-width: 1030px) {
+    #carousel-inner{
+        height: 250px;
+    }
     .content{
         height: 400px;
         width: 30%;

@@ -100,6 +100,12 @@
     margin-left: 30px;
 }
 
+.table-striped{
+    max-height: 700px;
+    overflow: scroll;
+
+}
+
 @media screen and (min-width: 700px) {
     .order-container{
         width: auto;

@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="it.unitn.progettoweb.utils.Database"%>
+<%@ page import="it.unitn.progettoweb.utils.Database" %>
 <%@ page import="it.unitn.progettoweb.Objects.*" %>
 
 <link rel="stylesheet" type="text/css" href="styles/ticketstyle.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,20 +22,20 @@
     String idOrdine = request.getParameter("idOrdine");
     String testoTicket = request.getParameter("testo");
 
-    String testo ="";
+    String testo = "";
 
-    Ticket ticket =null;
+    Ticket ticket = null;
     TipoTicket tipo = TipoTicket.RIMBORSO;
-    int idO=0;
+    int idO = 0;
 
     Database db = new Database();
     Utente utente = null;
     Session sessione = null;
     Cookie cookies[] = request.getCookies();
     boolean isLogged = false;
-    Ordine ordine1=null;
+    Ordine ordine1 = null;
 
-    if(cookies.length != 0) {
+    if (cookies.length != 0) {
 
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {
@@ -49,7 +50,7 @@
 
     }
 
-    if(utente!=null) {
+    if (utente != null) {
 
 
         if (testoTicket != null) {
@@ -78,7 +79,7 @@
 
             }
         }
-        ticket = new Ticket(idO,utente.getId(),tipo,testo,StatoTicket.APERTO);
+        ticket = new Ticket(idO, utente.getId(), tipo, testo, StatoTicket.APERTO);
         db.insertTicket(ticket);
         db.close();
     }
@@ -93,38 +94,45 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
 <div class="container order-container" id="order-c">
 
     <div class="row">
-            <div class="page-header">
-                <div class="title">Your ticket</div>
-            </div>
+        <div class="page-header">
+            <div class="title">Your ticket</div>
+        </div>
 
-            <!--<div class="row" id="nav-home">-->
-            <div class="" id="contentmain">
-                <div class="row" id="content">
-                    <div id="noOrders">
-                        Nessun ticket
+        <!--<div class="row" id="nav-home">-->
+        <div class="" id="contentmain">
+            <div class="row" id="content">
+                <div id="noOrders">
+                    Nessun ticket
+                </div>
+
+                <div>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-10 col-sm-12">
+                            <div class="row titolo">
+                                <span class="titolo">Tipo ticket: </span><%=tipo%>
+                            </div>
+                            <hr style="border-bottom: 1px solid #ddd">
+                            <div class="row down">
+                                <span class="titolo">Descrizione: </span><%=testo%>
+                            </div>
+                            <div class="row down">
+                                <span class="titolo">Stato ticket: </span><%=ticket.getStatoTicket().toString()%>
+                            </div>
+
+
+                        </div>
+                        <div class="row col-12 col-md-2 col-sm-12" style="text-align:right">
+                            <button class="btn btn-sm" id="edit-button" onclick="alert('inviato')">
+                                <label id="edit">Modifica</label>
+                            </button>
+                        </div>
+                        <div class="row col-12 col-md-2 col-sm-12" style="text-align:right">
+                            <button class="btn btn-sm" id="delete-button" onclick="alert('inviato')">
+                                <label id="delete">Elimina</label>
+                            </button>
+                        </div>
                     </div>
-
-                     <div>
-                         <div class="row align-items-center">
-                                 <div class="col-12 col-md-10 col-sm-12">
-                                     <div class="row titolo">
-                                     <span class="titolo">Tipo ticket: </span><%=tipo%>
-                                 </div>
-
-                                         <div class="row">
-                                            <span class="titolo">Descrizione: </span><%=testo%>
-                                         </div>
-
-
-
-                                     </div>
-                                 <div class="row col-12 col-md-2 col-sm-12" style="float:left">
-                                             <button class="btn btn-sm delete-button" onclick="alert('inviato')">
-                                                 <label id="delete" >Send</label>
-                                             </button>
-                                     </div>
-                             </div>
-                     </div>
+                </div>
 
             </div>
 
@@ -135,7 +143,7 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
 </div>
 </body>
 <%
-    }else{
+    } else {
         String redirectURL = "../../login.jsp";
         response.sendRedirect(redirectURL);
 

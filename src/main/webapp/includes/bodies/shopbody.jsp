@@ -22,6 +22,7 @@
     AdvancedSearchParameters advS1 = new AdvancedSearchParameters();
     boolean isSearch = false;
     String q = "";
+    String priceFromS = "", priceToS = "",rev = "", ord = "", catS = "";
 
 /*
     i parametri vengono presi dall'url solo se sono diversi dalla stringa vuota
@@ -29,6 +30,7 @@
     if(request.getParameter("priceFrom")!= null){
         if (!request.getParameter("priceFrom").equals("")){
             float priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
+            priceFromS = request.getParameter("priceFrom");
             advS1.setStartPrice(priceFrom);
             isSearch = true;
         }
@@ -40,6 +42,7 @@
     if(request.getParameter("priceTo")!=null){
         if (!request.getParameter("priceTo").equals("")){
             float priceTo = Integer.parseInt(request.getParameter("priceTo"));
+            priceToS = request.getParameter("priceTo");
             advS1.setEndPrice(priceTo);
             isSearch = true;
         }
@@ -51,10 +54,12 @@
         if (!request.getParameter("rev").equals("")){
             if(!request.getParameter("rev").equals("choose")){
                 int revAverage = Integer.parseInt(request.getParameter("rev"));
+                rev = request.getParameter("rev");
                 advS1.setMinReview(revAverage);
                 isSearch = true;
             } else{
                 advS1.setMinReview(1);
+                rev = "1";
 
             }
         }
@@ -66,8 +71,13 @@
         if(!request.getParameter("rev").equals("choose")) {
             if (request.getParameter("order-by").equals("desc")) {
                 order = QueryOrder.DESC;
-            } else {
+                ord = "desc";
+            } else if(request.getParameter("order-by").equals("asc")){
                 order = QueryOrder.ASC;
+                ord = "asc";
+            }else{
+                order = QueryOrder.DESC;
+                ord = "desc";
             }
             isSearch = true;
             advS1.setQueryOrder(order);
@@ -89,12 +99,12 @@
         if(!request.getParameter("cat").equals("") ){
             if(!request.getParameter("cat").equals("Categorie")) {
                 Categoria cat = new Categoria(request.getParameter("cat"), "");
+                catS = request.getParameter("cat");
                 advS1.setCategoria(cat);
                 isSearch = true;
             }
         }
     }
-    System.out.println("cat "+isSearch);
 /*
 se si arriva alla pagina cliccando il tasto shop, non ci sono ricerche specifiche e vengono quindi visualizzati i 5
 articoli più venduti
@@ -301,14 +311,19 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
         <%
         if(q != ""){
         %>
-        var q = "<%=q%>"
+        var q = "<%=q%>";
         <%
         }else{
         %>
-        var q = ""
+        var q = "";
         <%
         }
         %>
+        var catS = "<%=catS%>";
+        var priceFromS = "<%=priceFromS%>";
+        var priceToS = "<%=priceToS%>";
+        var ord = "<%=ord%>";
+        var rev ="<%=rev%>";
         return (
             '<div class="item  col-xs-12 col-md-3 col-lg-3">\n' +
             '            <div class="thumbnail">\n' +
@@ -321,7 +336,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
             '                            <p class="lead">'+prezzo+'</p>\n' +
             '                        </div>\n' +
             '                        <div class="col-xs-12 col-md-6">\n' +
-            '                            <a class="btn btn-success" href="../../utils/cart.jsp?action=aggiungi&idArticolo='+id+'&q='+q+'">Add to cart</a>\n' +
+            '                            <a class="btn btn-success" href="../../utils/cart.jsp?action=aggiungi&idArticolo='+id+'&q='+q+'&cat='+catS+'&priceFrom='+priceFromS+'&priceTo='+priceToS+'&order-by='+ord+'&rev='+rev+'">Add to cart</a>\n' +
             '                        </div>\n' +
             '                    </div>\n' +
             '                </div>\n' +

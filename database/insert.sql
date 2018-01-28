@@ -293,7 +293,7 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (215, 'Estrattore di succo', 'Imetec Succovivo Pro 2000 Estrattore di Succo Professionale a Freddo, Spremitura Lenta 48 Giri/Min', 30, 58, 'Elettrodomestici', 4);
 
 
-INSERT INTO `immaginiutente` (`IdImmagine`, `Percorso`, `IdUtente`) VALUES
+INSERT INTO `ImmaginiUtente` (`IdImmagine`, `Percorso`, `IdUtente`) VALUES
 (2, './images/immProfile.PNG', 29);
 
 --
@@ -318,13 +318,13 @@ INSERT INTO `ordine` (`IdOrdine`, `IdUtente`, `PrezzoTot`, `DataOrdine`, `DataSp
 -- Dump dei dati per la tabella `recensionearticoli`
 --
 
-INSERT INTO `recensionearticoli` (`IdRecArt`, `IdUtente`, `Voto`, `Testo`, `IdArticolo`) VALUES
+INSERT INTO `recensioneArticoli` (`IdRecArt`, `IdUtente`, `Voto`, `Testo`, `IdArticolo`) VALUES
 (1, 23, 3, 'Carino come fumetto. Giusto per ingrandire la mia collezione', 25),
 (2, 7, 4, 'Bel fumetto, ricevuto in ottime condizioni', 25),
 (3, 5, 1, 'Ricevuto strappato con due settimane di ritardo', 25);
 
 
-INSERT INTO `recensionevenditore` (`IdRecVen`, `IdUtente`, `voto`, `Testo`, `IdVenditore`) VALUES
+INSERT INTO `recensioneVenditore` (`IdRecVen`, `IdUtente`, `voto`, `Testo`, `IdVenditore`) VALUES
 (1, 27, 3, 'Sempre puntuale!', 9),
 (2, 27, 2, 'Sconsiglio questo negozio, servizio pessimo', 10),
 (3, 27, 5, 'Consiglio assolutamente!!', 11),
@@ -414,7 +414,7 @@ INSERT INTO `recensionevenditore` (`IdRecVen`, `IdUtente`, `voto`, `Testo`, `IdV
 --
 -- Dump dei dati per la tabella `sessionuser`
 --
-INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VALUES
+INSERT INTO `sessionUser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VALUES
 (3, 27, '2018-01-17', '84baa293a05a3a5cb98123160db62ab29d6dbfc3388f9e13e601d99147f28432'),
 (4, 28, '2018-01-18', '5028bebe0fda73d0d86d8ccb05cdedb58a48f08fa7ab18ab13661ff84692ff96'),
 (5, 27, '2018-01-18', '74398dcf3619896bb1865491a2db370a8c30fabf2c6e21dc8e7a80edfa21abc5'),
@@ -437,7 +437,7 @@ INSERT INTO `sessionuser` (`IdSession`, `utente`, `dataSession`, `hashcode`) VAL
 -- Dump dei dati per la tabella `articoloordine`
 --
 
-INSERT INTO `articoloordine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
+INSERT INTO `articoloOrdine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
 (3, 4, 114),
 (4, 4, 19);
 
@@ -451,7 +451,7 @@ INSERT INTO `articoloordine` (`Id`, `IdOrdine`, `IdArticolo`) VALUES
 -- Dump dei dati per la tabella `immaginiarticoli`
 --
 
-INSERT INTO `immaginiarticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
+INSERT INTO `ImmaginiArticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
 (1, 'https://s3-eu-west-1.amazonaws.com/s3.quotidiano.net/data/images/gallery/2013/80237/topolino.jpg', 25),
 (2, 'http://milano.repubblica.it/images/2013/04/11/123741360-af54e18b-b08b-4f11-9c46-a0e5ea104be2.jpg', 24),
 (118, 'https://static.lafeltrinelli.it/static/frontside/xxl/601/6990601_1502785.jpg', 17),

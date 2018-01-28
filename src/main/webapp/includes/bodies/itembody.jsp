@@ -182,41 +182,39 @@
 
     }
 
-    try{
-        testo = request.getParameter("testo");
-        rate = request.getParameter("valstar");
+    testo = request.getParameter("testo");
+    rate = request.getParameter("valstar");
+    if(testo != null && rate != null) {
         int voto = 0;
         String descr = "";
 
         RecensioneArticolo recensione = null;
         if (isLogged && utente!=null) {
 
-                if (rate != null) {
-                    int r = Integer.parseInt(rate);
-                    if (r > 0) {
-                        voto = r;
-                    } else {
-                        voto = 1;
-                    }
-
-                }
-                if (testo != null) {
-                    descr = testo;
-                }
-                if (idArt!=0){
-                    recensione = new RecensioneArticolo(utente,voto,descr,idArt);
+            if (rate != null) {
+                int r = Integer.parseInt(rate);
+                if (r > 0) {
+                    voto = r;
+                } else {
+                    voto = 1;
                 }
 
-                boolean inserito = database.insertRecensioneArticolo(recensione);
-                System.out.println("inserito " + inserito);
+            }
+            if (testo != null) {
+                descr = testo;
+            }
+            if (idArt != 0) {
+                recensione = new RecensioneArticolo(utente, voto, descr, idArt);
+            }
+
+            boolean inserito = database.insertRecensioneArticolo(recensione);
+            System.out.println("inserito " + inserito);
             System.out.println(request.getParameter("a"));
+    }
 
 
         }
 
-    }catch (Exception e){
-
-    }
     database.close();
     System.out.println("id: "+idItem);
 %>

@@ -69,6 +69,7 @@
                     testo = testoTicket;
                 }
             }
+
             if (tipoTicket != null) {
                 if (!tipoTicket.equals("")) {
                     if (tipoTicket.equals("Ordine in ritardo")) {
@@ -83,6 +84,7 @@
                 }
 
             }
+
 
             if (idOrdine != null) {
                 if (!idOrdine.equals("")) {
@@ -121,6 +123,7 @@
 
         } else {
             int id = Integer.parseInt(idString);
+            System.out.println("trovato");
             ticket = db.getTicket(id, utente);
         }
         db.close();
@@ -163,26 +166,52 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                                          </div>
                                      <%}%>
 
-                                     <%if(utente.getTipo() == TipoUtente.ADMIN) {%>
-                                            MOSTRARE LA SCELTA PER AGGIORNARE LO STATO DEL TICKET ALL'ADMIN
-                                            PASSA GLI STESSI ARGOMENTI CHE PASSI ANCHE QUANDO LO INSERISCI
-                                            A QUESTA STESSA PAGINA AGGIUNGENDO UN PARAMETRO "id", UN PARAMETRO
-                                            "stato" E UN PARAMETRO"edit=1". PER IL RESTO DOVREBBE ANDARE TUTTO.
-                                     <%}%>
+
 
 
 
                                      </div>
-                             <%if(isInsert) {%>
+                             <%if(isInsert && !utente.getTipo().equals(TipoUtente.ADMIN)) {%>
                                  <div class="row col-12 col-md-2 col-sm-12" style="float:left">
-                                             <button class="btn btn-sm delete-button" onclick="alert('inviato')">
-                                                 <label id="delete" >Send</label>
+                                             <button class="btn btn-sm edit-button">
+                                                 <label id="edit" >Edit</label>
                                              </button>
                                      </div>
-                             <%}%>
+                             <div class="row col-12 col-md-2 col-sm-12" style="float:left">
+                                 <button class="btn btn-sm delete-button" >
+                                     <label id="delete" >Delete</label>
+                                 </button>
                              </div>
-                     </div>
+                         </div>
+                             <%}%>
 
+                             <%if(utente.getTipo().equals(TipoUtente.ADMIN)) {%>
+                             <!--MOSTRARE LA SCELTA PER AGGIORNARE LO STATO DEL TICKET ALL'ADMIN
+                              PASSA GLI STESSI ARGOMENTI CHE PASSI ANCHE QUANDO LO INSERISCI
+                              A QUESTA STESSA PAGINA AGGIUNGENDO UN PARAMETRO "id", UN PARAMETRO
+                              "stato" E UN PARAMETRO"edit=1". PER IL RESTO DOVREBBE ANDARE TUTTO.-->
+                             <div class="row admin">
+                             <form action="../../ticket.jsp">
+                                 <div class="input-group">
+                                     <select class="custom-select" id="inputGroupSelect04" name="stato">
+                                         <option selected value="Non procedere">Non procedere</option>
+                                         <option value="Rimborso">Rimborso</option>
+                                         <option value="Rigetta">Rigetta anomalia</option>
+                                     </select>
+                                     <input type="hidden" name="edit" value="1">
+                                     <input type="hidden" name="tipoTicket" value="<%=ticket.getTipoTicket()%>">
+                                     <input type="hidden" name="idOrdine" value="<%=ticket.getIdOrdine()%>">
+                                     <input type="hidden" name="testo" value="<%=ticket.getTesto()%>">
+                                     <input type="hidden" name="id" value="<%=ticket.getId()%>">
+                                     <div class="input-group-append">
+                                         <button class="btn btn-outline" type="submit" onclick="alert('Inviato')">Submit</button>
+                                     </div>
+                                 </div>
+                             </form>
+                             </div>
+                             <%}%>
+                     </div>
+                </div>
             </div>
 
         </div>
@@ -198,3 +227,5 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
 
     }
 %>
+
+

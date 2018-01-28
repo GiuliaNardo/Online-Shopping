@@ -1316,7 +1316,7 @@ public class Database {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("REPLACE INTO ticket (IdTicket,IdOrdine,IdUtente,TipoTicket,Testo,Stato) VALUES (?,?,?,?,?,?);");
             preparedStatement.setInt(1, ticket.getId());
-            preparedStatement.setInt(1, ticket.getIdOrdine());
+            preparedStatement.setInt(2, ticket.getIdOrdine());
             preparedStatement.setInt(3, ticket.getIdUtente());
             preparedStatement.setString(4, ticket.getTipoTicket().toString());
             preparedStatement.setString(5, ticket.getTesto());

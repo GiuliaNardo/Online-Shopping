@@ -152,23 +152,8 @@
             '</button>'+
             <%
             }
-
-            if (utente.getTipo().equals(TipoUtente.ADMIN)){
-
             %>
-                '<div class="input-group">\n' +
-            '    <select class="custom-select" id="inputGroupSelect04">\n' +
-            '        <option selected value="0">Non procedere</option>\n' +
-            '        <option value="2">Rimborso</option>\n' +
-            '        <option value="3">Rigetta anomalia</option>\n' +
-            '    </select>\n' +
-            '    <div class="input-group-append">\n' +
-            '        <button class="btn btn-outline-secondary" type="submit">Submit</button>\n' +
-            '    </div>\n' +
-            '</div>'+
-            <%
-            }
-            %>
+
 
             '</div>'+
             '<div>');

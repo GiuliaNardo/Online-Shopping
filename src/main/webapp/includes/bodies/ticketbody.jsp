@@ -20,6 +20,18 @@
     String tipoTicket = request.getParameter("tipoTicket");
     String idOrdine = request.getParameter("idOrdine");
     String testoTicket = request.getParameter("testo");
+    boolean isUpdate = false;
+
+    String idString = request.getParameter("id");
+
+    boolean isInsert = true;
+
+    if(idString != null && !idString.equals("")) {
+        if(request.getParameter("edit") != null) {
+            isUpdate = true;
+        }
+        isInsert = false;
+    }
 
     String testo ="";
 
@@ -51,42 +63,73 @@
 
     if(utente!=null) {
 
-
-        if (testoTicket != null) {
-            if (!testoTicket.equals("")) {
-                testo = testoTicket;
-            }
-        }
-        if (tipoTicket != null) {
-            if (!tipoTicket.equals("")) {
-                if (tipoTicket.equals("Ordine in ritardo")) {
-                    tipo = (TipoTicket.RITARDO);
-                } else if (tipoTicket.equals("Ordine danneggiato")) {
-                    tipo = (TipoTicket.DANNEGGIATO);
-                } else if (tipoTicket.equals("Rimbordo")) {
-                    tipo = (TipoTicket.RIMBORSO);
-                } else if (tipoTicket.equals("Altro")) {
-                    tipo = (TipoTicket.ALTRO);
+        if(isInsert || isUpdate) {
+            if (testoTicket != null) {
+                if (!testoTicket.equals("")) {
+                    testo = testoTicket;
                 }
             }
-
-        }
-
-        if (idOrdine != null) {
-            if (!idOrdine.equals("")) {
-                idO = (Integer.parseInt(idOrdine));
+            if (tipoTicket != null) {
+                if (!tipoTicket.equals("")) {
+                    if (tipoTicket.equals("Ordine in ritardo")) {
+                        tipo = (TipoTicket.RITARDO);
+                    } else if (tipoTicket.equals("Ordine danneggiato")) {
+                        tipo = (TipoTicket.DANNEGGIATO);
+                    } else if (tipoTicket.equals("Rimbordo")) {
+                        tipo = (TipoTicket.RIMBORSO);
+                    } else if (tipoTicket.equals("Altro")) {
+                        tipo = (TipoTicket.ALTRO);
+                    }
+                }
 
             }
+
+            if (idOrdine != null) {
+                if (!idOrdine.equals("")) {
+                    idO = (Integer.parseInt(idOrdine));
+
+                }
+            }
+            if(isUpdate && (utente.getTipo() == TipoUtente.ADMIN) && (request.getParameter("stato") != null)) {
+                int id = Integer.parseInt(idString);
+                StatoTicket statoTicket = StatoTicket.LAVORAZIONE;
+
+                switch (request.getParameter("stato")) {
+                    case "Aperto":
+                        statoTicket = StatoTicket.APERTO;
+                        break;
+                    case "Lavorazione":
+                        statoTicket = StatoTicket.LAVORAZIONE;
+                        break;
+                    case "Chiuso":
+                        statoTicket = StatoTicket.CHIUSO;
+                        break;
+                    case "Annullato":
+                        statoTicket = StatoTicket.ANNULATO;
+                        break;
+
+                }
+
+                ticket = new Ticket(id,idO,utente.getId(),tipo,testo,statoTicket);
+                db.updateTicket(ticket);
+
+            } else {
+                ticket = new Ticket(idO, utente.getId(), tipo, testo, StatoTicket.APERTO);
+                db.insertTicket(ticket);
+            }
+
+
+        } else {
+            int id = Integer.parseInt(idString);
+            ticket = db.getTicket(id, utente);
         }
-        ticket = new Ticket(idO,utente.getId(),tipo,testo,StatoTicket.APERTO);
-        db.insertTicket(ticket);
         db.close();
     }
 
 /*
 se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla pagina del login
  */
-    if (isLogged) {
+    if (isLogged && ticket != null) {
 
 %>
 <body>
@@ -108,21 +151,35 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                          <div class="row align-items-center">
                                  <div class="col-12 col-md-10 col-sm-12">
                                      <div class="row titolo">
-                                     <span class="titolo">Tipo ticket: </span><%=tipo%>
+                                     <span class="titolo">Tipo ticket: </span><%=ticket.getTipoTicket().toString()%>
                                  </div>
 
                                          <div class="row">
-                                            <span class="titolo">Descrizione: </span><%=testo%>
+                                            <span class="titolo">Descrizione: </span><%=ticket.getTesto()%>
                                          </div>
+                                     <%if(!isInsert) {%>
+                                         <div class="row">
+                                             <span class="titolo">Stato: </span><%=ticket.getStatoTicket().toString()%>
+                                         </div>
+                                     <%}%>
+
+                                     <%if(utente.getTipo() == TipoUtente.ADMIN) {%>
+                                            MOSTRARE LA SCELTA PER AGGIORNARE LO STATO DEL TICKET ALL'ADMIN
+                                            PASSA GLI STESSI ARGOMENTI CHE PASSI ANCHE QUANDO LO INSERISCI
+                                            A QUESTA STESSA PAGINA AGGIUNGENDO UN PARAMETRO "id", UN PARAMETRO
+                                            "stato" E UN PARAMETRO"edit=1". PER IL RESTO DOVREBBE ANDARE TUTTO.
+                                     <%}%>
 
 
 
                                      </div>
+                             <%if(isInsert) {%>
                                  <div class="row col-12 col-md-2 col-sm-12" style="float:left">
                                              <button class="btn btn-sm delete-button" onclick="alert('inviato')">
                                                  <label id="delete" >Send</label>
                                              </button>
                                      </div>
+                             <%}%>
                              </div>
                      </div>
 

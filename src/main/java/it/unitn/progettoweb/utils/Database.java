@@ -1191,7 +1191,7 @@ public class Database {
                 Utente utenteA = getUtente(ticket.getIdUtente());
                 String testoA = "Nuovo ticket creato da " + utenteA.getUserName() + " di tipo " + ticket.getTipoTicket().toString();
                 generatedKeys.next();
-                String urlA = "/viewticket.jsp?id=" + generatedKeys.getInt(1);
+                String urlA = "/ticket.jsp?id=" + generatedKeys.getInt(1);
                 Date dateA = new Date(new java.util.Date().getTime());
                 StatoNotifica statoNotificaA = StatoNotifica.NUOVA;
                 Notifica notificaA = new Notifica(idUtenteA,testoA,urlA,dateA,statoNotificaA);
@@ -1208,7 +1208,7 @@ public class Database {
                     int idUtente = resultSet.getInt("IdUtente");
                     Utente utente = getUtente(ticket.getIdUtente());
                     String testo = "Nuovo ticket creato da " + utente.getUserName() + " di tipo " + ticket.getTipoTicket().toString();
-                    String url = "/viewticket.jsp?id=" + generatedKeys.getInt(1);
+                    String url = "/ticket.jsp?id=" + generatedKeys.getInt(1);
                     Date date = new Date(new java.util.Date().getTime());
                     StatoNotifica statoNotifica = StatoNotifica.NUOVA;
                     Notifica notifica = new Notifica(idUtente,testo,url,date,statoNotifica);
@@ -1283,13 +1283,15 @@ public class Database {
                         "                        SELECT IdArticolo FROM articoloOrdine WHERE IdOrdine = ?));");
                 preparedStatement.setInt(1, tempTicket.getIdOrdine());
                 ResultSet resultSet = preparedStatement.executeQuery();
-                ArrayList<Integer> venditori = new ArrayList<>();
+                ArrayList<Integer> utentiAbilitati = new ArrayList<>();
+
+                utentiAbilitati.add(tempTicket.getIdUtente());
 
                 while (resultSet.next()) {
-                    venditori.add(resultSet.getInt("IdUtente"));
+                    utentiAbilitati.add(resultSet.getInt("IdUtente"));
                 }
 
-                if(venditori.contains(utente.getId()) || utente.getId() == 1) {
+                if(utentiAbilitati.contains(utente.getId()) || utente.getId() == 1) {
                     ticket = tempTicket;
 
                 }
@@ -1301,6 +1303,61 @@ public class Database {
         }
 
         return ticket;
+    }
+
+    /***
+     * Inserisce un ticket nel database e pusha una notifica a tutti i venditori interessati e all'amministratore
+     * @param ticket
+     * @return
+     */
+
+    public boolean updateTicket(Ticket ticket) {
+        boolean insertSuccesful = false;
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("REPLACE INTO ticket (IdTicket,IdOrdine,IdUtente,TipoTicket,Testo,Stato) VALUES (?,?,?,?,?,?);");
+            preparedStatement.setInt(1, ticket.getId());
+            preparedStatement.setInt(1, ticket.getIdOrdine());
+            preparedStatement.setInt(3, ticket.getIdUtente());
+            preparedStatement.setString(4, ticket.getTipoTicket().toString());
+            preparedStatement.setString(5, ticket.getTesto());
+            preparedStatement.setString(6, ticket.getStatoTicket().toString());
+
+            if (preparedStatement.executeUpdate() > 0) {
+
+
+                String testoA = "L'amministratore ha modificato lo stato di un tuo ticket";
+                String urlA = "/ticket.jsp?id=" + ticket.getId();
+                Date dateA = new Date(new java.util.Date().getTime());
+                StatoNotifica statoNotificaA = StatoNotifica.NUOVA;
+                Notifica notificaA = new Notifica(ticket.getIdUtente(),testoA,urlA,dateA,statoNotificaA);
+                insertNotification(notificaA);
+
+                PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT IdUtente FROM venditore WHERE IdVenditore IN (" +
+                        "                        SELECT IdVenditore FROM articolo WHERE IdArticolo IN (" +
+                        "                        SELECT IdArticolo FROM articoloOrdine WHERE IdOrdine = ?));");
+                preparedStatement1.setInt(1, ticket.getIdOrdine());
+
+                ResultSet resultSet = preparedStatement1.executeQuery();
+
+                while(resultSet.next()) {
+                    int idUtente = resultSet.getInt("IdUtente");
+                    String testo = "L'amministratore ha aggiornato lo stato di un ticket di uno dei tuoi clienti";
+                    String url = "/ticket.jsp?id=" + ticket.getId();
+                    Date date = new Date(new java.util.Date().getTime());
+                    StatoNotifica statoNotifica = StatoNotifica.NUOVA;
+                    Notifica notifica = new Notifica(idUtente,testo,url,date,statoNotifica);
+                    insertNotification(notifica);
+                }
+
+                insertSuccesful = true;
+            } else {
+                insertSuccesful = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return insertSuccesful;
+
     }
 
     /***

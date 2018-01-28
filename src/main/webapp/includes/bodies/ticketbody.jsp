@@ -191,17 +191,13 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                              <%}%>
 
                              <%if(utente.getTipo().equals(TipoUtente.ADMIN)) {%>
-                             <!--MOSTRARE LA SCELTA PER AGGIORNARE LO STATO DEL TICKET ALL'ADMIN
-                              PASSA GLI STESSI ARGOMENTI CHE PASSI ANCHE QUANDO LO INSERISCI
-                              A QUESTA STESSA PAGINA AGGIUNGENDO UN PARAMETRO "id", UN PARAMETRO
-                              "stato" E UN PARAMETRO"edit=1". PER IL RESTO DOVREBBE ANDARE TUTTO.-->
                              <div class="row admin">
                              <form action="../../ticket.jsp">
                                  <div class="input-group">
                                      <select class="custom-select" id="inputGroupSelect04" name="stato">
-                                         <option selected value="Non procedere">Non procedere</option>
-                                         <option value="Rimborso">Rimborso</option>
-                                         <option value="Rigetta">Rigetta anomalia</option>
+                                         <option selected value="Lavorazione">Lavorazione</option>
+                                         <option value="Annullato">Annullato</option>
+                                         <option value="Chiuso">Chiuso</option>
                                      </select>
                                      <input type="hidden" name="edit" value="1">
                                      <input type="hidden" name="tipoTicket" value="<%=ticket.getTipoTicket()%>">

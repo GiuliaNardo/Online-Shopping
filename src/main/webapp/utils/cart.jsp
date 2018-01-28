@@ -15,14 +15,29 @@
     String azione = request.getParameter("action");
     int idArticolo = Integer.parseInt(request.getParameter("idArticolo"));
     HttpSession sessione = request.getSession();
+    String requestUrl = "";
     boolean esiste = false;
     String q = "";
-    String cat = "";
-    if(request.getParameter("q")!= ""){
-        q = "?q="+request.getParameter("q");
-    }else{
-        q = "";
+    String priceFromS = "", priceToS = "",rev = "", ord = "", catS = "";
+    if(request.getParameter("q")!= null && !request.getParameter("q").equals("")){
+        q = request.getParameter("q");
     }
+    if(request.getParameter("priceFrom")!= null && !request.getParameter("priceFrom").equals("")){
+        priceFromS = request.getParameter("priceFrom");
+    }
+    if(request.getParameter("priceTo")!= null && !request.getParameter("priceTo").equals("")){
+        priceToS = request.getParameter("priceTo");
+    }
+    if(request.getParameter("rev")!= null && !request.getParameter("rev").equals("")){
+        rev = request.getParameter("rev");
+    }
+    if(request.getParameter("order-by")!= null && !request.getParameter("order-by").equals("")){
+        ord = request.getParameter("order-by");
+    }
+    if(request.getParameter("cat")!= null && !request.getParameter("cat").equals("")){
+        catS = request.getParameter("cat");
+    }
+    requestUrl = "?q="+q+"&cat="+catS+"&order-by="+ord+"&rev="+rev+"&priceFrom="+priceFromS+"&priceTo="+priceToS+"";
     List<Articolo> carrello = null;
     if (azione.equals("aggiungi")) {
         if(sessione.getAttribute("carrello") != null){
@@ -38,11 +53,11 @@
                carrello.add(db.getArticolo(idArticolo));
            }
            db.close();
-           response.sendRedirect("../shop.jsp"+q);
+           response.sendRedirect("../shop.jsp"+requestUrl);
        }else{
            carrello = new ArrayList<Articolo>();
            carrello.add(db.getArticolo(idArticolo));
-           response.sendRedirect("../shop.jsp"+q);
+           response.sendRedirect("../shop.jsp"+requestUrl);
        }
        sessione.setAttribute("carrello", carrello);
     }

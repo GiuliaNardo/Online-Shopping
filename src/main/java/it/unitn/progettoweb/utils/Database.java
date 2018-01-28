@@ -819,7 +819,7 @@ public class Database {
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM ordine where IdUtente = ?;");
             preparedStatement.setInt(1, utente.getId());
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 int idOrdine = resultSet.getInt("IdOrdine");
                 int idUtente = resultSet.getInt("IdUtente");
                 float prezzoTot = resultSet.getFloat("PrezzoTot");

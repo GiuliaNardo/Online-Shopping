@@ -22,7 +22,7 @@ USE progettoweb;
 -- Database: `progettoweb`
 --
 INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`, `Validato`, `validationhash`) VALUES
-(1, 'Admin', '61ec64cc8ac8ede6534e7dbee9b8e1dec0eae6ca51656ca8ae7715104a4fa862', 'Amministratore', 'Sitarelli', 'admin@admin.it', '2018-01-01', 'Administrator', 'false', 'b379feafe3bd2dcd58eb5488be636509cf438cd1a219a24a4330e554870dda6d');
+(1, 'Admin', '61ec64cc8ac8ede6534e7dbee9b8e1dec0eae6ca51656ca8ae7715104a4fa862', 'Amministratore', 'Sitarelli', 'admin@admin.it', '2018-01-01', 'Administrator', 'false', 'b379feafe3bd2dcd58eb5488be636509cf438cd1a219a24a4330e554870dda6d'),
 (2, 'Dema', 'dema1', 'Federico', 'De Martin', 'fede@dema.it', '1996-10-12', 'Seller', 'true', 'asdasdas'),
 (3, 'Giulia', 'giu1', 'Giulia', 'Nardò', 'giu@nardo.it', '1996-08-12', 'Administrator', 'true', 'asdasdas'),
 (4, 'Debla', 'debla1', 'Simone', 'De Blasiis', 'simo@debla.it', '1996-02-12', 'User', 'true', 'asdasdas'),

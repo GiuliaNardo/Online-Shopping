@@ -821,7 +821,6 @@ public class Database {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int idOrdine = resultSet.getInt("IdOrdine");
-                int idVenditore = resultSet.getInt("IdVenditore");
                 int idUtente = resultSet.getInt("IdUtente");
                 float prezzoTot = resultSet.getFloat("PrezzoTot");
                 Date dataOrdine = resultSet.getDate("DataOrdine");
@@ -874,6 +873,7 @@ public class Database {
                     float prezzo = resultSet2.getFloat("Prezzo");
                     String categoria = resultSet2.getString("Categoria");
                     float voto = resultSet2.getFloat("Voto");
+                    int idVenditore = resultSet2.getInt("IdVenditore");
                     articoli.add(new Articolo(idArticolo, descrizione, titolo,idVenditore,prezzo,categoria,voto,immaginiArticoli));
                 }
 
@@ -1176,7 +1176,7 @@ public class Database {
     public boolean insertTicket(Ticket ticket) {
         boolean insertSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ticket (IdOrdine,IdUtente,TipoTicket,Testo,Stato) VALUES (?,?,?,?,?);");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO ticket (IdOrdine,IdUtente,TipoTicket,Testo,Stato) VALUES (?,?,?,?,?);", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1, ticket.getIdOrdine());
             preparedStatement.setInt(2, ticket.getIdUtente());
             preparedStatement.setString(3, ticket.getTipoTicket().toString());
@@ -1185,10 +1185,13 @@ public class Database {
 
             if (preparedStatement.executeUpdate() > 0) {
 
+                ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
                 int idUtenteA = 1;
                 Utente utenteA = getUtente(ticket.getIdUtente());
                 String testoA = "Nuovo ticket creato da " + utenteA.getUserName() + " di tipo " + ticket.getTipoTicket().toString();
-                String urlA = "/viewticket.jsp?id=" + ticket.getId();
+                generatedKeys.next();
+                String urlA = "/viewticket.jsp?id=" + generatedKeys.getInt(1);
                 Date dateA = new Date(new java.util.Date().getTime());
                 StatoNotifica statoNotificaA = StatoNotifica.NUOVA;
                 Notifica notificaA = new Notifica(idUtenteA,testoA,urlA,dateA,statoNotificaA);
@@ -1205,7 +1208,7 @@ public class Database {
                     int idUtente = resultSet.getInt("IdUtente");
                     Utente utente = getUtente(ticket.getIdUtente());
                     String testo = "Nuovo ticket creato da " + utente.getUserName() + " di tipo " + ticket.getTipoTicket().toString();
-                    String url = "/viewticket.jsp?id=" + ticket.getId();
+                    String url = "/viewticket.jsp?id=" + generatedKeys.getInt(1);
                     Date date = new Date(new java.util.Date().getTime());
                     StatoNotifica statoNotifica = StatoNotifica.NUOVA;
                     Notifica notifica = new Notifica(idUtente,testo,url,date,statoNotifica);

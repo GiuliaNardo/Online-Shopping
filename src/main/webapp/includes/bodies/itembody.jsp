@@ -208,7 +208,8 @@
                 }
 
                 boolean inserito = database.insertRecensioneArticolo(recensione);
-
+                System.out.println("inserito " + inserito);
+            System.out.println(request.getParameter("a"));
 
 
         }
@@ -366,8 +367,8 @@
             <div id="stars" class="starrr"></div>
             You gave a rating of <span id="count">0</span> star(s)
         </div>
-
             <input type="hidden" name="valstar" id="stelle" value="">
+            <input type="hidden" name="a"  value="1">
         <button class="btn" id="btn-review" type="submit" onclick="sendNotification()">Send</button>
         </form>
     </div>

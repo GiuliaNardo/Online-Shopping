@@ -20,6 +20,7 @@
     String tipoTicket = request.getParameter("tipoTicket");
     String idOrdine = request.getParameter("idOrdine");
     String testoTicket = request.getParameter("testo");
+    String user = request.getParameter("user");
     boolean isUpdate = false;
 
     String idString = request.getParameter("id");
@@ -94,6 +95,7 @@
             }
             if(isUpdate && (utente.getTipo() == TipoUtente.ADMIN) && (request.getParameter("stato") != null)) {
                 int id = Integer.parseInt(idString);
+                int idUser=0;
                 StatoTicket statoTicket = StatoTicket.LAVORAZIONE;
 
                 switch (request.getParameter("stato")) {
@@ -111,8 +113,11 @@
                         break;
 
                 }
+                if(user!=null && !user.equals("")){
+                    idUser = Integer.parseInt(user);
+                }
 
-                ticket = new Ticket(id,idO,utente.getId(),tipo,testo,statoTicket);
+                ticket = new Ticket(id,idO,idUser,tipo,testo,statoTicket);
                 db.updateTicket(ticket);
 
             } else {
@@ -203,6 +208,7 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                                      <input type="hidden" name="idOrdine" value="<%=ticket.getIdOrdine()%>">
                                      <input type="hidden" name="testo" value="<%=ticket.getTesto()%>">
                                      <input type="hidden" name="id" value="<%=ticket.getId()%>">
+                                     <input type="hidden" name="user" value="<%=ticket.getIdUtente()%>">
                                      <div class="input-group-append">
                                          <button class="btn btn-outline" type="submit" onclick="alert('Inviato')">Submit</button>
                                      </div>

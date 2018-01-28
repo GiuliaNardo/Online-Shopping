@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="/includes/header.jsp">
-    <jsp:param name="pageTitle" value="Shop"/>
+    <jsp:param name="pageTitle" value="Negozio"/>
 </jsp:include>
 <jsp:include page="./includes/body.jsp" flush="true">
     <jsp:param name="bodytype" value="shopprofile"/>

@@ -54,6 +54,7 @@
 }
 
 #title-review{
+    margin-bottom: 30px;
     font-size: 1.3em;
     font-weight: 600;
     color: #428BCA;
@@ -73,6 +74,24 @@
     width: 150px;
     margin-bottom: 50px;
     margin-top: 20px;
+}
+
+.testo{
+    font-size: 1em;
+    margin: 30px;
+
+}
+
+#username{
+    font-weight: 600;
+}
+.recensione{
+    background-color: whitesmoke;
+    margin-bottom: 20px;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
 }
 
 @media screen and (min-width: 700px) {

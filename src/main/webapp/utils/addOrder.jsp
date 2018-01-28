@@ -51,6 +51,8 @@
                         }
                         ordine = new Ordine(utente.getId(), prezzoTot,new Date(new java.util.Date().getTime()),new Date(new java.util.Date().getTime()),tipoOrdine,true, false, carrello );
                         if(database.insertOrder(ordine)){
+                            carrello.clear();
+                            cartSess.setAttribute("carrello", carrello);
                             response.sendRedirect("../shop.jsp");
                         }else{
                             response.sendRedirect("../checkout.jsp");

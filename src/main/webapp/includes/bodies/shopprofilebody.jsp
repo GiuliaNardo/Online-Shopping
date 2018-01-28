@@ -163,7 +163,7 @@
             <%
     } else {
     %>
-        <div id="noOrders">Nessuna recensione</div>
+    <div id="noOrders">Nessuna recensione</div></div>
 
             <%
                     }

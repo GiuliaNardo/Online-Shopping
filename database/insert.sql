@@ -99,6 +99,7 @@ INSERT INTO `categorie` (`Nome`, `Descrizione`) VALUES
 --
 -- Dump dei dati per la tabella `articolo`
 --
+
 INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Prezzo`, `Categoria`, `Voto`) VALUES
 (2, 'Iphone5', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 3, 868.7, 'Smartphone', 3),
 (3, 'HP Pavillion', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi temp', 1, 1000.77, 'Informatica', 1),
@@ -290,7 +291,17 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (212, 'Estrattore di succo', 'Imetec Succovivo Pro 2000 Estrattore di Succo Professionale a Freddo, Spremitura Lenta 48 Giri/Min', 33, 25, 'Elettrodomestici', 2.9),
 (213, 'Estrattore di succo', 'Imetec Succovivo Pro 2000 Estrattore di Succo Professionale a Freddo, Spremitura Lenta 48 Giri/Min', 42, 90, 'Elettrodomestici', 5),
 (214, 'Estrattore di succo', 'Imetec Succovivo Pro 2000 Estrattore di Succo Professionale a Freddo, Spremitura Lenta 48 Giri/Min', 32, 23, 'Elettrodomestici', 3),
-(215, 'Estrattore di succo', 'Imetec Succovivo Pro 2000 Estrattore di Succo Professionale a Freddo, Spremitura Lenta 48 Giri/Min', 30, 58, 'Elettrodomestici', 4);
+(215, 'Estrattore di succo', 'Imetec Succovivo Pro 2000 Estrattore di Succo Professionale a Freddo, Spremitura Lenta 48 Giri/Min', 30, 58, 'Elettrodomestici', 4),
+(216, 'Halo 5', 'Halo 5: Guardians è un videogioco sparatutto in prima persona del 2015, sviluppato da 343 Industries e pubblicato da Microsoft Game Studios per Xbox One. Si tratta del quinto capitolo della saga di videogiochi Halo, il secondo della nuova trilogia della serie (Reclaimer Trilogy).', 48, 40, 'Videogame', 0),
+(217, 'Xbox One S', 'Xbox One è una console per videogiochi prodotta da Microsoft. La macchina dispone di varie funzioni multimediali oltre a quelle di intrattenimento videoludico e fa parte dell\'ottava generazione di console, competendo commercialmente con la PlayStation 4 di Sony e il Wii U di Nintendo. La sua revisione, Xbox One S, è stata presentata nell\'agosto 2016, riducendo le dimensioni del 40%, introducendo il controller Bluetooth e il supporto ai Blu-Ray 4K.', 49, 200, 'Videogame', 0),
+(218, 'PlayerUnknown\'s Battlegrounds', ' un massively multiplayer online game di tipo Survival game sviluppato e pubblicato da Bluehole per Microsoft Windows. Il gioco è basato sul genere Battle Royal Match e nasce come mod di ArmA II prima di avere uno sviluppo indipendente sotto la direzione di Greene.', 49, 30, 'Videogame', 0),
+(219, 'Titanfall 2 - Xbox One', 'Titanfall 2 è un videogioco sparatutto in prima persona sviluppato da Respawn Entertainment e pubblicato da Electronic Arts per Microsoft Windows, Xbox One e diversamente dal capitolo precedente, anche per PlayStation 4. ', 48, 40, 'Videogame', 0),
+(220, 'Prey - Xbox One', 'Prey è un videogioco di genere sparatutto in prima persona sviluppato da Arkane Studios e pubblicato da Bethesda Softworks il 5 maggio 2017 per Microsoft Windows, PlayStation 4 e Xbox One.', 48, 45, 'Videogame', 0),
+(221, 'Tom Clancy\'s The Division - Xbox One', 'Tom Clancy\'s The Division è un videogioco di genere open world e action RPG. Annunciato durante l\'E3 2013, pubblicato da Ubisoft l\'8 marzo 2016.', 48, 30, 'Videogame', 0),
+(222, 'PlayStation 4', 'La PlayStation 4 (abbreviata con la sigla PS4) è una console per videogiochi creata dalla Sony Computer Entertainment, dotata di varie funzioni multimediali oltre a quelle di intrattenimento videoludico.', 48, 240, 'Videogame', 0),
+(223, 'Mass Effect: Andromeda - Xbox One', 'Mass Effect: Andromeda è un videogioco action/RPG sviluppato da BioWare e pubblicato da Electronic Arts per PlayStation 4, Xbox One e Microsoft Windows. ', 48, 35, 'Videogame', 0),
+(224, 'Forza Motorsport 7', 'Adrenalina pura in 4K Nativo. Studiato nei minimi dettagli per offrire una definizione Ultra HD a 60 fotogrammi al secondo, Forza Motorsport 7 sarà la prima vera esperienza di gioco in 4K nativo. Forza Motorsport 7.', 44, 69, 'Videogame', 0);
+
 
 
 INSERT INTO `ImmaginiUtente` (`IdImmagine`, `Percorso`, `IdUtente`) VALUES
@@ -644,7 +655,16 @@ INSERT INTO `ImmaginiArticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
 (372, 'https://images-na.ssl-images-amazon.com/images/I/71BzNSl--RL._SY438_.jpg', 212),
 (373, 'https://www.guidaprodotti.com/immagini/estrattore-di-succo.jpg', 213),
 (374, 'https://images.banzaicommerce.it/nobrand/0/hres/448/201558448/DAM201558448-1-8f141af3-6029-4b19-b212-445f7607dcea.jpg', 214),
-(375, 'https://i2.wp.com/images-eu.ssl-images-amazon.com/images/I/41mFv%2BksEZL.jpg?w=1020&ssl=1', 215);
+(375, 'https://i2.wp.com/images-eu.ssl-images-amazon.com/images/I/41mFv%2BksEZL.jpg?w=1020&ssl=1', 215),
+(376, 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/9441/9441137_sa.jpg;maxHeight=550;maxWidth=642', 216),
+(377, 'https://i5.walmartimages.com/asr/5f3b021f-cab7-445b-8e46-d937fa2505b4_1.9a021e273bdfc725417c9ce650020328.jpeg', 217),
+(378, 'https://static-ca.ebgames.ca/images/products/734695/3max.jpg', 218),
+(379, 'https://images-na.ssl-images-amazon.com/images/I/81PXyRVKQaL._SL1500_.jpg', 219),
+(380, 'https://images-eu.ssl-images-amazon.com/images/I/819IQzE-ZlL._SX342_.jpg', 220),
+(381, 'https://images-na.ssl-images-amazon.com/images/I/81NDTPtMd-L._SX342_.jpg', 221),
+(382, 'https://images-na.ssl-images-amazon.com/images/I/814K89fgU0L._SX385_.jpg', 222),
+(383, 'https://images-na.ssl-images-amazon.com/images/I/91p44CFQqcL._SX342_.jpg', 223),
+(384, 'https://images-na.ssl-images-amazon.com/images/I/815oErQ9ARL._SL1500_.jpg', 224);
 
 --
 -- Dump dei dati per la tabella `immaginiutente`

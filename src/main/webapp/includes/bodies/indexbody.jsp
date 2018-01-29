@@ -102,6 +102,7 @@
                         <div class="carousel-inner" id="most">
                             <%
                                 String src="";
+                                if (mostSold!=null){
                                 if(mostSold.size()>0){
                                     for (int i =0; i< mostSold.size(); i++) {
                                         if (mostSold.get(i).getImmagini().size() > 0) {
@@ -119,6 +120,7 @@
                             <%
                                     }
                                     }
+                                }
                                 }
                             %>
                         </div>
@@ -139,6 +141,7 @@
                         <div class="carousel-inner" id="last">
                             <%
                                 String srcU="";
+                                if(ultimi!=null){
                                 if(ultimi.size()>0){
                                     for (int i =0; i< ultimi.size(); i++) {
                                         if (ultimi.get(i).getImmagini().size() > 0) {
@@ -155,6 +158,7 @@
                             <%
                                     }
                                     }
+                                }
                                 }
                             %>
 

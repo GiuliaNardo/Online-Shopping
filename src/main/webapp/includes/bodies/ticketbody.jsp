@@ -165,30 +165,18 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                                          <div class="row">
                                             <span class="titolo">Descrizione: </span><%=ticket.getTesto()%>
                                          </div>
-                                     <%if(!isInsert) {%>
+                                     <%//if(!isInsert) {%>
                                          <div class="row">
                                              <span class="titolo">Stato: </span><%=ticket.getStatoTicket().toString()%>
                                          </div>
-                                     <%}%>
+                                     <%//}%>
 
 
 
 
 
                                      </div>
-                             <%if(isInsert && !utente.getTipo().equals(TipoUtente.ADMIN)) {%>
-                                 <div class="row col-12 col-md-2 col-sm-12" style="float:left">
-                                             <button class="btn btn-sm edit-button">
-                                                 <label id="edit" >Edit</label>
-                                             </button>
-                                     </div>
-                             <div class="row col-12 col-md-2 col-sm-12" style="float:left">
-                                 <button class="btn btn-sm delete-button" >
-                                     <label id="delete" >Delete</label>
-                                 </button>
-                             </div>
-                         </div>
-                             <%}%>
+
 
                              <%if(utente.getTipo().equals(TipoUtente.ADMIN)) {%>
                              <div class="row admin">

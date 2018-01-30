@@ -53,17 +53,17 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
 <body>
 <div class="container " style="height: 100%">
     <div class="page-header">
-        <div class="title">My orders</div>
+        <div class="title">I tuoi ordini</div>
     </div>
     <div class="" id="contentmain">
         <div class="row" id="content">
 
             <%
-                if (ordini.size() == 0) {
+                if (ordini != null && ordini.size() == 0) {
 
 
             %>
-            <div id="noOrders">
+            <div id="noOrders" >
                 Nessun ordine
             </div>
             <%

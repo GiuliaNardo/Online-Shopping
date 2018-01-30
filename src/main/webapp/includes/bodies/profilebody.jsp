@@ -66,7 +66,7 @@
     <div class="order-container" id="profile-cont">
         <div class="row title">
             <div class="col col-md-12 col-12">
-                <div><label>Your profile</label></div>
+                <div><label>Il tuo profilo</label></div>
             </div>
         </div>
         <div class="row">
@@ -89,12 +89,11 @@
                      id="profile-image1" class="img-circle img-responsive">
                 <div class="row">
                     <div class="field">
-                        <div><label class="name-field">Name:</label><%=utente.getNome()%></div>
-                        <div><label class="name-field">Last Name:</label><%=utente.getCognome()%></div>
+                        <div><label class="name-field">Nome:</label><%=utente.getNome()%></div>
+                        <div><label class="name-field">Cognome:</label><%=utente.getCognome()%></div>
                         <div><label class="name-field">Username:</label><%=utente.getUserName()%></div>
-                        <div><label class="name-field">Date of birth:</label><%=utente.getDataNascita()%></div>
+                        <div><label class="name-field">Data di nascita:</label><%=utente.getDataNascita()%></div>
                         <div><label class="name-field">Email:</label><%=utente.getEmail()%></div>
-                        <div><label class="name-field">Tipo utente:</label><%=utente.getTipo().toString()%></div>
                     </div>
                 </div>
             </div>
@@ -102,23 +101,16 @@
                 <div class="row col col md-4 col-sm-12 secondary sec1" id="primo">
                     <img src="http://www.spedizioni-espresso.it/img/come-prenotare-ritiro-pacchi.png"
                          class="img ">
-                    <div class="row"><a class="profile-generic-anchor" href="orders.jsp">My Orders</a></div>
+                    <div class="row"><a class="profile-generic-anchor" href="orders.jsp">Ordini</a></div>
                     <div class="row">Clicca per visualizzare i tuoi ordini</div>
                 </div>
                 <div class="row secondary sec1">
                     <img src="https://membershipworks.com/wp-content/uploads/2014/12/shopping-cart.png"
                          class="img">
                     <div class="row">
-                        <a class="profile-generic-anchor" href="cart.jsp">Cart</a>
+                        <a class="profile-generic-anchor" href="cart.jsp">Carrello</a>
                     </div>
                     <div class="row">Clicca per visualizzare il tuo carrello</div>
-                </div>
-                <div class="row secondary">
-                    <img src="http://www.graphicsfuel.com/wp-content/uploads/2012/07/pencil-icon-512.png" class="img">
-                    <div class="row">
-                        <a class="profile-generic-anchor" href="profile.jsp">Edit</a>
-                    </div>
-                    <div class="row">Clicca per modificare il tuo profilo</div>
                 </div>
             </div>
         </div>

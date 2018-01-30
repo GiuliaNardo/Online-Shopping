@@ -51,18 +51,18 @@
     <div class="row">
         <div class="container">
             <div class="page-header">
-                <span class="title">My notifications</span>
+                <span class="title">Le mie notifiche</span>
             </div>
             <!--<div class="row" id="nav-home">-->
             <div class="container" id="contentmain">
                 <div class="row" id="content">
-                    <div class="niente" id="no-notifications-div">There isn't any notification</div>
+                    <div class="niente" id="no-notifications-div">Non hai notifiche</div>
 
                 </div>
 
             </div>
             <button class="btn" id="espandi-button" onclick="espandi()">
-                View more notification
+                Espandi
             </button>
         </div>
 

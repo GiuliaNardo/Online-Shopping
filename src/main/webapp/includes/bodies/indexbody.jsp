@@ -93,7 +93,7 @@
 
         <div class="col col-lg-4 col-md-4 col-12 col-sm-12 content">
             <div class="row title">
-                Più venduto
+                Più venduti
             </div>
             <div class="row">
                 <a href="">
@@ -132,7 +132,7 @@
 
         <div class=" col col-lg-4 col-md-4 col-12 col-sm-12 content">
             <div class="row title">
-                Latest items
+                Ultimi aggiunti
             </div>
             <div class="row">
                 <a href="">

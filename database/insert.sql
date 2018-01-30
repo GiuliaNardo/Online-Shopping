@@ -24,6 +24,8 @@ USE progettoweb;
 --
 INSERT INTO `utente` (`IdUtente`, `UserName`, `Password`, `Nome`, `Cognome`, `Email`, `DataNascita`, `Tipo`, `Validato`, `validationhash`) VALUES
 (1, 'Admin', '61ec64cc8ac8ede6534e7dbee9b8e1dec0eae6ca51656ca8ae7715104a4fa862', 'Amministratore', 'Sitarelli', 'admin@admin.it', '2018-01-01', 'Administrator', 'false', 'b379feafe3bd2dcd58eb5488be636509cf438cd1a219a24a4330e554870dda6d'),
+(38, 'fededema', '495b6cb39fc0f732f8ef4ef64a5ce24bb0bd1b4ac7ec764925640476e766afdb', 'Federico', 'De Martin', 'fede@dema.it', '1996-08-27', 'User', 'false', 'd0b9315119141302628718abacc3aea39e1931301adf64e505246dd5d62ec156'),
+(39, 'dema', '6954ac1e2a0bfac6e0e4d4d186cba0a9f2abbeb9710c2ed1cd5db41012ac2a65', 'fede', 'dema', 'dema@dema.it', '1996-01-01', 'User', 'false', 'a12e8a7e6562c5fa61719cd6de762637ccc949cbfdda98ea264b1c0884bfdbeb'),
 (27, 'selli8', 'sellina', 'Sara', 'Milli', 'millina@gmail.coom', '1976-03-16', 'User', '', ''),
 (28, 'Giulia1', '982c38dc43dc57c14adebe399c6556893b5114c877d90b83921b2e0945191801', 'pippo', 'pippo', 'l@h.com', '2018-01-17', 'Seller', 'false', '33d2cf014275ec8f7ab705bb59780829089250e182f7a510aca578f27daf78a6'),
 (29, 'pippoAdmin', '69842058052e167cba8a62acf64dd207d936f0ea2977190df543ea8e26859aa9', 'PippoA', 'pippo', 'l@h.com', '1998-01-17', 'Seller', 'false', '19c96d8d4cab0b2ce07cd0af59f9c6473e2106d8a259df027501f8752d630d24'),
@@ -43,6 +45,7 @@ INSERT INTO `venditore` (`IdVenditore`, `IdUtente`, `NomeNegozio`, `RagioneSocia
 (1, 28, 'Simoncelli', 'SPA', '15478972300', '000510258741', 'Via simo 5', 1.9),
 (2, 28, 'Dema Shop', 'SRL', '02154879632', '125489632755', 'Via dema 8', 3.8),
 (3, 28, 'GIAA', 'SRL', '12589636547', '103200587960', 'Via G 9', 3.6),
+(4, 29, 'Negozio del Dema', 'SRL', '02154879632', '125489632755', 'Via del dema 8', 5),
 (9, 28, 'Boollo', 'sas', '11125489637', '111254896370', 'Via Lilli', 2.4),
 (10, 29, 'Dart Veder', 'sas', '11125489589', '111254895890', 'Via Grazioli 10', 1.9),
 (11, 29, 'Glass', 'SAS', '12547896587', '125478965870', 'Via Goi 9', 1.3),
@@ -300,8 +303,34 @@ INSERT INTO `articolo` (`IdArticolo`, `Nome`, `Descrizione`, `IdVenditore`, `Pre
 (221, 'Tom Clancy\'s The Division - Xbox One', 'Tom Clancy\'s The Division è un videogioco di genere open world e action RPG. Annunciato durante l\'E3 2013, pubblicato da Ubisoft l\'8 marzo 2016.', 48, 30, 'Videogame', 0),
 (222, 'PlayStation 4', 'La PlayStation 4 (abbreviata con la sigla PS4) è una console per videogiochi creata dalla Sony Computer Entertainment, dotata di varie funzioni multimediali oltre a quelle di intrattenimento videoludico.', 48, 240, 'Videogame', 0),
 (223, 'Mass Effect: Andromeda - Xbox One', 'Mass Effect: Andromeda è un videogioco action/RPG sviluppato da BioWare e pubblicato da Electronic Arts per PlayStation 4, Xbox One e Microsoft Windows. ', 48, 35, 'Videogame', 0),
-(224, 'Forza Motorsport 7', 'Adrenalina pura in 4K Nativo. Studiato nei minimi dettagli per offrire una definizione Ultra HD a 60 fotogrammi al secondo, Forza Motorsport 7 sarà la prima vera esperienza di gioco in 4K nativo. Forza Motorsport 7.', 44, 69, 'Videogame', 0);
-
+(224, 'Forza Motorsport 7', 'Adrenalina pura in 4K Nativo. Studiato nei minimi dettagli per offrire una definizione Ultra HD a 60 fotogrammi al secondo, Forza Motorsport 7 sarà la prima vera esperienza di gioco in 4K nativo. Forza Motorsport 7.', 44, 69, 'Videogame', 0),
+(225, 'Huawei Nova', 'Huawei Nova Young Smartphone, 16 GB, Bianco ', 4, 150, 'Smartphone', 0),
+(226, 'DOOGEE X5 Max Pro', 'Android 6.0 - 4G 5.0 Pollici HD IPS Display Telefonia Mobile - 4000mAh Cellulare con 16GB ROM 2GB RAM - 8.0MP Fotocamera Digitale e Impronta ', 4, 100, 'Smartphone', 0),
+(227, 'OUKITEL C8', '4G Smartphone Android 7.0, 5,5\" (Rapporto 18: 9 Visione Completa) Quad Core MTK6580A 1.3GHz 2GB RAM 16GB ROM, Batteria 3000mAh, Fotocamera da 5MP + 13MP, ', 4, 94.99, 'Smartphone', 0),
+(228, 'Samsung G930 Galaxy S7', 'Samsung G930 Galaxy S7 Smartphone da 32GB, Nero [Italia] Tim', 43, 399, 'Smartphone', 0),
+(229, 'Pellicola Galaxy S7 EDGE', 'G-Color Trasparente Pellicola Morbida in TPU Alta Definizione Copertura Completa Senza Bolle [Compatibile con Custodia] Pellicola Protettiva per Samsung Galaxy S7 EDGE', 43, 7.99, 'Smartphone', 0),
+(230, 'Samsung Galaxy S8', 'Samsung Galaxy S8 Smartphone, Nero (Midnight Black), 64 GB Espandibili [Versione Italiana]', 46, 533, 'Smartphone', 5),
+(231, 'Custodia Galaxy S8 Blu', 'Custodia Galaxy S8 Blu , ivencase Cover Galaxy S8 Silicone Ultra Sottile Front Cover & Indietro Caso TPU Gel Soft Case Bumper Shock-Absorption e Anti-Scratch Cassa per Samsung ', 2, 6.99, 'Smartphone', 0),
+(232, 'Apple iPhone 7', 'Apple iPhone 7 Smartphone 4G (Display: 4,7\" - 32 GB - iOS 10)', 47, 562, 'Smartphone', 1),
+(233, 'iPhone 7/ iPhone 8 Pellicola Protettiva', 'iPhone 7/ iPhone 8 Pellicola Protettiva IZUKU 2 Pack Pellicola Vetro Temperato Screen Protector Film Ultra Resistente (0.26mm HD Alta Trasparenza) per iPhone 7/iphone 8', 11, 5.94, 'Smartphone', 0),
+(234, '[3 Pack] iPhone 7/ iPhone 8 Pellicola Protettiva', '[3 Pack] iPhone 7/ iPhone 8 Pellicola Protettiva, Nearpow Pellicola Protettiva in Vetro Temperato per iPhone 7/ iPhone 8 [2.5D Bordi Arrotondati][3D Toccare Compatibile][Elevata Durezza][Garanzia a Vi ', 4, 6.49, 'Smartphone', 0),
+(235, 'Apple iPhone 8', 'Apple iPhone 8 Single SIM 4G 64GB Grey - smartphones (11.9 cm (4.7\"), 64 GB, 12 MP, iOS, 11, Grey)', 4, 694, 'Smartphone', 0),
+(236, 'Apple iPhone 8 Plus', 'Apple iPhone 8 Plus Smartphone da 5,5 pollici Full HD, Memoria da 64 GB, Camera 12 MP, IP67, 4G, iOS 11, Grigio', 4, 820, 'Smartphone', 0),
+(237, 'Apple iPhone 8 Plus', 'Apple iPhone 8 Plus - smartphones (14 cm (5.5\"), 64 GB, 12 MP, iOS, 11, Silver)', 4, 792, 'Smartphone', 0),
+(238, 'Apple iPhone X', 'Apple iPhone X Single SIM 4G 64GB Silver - smartphones (14.7 cm (5.8\"), 64 GB, 12 MP, iOS, 11, Silver) ', 4, 980, 'Smartphone', 0),
+(239, 'Cover iPhone X', 'Cover iPhone X [Supporta la Ricarica Wireless], ESR Custodia Puro Trasparente Morbida TPU [Ultra Leggere e Chiaro] Silicone Ultra Sottile Case per Apple iPhone X / iPhone 10 (Uscito a 2017) da 5.8 pollici. ', 4, 2.4, 'Smartphone', 0),
+(240, 'Caricatore Wireless smarphone', 'Caricatore Wireless, CHOETECH Caricabatterie Wireless Qi con Indicatore LED per iPhone 8/8Plus/X,Samsung S8/S8 Plus,Note 8,S7 Edge,S6/S6 Edge,Lumia 950 e Tutti i Dispositivi Qi-Enabled,Include un Cavo [Classe di efficienza energetica A++]', 18, 13.99, 'Smartphone', 0),
+(241, 'Pellicola Fotocamera iPhone X', 'Pellicola Fotocamera iPhone X, [6 Pezzi] G-Color Pellicola Sottile Vetro Temperato Fotocamera Posteriore, Antigraffio [Facile da Installare] Trasparente Pellicola Vetro Lente della Fotocamera per iPhone X ', 4, 8.99, 'Smartphone', 0),
+(242, 'HTC U Play', 'HTC U Play 4G 32GB Black - smartphones (13.2 cm (5.2\"), 32 GB, 16 MP, Android, 6.0, Black)', 4, 201.63, 'Smartphone', 0),
+(243, 'HTC U 11', 'HTC U 11 Smartphone, 5.5\", Dual SIM, 4G/LTE, 64 GB, Argento', 2, 574, 'Smartphone', 0),
+(244, 'HTC One M9', 'HTC One M9 Smartphone, Display 5 Pollici, Full-HD-Display, Octa-Core-Processore, 20 MP Fotocamera, 32GB Memoria, Android 5.0.2, Oro ', 4, 256.13, 'Smartphone', 4),
+(245, 'LG Q6', 'LG Q6 Smartphone Dual SIM FullVision 5.5, Batteria da 3000 mAh, Fotocamera 13 MP + 5 MP Grandangolare, Octa-Core 1.4 GHz, Memoria 32 GB, 3 GB RAM, Android 7.1.1 Nougat, Astro Black [Italia] ', 2, 210, 'Smartphone', 0),
+(246, 'HTC M8 M8S Cover ', 'HTC M8 M8S Cover Custodia Protezione di NICA, Punti TPU Silicone Gel Phone Case Protettiva Antiurto Dot Bumper Morbido per Cellulare, Slim Gomma Copertura per Telefono HTC M8S M8 - Nero ', 4, 7.95, 'Smartphone', 0),
+(247, 'HTC One A9S', 'HTC One A9S 4G Black - smartphones (12.7 cm (5\"), 1280 x 720 pixels, MediaTek, 13 MP, Android, Black)', 10, 175, 'Smartphone', 0),
+(248, 'HTC 10', 'HTC 10 Smartphone, 5.2\", AMOLED, 1440 x 2560 Pixel, 12 MP, 32 GB, Android, Oro (topaz gold)', 48, 352, 'Smartphone', 0),
+(249, 'HTC Desire 650', 'HTC Desire 650 4G 16GB Blue - smartphones (12.7 cm (5\"), 16 GB, 13 MP, Android, 6.0, Blue) ', 4, 169, 'Smartphone', 0),
+(250, 'Sony Xperia XA1', 'Sony Xperia XA1 Smartphone, Memoria Interna da 32 GB, Nero [Italia] ', 4, 199, 'Smartphone', 0),
+(251, 'Sony Xperia XZ', 'Sony Xperia XZ Smartphone F8331, 5,2 pollici, 32 GB Memoria, Android 6.0, MINERAL BLACK (Italia)', 4, 390, 'Smartphone', 2);
 
 
 INSERT INTO `ImmaginiUtente` (`IdImmagine`, `Percorso`, `IdUtente`) VALUES
@@ -330,9 +359,9 @@ INSERT INTO `ordine` (`IdOrdine`, `IdUtente`, `PrezzoTot`, `DataOrdine`, `DataSp
 --
 
 INSERT INTO `recensioneArticoli` (`IdRecArt`, `IdUtente`, `Voto`, `Testo`, `IdArticolo`) VALUES
-(1, 23, 3, 'Carino come fumetto. Giusto per ingrandire la mia collezione', 25),
-(2, 7, 4, 'Bel fumetto, ricevuto in ottime condizioni', 25),
-(3, 5, 1, 'Ricevuto strappato con due settimane di ritardo', 25);
+(1, 38, 3, 'Carino come fumetto. Giusto per ingrandire la mia collezione', 25),
+(2, 39, 4, 'Bel fumetto, ricevuto in ottime condizioni', 25),
+(3, 37, 1, 'Ricevuto strappato con due settimane di ritardo', 25);
 
 
 INSERT INTO `recensioneVenditore` (`IdRecVen`, `IdUtente`, `voto`, `Testo`, `IdVenditore`) VALUES
@@ -664,7 +693,34 @@ INSERT INTO `ImmaginiArticoli` (`IdImmagine`, `Percorso`, `IdArticolo`) VALUES
 (381, 'https://images-na.ssl-images-amazon.com/images/I/81NDTPtMd-L._SX342_.jpg', 221),
 (382, 'https://images-na.ssl-images-amazon.com/images/I/814K89fgU0L._SX385_.jpg', 222),
 (383, 'https://images-na.ssl-images-amazon.com/images/I/91p44CFQqcL._SX342_.jpg', 223),
-(384, 'https://images-na.ssl-images-amazon.com/images/I/815oErQ9ARL._SL1500_.jpg', 224);
+(384, 'https://images-na.ssl-images-amazon.com/images/I/815oErQ9ARL._SL1500_.jpg', 224),
+(385, 'https://images-na.ssl-images-amazon.com/images/I/61E52CUCqzL._SL1500_.jpg', 225),
+(386, 'https://images-na.ssl-images-amazon.com/images/I/81WpwmGMukL._SL1500_.jpg', 226),
+(387, 'https://images-na.ssl-images-amazon.com/images/I/71SebmkVIzL._SL1500_.jpg', 227),
+(388, 'https://images-na.ssl-images-amazon.com/images/I/41rbVsdWwXL.jpg', 228),
+(389, 'https://images-na.ssl-images-amazon.com/images/I/61BYJphwjmL._SL1000_.jpg', 229),
+(390, 'https://images-na.ssl-images-amazon.com/images/I/71Ghgb1azZL._SL1500_.jpg', 230),
+(391, 'https://images-na.ssl-images-amazon.com/images/I/51OEaCiT1VL._SL1024_.jpg', 231),
+(392, 'https://images-na.ssl-images-amazon.com/images/I/51dWYjPFIGL.jpg', 232),
+(393, 'https://images-na.ssl-images-amazon.com/images/I/712iyV%2Bm6fL._SL1500_.jpg', 233),
+(394, 'https://images-na.ssl-images-amazon.com/images/I/61XeP6lkNRL._SL1000_.jpg', 234),
+(395, 'https://images-na.ssl-images-amazon.com/images/I/51YLl9-CK8L._SL1000_.jpg', 235),
+(396, 'https://images-na.ssl-images-amazon.com/images/I/51htAJbz16L._SL1000_.jpg', 236),
+(397, 'https://images-na.ssl-images-amazon.com/images/I/51VNxRQ7lgL._SL1000_.jpg', 237),
+(398, 'https://images-na.ssl-images-amazon.com/images/I/61f26tMduUL._SL1000_.jpg', 238),
+(399, 'https://images-na.ssl-images-amazon.com/images/I/71rFUuxNnvL._SL1500_.jpg', 239),
+(400, 'https://images-na.ssl-images-amazon.com/images/I/51VoUGQ1fML._SL1000_.jpg', 240),
+(401, 'https://images-na.ssl-images-amazon.com/images/I/61uJ5Dyy28L._SL1000_.jpg', 241),
+(402, 'https://images-na.ssl-images-amazon.com/images/I/61b2Y6gO8cL._SL1000_.jpg', 242),
+(403, 'https://images-na.ssl-images-amazon.com/images/I/61GhJ2OgDmL._SL1000_.jpg', 243),
+(404, 'https://images-na.ssl-images-amazon.com/images/I/71Q2EQax%2BML._SL1080_.jpg', 244),
+(405, 'https://images-na.ssl-images-amazon.com/images/I/71hfniX-RfL._SL1500_.jpg', 245),
+(406, 'https://images-na.ssl-images-amazon.com/images/I/71uGf4PwxfL._SL1000_.jpg', 246),
+(407, 'https://images-na.ssl-images-amazon.com/images/I/61sqe06AEBL._SL1100_.jpg', 247),
+(408, 'https://images-eu.ssl-images-amazon.com/images/I/41En1ESUKeL._SL500_AA300_.jpg', 248),
+(409, 'https://images-na.ssl-images-amazon.com/images/I/51Y5vkkosjL._SL1000_.jpg', 249),
+(410, 'https://images-na.ssl-images-amazon.com/images/I/71by9LTLH4L._SL1500_.jpg', 250),
+(411, 'https://images-na.ssl-images-amazon.com/images/I/41SkDOwojQL.jpg', 251);
 
 --
 -- Dump dei dati per la tabella `immaginiutente`

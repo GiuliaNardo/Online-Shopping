@@ -123,8 +123,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
-                String titolo = resultSet.getString("Nome");
-                String descrizione = resultSet.getString("Descrizione");
+                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -596,7 +596,7 @@ public class Database {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                String item = resultSet.getString("Nome").toLowerCase();
+                String item = resultSet.getString("Nome").toLowerCase().replaceAll("/(['\"])/g","\\$1");
                articoli.add(item);
             }
         } catch (SQLException e1) {
@@ -633,8 +633,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
-                String titolo = resultSet.getString("Nome");
-                String descrizione = resultSet.getString("Descrizione");
+                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -675,8 +675,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
-                String titolo = resultSet.getString("Nome");
-                String descrizione = resultSet.getString("Descrizione");
+                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -868,8 +868,8 @@ public class Database {
                         String path = resultSet3.getString("Percorso");
                         immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                     }
-                    String titolo = resultSet2.getString("Nome");
-                    String descrizione = resultSet2.getString("Descrizione");
+                    String titolo = resultSet2.getString("Nome").replaceAll("/(['\"])/g","\\$1");
+                    String descrizione = resultSet2.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
                     float prezzo = resultSet2.getFloat("Prezzo");
                     String categoria = resultSet2.getString("Categoria");
                     float voto = resultSet2.getFloat("Voto");
@@ -986,7 +986,7 @@ public class Database {
                 int idUtente = resultSet.getInt("IdUtente");
                 Utente utente = getUtente(idUtente);
                 int voto = resultSet.getInt("Voto");
-                String testo = resultSet.getString("Testo");
+                String testo = resultSet.getString("Testo").replaceAll("/(['\"])/g","\\$1");
                 recensioniArticolo.add(new RecensioneArticolo(id,utente,voto,testo,articolo.getIdArticolo()));
                 }
 
@@ -1064,7 +1064,7 @@ public class Database {
                 int idUtente = resultSet.getInt("IdUtente");
                 Utente utente = getUtente(idUtente);
                 int voto = resultSet.getInt("Voto");
-                String testo = resultSet.getString("Testo");
+                String testo = resultSet.getString("Testo").replaceAll("/(['\"])/g","\\$1");
 
                 recensioniVenditori.add(new RecensioneVenditore(id,utente,voto,testo,venditore.getIdVenditore()));
             }
@@ -1089,7 +1089,7 @@ public class Database {
             String query = "SELECT * FROM articolo WHERE ";
             boolean firstParam = false;
             if(searchParams.getTesto() != null) {
-                query += "(Nome LIKE '%" + searchParams.getTesto() + "%')";
+                query += "(Nome LIKE '%" + escapeSQL(searchParams.getTesto()) + "%')";
                 firstParam = true;
             }
 
@@ -1099,16 +1099,16 @@ public class Database {
                 }
                 firstParam = true;
                 if(searchParams.getEndPrice() != -10) {
-                    query += "(Prezzo BETWEEN " + searchParams.getStartPrice() + " " + searchParams.getEndPrice() + ")";
+                    query += "(Prezzo BETWEEN " + escapeSQL( "" + searchParams.getStartPrice()) + " " + escapeSQL("" + searchParams.getEndPrice()) + ")";
                 } else {
-                    query += "(Prezzo >= " + searchParams.getStartPrice() + ") ";
+                    query += "(Prezzo >= " + escapeSQL("" + searchParams.getStartPrice()) + ") ";
                 }
             } else if(searchParams.getEndPrice() != -10) {
                 if(firstParam) {
                     query += " AND ";
                 }
                 firstParam = true;
-                query += "(Prezzo <= " + searchParams.getEndPrice() + ")";
+                query += "(Prezzo <= " + escapeSQL("" + searchParams.getEndPrice()) + ")";
             }
 
             if (searchParams.getMinReview() != -10) {
@@ -1116,7 +1116,7 @@ public class Database {
                     query += " AND ";
                 }
                 firstParam = true;
-                query += "(Voto >= " + searchParams.getMinReview() + ")";
+                query += "(Voto >= " + escapeSQL("" + searchParams.getMinReview()) + ")";
             }
 
             if(searchParams.getCategoria() != null) {
@@ -1124,7 +1124,7 @@ public class Database {
                     query += " AND ";
                 }
                 firstParam = true;
-                query += "(Categoria = '" + searchParams.getCategoria().getNome() + "')";
+                query += "(Categoria = '" + escapeSQL(searchParams.getCategoria().getNome()) + "')";
             }
 
             if(searchParams.getQueryOrder() == QueryOrder.DESC) {
@@ -1150,8 +1150,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id, path, idArticolo));
                 }
-                String titolo = resultSet.getString("Nome");
-                String descrizione = resultSet.getString("Descrizione");
+                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -1358,6 +1358,57 @@ public class Database {
         }
         return insertSuccesful;
 
+    }
+
+    /***
+     * Serve per fare l'escape delle stringhe per le query sql quando non è possibile usare delle query parametrizzate
+     * @param s La stringa di cui bisogna fare l'escape
+     * @return La stringa con l'escape effettuato
+     */
+
+    public static String escapeSQL(String s){
+        int length = s.length();
+        int newLength = length;
+        // first check for characters that might
+        // be dangerous and calculate a length
+        // of the string that has escapes.
+        for (int i=0; i<length; i++){
+            char c = s.charAt(i);
+            switch(c){
+                case '\\':
+                case '\"':
+                case '\'':
+                case '\0':{
+                    newLength += 1;
+                } break;
+            }
+        }
+        if (length == newLength){
+            // nothing to escape in the string
+            return s;
+        }
+        StringBuffer sb = new StringBuffer(newLength);
+        for (int i=0; i<length; i++){
+            char c = s.charAt(i);
+            switch(c){
+                case '\\':{
+                    sb.append("\\\\");
+                } break;
+                case '\"':{
+                    sb.append("\\\"");
+                } break;
+                case '\'':{
+                    sb.append("\\\'");
+                } break;
+                case '\0':{
+                    sb.append("\\0");
+                } break;
+                default: {
+                    sb.append(c);
+                }
+            }
+        }
+        return sb.toString();
     }
 
     /***

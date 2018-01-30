@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.unitn.progettoweb.Objects.AdvancedSearchParameters</OriginalElement>
+  <nodes>
+    <node x="1110.0" y="2479.0">it.unitn.progettoweb.Objects.ArticoloOrdine</node>
+    <node x="2047.8125" y="1275.0">it.unitn.progettoweb.Objects.Ordine</node>
+    <node x="445.9375" y="1242.0">it.unitn.progettoweb.Objects.Utente</node>
+    <node x="1149.1875" y="102.0">java.lang.Enum</node>
+    <node x="449.9375" y="2039.0">it.unitn.progettoweb.Objects.RecensioneArticolo</node>
+    <node x="257.0" y="819.5">it.unitn.progettoweb.Objects.QueryOrder</node>
+    <node x="504.0" y="2479.0">it.unitn.progettoweb.Objects.ImmagineVenditore</node>
+    <node x="2014.4375" y="819.5">it.unitn.progettoweb.Objects.TipoOrdine</node>
+    <node x="2359.9910714285716" y="157.0">it.unitn.progettoweb.Objects.ImmagineArticolo</node>
+    <node x="1218.9375" y="1374.0">it.unitn.progettoweb.Objects.Ticket</node>
+    <node x="0.0" y="775.0">it.unitn.progettoweb.Objects.Categoria</node>
+    <node x="830.9375" y="2028.0">it.unitn.progettoweb.Objects.RecensioneVenditore</node>
+    <node x="1152.4375" y="11.0">java.io.Serializable</node>
+    <node x="964.6875" y="808.5">it.unitn.progettoweb.Objects.ValidazioneUtente</node>
+    <node x="0.0" y="2479.0">it.unitn.progettoweb.Objects.Venditore</node>
+    <node x="836.0" y="2479.0">it.unitn.progettoweb.Objects.Session</node>
+    <node x="85.92857142857133" y="1385.0">it.unitn.progettoweb.Objects.AdvancedSearchParameters</node>
+    <node x="484.6875" y="742.0">it.unitn.progettoweb.Objects.ImmagineUtente</node>
+    <node x="1618.9375" y="1429.0">it.unitn.progettoweb.Objects.Notifica</node>
+    <node x="2205.4375" y="544.0">it.unitn.progettoweb.Objects.Articolo</node>
+    <node x="1227.9375" y="797.5">it.unitn.progettoweb.Objects.StatoTicket</node>
+    <node x="1290.4375" y="0.0">java.lang.Comparable</node>
+    <node x="773.6875" y="797.5">it.unitn.progettoweb.Objects.TipoUtente</node>
+    <node x="1726.9375" y="819.5">it.unitn.progettoweb.Objects.StatoNotifica</node>
+    <node x="1418.9375" y="797.5">it.unitn.progettoweb.Objects.TipoTicket</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.unitn.progettoweb.Objects.TipoTicket" target="java.lang.Enum">
+      <point x="0.0" y="-70.5" />
+      <point x="1504.4375" y="524.0" />
+      <point x="1349.9375" y="524.0" />
+      <point x="54.75" y="181.0" />
+    </edge>
+    <edge source="it.unitn.progettoweb.Objects.TipoOrdine" target="java.lang.Enum">
+      <point x="0.0" y="-48.5" />
+      <point x="2099.9375" y="504.0" />
+      <point x="1422.9375" y="504.0" />
+      <point x="127.75" y="181.0" />
+    </edge>
+    <edge source="java.lang.Enum" target="java.lang.Comparable">
+      <point x="73.0" y="-181.0" />
+      <point x="1368.1875" y="77.0" />
+      <point x="1378.9375" y="77.0" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="it.unitn.progettoweb.Objects.TipoUtente" target="java.lang.Enum">
+      <point x="0.0" y="-70.5" />
+      <point x="859.1875" y="514.0" />
+      <point x="1240.4375" y="514.0" />
+      <point x="-54.75" y="181.0" />
+    </edge>
+    <edge source="it.unitn.progettoweb.Objects.StatoTicket" target="java.lang.Enum">
+      <point x="0.0" y="-70.5" />
+      <point x="18.25" y="181.0" />
+    </edge>
+    <edge source="it.unitn.progettoweb.Objects.ValidazioneUtente" target="java.lang.Enum">
+      <point x="0.0" y="-59.5" />
+      <point x="1050.1875" y="524.0" />
+      <point x="1276.9375" y="524.0" />
+      <point x="-18.25" y="181.0" />
+    </edge>
+    <edge source="it.unitn.progettoweb.Objects.StatoNotifica" target="java.lang.Enum">
+      <point x="0.0" y="-48.5" />
+      <point x="1812.4375" y="514.0" />
+      <point x="1386.4375" y="514.0" />
+      <point x="91.25" y="181.0" />
+    </edge>
+    <edge source="it.unitn.progettoweb.Objects.QueryOrder" target="java.lang.Enum">
+      <point x="0.0" y="-48.5" />
+      <point x="342.5" y="504.0" />
+      <point x="1203.9375" y="504.0" />
+      <point x="-91.25" y="181.0" />
+    </edge>
+    <edge source="java.lang.Enum" target="java.io.Serializable">
+      <point x="-73.0" y="-181.0" />
+      <point x="1222.1875" y="77.0" />
+      <point x="1211.4375" y="77.0" />
+      <point x="0.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.29825107388975425" x="2149.251832590767" y="1577.2914469498496" />
+  <SelectedNodes>
+    <node>it.unitn.progettoweb.Objects.AdvancedSearchParameters</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

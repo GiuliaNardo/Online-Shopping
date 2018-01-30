@@ -123,8 +123,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
-                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
-                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
+                String titolo = resultSet.getString("Nome").replaceAll("(['\"])","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("(['\"])","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -596,7 +596,7 @@ public class Database {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                String item = resultSet.getString("Nome").toLowerCase().replaceAll("/(['\"])/g","\\$1");
+                String item = resultSet.getString("Nome").toLowerCase().replaceAll("(['\"])","\\$1");
                articoli.add(item);
             }
         } catch (SQLException e1) {
@@ -633,8 +633,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
-                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
-                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
+                String titolo = resultSet.getString("Nome").replaceAll("(['\"])","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("(['\"])","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -675,8 +675,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                 }
-                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
-                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
+                String titolo = resultSet.getString("Nome").replaceAll("(['\"])","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("(['\"])","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");
@@ -868,8 +868,8 @@ public class Database {
                         String path = resultSet3.getString("Percorso");
                         immaginiArticoli.add(new ImmagineArticolo(id,path,idArticolo));
                     }
-                    String titolo = resultSet2.getString("Nome").replaceAll("/(['\"])/g","\\$1");
-                    String descrizione = resultSet2.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
+                    String titolo = resultSet2.getString("Nome").replaceAll("(['\"])","\\$1");
+                    String descrizione = resultSet2.getString("Descrizione").replaceAll("(['\"])","\\$1");
                     float prezzo = resultSet2.getFloat("Prezzo");
                     String categoria = resultSet2.getString("Categoria");
                     float voto = resultSet2.getFloat("Voto");
@@ -986,7 +986,7 @@ public class Database {
                 int idUtente = resultSet.getInt("IdUtente");
                 Utente utente = getUtente(idUtente);
                 int voto = resultSet.getInt("Voto");
-                String testo = resultSet.getString("Testo").replaceAll("/(['\"])/g","\\$1");
+                String testo = resultSet.getString("Testo").replaceAll("(['\"])","\\$1");
                 recensioniArticolo.add(new RecensioneArticolo(id,utente,voto,testo,articolo.getIdArticolo()));
                 }
 
@@ -1064,7 +1064,7 @@ public class Database {
                 int idUtente = resultSet.getInt("IdUtente");
                 Utente utente = getUtente(idUtente);
                 int voto = resultSet.getInt("Voto");
-                String testo = resultSet.getString("Testo").replaceAll("/(['\"])/g","\\$1");
+                String testo = resultSet.getString("Testo").replaceAll("(['\"])","\\$1");
 
                 recensioniVenditori.add(new RecensioneVenditore(id,utente,voto,testo,venditore.getIdVenditore()));
             }
@@ -1150,8 +1150,8 @@ public class Database {
                     String path = resultSet2.getString("Percorso");
                     immaginiArticoli.add(new ImmagineArticolo(id, path, idArticolo));
                 }
-                String titolo = resultSet.getString("Nome").replaceAll("/(['\"])/g","\\$1");
-                String descrizione = resultSet.getString("Descrizione").replaceAll("/(['\"])/g","\\$1");
+                String titolo = resultSet.getString("Nome").replaceAll("(['\"])","\\$1");
+                String descrizione = resultSet.getString("Descrizione").replaceAll("(['\"])","\\$1");
                 int idVenditore = resultSet.getInt("IdVenditore");
                 float prezzo = resultSet.getFloat("Prezzo");
                 String categoria = resultSet.getString("Categoria");

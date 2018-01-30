@@ -68,7 +68,6 @@
 .sec1{
 
     margin: auto;
-    border-bottom: 1px solid #ddd;
 }
 
 
@@ -81,6 +80,7 @@
     #profile-cont{
         width: 98%;
         margin-top: 0px;
+        margin-bottom: 20px;
     }
 
 }
@@ -95,7 +95,7 @@
 
     #profile-cont{
         width: 98%;
-        height: 100%;
+        height: auto;
         margin-bottom: 50px;
 
     }
@@ -103,6 +103,11 @@
         text-align: none;
         height: 80%;
         border-left: 1px solid #ddd;
+    }
+    #primo{
+        margin-bottom: 50px;
+        margin-top: 80px;
+        border-bottom: 1px solid #ddd;
     }
 
 }

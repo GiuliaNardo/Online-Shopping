@@ -13,6 +13,7 @@
 <%@ page import="java.util.logging.SimpleFormatter" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="it.unitn.progettoweb.Objects.*" %>
+<%@ page import="java.math.BigDecimal" %>
 
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
@@ -38,7 +39,6 @@
                     utente = database.getUtente(sessione.getIdUtente());
                     isLogged = true;
                     ordini = db.getUserOrders(utente);
-                    System.out.println(ordini.size());
                 }
             }
         }
@@ -69,7 +69,8 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
             <%
             } else {
                 for (Ordine o : ordini) {
-
+                    BigDecimal bd = new BigDecimal(Float.toString(o.getPrezzoTot()));
+                    bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
 
             %>
             <div>
@@ -81,7 +82,7 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                         <div class="row"><%=o.getDataOrdine()%>
                         </div>
                         <div class="row titolo">
-                            Totale: <%=o.getPrezzoTot() * 100.0 / 100.0%> euro
+                            Totale: <%=bd%> euro
                         </div>
                     </div>
                     <div class="row col-12 col-md-2 col-sm-12">

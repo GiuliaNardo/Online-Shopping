@@ -4,7 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
 <%@ page import="it.unitn.progettoweb.Objects.Categoria" %>
-<%@ page import="it.unitn.progettoweb.Objects.QueryOrder" %><%--
+<%@ page import="it.unitn.progettoweb.Objects.QueryOrder" %>
+<%@ page import="java.math.BigDecimal" %><%--
   Created by IntelliJ IDEA.
   User: Federico
   Date: 22/09/2017
@@ -296,10 +297,12 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
                         path = results.get(i).getImmagini().get(0).getPercorso();
                     }
                 }
+                BigDecimal bd = new BigDecimal(Float.toString(results.get(i).getPrezzo()));
+                bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
 
                %>
 
-            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione().replaceAll("(['\"])","\\\\$1")%>", "<%=results.get(i).getTitolo().replaceAll("(['\"])","\\\\$1")%>","<%=results.get(i).getPrezzo()%>"+"€","<%=path%>"));
+            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione().replaceAll("(['\"])","\\\\$1")%>", "<%=results.get(i).getTitolo().replaceAll("(['\"])","\\\\$1")%>","<%=bd%>"+"€","<%=path%>"));
             <%
             }
         }

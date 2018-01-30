@@ -11,6 +11,8 @@
 <%@ page import="it.unitn.progettoweb.Objects.Articolo" %>
 <%@ page import="it.unitn.progettoweb.Objects.Session" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="static java.lang.StrictMath.round" %>
+<%@ page import="java.math.BigDecimal" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     Utente utente = null;
@@ -84,11 +86,25 @@
             <div class="articoli">
                 <span class="titolo">Riepilogo ordine</span>
                 <div class="item row ">
-                    <div class="testo">
-                        nome articolo
+                    <%
+                        float totale = 0;
+                        for(Articolo a : carrello){
+                            totale += a.getPrezzo()*a.getQuantitaNelcarrello();
+                      %>
+                    <div class="testo ">
+                        <%=a.getTitolo()%>
                     </div>
-                    <div class="testo">
-                        prezzo totale
+
+                    <%
+                        }
+                        BigDecimal bd = new BigDecimal(Float.toString(totale));
+                        bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+                    %>
+
+
+                    <div class="testo totale">
+                        Prezzo totale:
+                        <div><%=bd%></div>
                     </div>
                 </div>
             </div>

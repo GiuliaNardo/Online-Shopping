@@ -177,7 +177,7 @@
                     <a href="#" class="[ dropdown-toggle ][ animate ]" data-toggle="dropdown"><i class="zmdi zmdi-face"></i>
                         <%=utente.getUserName()%><span class="[ caret ]"></span></a>
                     <ul class="[ dropdown-menu ]" role="menu">
-                        <li><a href="profile.jsp" class="[ animate ]">Profile <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
+                        <li><a href="profile.jsp" class="[ animate ]">Profilo <span class="[ pull-right glyphicon glyphicon-pencil ]"></span></a></li>
                         <li><a href="orders.jsp" class="[ animate ]">I miei Ordini <span class="[ pull-right glyphicon glyphicon-align-justify ]"></span></a></li>
                         <li><a href="utils/logout.jsp">Log out</a></li>
                     </ul>
@@ -187,7 +187,7 @@
                 %>
                 <li>
                     <a href="./shopprofile.jsp?id=<%=venditore.getIdVenditore()%>" class="[ animate ]"><i class="zmdi zmdi-store"></i>
-                        Your Shop
+                        Negozio
                     </a>
 
                 </li>

@@ -151,11 +151,11 @@ altrimenti si procede con la ricerca che è stata effettuata
 <div class="shop-container ">
     <div class="well well-sm row">
         <div class="col-md-4 col-sm-12 display">
-        <strong>Display</strong>
+        <strong>Visualizzazione</strong>
         <div class="btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>List</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                class="glyphicon glyphicon-th"></span>Grid</a>
+            </span>Lista</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
+                class="glyphicon glyphicon-th"></span>Griglia</a>
         </div>
         </div>
 
@@ -163,7 +163,6 @@ altrimenti si procede con la ricerca che è stata effettuata
                     <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select input-group-prepend" data-toggle="dropdown" name="cat">
                         <option class="opzioniCat">Categorie</option>
                         <%
-                            System.out.println("Numero categorie: "+categorie.size());
                             if (categorie.size()>0){
                                 for (int i =0; i<categorie.size(); i++){
                         %>
@@ -219,25 +218,25 @@ altrimenti si procede con la ricerca che è stata effettuata
                                 <label class="filter-col"  for="pref-search">Search:</label>
                                 <input type="text" class="form-control input-sm" id="pref-search">
                                 -->
-                                <label class="filter-col">Price<span class="span">from:</span></label>
+                                <label class="filter-col">Prezzo<span class="span">da:</span></label>
                                 <input type="number" class="form-control input-sm" name="priceFrom" id="price-from">
-                                <label class="filter-col"><span class="span">to:</span></label>
+                                <label class="filter-col"><span class="span">a:</span></label>
                                 <input type="number" class="form-control input-sm" name="priceTo" id="price-to">
                             </div>
                             <!-- form group [search] -->
                             <div class="form-group">
-                                <label class="filter-col" style="margin-right:0;" for="pref-orderby">Order by:</label>
+                                <label class="filter-col" style="margin-right:0;" for="pref-orderby">Ordina per:</label>
                                 <select name="order-by" id="pref-orderby" class="form-control">
-                                    <option value="choose">Choose</option>
-                                    <option value="desc">Price: descendent</option>
-                                    <option value="asc">Price: increasing</option>
+                                    <option value="choose">Scegli</option>
+                                    <option value="desc">Prezzo: decrescente</option>
+                                    <option value="asc">Prezzo: crescente</option>
 
                                 </select>
                             </div> <!-- form group [order by] -->
                             <div class="form-group">
-                                <label class="filter-col">Review average:</label>
-                                <select id="sort-review" class="form-control" name="rev">Review
-                                    <option value="choose">choose</option>
+                                <label class="filter-col">Media voti:</label>
+                                <select id="sort-review" class="form-control" name="rev">
+                                    <option value="choose">Scegli</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -250,12 +249,12 @@ altrimenti si procede con la ricerca che è stata effettuata
                 </div>
             </div>
             <button type="button" class="btn btn-primary pull-right" data-toggle="collapse" data-target="#filter-panel">
-                <span class="glyphicon glyphicon-cog"></span> Advanced Search
+                <span class="glyphicon glyphicon-cog"></span> Ricerca avanzata
             </button>
     </div>
 
 </form>
-<div class="niente" id="no-item">There isn't any item for your search</div>
+<div class="niente" id="no-item">Non ci sono articoli che soddisfano la tua richiesta</div>
     <div id="products" class="row list-group">
 
         <div class="articoli-box" id="">
@@ -293,7 +292,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
 
                %>
 
-            $('#shop-content').append(new_item('<%=results.get(i).getIdArticolo()%>','<%=results.get(i).getDescrizione()%>', '<%=results.get(i).getTitolo()%>','<%=results.get(i).getPrezzo()%>'+'€','<%=path%>'));
+            $('#shop-content').append(new_item("<%=results.get(i).getIdArticolo()%>","<%=results.get(i).getDescrizione()%>", "<%=results.get(i).getTitolo()%>","<%=results.get(i).getPrezzo()%>"+"€","<%=path%>"));
             <%
             }
         }
@@ -306,7 +305,9 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
 
 
     });
+
     function new_item(id,descrizione,titolo,prezzo,immagine){
+
         console.log('creato articolo',id)
         <%
         if(q != ""){
@@ -329,7 +330,7 @@ se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizz
             '            <div class="thumbnail">\n' +
             '                <img class="group list-group-image" src="'+immagine+'" alt="" />\n' +
             '                <div class="caption">\n' +
-            '                    <div class="group inner list-group-item-heading"><a href="../../item.jsp?id='+id+'">'+titolo+'</a></div> '+
+            '                    <div class="group inner list-group-item-heading"><a href="../../item.jsp?id='+id+'">'+ titolo +'</a></div> '+
             '                    <p class="group inner list-group-item-text">'+descrizione+'</p>\n' +
             '                    <div class="row">\n' +
             '                        <div class="col-xs-12 col-md-6">\n' +

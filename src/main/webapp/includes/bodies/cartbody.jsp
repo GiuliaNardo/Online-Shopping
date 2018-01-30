@@ -30,7 +30,7 @@
 
 <div class="order-container">
     <div class="row">
-        <div class="title">Your Cart</div>
+        <div class="title">Carrello</div>
     </div>
 
     <div class="">

@@ -165,11 +165,9 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
                                          <div class="row">
                                             <span class="titolo">Descrizione: </span><%=ticket.getTesto()%>
                                          </div>
-                                     <%//if(!isInsert) {%>
                                          <div class="row">
                                              <span class="titolo">Stato: </span><%=ticket.getStatoTicket().toString()%>
                                          </div>
-                                     <%//}%>
 
 
 

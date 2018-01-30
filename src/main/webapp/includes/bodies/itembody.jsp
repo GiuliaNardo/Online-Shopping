@@ -148,7 +148,6 @@
         });
     });
 </script>
-
 <%
     String testo = "";
     String rate = "";
@@ -175,13 +174,14 @@
                 }
             }
         }
-        idArt = Integer.parseInt(idItem);
-        item = database.getArticolo(idArt);
-        recensioni = database.getRecensioniArticolo(item);
-        venditore = database.getVenditore(item.getIdVenditore());
 
     }
 
+
+    idArt = Integer.parseInt(idItem);
+    item = database.getArticolo(idArt);
+    recensioni = database.getRecensioniArticolo(item);
+    venditore = database.getVenditore(item.getIdVenditore());
     testo = request.getParameter("testo");
     rate = request.getParameter("valstar");
     if(testo != null && rate != null) {
@@ -191,32 +191,25 @@
         RecensioneArticolo recensione = null;
         if (isLogged && utente!=null) {
 
-            if (rate != null) {
-                int r = Integer.parseInt(rate);
-                if (r > 0) {
-                    voto = r;
-                } else {
-                    voto = 1;
-                }
+            int r = Integer.parseInt(rate);
+            if (r > 0) {
+                voto = r;
+            } else {
+                voto = 1;
+            }
+            descr = testo;
 
-            }
-            if (testo != null) {
-                descr = testo;
-            }
             if (idArt != 0) {
                 recensione = new RecensioneArticolo(utente, voto, descr, idArt);
+                recensioni.add(recensione);
+                database.insertRecensioneArticolo(recensione);
             }
-
-            boolean inserito = database.insertRecensioneArticolo(recensione);
-            System.out.println("inserito " + inserito);
-            System.out.println(request.getParameter("a"));
-    }
-
-
         }
 
+
+    }
+
     database.close();
-    System.out.println("id: "+idItem);
 %>
 
 <div class="container-fluid container" >

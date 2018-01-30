@@ -147,7 +147,7 @@ altrimenti si procede con la ricerca che è stata effettuata
 </script>
 <link rel="stylesheet" type="text/css" href="styles/shopstyle.css">
 
-<form action="./shop.jsp" class="form">
+<form action="./shop.jsp" class="form" id="ricerca-avanzata-form">
 <div class="shop-container ">
     <div class="well well-sm row">
         <div class="col-md-4 col-sm-12 display">
@@ -161,7 +161,7 @@ altrimenti si procede con la ricerca che è stata effettuata
 
             <div class="input-group mb-3">
                     <select type="button" class="ricerca btn btn-default dropdown-toggle custom-select input-group-prepend" data-toggle="dropdown" name="cat">
-                        <option class="opzioniCat">Categorie</option>
+                        <option class="opzioniCat" disabled selected value>Categorie</option>
                         <%
                             if (categorie.size()>0){
                                 for (int i =0; i<categorie.size(); i++){
@@ -227,7 +227,7 @@ altrimenti si procede con la ricerca che è stata effettuata
                             <div class="form-group">
                                 <label class="filter-col" style="margin-right:0;" for="pref-orderby">Ordina per:</label>
                                 <select name="order-by" id="pref-orderby" class="form-control">
-                                    <option value="choose">Scegli</option>
+                                    <option value="choose" disabled selected value>Scegli</option>
                                     <option value="desc">Prezzo: decrescente</option>
                                     <option value="asc">Prezzo: crescente</option>
 
@@ -236,7 +236,7 @@ altrimenti si procede con la ricerca che è stata effettuata
                             <div class="form-group">
                                 <label class="filter-col">Media voti:</label>
                                 <select id="sort-review" class="form-control" name="rev">
-                                    <option value="choose">Scegli</option>
+                                    <option value="choose" disabled selected value>Scegli</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -277,6 +277,13 @@ vengono creati gli oggetti html con i dati ricevuti dalla ricerca e dal database
 se non ci sono risultati che soddisfano i criteri della ricerca, viene visualizzato un testo
  */
     $(document).ready(function (){
+        $("#ricerca-avanzata-form").submit(function() {
+            $(this).find(":input").filter(function(){ return !this.value; }).attr("disabled", "disabled");
+            return true; // ensure form still submits
+        });
+
+        // Un-disable form fields when page loads, in case they click back after submission
+        $( "#ricerca-avanzata-form" ).find( ":input" ).prop( "disabled", false );
     <%
         if(results.size()!=0){
              %>

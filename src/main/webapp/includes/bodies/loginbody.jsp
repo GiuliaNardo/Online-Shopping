@@ -2,6 +2,9 @@
 <link rel="stylesheet" type="text/css" href="../../styles/loginstyle.css">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+    var errore;
+</script>
 <%
     /*
     controllo dello username e della password inseriti, se non sono corretti si chiede il reinserimento
@@ -11,13 +14,13 @@
         if(error.equals("errore1")){
         %>
             <script>
-                var errore = "Username o password errato";
+                errore = "Username o password errato";
             </script>
         <%
         }else if(error.equals("errore2")){
         %>
             <script>
-                var errore = "Utente inesistente, perfavore effetturare registrazione";
+                errore = "Utente inesistente, perfavore effetturare registrazione";
             </script>
         <%
         }

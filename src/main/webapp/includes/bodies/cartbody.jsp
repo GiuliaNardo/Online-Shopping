@@ -129,8 +129,8 @@
             for (Articolo a : carrello) {
             %>
                 prezzo = <%=a.getPrezzo()%>;
-                descrizione= "<%=a.getDescrizione()%>";
-                nome="<%=a.getTitolo()%>";
+                descrizione= "<%=a.getDescrizione().replaceAll("(['\"])","\\\\$1");%>";
+                nome="<%=a.getTitolo().replaceAll("(['\"])","\\\\$1");%>";
                 categoria= "<%=a.getCategoria()%>";
                 quantita=<%=a.getQuantitaNelcarrello()%>;
                 id = <%=a.getIdArticolo()%>;

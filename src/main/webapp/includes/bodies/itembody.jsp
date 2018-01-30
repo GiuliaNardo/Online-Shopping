@@ -274,8 +274,8 @@
             <div class="col-md-12 product-info">
                 <ul id="myTab" class="nav nav-tabs nav_tabs">
 
-                    <li class="active"><a href="#service-one" data-toggle="tab">DESCRIPTION</a></li>
-                    <li><a href="#service-two" data-toggle="tab">REVIEWS</a></li>
+                    <li class="active"><a href="#service-one" data-toggle="tab">Descrizione</a></li>
+                    <li><a href="#service-two" data-toggle="tab">Recensioni</a></li>
 
                 </ul>
                 <div id="myTabContent" class="tab-content">

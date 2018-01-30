@@ -768,7 +768,7 @@ public class Database {
     public boolean deleteUserSession(String hash) {
         boolean updateSuccesful = false;
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM articolo WHERE IdArticolo = ? LIMIT 1;");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM sessionUser WHERE hashcode = ? LIMIT 1;");
             preparedStatement.setString(1, hash);
             if (preparedStatement.executeUpdate() > 0) {
                 updateSuccesful = true;

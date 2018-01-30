@@ -30,31 +30,47 @@
  */
     if(request.getParameter("priceFrom")!= null){
         if (!request.getParameter("priceFrom").equals("")){
-            float priceFrom = Integer.parseInt(request.getParameter("priceFrom") );
-            priceFromS = request.getParameter("priceFrom");
+            String priceString = request.getParameter("priceFrom");
+            if(priceString.indexOf(".") > 0) {
+                priceString = priceString.substring(0, priceString.indexOf("."));
+            }
+            if(priceString.indexOf(",") > 0) {
+                priceString = priceString.substring(0, priceString.indexOf(","));
+            }
+            float priceFrom = Integer.parseInt(priceString);
+            priceFromS = priceString;
             advS1.setStartPrice(priceFrom);
             isSearch = true;
         }
     }
 
-    System.out.println("pFr "+isSearch);
-
-
     if(request.getParameter("priceTo")!=null){
         if (!request.getParameter("priceTo").equals("")){
-            float priceTo = Integer.parseInt(request.getParameter("priceTo"));
-            priceToS = request.getParameter("priceTo");
+            String priceString = request.getParameter("priceTo");
+            if(priceString.indexOf(".") > 0) {
+                priceString = priceString.substring(0, priceString.indexOf("."));
+            }
+            if(priceString.indexOf(",") > 0) {
+                priceString = priceString.substring(0, priceString.indexOf(","));
+            }
+            float priceTo = Integer.parseInt(priceString);
+            priceToS = priceString;
             advS1.setEndPrice(priceTo);
             isSearch = true;
         }
     }
 
-    System.out.println("pTO "+isSearch);
-
     if(request.getParameter("rev")!=null){
         if (!request.getParameter("rev").equals("")){
             if(!request.getParameter("rev").equals("choose")){
-                int revAverage = Integer.parseInt(request.getParameter("rev"));
+                String revString = request.getParameter("rev");
+                if(revString.indexOf(".") > 0) {
+                    revString = revString.substring(0, revString.indexOf("."));
+                }
+                if(revString.indexOf(",") > 0) {
+                    revString = revString.substring(0, revString.indexOf(","));
+                }
+                int revAverage = Integer.parseInt(revString);
                 rev = request.getParameter("rev");
                 advS1.setMinReview(revAverage);
                 isSearch = true;
@@ -66,7 +82,6 @@
         }
     }
 
-    System.out.println("rev "+isSearch);
     if(request.getParameter("order-by")!= null){
         QueryOrder order;
         if(!request.getParameter("rev").equals("choose")) {
@@ -86,7 +101,6 @@
             advS1.setQueryOrder(QueryOrder.DESC);
         }
     }
-    System.out.println("ord "+isSearch);
 
     if(request.getParameter("q")!=null){
         if(!request.getParameter("q").equals("")){
@@ -95,7 +109,6 @@
             isSearch = true;
         }
     }
-    System.out.println("q "+isSearch);
     if(request.getParameter("cat")!=null){
         if(!request.getParameter("cat").equals("") ){
             if(!request.getParameter("cat").equals("Categorie")) {

@@ -163,7 +163,7 @@
     Venditore venditore = null;
     int idArt = 0;
     ArrayList<RecensioneArticolo> recensioni = null;
-    if(cookies.length != 0) {
+    if(cookies != null && cookies.length != 0) {
 
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {

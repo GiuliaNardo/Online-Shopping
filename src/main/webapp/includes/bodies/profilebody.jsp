@@ -34,7 +34,7 @@
     boolean isLogged = false;
     String path = "";
     System.out.println(cookies.toString());
-    if(cookies != null) {
+    if(cookies != null && cookies != null) {
         Database database = new Database();
         for (int i = 0; i < cookies.length; i++) {
             if (cookies[i].getName().equals("SessioneUtente")) {

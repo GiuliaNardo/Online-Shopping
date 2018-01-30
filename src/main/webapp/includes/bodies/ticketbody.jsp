@@ -116,8 +116,8 @@
                 if(user!=null && !user.equals("")){
                     idUser = Integer.parseInt(user);
                 }
-
-                ticket = new Ticket(id,idO,idUser,tipo,testo,statoTicket);
+                ticket = db.getTicket(id, utente);
+                ticket.setStatoTicket(statoTicket);
                 db.updateTicket(ticket);
 
             } else {
@@ -145,7 +145,7 @@ se sei loggato puoi vedere la pagina degli ordini altrimenti vieni mandato alla 
 
     <div class="row">
             <div class="page-header">
-                <div class="title">Your ticket</div>
+                <div class="title">Il tuo ticket</div>
             </div>
 
             <!--<div class="row" id="nav-home">-->

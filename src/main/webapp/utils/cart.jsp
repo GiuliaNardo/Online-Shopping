@@ -37,7 +37,12 @@
     if(request.getParameter("cat")!= null && !request.getParameter("cat").equals("")){
         catS = request.getParameter("cat");
     }
-    requestUrl = "?q="+q+"&cat="+catS+"&order-by="+ord+"&rev="+rev+"&priceFrom="+priceFromS+"&priceTo="+priceToS+"";
+    if(q.equals("") && priceFromS.equals("") && priceToS.equals("") &&  rev.equals("") && ord.equals("") && catS.equals("")){
+        requestUrl = "";
+    }else{
+        requestUrl = "?q="+q+"&cat="+catS+"&order-by="+ord+"&rev="+rev+"&priceFrom="+priceFromS+"&priceTo="+priceToS+"";
+    }
+
     List<Articolo> carrello = null;
     if (azione.equals("aggiungi")) {
         if(sessione.getAttribute("carrello") != null){
@@ -53,7 +58,12 @@
                carrello.add(db.getArticolo(idArticolo));
            }
            db.close();
-           response.sendRedirect("../shop.jsp"+requestUrl);
+           if(request.getParameter("from") != null && request.getParameter("from").equals("item")){
+               response.sendRedirect("../item.jsp?id="+idArticolo);
+           }else{
+               response.sendRedirect("../shop.jsp"+requestUrl);
+           }
+
        }else{
            carrello = new ArrayList<Articolo>();
            carrello.add(db.getArticolo(idArticolo));
